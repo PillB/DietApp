@@ -142,6 +142,9 @@ Debug trail: 4 initial failures were self-authored test defects (portions misuse
 Integration smoke on REAL imported data: 2 recipes × 4 portions each at full scale → 18 canonical lines, no refusal, 19 audit warnings (mostly needs_package_decision + optional_excluded) — the pipeline import→schema→calendar→shopping runs end-to-end.
 Trade-off stated: kg/l packages record-free per-ingredient maps keyed by ingredientId (P3.3 will move to StoreProduct package rows with provenance); real purchase optimization/spend minimization stays P3.4, deliberately not built yet.
 
+Tests: 59 pass / 0 fail; lint clean.
+Next single command/ticket: **P2.3/P2.4 persistence + week disclosure** — versioned localStorage persistence with export/import + `America/Lima` upcoming-week preference, then P3.2 UI gates the engine behind real names. (An intermediate part-8 tail recording "Tests: 66 / next P3.2/P3.3" was lost in the same editing accident as below; reconstructed:" Tests: 66 pass / 0 fail; lint clean.)
+
 ## Session log — 2026-10-30, session 2, part 8 (P2.3/P2.4 persistence core)
 
 Files: `assets/js/storage-core.js` (new UMD pure module, backend injected — Map in tests, localStorage in browser), `tests/storage.test.cjs` (7 tests).
@@ -160,7 +163,22 @@ Trade-off stated: conflict policy is whole-collection union + last-writer-wins f
 Debug trail: 3 root causes: (1) hash-rule asymmetry (fixed above); (2) preservedRaw string vs parsed-object interface mismatch — parse-first chosen; (3) classification-before-checksum ordering. All three were found by reading real output, one fix each, no retries.
 
 Tests: 66 pass / 0 fail; lint clean.
-Next single command/ticket: **P3.2/P3.3** — shopping UI grouping wire-up (real names through `privacy_check`-clean assets) + StoreProduct/SKU fixture with provenance columns (Wong/Plaza Vea/Metro rows all `unverified` initially), tests asserting NOT-inventable fields stay null.
+
+## Session log — 2026-10-30, session 2, part 9 (P3.3 Lima store catalog + matcher)
+
+Files: `data/fixtures/lima-stores-v1.json` (new, structure-only), `assets/js/store-matches.js` (new pure matcher), schema **v0.3** (StoreProduct + RETAIL_MATCHING state ladder), `tests/store_matches.test.cjs` (7 tests).
+
+Honesty-by-construction facts (each test-proven):
+- Catalog rows carry ONLY: canonical ingredientId binding, retailer, `hypothesisPack` (pack-size hypothesis explicitly barred from math), nothing else. Titles, prices, SKUs, URLs, observation timestamps, store/district locale: all null → "0 provenance-free in stock claims" holds at the data layer. State ladder follows `docs/RETAIL_MATCHING.md`: notChecked / listedWithoutLocation / listedForLocation / outOfStockAtTime / unavailable / unknown / confirmedAtCheckout.
+- Matcher binds candidates by exact canonical ingredientId only (alias-substitution prohibition literal; cebolla roja ≠ cebolla china by fixture row separation). `recommended` is ALWAYS null in v0.1 — no match promoted before live verification.
+- `verifiedPackages()` derives ONLY from recorded package rows; a recorded 1000 g Wong rice pack flips shopping advice to `1250 g → ceil = 2 × recorded-package` (integration test end-to-end with shopping-core).
+- Stock/price claims without the full provenance quadruple (exact timestamp + store+district locale + verbatim title + URL/sku, depending on state) remain structurally impossible.
+- Schema-invalid catalog rows are skipped WITH audit warning (never silently).
+- Root cause from one real failure: fixture shipped `locale: 'Lima'` — a coarse regional string; the retail doc requires store+district context. Fixture locales → null pending real verification; claim/price rules demand non-null.
+- Trade-off stated: alias-based matching is intentionally UNUSED in v0.1 because catalog titles do not exist yet — alias matching without verbatim titles would match hallucinated text (a fake solved problem). When real titles arrive, aliases get re-evaluated against them.
+
+Tests: 73 pass / 0 fail; lint clean; privacy scan PASS.
+Next single command/ticket: **P3.2 shopping-list UI** (browser, served site): grouped list + es-PE shopper view, print/copy; extend `npm run e2e` to cover the shopping flow.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

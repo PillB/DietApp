@@ -24,7 +24,9 @@
   const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack'];
   const BASIS = ['raw', 'dry', 'cooked'];
   const RETAILERS = ['Wong', 'Plaza Vea', 'Metro', 'Mercado', 'Puntomercado'];
-  const AVAILABILITY = ['unverified', 'observed', 'verified'];
+  const AVAILABILITY = ['notChecked', 'unverified', 'listedWithoutLocation', 'listedForLocation', 'outOfStockAtTime', 'unavailable', 'unknown', 'confirmedAtCheckout', 'observed', 'verified'];
+  // states that constitute an actual observation/claim and therefore REQUIRE exact provenance
+  const CLAIMING_AVAILABILITY = ['listedForLocation', 'outOfStockAtTime', 'unavailable', 'confirmedAtCheckout', 'observed', 'verified'];
   const CONFIDENCE = ['unverified', 'inferred', 'observed', 'verified'];
   const SOURCE_TYPES = ['private_xlsx', 'private_pdf', 'generated_report', 'curated_extract', 'public_doc', 'user_input', 'kitchen_experiment'];
   const VALIDATION_STATUS = ['unverified', 'reviewPending', 'reviewed'];
@@ -159,6 +161,55 @@
     err('recordedAt', TIMESTAMP_RE.test(x.recordedAt) ? undefined : 'bad_timestamp', 'RFC 3339-ish timestamp or YYYY-MM-DD');
   }
 
+  /** Store catalog product (v0.3, RETAIL_MATCHING.md). Structure-only rows are
+   * valid; any claimed state or price must carry full provenance quadruple. */
+  function productHeaderRule(x, err) {
+    err('id', ID_RE.test(x.id) ? undefined : 'bad_id');
+    err('retailer', RETAILERS.includes(x.retailer) ? undefined : 'unknown_retailer');
+    err('ingredientId', ID_RE.test(x.ingredientId) ? undefined : 'bad_ingredientId', 'catalog rows must bind to a canonical ingredient id');
+    err('notes', Array.isArray(x.notes) ? undefined : 'bad_notes');
+    err('locale', x.locale === null || (typeof x.locale === 'string' && x.locale.length > 0) ? undefined : 'bad_locale');
+    productMediaRule(x, err);
+  }
+
+  function productMediaRule(x, err) {
+    err('listingTitle', x.listingTitle === null || (typeof x.listingTitle === 'string' && x.listingTitle.length > 0) ? undefined : 'bad_listingTitle', 'titles must be copied verbatim or stay null — never generated');
+    err('sku', x.sku === null || typeof x.sku === 'string' ? undefined : 'bad_sku');
+    err('productUrl', x.productUrl === null || (typeof x.productUrl === 'string' && /^https?:\/\//.test(x.productUrl)) ? undefined : 'bad_productUrl');
+  }
+
+  function productPackRule(x, err) {
+    err('packageQty', x.packageQty === null || (Number.isFinite(x.packageQty) && x.packageQty > 0) ? undefined : 'bad_packageQty');
+    err('packageUnit', x.packageUnit === null || ALL_UNITS.includes(x.packageUnit) ? undefined : 'bad_packageUnit');
+    err('pricePEN', x.pricePEN === null || (Number.isFinite(x.pricePEN) && x.pricePEN >= 0) ? undefined : 'bad_price');
+    const pack = x.hypothesisPack;
+    if (pack == null) return;
+    const okQ = (typeof pack.quantity === 'string' && QUANTITY_RE.test(pack.quantity)) || (Number.isFinite(pack.quantity) && pack.quantity >= 0);
+    err('hypothesisPack', okQ && ALL_UNITS.includes(pack.unit) ? undefined : 'bad_hypothesisPack', 'a HYPOTHESIS pack is a non-provenance aid, never used for purchase math');
+  }
+
+  function productProvenanceRule(x, err) {
+    err('availability', AVAILABILITY.includes(x.availability) ? undefined : 'unknown_availability', `availability must be one of ${AVAILABILITY.join(',')}`);
+    if (CLAIMING_AVAILABILITY.includes(x.availability)) {
+      claimProvenanceRule(x, err);
+      if (['listedForLocation', 'confirmedAtCheckout'].includes(x.availability)) {
+        err('listingTitle', typeof x.listingTitle === 'string' && x.listingTitle.length > 0 ? undefined : 'claim_missing_listing_title', 'verified listing states require the verbatim retail title');
+        err('productUrl', Boolean(x.productUrl) ? undefined : 'claim_missing_product_url');
+      }
+    }
+    if (x.pricePEN != null) {
+      claimProvenanceRule(x, err, 'price');
+    }
+  }
+
+  /** Exact observation timestamp + locale quadruple prefix shared by claims & prices. */
+  function claimProvenanceRule(x, err, prefix = 'claim') {
+    const EXACT_TIME_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/;
+    err('observationTime', EXACT_TIME_RE.test(x.observationTime) ? undefined : `${prefix}_missing_observation_time`, 'a claim/price without exact observation time is not provenance');
+    err('locale', typeof x.locale === 'string' && x.locale.length > 0 ? undefined : `${prefix}_missing_locale`, 'store + district context required');
+    if (prefix === 'price') err('productUrl', Boolean(x.productUrl) || x.sku ? undefined : 'price_missing_sku_or_url');
+  }
+
   function realCalendarDate(v) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
     const [y, m, d] = String(v).split('-').map(Number);
@@ -168,12 +219,14 @@
   }
 
   return {
-    SCHEMA_VERSION: 'domain-schema/v0.2',
+    SCHEMA_VERSION: 'domain-schema/v0.3',
     QUANTITY_RE,
     validateIngredient: makeValidator('Ingredient', [isIngredient]),
     validateRecipeVersion: makeValidator('RecipeVersion', [recipeHeaderRule, ingredientUseRule, pressureRule, stepsRule]),
     validatePlanEntry: makeValidator('PlanEntry', [isPlanEntry]),
     validateStoreMatch: makeValidator('StoreMatch', [storeListingRule, storePackageRule, storeProvenanceRule]),
+    validateStoreProduct: makeValidator('StoreProduct', [productHeaderRule, productPackRule, productProvenanceRule]),
+    CLAIMING_AVAILABILITY,
     validateEvidence: makeValidator('Evidence', [isEvidence]),
   };
 });
