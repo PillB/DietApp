@@ -275,8 +275,6 @@ Tests: 94 pass / 0 fail; lint clean.
 
 
 ## Standing user instructions (do not lose)
-
-## Standing user instructions (do not lose)
 - Every message to the user must START with their name: PillB.
 - Before requesting access to any path outside the project folder: first try to avoid the need; if unavoidable, explain which file and why BEFORE requesting access.
 
