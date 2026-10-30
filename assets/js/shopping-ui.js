@@ -34,12 +34,13 @@
     if (!fed) throw new Error('nutrition data not present');
     const dom = opts.dom || document;
     const section = dom.getElementById('shopengine');
-    if (!section) return { mounted: false };
+    if (!section) return { mounted: false, model: null };
     const model = hydrate(c, fed);
     buildStaticSkeleton(section);
     bind(c, model, section);
     render(c, model, section, { silent: false });
-    return { mounted: true };
+    root.__pgkRefreshShopping = () => render(c, model, section, { silent: true });
+    return { mounted: true, model };
   }
 
   function localStore() {
@@ -140,6 +141,7 @@
       status.textContent = `Added ${entry.recipeId} × ${entry.portions} on ${entry.localDate}`;
       c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });
+      if (root.PlannerUI && root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
     });
     section.querySelector('#engine-copy').addEventListener('click', () => copyCsv(model, section));
     section.querySelector('#engine-print').addEventListener('click', () => root.print());

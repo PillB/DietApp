@@ -1,10 +1,10 @@
 {
-  "port": 59242,
+  "port": 60117,
   "rows": [
     {
       "tag": "desktop",
       "title": "Gourmet Meal Plan SPA",
-      "navCount": 9,
+      "navCount": 10,
       "alpineMounted": true,
       "overflow": false,
       "consoleErrors": [],
@@ -20,7 +20,7 @@
     {
       "tag": "mobile",
       "title": "Gourmet Meal Plan SPA",
-      "navCount": 9,
+      "navCount": 10,
       "alpineMounted": true,
       "overflow": false,
       "consoleErrors": [],
@@ -28,8 +28,8 @@
       "localMissing": [],
       "cdnResults": [
         "302 https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",
-        "302 https://cdn.tailwindcss.com/",
         "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
+        "302 https://cdn.tailwindcss.com/",
         "200 https://cdn.tailwindcss.com/3.4.17"
       ]
     },
@@ -43,6 +43,17 @@
         "refusalShown": 0,
         "esPeDraftName": 1,
         "esPeDraftTag": 1
+      },
+      "failed": false
+    },
+    {
+      "tag": "planner-flow",
+      "pageErrors": [],
+      "steps": {
+        "beforeRepeat": 1,
+        "afterRepeat": 3,
+        "scrollText": "repeat ok",
+        "shoppingLinesAfter": 10
       },
       "failed": false
     }

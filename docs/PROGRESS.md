@@ -228,7 +228,27 @@ Dictionary restructured (`assets/js/food-names-es-pe.js` v2):
 UI/CSV: shopper lines now show up to 2 store synonyms in parentheses after the primary name; CSV cells 'es (syn1 | syn2 | syn3)' for robustness against search variability. E2E asserts es-PE name AND draft tag still render.
 
 Tests: 80 pass / 0 fail; E2E PASS; lint clean.
-Next single command/ticket: **P2.2 planner UI** (repeat rules ×N weeks, move/copy/delete, keyboard alternatives to drag) — last planner-internal gap before P3.4 optimization; then P4 guided cooking-mode.
+
+## Session log — 2026-10-30, session 2, part 13 (P2.2 planner core + planner UI)
+
+Files: `assets/js/planner-core.js` (new pure ops: move/copy/delete/applyRepeat), `assets/js/planner-ui.js` (new vanilla-DOM; shared model with ShoppingUI), `index.html` (section `#planner`, nav '🗓 Planner (v4)', two more scripts, chained boot), `tests/planner_core.test.cjs` (8 tests), E2E `planner-flow` audit (new screenshot).
+
+Test-proven semantics (each decision documented, not absorbed):
+- Move changes ONLY localDate (id stability avoids downstream merge artifacts); Copy allocates fresh id; same-day twins legal; invalid dates refuse WITH no mutation.
+- Repeat = **N forward occurrences** (mid-week starts no longer silently lose the first weekday — engine pads the anchor window and takes first N after source), exceptions skip dates, rule-family tag `rep-<source>-<weekdays>w<N>` is schema-slug-safe (ID_RE denied colons — schema authority kept, code complied), re-apply is IDEMPOTENT via the tag while hand-made same-day twins stay distinct.
+- Keyboard-first: no drag anywhere in v4 (AGENTS.md a11y + drag-optional clause); every action is a labeled button/date input; srOnly labels for move fields; aria-live status.
+
+Root-cause trail (4 real fixes from real output, zero retries):
+1. Group id colons violating DomainSchema.ID_RE → schema-complying slug (schema stays authority).
+2. Rename mismatch `bilingual` vs `nameBilingual` caught by the browser error line, fixed at the caller.
+3. Planner showed stale list after ShoppingUI mutation — missing cross-refresh; added shared `__pgkRefreshPlanner` registry hook (planner→shopping refresh already existed).
+4. Lint cleanup: `dates` unused expansion path, dead bind/render stubs removed.
+
+E2E evidence: planner-flow PASS — add entry via shopping form (11-03, portions 4) → planner shows 1 → 'Repeat weekly (same weekday)' ×2 → 3 entries, status 'repeat ok', shopping re-render fresh; 0 page errors. Shopping-flow still PASS.
+
+Tests: 88 pass / 0 fail; E2E PASS (both flows); lint clean; privacy PASS.
+Known-scope statement (not absorbed): 'Copy to date' currently uses the row's move-date field; a separate copy-date field + repeat-family visualization are the P2 UI polish items.
+Next single command/ticket: **P2 UI polish** (repeat-family visualization + separate copy-date field), then **P4 guided cook mode** with the food-science double-review gate.
 
 ## Update template for next session
 

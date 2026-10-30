@@ -116,6 +116,39 @@ async function shoppingFlow(port, report) {
   return failed;
 }
 
+/** P2.2 planner flow: repeat weekly ×2 from the added entry; expect family growth. */
+async function plannerFlow(port, report) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const pageErrors = [];
+  page.on('pageerror', (e) => pageErrors.push(String(e)));
+  await page.goto(`http://localhost:${port}/`, { waitUntil: 'load' });
+  await page.waitForTimeout(1500); // boot + fixture
+  const steps = {};
+  await page.fill('#engine-from', '2026-11-01');
+  await page.fill('#engine-to', '2026-11-30');
+  await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
+  await page.fill('#engine-date', '2026-11-03');
+  await page.fill('#engine-portions', '4');
+  await page.click('#engine-plan-form button[type="submit"]');
+  await page.waitForTimeout(200);
+  steps.beforeRepeat = await page.locator('#planner-entries li').count();
+  await page.click('[data-op="repeat"]');
+  await page.waitForTimeout(200);
+  steps.afterRepeat = await page.locator('#planner-entries li').count();
+  steps.scrollText = await page.locator('#planner-status').textContent();
+  // shopping line growth via shared refresh (4×3 portions in range now)
+  steps.shoppingLinesAfter = await page.locator('#engine-groups li').count();
+  await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_planner_flow.png') });
+  await browser.close();
+  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.shoppingLinesAfter <= steps.beforeRepeat;
+  report.rows.push({ tag: 'planner-flow', pageErrors, steps, failed });
+  console.log(failed
+    ? `\n== planner-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
+    : `\n== planner-flow (PASS) == steps: ${JSON.stringify(steps)}`);
+  return failed || pageErrors.length > 0;
+}
+
 async function main() {
   const server = createServer(ROOT);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -132,7 +165,8 @@ async function main() {
     await auditBook(report, { width: 1360, height: 900 }, 'desktop');
     await auditBook(report, { width: 390, height: 844 }, 'mobile');
     const shopFailed = await shoppingFlow(port, report);
-    summarize(report, shopFailed);
+    const planFailed = await plannerFlow(port, report);
+    summarize(report, shopFailed || planFailed);
   } finally {
     server.close();
   }
