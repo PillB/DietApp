@@ -142,8 +142,25 @@ Debug trail: 4 initial failures were self-authored test defects (portions misuse
 Integration smoke on REAL imported data: 2 recipes × 4 portions each at full scale → 18 canonical lines, no refusal, 19 audit warnings (mostly needs_package_decision + optional_excluded) — the pipeline import→schema→calendar→shopping runs end-to-end.
 Trade-off stated: kg/l packages record-free per-ingredient maps keyed by ingredientId (P3.3 will move to StoreProduct package rows with provenance); real purchase optimization/spend minimization stays P3.4, deliberately not built yet.
 
-Tests: 59 pass / 0 fail; lint clean.
-Next single command/ticket: **P2.3/P2.4 persistence + week disclosure** — versioned localStorage persistence with export/import + `America/Lima` "upcoming week" preference, then P3.2 UI gates the engine behind real names.
+## Session log — 2026-10-30, session 2, part 8 (P2.3/P2.4 persistence core)
+
+Files: `assets/js/storage-core.js` (new UMD pure module, backend injected — Map in tests, localStorage in browser), `tests/storage.test.cjs` (7 tests).
+
+Test-proven behaviors:
+- Checksummed state (`state/v1`, FNV-1a over canonical key-sorted JSON); **save and load hash rules were unified by debugging an actual mismatch** (save used to hash `"checksum":null` payload; load hashed minus-field content) — the checksum is now computed with the field deleted on both sides.
+- Tampered payload → `checksum_mismatch` refusal with `preservedRaw` evidence kept (no silent wipe, no optimistic repair).
+- Unknown/future schema version → `unsupported_schema_version` refusal; classification happens BEFORE checksum verification (unsigned legacy/future docs would otherwise masquerade as tampering).
+- Legacy `meal-plan/legacy-v0` → backup written to `pgk-state-preMigration` BEFORE forward processing; state empties with explicit `migrationNeeded` marker — legacy plan content is NOT auto-fabricated into entries (P1.2 quarantine discipline carries over to persistence).
+- Conflict merge: per-collection union by id, newest `updatedAt` wins headers/settings; both-written duplicate ids deduplicate (`p1` appearing in both tabs appears once).
+- P2.4 week disclosure: `resolveWeek(today, policy)` returns `{label, mondayToSunday}` for `upcoming-week` (strict next Monday) vs `week-containing-today` — delegates to CalendarCore verbatim (test proves zero drift/copy-paste divergence).
+- Boundary rule: `addPlanEntry` refuses schema-invalid OR duplicate-id entries at the edge (fail-fast upstream of persistence).
+
+Trade-off stated: conflict policy is whole-collection union + last-writer-wins for scalars (documented; no per-field CRDT); multi-tab UI warn layer is a later gate in P7 E2E. Export bundle = the checksummed state doc itself; import path is `load()` on a doc-shaped object (verified path tested via storage round-trip).
+
+Debug trail: 3 root causes: (1) hash-rule asymmetry (fixed above); (2) preservedRaw string vs parsed-object interface mismatch — parse-first chosen; (3) classification-before-checksum ordering. All three were found by reading real output, one fix each, no retries.
+
+Tests: 66 pass / 0 fail; lint clean.
+Next single command/ticket: **P3.2/P3.3** — shopping UI grouping wire-up (real names through `privacy_check`-clean assets) + StoreProduct/SKU fixture with provenance columns (Wong/Plaza Vea/Metro rows all `unverified` initially), tests asserting NOT-inventable fields stay null.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

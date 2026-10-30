@@ -5,7 +5,7 @@
   "description": "Personal Gourmet Kitchen / Lima market edition — static recipe, planning and shopping app (see AGENTS.md).",
   "type": "commonjs",
   "scripts": {
-    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs",
+    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs tests/storage.test.cjs",
     "e2e": "node tests/e2e_served.cjs",
     "lint": "eslint .",
     "privacy": "node scripts/privacy_check.cjs",
