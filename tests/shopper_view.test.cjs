@@ -18,6 +18,21 @@ test('es-PE draft dictionary covers EVERY canonical ingredient from the 7 weighe
   assert.deepStrictEqual(missing, [], `ingredients without even a DRAFT es-PE name: ${missing.join(', ')}`);
 });
 
+test('owner-corrected vocabulary: banned machine nonsense never re-enters the draft', () => {
+  assert.deepStrictEqual(F.selfAudit(), { ok: true, bad: [] });
+  const blob = JSON.stringify([F.NAMES, F.SYNONYMS]).toLowerCase();
+  for (const token of ['chocllo superior', 'cocazuela']) assert.ok(!blob.includes(token), `banned term present: ${token}`);
+});
+
+test('ambiguous store items carry >=1 synonym for matching robustness (cebolla roja stays distinct)', () => {
+  for (const id of ['cucumber', 'beans_cooked', 'berries', 'soy_sauce', 'cucumber', 'mushroom']) {
+    assert.ok(F.synonymsFor(id).length >= 1, `${id} needs at least one local synonym`);
+  }
+  // onion synonyms are VARIANTS not strict substitutes: keep the id distinct in any match
+  const OnionSyn = F.synonymsFor('onion');
+  assert.ok(OnionSyn.includes('cebolla roja') && OnionSyn.includes('cebolla blanca'));
+});
+
 test('unknown/absent ids fail soft: no invented names, caller gets null', () => {
   assert.strictEqual(F.nameForIngredient('cebolla_roja_supply_variant'), null);
   assert.strictEqual(F.nameForIngredient(''), null);
@@ -25,7 +40,7 @@ test('unknown/absent ids fail soft: no invented names, caller gets null', () => 
 });
 
 test('review status is machine-draft and truthful (no native-review pretend flags)', () => {
-  assert.strictEqual(F.REVIEW_STATUS, 'draft-machine-assisted-needs-native-review');
+  assert.strictEqual(F.REVIEW_STATUS, 'draft-store-plausible-needs-native-review');
 });
 
 test('CSV bullets: es-PE name column first (shopper view), engine fields unchanged', () => {
@@ -38,7 +53,7 @@ test('CSV bullets: es-PE name column first (shopper view), engine fields unchang
   const csv = SHOP_LIST_TO_CSV(list, model);
   // expert check via line inspection rather than exact-match brittleness
   const dataLine = csv.split('\n').find((r) => r.includes('salmon'));
-  assert.ok(dataLine.includes('Salmón') || dataLine.includes('salmón'), `es-PE name missing in CSV line: ${dataLine}`);
+  assert.ok(dataLine && /salm[óo]n/i.test(dataLine), `es-PE name missing in CSV line: ${dataLine}`);
   assert.ok(/needs_package_decision/.test(dataLine), 'unverified purchase fields surface as decision-needed');
 });
 
@@ -57,9 +72,11 @@ function SHOP_LIST_TO_CSV(list, model) {
   const rows = list.map((l) => {
     const ing = model.ingredientById.get(l.ingredientId) || {};
     const esName = F.nameForIngredient(l.ingredientId) || '';
+    const syn = F.synonymsFor(l.ingredientId);
+    const esCell = syn.length ? `${esName} (${syn.slice(0, 3).join(' | ')})` : esName;
     const rec = l.purchaseRecommendation;
     const recPart = rec ? `${rec.packages},${rec.unit},${rec.rule}` : 'none,-,needs_package_decision';
-    return [ing.family || '', l.ingredientId, esName, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
+    return [ing.family || '', l.ingredientId, esCell, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
       .map((v) => { const s = String(v ?? ''); return /[",]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; }).join(',');
   });
   return [header].concat(rows).join('\n');

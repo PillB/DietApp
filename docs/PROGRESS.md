@@ -213,7 +213,24 @@ Facts:
 - Self-caught dictionary typos (machine-draft with gibberish entries) corrected before commit — drafts must be wrong-in-content, never sloppy.
 
 Tests: 78 pass / 0 fail; E2E PASS; lint clean; privacy PASS.
-Next single command/ticket: **P2.2 planner UI** (repeat rules ×N weeks, move/copy/delete, keyboard alternatives to drag) — the last planner-internal gap before P3.4 optimization; then P4 guided cooking-mode.
+Next single command/ticket: done this pass (Peru-vocabulary correction — part 12).
+
+## Session log — 2026-10-30, session 2, part 12 (Peru vocabulary correction round)
+
+Owner correction applied (evidence-driven, not vibes): machine-draft 'chocllo superior' is NOT a Peruvian product term; web search produced no usable results (logged once per blocked-resource rule), so names were rebuilt around vocab a Lima shopper expects at Wong/Metro/Plaza Vea, per the owner's instruction and `docs/RETAIL_MATCHING.md` §es-PE rendering.
+
+Dictionary restructured (`assets/js/food-names-es-pe.js` v2):
+- Primary names now store-plausible: pepino (not pepinillo-first), hongos (champiñones/setas family), menestras, edamame, sillao, fondo de verduras, cocoa (the label word), fideos integrales (store word), res: pulpa paleta marked 'equiv. aproximada a chuck' (butchery-tradition caveat, not fake certainty).
+- NEW synonyms layer `synonymsFor(id)` — matching robustness ONLY, never auto-substitution: e.g. berries → arándanos/frutillas/frambuesas; ají → amarillo/rocoto/limo; sillao → salsa de soya; palta ↔ aguacate; cebolla roja/blanca stay DISTINCT VARIANTS of onion (not substitutes).
+- FORBIDDEN token list + selfAudit(): 'chocllo superior', 'cocazuela' can never re-enter drafts (test-pinned); caught & removed an English synonym leak ('chard') during self-review.
+- REenaming REVIEW_STATUS → 'draft-store-plausible-needs-native-review'; test updated with the rename. Debug trail: 1 API-rename mismatch (bilingual vs nameBilingual) found by real browser error output, one fix.
+
+UI/CSV: shopper lines now show up to 2 store synonyms in parentheses after the primary name; CSV cells 'es (syn1 | syn2 | syn3)' for robustness against search variability. E2E asserts es-PE name AND draft tag still render.
+
+Tests: 80 pass / 0 fail; E2E PASS; lint clean.
+Next single command/ticket: **P2.2 planner UI** (repeat rules ×N weeks, move/copy/delete, keyboard alternatives to drag) — last planner-internal gap before P3.4 optimization; then P4 guided cooking-mode.
+
+## Update template for next session
 
 ## Standing user instructions (do not lose)
 - Every message to the user must START with their name: PillB.

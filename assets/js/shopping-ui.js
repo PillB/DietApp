@@ -202,9 +202,10 @@
       const ing = model.ingredientById.get(line.ingredientId)
         || { family: 'pantrystaples', name: { en: line.ingredientId }, nameProvisional: true };
       const fam = ing.nameProvisional ? 'provisional-names' : (ing.family || 'pantrystaples');
-      const shopperName = root.FoodNamesEsPe.nameBilingual(line.ingredientId, ing.name.en);
+      const shopperName = root.FoodNamesEsPe.bilingual(line.ingredientId, ing.name.en);
+      const synText = shopperName.syn.length ? ` (${escapeHtml(shopperName.syn.slice(0, 2).join(', '))})` : '';
       const nameHtml = shopperName.es
-        ? `${escapeHtml(shopperName.es)} <span class="text-[10px] text-stone-400">(es-PE borrador)</span>`
+        ? `${escapeHtml(shopperName.es)}${synText} <span class="text-[10px] text-stone-400">(es-PE borrador)</span>`
         : `${escapeHtml(ing.name.en)}${ing.nameProvisional ? ' (EN provisional)' : ''}`;
       const buyText = line.purchaseRecommendation
         ? `buy <strong>${line.purchaseRecommendation.packages}</strong> × ${escapeHtml(line.purchaseRecommendation.unit)}`
@@ -255,9 +256,10 @@
     const rows = out.lines.map((l) => {
       const ing = model.ingredientById.get(l.ingredientId) || {};
       const esName = root.FoodNamesEsPe.nameForIngredient(l.ingredientId) || '';
+      const syn = root.FoodNamesEsPe.synonymsFor(l.ingredientId);      const esCell = syn.length ? `${esName} (${syn.slice(0, 3).join(' | ')})` : esName;
       const rec = l.purchaseRecommendation;
       const recPart = rec ? `${rec.packages},${rec.unit},${rec.rule}` : 'none,-,needs_package_decision';
-      return [ing.family || '', l.ingredientId, esName, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
+      return [ing.family || '', l.ingredientId, esCell, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
         .map(csvCell).join(',');
     });
     return [header].concat(rows).join('\n');
