@@ -5,7 +5,7 @@
   "description": "Personal Gourmet Kitchen / Lima market edition — static recipe, planning and shopping app (see AGENTS.md).",
   "type": "commonjs",
   "scripts": {
-    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs",
+    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs",
     "lint": "eslint .",
    "privacy": "node scripts/privacy_check.cjs",
     "check": "npm run lint && npm run test && npm run privacy && python3 scripts/check_handover.py"

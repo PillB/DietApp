@@ -1,0 +1,962 @@
+{
+ "schema": "source-inventory/v1",
+ "generatedInDirectory": "DietApp",
+ "privateEntryCount": 83,
+ "entries": [
+  {
+   "path": "data/private/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "sizeBytes": 67284,
+   "sha256": "5dbb15a4d09affadb6497fbeb656d45c0d1a091894f1e9efd20a00f48681f8c8",
+   "mediaType": "application/pdf",
+   "confidentiality": "UNCLASSIFIED",
+   "gitTracked": false
+  },
+  {
+   "path": "data/private/food_delivery_orders_extracted(2).xlsx",
+   "sizeBytes": 319086,
+   "sha256": "f43ff8d668ec679fd152e24eb5a606a15d422bdd3b6cf4ec37f83d006ef00507",
+   "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+   "confidentiality": "UNCLASSIFIED",
+   "gitTracked": false
+  },
+  {
+   "path": "data/private/report.md",
+   "sizeBytes": 84509,
+   "sha256": "1657c57366fb4768c90fedb59ef18203bd5ed6cb38eea104801d7f8e55e140fa",
+   "mediaType": "text/markdown",
+   "confidentiality": "UNCLASSIFIED",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifact-manifest.json",
+   "sizeBytes": 39929,
+   "sha256": "d7d938c782afdcf61be4fb1bd208d3211aaed3cdcdc31199410170ebe7756fda",
+   "mediaType": "application/json",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md",
+   "sizeBytes": 84509,
+   "sha256": "1657c57366fb4768c90fedb59ef18203bd5ed6cb38eea104801d7f8e55e140fa",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/website_prototype.zip",
+   "sizeBytes": 404835,
+   "sha256": "08cea0efa09f858196e5c4ca67bdddd6ceccba6de569fdf19010f3dda762c591",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/0f4e99b2-4868-424b-8eb0-1212cf741779.png",
+   "sizeBytes": 333921,
+   "sha256": "afeb097342b03d58c7c05ab73f10e07897072a554ec81b81ec65c04a79a3fc9b",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/1cc00ca0-e7e6-4aaf-a955-10100037e137.png",
+   "sizeBytes": 330651,
+   "sha256": "33e8d643bf267d55729ae01cddd50c6bb71e4b403e23b91a1ebe42afaf6b32bd",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2abd12ed-10ab-4766-99a9-3c536315320a.png",
+   "sizeBytes": 459658,
+   "sha256": "3353463823510e122b1e0ce70e1815d82ac1e69d9eefd4766ce1e911ad14bc87",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d716335-d176-4f72-afc4-b60534f32835.png",
+   "sizeBytes": 77502,
+   "sha256": "03c417332347bb4c324e69fc7831f60d29e1fe5d1927131a66b8c79118a2cc19",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/441d6d94-8c3a-456f-b0b7-c3b8a7f013f5.png",
+   "sizeBytes": 26748,
+   "sha256": "290ea0f849132f8ea74009062d4aecabf6627cbbf7dc291ba223990220119ecb",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/54868881-8314-4040-a53b-d22cce1f6e39.png",
+   "sizeBytes": 59955,
+   "sha256": "cf2df8c742e5deee8cd24a913cf3f2b74dc520fb28d6f1b553324acd5624c758",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/56e736e2-ec85-481c-9d10-3faf5d0a9801.png",
+   "sizeBytes": 25112,
+   "sha256": "0722fa94295dbc15596704078e55fe4d566a5b7352cbe52ee7268016e4d24b6d",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/5bf20d13-299d-4bd6-8927-ad121f04754f.png",
+   "sizeBytes": 22199,
+   "sha256": "713494311d43aa678cf9658e3d51c1956e0d85466fd748c8cb05a83555fee375",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/722375f7-edfe-41cb-9d07-ce47369fdff5.png",
+   "sizeBytes": 44372,
+   "sha256": "ace04d6fd1fcc43f98e76926695c5a37858c95bb7f2f010569708b5be951d671",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/73e85bde-5801-4fa1-af2b-c8485d769450.png",
+   "sizeBytes": 74638,
+   "sha256": "fb77f85fd4114eb45003123f8fb03bda6cb0782e2dd1f644de5b9be1b7c96307",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/7a3c59df-98ee-49ad-8296-77723ba00b5a.png",
+   "sizeBytes": 23835,
+   "sha256": "2b8b838611d698e6899cd88826f6c692d202fb30f63f8555b559bbca94267c95",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/84bbbeb0-557b-40d5-9f32-f01b7e4e663b.png",
+   "sizeBytes": 86109,
+   "sha256": "d0ea8aee382436740927e6ef9efdbf6789dbb887086f81d36ba23ce33669d0d4",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9b3ad2f6-5f95-466c-a4b6-e4c98d3fa98a.png",
+   "sizeBytes": 40174,
+   "sha256": "888fd54c1c97c76c5e96a678464ba182c238832e19cae111875b3712b4083bfd",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9f0b4197-da7f-467d-b984-84a22982ca5b.png",
+   "sizeBytes": 58067,
+   "sha256": "8155b3bf20362e542d79e3bc3b093f25b318b920da613449e1329545ab9d2064",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "sizeBytes": 13375,
+   "sha256": "6f722d40e79f30e7fffc1af08c0381586701b65c64be89a8975017cf68d4e269",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md",
+   "sizeBytes": 13375,
+   "sha256": "6f722d40e79f30e7fffc1af08c0381586701b65c64be89a8975017cf68d4e269",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b55405f2-fc54-4b22-87aa-c3483beac538.png",
+   "sizeBytes": 44259,
+   "sha256": "85d75e33b363c03d7af9f76df4997b57fb697b11decda775e421bb0c411ddff7",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "sizeBytes": 36079,
+   "sha256": "5d6cb2a60123132d87cdb41a2bc375fcf06f64dca0955fd35beebcd46d7ffe45",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png",
+   "sizeBytes": 36079,
+   "sha256": "5d6cb2a60123132d87cdb41a2bc375fcf06f64dca0955fd35beebcd46d7ffe45",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/c9b88bdc-9444-4b0d-8a4e-b87aeacfd5d9.png",
+   "sizeBytes": 34368,
+   "sha256": "8a7a28f573d0cb46ec2c36d38f39898ccc9d3c33df45497deba1b7484b67e151",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/cec65c69-801c-4771-9bb4-a50eecbc67f8.png",
+   "sizeBytes": 148921,
+   "sha256": "bca6b70351a4adbcefc7b5306534d6da856d1485a1c4856d7db40e996fce9286",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e2db297e-867c-4d85-8b44-ca79a0415695.png",
+   "sizeBytes": 74176,
+   "sha256": "2525acbddb9513fae24dae29093aacd612b621b73cdfa826ab873bbcf7513657",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e443906a-b724-40ea-be37-66a780351406.png",
+   "sizeBytes": 333866,
+   "sha256": "137de34703a6e596afed8cfc0132429e751f0b88b622e728bcf9f9c4c2dc39ac",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f7df6478-089f-417b-8623-e7dac82d7a51.png",
+   "sizeBytes": 58184,
+   "sha256": "6fa6648b9de84b7c4bbcc470cdd0cbcb310ba555d42779762cebf9fe31507ce2",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f92c8bf9-8a92-48af-b02b-290e1709fc78.png",
+   "sizeBytes": 158562,
+   "sha256": "5a21eafcfd15e8e8dcdb9ad7775c9407df1a229db51a3fbada2b4b0065928fed",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "sizeBytes": 528769,
+   "sha256": "7c94590a1797245bb42e2cfc5746350ef91f9f10781ff71fbefe8367e0ab6419",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip",
+   "sizeBytes": 528769,
+   "sha256": "7c94590a1797245bb42e2cfc5746350ef91f9f10781ff71fbefe8367e0ab6419",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa-v2-dga-reviewed(1).zip",
+   "sizeBytes": 94842,
+   "sha256": "58d4d46d389b581523776de111ca8711b01f57de74cfce03550e01c19dcfc82f",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa.zip",
+   "sizeBytes": 80415,
+   "sha256": "d249a96683cb4370825c65f176a65987a7a13401d1a7556090d935484d2e862d",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "sizeBytes": 292654,
+   "sha256": "052020971931f359aa471decb09c0d47aa531cd368c4534a8cb5d4656859ca81",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip",
+   "sizeBytes": 292654,
+   "sha256": "052020971931f359aa471decb09c0d47aa531cd368c4534a8cb5d4656859ca81",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "sizeBytes": 67284,
+   "sha256": "5dbb15a4d09affadb6497fbeb656d45c0d1a091894f1e9efd20a00f48681f8c8",
+   "mediaType": "application/pdf",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx",
+   "sizeBytes": 319086,
+   "sha256": "f43ff8d668ec679fd152e24eb5a606a15d422bdd3b6cf4ec37f83d006ef00507",
+   "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis.json",
+   "sizeBytes": 4379327,
+   "sha256": "d9753a42e3f289b93015035b82c4af5129dc912495451bbc09434a00b8823a0c",
+   "mediaType": "application/json",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifact-manifest.json",
+   "sizeBytes": 39929,
+   "sha256": "bbd19eccb40b3d60f49737181f4f5a478ba6911afee84e18932b1977f7958773",
+   "mediaType": "application/json",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md",
+   "sizeBytes": 84509,
+   "sha256": "1657c57366fb4768c90fedb59ef18203bd5ed6cb38eea104801d7f8e55e140fa",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/website_prototype.zip",
+   "sizeBytes": 404835,
+   "sha256": "08cea0efa09f858196e5c4ca67bdddd6ceccba6de569fdf19010f3dda762c591",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/0f4e99b2-4868-424b-8eb0-1212cf741779.png",
+   "sizeBytes": 333921,
+   "sha256": "afeb097342b03d58c7c05ab73f10e07897072a554ec81b81ec65c04a79a3fc9b",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/1cc00ca0-e7e6-4aaf-a955-10100037e137.png",
+   "sizeBytes": 330651,
+   "sha256": "33e8d643bf267d55729ae01cddd50c6bb71e4b403e23b91a1ebe42afaf6b32bd",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2abd12ed-10ab-4766-99a9-3c536315320a.png",
+   "sizeBytes": 459658,
+   "sha256": "3353463823510e122b1e0ce70e1815d82ac1e69d9eefd4766ce1e911ad14bc87",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d716335-d176-4f72-afc4-b60534f32835.png",
+   "sizeBytes": 77502,
+   "sha256": "03c417332347bb4c324e69fc7831f60d29e1fe5d1927131a66b8c79118a2cc19",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/441d6d94-8c3a-456f-b0b7-c3b8a7f013f5.png",
+   "sizeBytes": 26748,
+   "sha256": "290ea0f849132f8ea74009062d4aecabf6627cbbf7dc291ba223990220119ecb",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/54868881-8314-4040-a53b-d22cce1f6e39.png",
+   "sizeBytes": 59955,
+   "sha256": "cf2df8c742e5deee8cd24a913cf3f2b74dc520fb28d6f1b553324acd5624c758",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/56e736e2-ec85-481c-9d10-3faf5d0a9801.png",
+   "sizeBytes": 25112,
+   "sha256": "0722fa94295dbc15596704078e55fe4d566a5b7352cbe52ee7268016e4d24b6d",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/5bf20d13-299d-4bd6-8927-ad121f04754f.png",
+   "sizeBytes": 22199,
+   "sha256": "713494311d43aa678cf9658e3d51c1956e0d85466fd748c8cb05a83555fee375",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/722375f7-edfe-41cb-9d07-ce47369fdff5.png",
+   "sizeBytes": 44372,
+   "sha256": "ace04d6fd1fcc43f98e76926695c5a37858c95bb7f2f010569708b5be951d671",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/73e85bde-5801-4fa1-af2b-c8485d769450.png",
+   "sizeBytes": 74638,
+   "sha256": "fb77f85fd4114eb45003123f8fb03bda6cb0782e2dd1f644de5b9be1b7c96307",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/7a3c59df-98ee-49ad-8296-77723ba00b5a.png",
+   "sizeBytes": 23835,
+   "sha256": "2b8b838611d698e6899cd88826f6c692d202fb30f63f8555b559bbca94267c95",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/84bbbeb0-557b-40d5-9f32-f01b7e4e663b.png",
+   "sizeBytes": 86109,
+   "sha256": "d0ea8aee382436740927e6ef9efdbf6789dbb887086f81d36ba23ce33669d0d4",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9b3ad2f6-5f95-466c-a4b6-e4c98d3fa98a.png",
+   "sizeBytes": 40174,
+   "sha256": "888fd54c1c97c76c5e96a678464ba182c238832e19cae111875b3712b4083bfd",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9f0b4197-da7f-467d-b984-84a22982ca5b.png",
+   "sizeBytes": 58067,
+   "sha256": "8155b3bf20362e542d79e3bc3b093f25b318b920da613449e1329545ab9d2064",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "sizeBytes": 13375,
+   "sha256": "6f722d40e79f30e7fffc1af08c0381586701b65c64be89a8975017cf68d4e269",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md",
+   "sizeBytes": 13375,
+   "sha256": "6f722d40e79f30e7fffc1af08c0381586701b65c64be89a8975017cf68d4e269",
+   "mediaType": "text/markdown",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b55405f2-fc54-4b22-87aa-c3483beac538.png",
+   "sizeBytes": 44259,
+   "sha256": "85d75e33b363c03d7af9f76df4997b57fb697b11decda775e421bb0c411ddff7",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "sizeBytes": 36079,
+   "sha256": "5d6cb2a60123132d87cdb41a2bc375fcf06f64dca0955fd35beebcd46d7ffe45",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png",
+   "sizeBytes": 461981,
+   "sha256": "f40db7644b8a60a3d44ad10add9942de1225b514e9564943ae97fed6f1854a8c",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png",
+   "sizeBytes": 36079,
+   "sha256": "5d6cb2a60123132d87cdb41a2bc375fcf06f64dca0955fd35beebcd46d7ffe45",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/c9b88bdc-9444-4b0d-8a4e-b87aeacfd5d9.png",
+   "sizeBytes": 34368,
+   "sha256": "8a7a28f573d0cb46ec2c36d38f39898ccc9d3c33df45497deba1b7484b67e151",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/cec65c69-801c-4771-9bb4-a50eecbc67f8.png",
+   "sizeBytes": 148921,
+   "sha256": "bca6b70351a4adbcefc7b5306534d6da856d1485a1c4856d7db40e996fce9286",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e2db297e-867c-4d85-8b44-ca79a0415695.png",
+   "sizeBytes": 74176,
+   "sha256": "2525acbddb9513fae24dae29093aacd612b621b73cdfa826ab873bbcf7513657",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e443906a-b724-40ea-be37-66a780351406.png",
+   "sizeBytes": 333866,
+   "sha256": "137de34703a6e596afed8cfc0132429e751f0b88b622e728bcf9f9c4c2dc39ac",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f7df6478-089f-417b-8623-e7dac82d7a51.png",
+   "sizeBytes": 58184,
+   "sha256": "6fa6648b9de84b7c4bbcc470cdd0cbcb310ba555d42779762cebf9fe31507ce2",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f92c8bf9-8a92-48af-b02b-290e1709fc78.png",
+   "sizeBytes": 158562,
+   "sha256": "5a21eafcfd15e8e8dcdb9ad7775c9407df1a229db51a3fbada2b4b0065928fed",
+   "mediaType": "image/png",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "sizeBytes": 528769,
+   "sha256": "7c94590a1797245bb42e2cfc5746350ef91f9f10781ff71fbefe8367e0ab6419",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip",
+   "sizeBytes": 528769,
+   "sha256": "7c94590a1797245bb42e2cfc5746350ef91f9f10781ff71fbefe8367e0ab6419",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa-v2-dga-reviewed(1).zip",
+   "sizeBytes": 94842,
+   "sha256": "58d4d46d389b581523776de111ca8711b01f57de74cfce03550e01c19dcfc82f",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa.zip",
+   "sizeBytes": 80415,
+   "sha256": "d249a96683cb4370825c65f176a65987a7a13401d1a7556090d935484d2e862d",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "sizeBytes": 292654,
+   "sha256": "052020971931f359aa471decb09c0d47aa531cd368c4534a8cb5d4656859ca81",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip",
+   "sizeBytes": 292654,
+   "sha256": "052020971931f359aa471decb09c0d47aa531cd368c4534a8cb5d4656859ca81",
+   "mediaType": "application/zip",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "sizeBytes": 67284,
+   "sha256": "5dbb15a4d09affadb6497fbeb656d45c0d1a091894f1e9efd20a00f48681f8c8",
+   "mediaType": "application/pdf",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx",
+   "sizeBytes": 319086,
+   "sha256": "f43ff8d668ec679fd152e24eb5a606a15d422bdd3b6cf4ec37f83d006ef00507",
+   "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  },
+  {
+   "path": "Context information/2026-05-01-2026-10-26-flavor-profile-analysis.json",
+   "sizeBytes": 4379327,
+   "sha256": "b59c48bf784d004e45b2e0f6644a85cd37c1a2728c4dc2763f1fc6832c26644c",
+   "mediaType": "application/json",
+   "confidentiality": "PRIVATE — user drop, unreviewed, duplicate of context/ variant (verify hash equality)",
+   "gitTracked": false
+  }
+ ],
+ "duplicateHashPairs": [
+  [
+   "data/private/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf"
+  ],
+  [
+   "data/private/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf"
+  ],
+  [
+   "data/private/food_delivery_orders_extracted(2).xlsx",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx"
+  ],
+  [
+   "data/private/food_delivery_orders_extracted(2).xlsx",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx"
+  ],
+  [
+   "data/private/report.md",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md"
+  ],
+  [
+   "data/private/report.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/report.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/website_prototype.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/derived/website_prototype.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/0f4e99b2-4868-424b-8eb0-1212cf741779.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/0f4e99b2-4868-424b-8eb0-1212cf741779.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/1cc00ca0-e7e6-4aaf-a955-10100037e137.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/1cc00ca0-e7e6-4aaf-a955-10100037e137.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2abd12ed-10ab-4766-99a9-3c536315320a.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2abd12ed-10ab-4766-99a9-3c536315320a.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d716335-d176-4f72-afc4-b60534f32835.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d716335-d176-4f72-afc4-b60534f32835.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/441d6d94-8c3a-456f-b0b7-c3b8a7f013f5.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/441d6d94-8c3a-456f-b0b7-c3b8a7f013f5.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/54868881-8314-4040-a53b-d22cce1f6e39.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/54868881-8314-4040-a53b-d22cce1f6e39.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/56e736e2-ec85-481c-9d10-3faf5d0a9801.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/56e736e2-ec85-481c-9d10-3faf5d0a9801.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/5bf20d13-299d-4bd6-8927-ad121f04754f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/5bf20d13-299d-4bd6-8927-ad121f04754f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/722375f7-edfe-41cb-9d07-ce47369fdff5.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/722375f7-edfe-41cb-9d07-ce47369fdff5.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/73e85bde-5801-4fa1-af2b-c8485d769450.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/73e85bde-5801-4fa1-af2b-c8485d769450.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/7a3c59df-98ee-49ad-8296-77723ba00b5a.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/7a3c59df-98ee-49ad-8296-77723ba00b5a.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/84bbbeb0-557b-40d5-9f32-f01b7e4e663b.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/84bbbeb0-557b-40d5-9f32-f01b7e4e663b.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9b3ad2f6-5f95-466c-a4b6-e4c98d3fa98a.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9b3ad2f6-5f95-466c-a4b6-e4c98d3fa98a.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9f0b4197-da7f-467d-b984-84a22982ca5b.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/9f0b4197-da7f-467d-b984-84a22982ca5b.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b55405f2-fc54-4b22-87aa-c3483beac538.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b55405f2-fc54-4b22-87aa-c3483beac538.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/c9b88bdc-9444-4b0d-8a4e-b87aeacfd5d9.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/c9b88bdc-9444-4b0d-8a4e-b87aeacfd5d9.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/cec65c69-801c-4771-9bb4-a50eecbc67f8.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/cec65c69-801c-4771-9bb4-a50eecbc67f8.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e2db297e-867c-4d85-8b44-ca79a0415695.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e2db297e-867c-4d85-8b44-ca79a0415695.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e443906a-b724-40ea-be37-66a780351406.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/e443906a-b724-40ea-be37-66a780351406.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f7df6478-089f-417b-8623-e7dac82d7a51.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f7df6478-089f-417b-8623-e7dac82d7a51.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f92c8bf9-8a92-48af-b02b-290e1709fc78.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/f92c8bf9-8a92-48af-b02b-290e1709fc78.png"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa-v2-dga-reviewed(1).zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa-v2-dga-reviewed(1).zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-meal-plan-spa.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf"
+  ],
+  [
+   "context/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/uploaded/food_delivery_orders_extracted(2).xlsx"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/2d4bb505-1e17-4164-a421-f0297f63133d.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/821de978-970f-423b-9126-3f9748a72b6c.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b81b776a-8167-4489-8626-22c42885171f.png"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026-2.md",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/NUTRITION_RESEARCH_2026.md"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/b5c78ae7-6545-4ec2-9853-36011fc380f6.png",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/bfe91d3a-e7d3-44fa-b459-dc4d2e95da1f.png"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3-2.zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/gourmet-flavor-nutrition-validated-v3.zip"
+  ],
+  [
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack(2).zip",
+   "Context information/2026-05-01-2026-10-26-flavor-profile-analysis/artifacts/generated/recipe_app_import_pack.zip"
+  ]
+ ],
+ "note": "Metadata only. Entries include user content we never open in-session without need."
+}
