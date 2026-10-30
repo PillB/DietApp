@@ -257,7 +257,24 @@ Files: `assets/js/planner-ui.js` (family badges + sort + separate copy-date), `t
 Facts: entries sharing a `rep-…` family render '⟲×N' with title tooltip; status line reports repeat families; 'Copy →' now commits against its OWN date field (`data-op="copydate"`), defaulting to the row date; E2E planner-flow PASS with `familyBadges: 2`, `afterCopy: 4`.
 
 Tests: 88 pass / 0 fail; E2E PASS (desktop/mobile/shopping/planner flows); lint clean.
-Next single command/ticket: **P4.1/P4.3 guided cook mode core** — pure step-card model with thermometry/sensory checkpoints (FoodSafety.gov temps), Instant Pot validation gate (P4.2), double-review fields; tests first in `tests/cooking.test.cjs`; UI after the schema/gate is tested.
+
+## Session log — 2026-10-30, session 2, part 15 (P4.1/P4.3 cook-mode core)
+
+Files: `assets/js/cooking-core.js` (new UMD pure module), `tests/cooking.test.cjs` (6 tests), test list updated.
+
+Evidence-grounded (cited, zero invention):
+- `MIN_TEMP_C` mirrors the FoodSafety.gov Safe Minimum Internal Temperature Table (poultry 74; ground 71; whole cuts 63+3-min rest; fish 63; leftovers reheat 74) — the constant lives next to its `SOURCE` string; unknown food types stay `null` (never guessed).
+- **Step safety gate**: sub-minimum target temps are refused named the floor; protein steps REQUIRE `checkpoint: 'thermometer'` (color/time cues are not provenance for safety); whole cuts require the 3-minute rest field; unknown/undelared foodType refuses.
+- **USDA leftovers builder**: 3-4 days ≤4°C, reheat to 74°C; >4 days → 'beyond-usda-guideline-window' with a discard recommendation; invalid/future-date misuse refuses instead of emitting advice ('invalid_dates').
+- **P4.2 structural gate**: `pressureValidated` is TRUE only with (a) pressure equipment listed, (b) provenance record sourceType ∈ {kitchen_experiment, public_doc}, (c) the safety checklist fields affirmed (min liquid, fill line, release model). `generated_report` provenance is explicitly NOT validation; no stovetop-minute inference anywhere.
+- **P4.3 dual-review map**: food-scientist (quantities, cooking-outcome evidence) AND an independent food-safety reviewer (temperatures, chilling/storage, allergens, pressure safety, ingredient suitability) each need field-level evidence + approval — `readyForPublication` is false by default.
+
+Debug trail: 1 test-authoring bug (missing temp argument), 2 semantic improvements from real output before shaming-out proofs on (a) the rest rule being part of the standard (kept enforced, test meets '63 without rest' → exactly ['rest_time_required']) and (b) pressure checklist fields required in the validating record (test tightened rather than module loosened).
+
+Tests: 94 pass / 0 fail; lint clean.
+Next single command/ticket: **P4.1 cook-mode UI** (step cards over the imported 7 recipes with gate wiring; cooking-mode badge showing validated vs generic directions), then P4.4 test-cook workflow.
+
+## Update template for next session
 
 ## Update template for next session
 
