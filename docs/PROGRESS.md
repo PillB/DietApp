@@ -72,6 +72,24 @@ Trade-off stated: `kg`/`l` accepted in v0.1 recipe uses (contract's shopping exa
 Tests: 27 pass / 0 fail; lint 0 problems.
 Next single command/ticket: **P1.2** importer — seven weighed recipes from `nutrition-reviewed.json` → normalized RecipeVersion fixtures + legacy-29 quarantine marking; test: round-trip import of the 7 curated recipes with quantity re-parsing (tests/import_weighed.test.cjs).
 
+## Session log — 2026-10-30, session 2, part 4 (P1.2 importer)
+
+Files: `assets/js/import-weighed.js` (new UMD pure module), `tests/import_weighed.test.cjs` (8 tests incl. real-file fixtures + seeded negatives), schema bumped to **v0.2** (`nameProvisional` semantics + `curated_extract` evidence source type).
+
+What the importer now does (evidence-bearing, no invention):
+- 7/7 weighed recipes import to schema-valid RecipeVersions; 41 ingredients manifest; quantities from float `560.0` → exact string `'560'` (float lucidity: `non_exact_quantity` refuses scientific-form and non-round-trip floats, never silently rounds).
+- units: `each` → `count` (basis `raw`); prose `weightBasis` parses raw/cooked/dry or the recipe is quarantined with reasons.
+- **`soy_sauce` decision (analysis recorded):** source marks `weightBasis: 'label dependent'` for the bottled liquid; physical basis at addition is `raw`, and label-dependence is a *composition* concern → imported as `raw` **plus warn `composition_label_dependent`** so nutrition stays null until brand label data exists. Both soy-sauce recipes import (they were being lost by strict reading P1.1 v0.1).
+- Steps are verbatim English prose; NO invented ingredient refs, timers, thermometry, pressure fields, equipment, flavor tags or yields (`pressure_without_equipment` schema rule already prevents invented pressure steps).
+- nutrition: `not-assessed`, sourceIds traceable to `nutrition-reported.json#curatedRecipes`; validationStatus `reviewPending` (weighed, but NOT kitchen-verified — honest status).
+- Legacy 29: `importLegacyQuarantine` produces 29 inert quarantine records with `shoppingMathLocked: true`; they are NOT RecipeVersions (shopping aggregation must refuse them, per P1.2 ticket).
+
+Debug trail (discipline applied): 3 root causes found by reading actual outputs, not guessing: (1) schema `english_only_name` fired even when `nameProvisional` allowed it — logic fixed; (2) 2 of 7 recipes quarantined over soy-sauce weightBasis — domain analysis above, rule designed (not patched-away); (3) leftover duplicated test assertions from an earlier edit — removed. CC-15 ceiling enforced: `importWeighed` (18) and `isIngredient` (21) refactored by extracting `useRecordFromItem`/`ingredientNameRule`.
+Trade-off stated: `weightG` used as the quantity source for g/ml items (source keeps both `quantity` and `weightG`); divergence between them would be a data error to detect later at P3 aggregation, not here — recorded as future ticket.
+
+Tests: 35 pass / 0 fail; lint clean.
+Next single command/ticket: **P1.3** exact rational quantity parser + unit family conversions (no float): tests for 1/2, 2 1/2, ⅓, decimals, g↔kg, ml↔l, refusal to convert across dimensions without sourced factors; implement `assets/js/quantity.js` + `tests/quantity.test.cjs`.
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …

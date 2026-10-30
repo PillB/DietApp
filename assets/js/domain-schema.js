@@ -26,7 +26,7 @@
   const RETAILERS = ['Wong', 'Plaza Vea', 'Metro', 'Mercado', 'Puntomercado'];
   const AVAILABILITY = ['unverified', 'observed', 'verified'];
   const CONFIDENCE = ['unverified', 'inferred', 'observed', 'verified'];
-  const SOURCE_TYPES = ['private_xlsx', 'private_pdf', 'generated_report', 'public_doc', 'user_input', 'kitchen_experiment'];
+  const SOURCE_TYPES = ['private_xlsx', 'private_pdf', 'generated_report', 'curated_extract', 'public_doc', 'user_input', 'kitchen_experiment'];
   const VALIDATION_STATUS = ['unverified', 'reviewPending', 'reviewed'];
   // exact nonnegative rational/decimal strings; no sign, no scientific form, no parseFloat
   const QUANTITY_RE = /^\d+(?: \d+\/\d+)?$|^\d+\/\d+$|^\d+(?:\.\d+)?$/;
@@ -45,10 +45,18 @@
     };
   }
 
+  function ingredientNameRule(x, err) {
+    const hasEsBo = typeof x.name === 'object' && Boolean(x.name && x.name['es-PE']);
+    err('name', x.name && typeof x.name === 'object' && x.name.en ? undefined : 'name_missing_en');
+    err('name', hasEsBo ? undefined : (x.nameProvisional === true ? undefined : 'english_only_name'), 'es-PE missing: allowed only while nameProvisional is true');
+    err('nameProvisional', x.nameProvisional === undefined || typeof x.nameProvisional === 'boolean' ? undefined : 'bad_nameProvisional');
+    err('nameProvisional', (!hasEsBo && x.nameProvisional !== true) ? 'needs_nameProvisional' : undefined, 'mark nameProvisional:true until a reviewed es-PE name exists');
+    err('nameProvisional', (hasEsBo && x.nameProvisional === true) ? 'needs_nameProvisional' : undefined, 'remove nameProvisional once es-PE is reviewed');
+  }
+
   function isIngredient(x, err) {
     err('id', ID_RE.test(x.id) ? undefined : 'bad_id', 'lowercase slug; contract examples allow r1, match-1, cebolla-roja style ids');
-    err('name', x.name && typeof x.name === 'object' && x.name['es-PE'] ? undefined : 'name_missing_es-PE');
-    err('name', x.name && typeof x.name === 'object' && x.name.en ? undefined : 'name_missing_en');
+    ingredientNameRule(x, err);
     err('dimension', DIMENSION_UNITS[x.dimension] ? undefined : 'unknown_dimension', `dimension must be one of ${Object.keys(DIMENSION_UNITS).join(',')}`);
     err('purchaseUnit', DIMENSION_UNITS[x.dimension] && DIMENSION_UNITS[x.dimension].includes(x.purchaseUnit) ? undefined : 'purchase_unit_wrong_dimension');
     err('aliases', Array.isArray(x.aliases) && x.aliases.every((a) => typeof a === 'string') ? undefined : 'bad_aliases');
@@ -160,7 +168,7 @@
   }
 
   return {
-    SCHEMA_VERSION: 'domain-schema/v0.1',
+    SCHEMA_VERSION: 'domain-schema/v0.2',
     QUANTITY_RE,
     validateIngredient: makeValidator('Ingredient', [isIngredient]),
     validateRecipeVersion: makeValidator('RecipeVersion', [recipeHeaderRule, ingredientUseRule, pressureRule, stepsRule]),
