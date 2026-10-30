@@ -1,0 +1,1486 @@
+{
+  "version": "2026-10-26-nutrition-prototype",
+  "basis": "Illustrative recipe variants, independently entered weighed portions; not laboratory tested. References use generic food composition averages and include ±20–30% uncertainty.",
+  "per100g": {
+    "salmon": [
+      208,
+      20,
+      0,
+      13,
+      0
+    ],
+    "beef_sirloin": [
+      175,
+      22,
+      0,
+      9,
+      0
+    ],
+    "beef_chuck": [
+      215,
+      19,
+      0,
+      15,
+      0
+    ],
+    "chicken_breast": [
+      120,
+      23,
+      0,
+      2.6,
+      0
+    ],
+    "egg": [
+      143,
+      12.6,
+      0.7,
+      9.5,
+      0
+    ],
+    "brown_rice_dry": [
+      365,
+      7.5,
+      77,
+      2.7,
+      3.5
+    ],
+    "quinoa_dry": [
+      368,
+      14,
+      64,
+      6,
+      7
+    ],
+    "wholewheat_pasta_dry": [
+      350,
+      13,
+      70,
+      2.5,
+      8
+    ],
+    "corn_tortilla": [
+      218,
+      5.7,
+      45,
+      2.9,
+      6.3
+    ],
+    "wholewheat_pita": [
+      270,
+      9,
+      52,
+      2,
+      6
+    ],
+    "rolled_oats_dry": [
+      389,
+      17,
+      66,
+      7,
+      10.6
+    ],
+    "beans_cooked": [
+      132,
+      9,
+      24,
+      0.5,
+      8.7
+    ],
+    "edamame": [
+      121,
+      12,
+      9,
+      5,
+      5
+    ],
+    "artichoke": [
+      47,
+      3.3,
+      10.5,
+      0.2,
+      5.4
+    ],
+    "mushroom": [
+      22,
+      3.1,
+      3.3,
+      0.3,
+      1
+    ],
+    "tomato": [
+      18,
+      0.9,
+      3.9,
+      0.2,
+      1.2
+    ],
+    "onion": [
+      40,
+      1.1,
+      9.3,
+      0.1,
+      1.7
+    ],
+    "bell_pepper": [
+      31,
+      1,
+      6,
+      0.3,
+      2.1
+    ],
+    "greens": [
+      23,
+      2.9,
+      3.6,
+      0.4,
+      2.2
+    ],
+    "broccoli": [
+      34,
+      2.8,
+      7,
+      0.4,
+      2.6
+    ],
+    "cucumber": [
+      15,
+      0.7,
+      3.6,
+      0.1,
+      0.5
+    ],
+    "carrot": [
+      41,
+      0.9,
+      9.6,
+      0.2,
+      2.8
+    ],
+    "avocado": [
+      160,
+      2,
+      8.5,
+      14.7,
+      6.7
+    ],
+    "cabbage": [
+      25,
+      1.3,
+      5.8,
+      0.1,
+      2.5
+    ],
+    "lime": [
+      25,
+      0.4,
+      8,
+      0.1,
+      0.4
+    ],
+    "garlic": [
+      149,
+      6.4,
+      33,
+      0.5,
+      2.1
+    ],
+    "olive_oil": [
+      884,
+      0,
+      0,
+      100,
+      0
+    ],
+    "sesame": [
+      573,
+      18,
+      23,
+      50,
+      12
+    ],
+    "parmesan": [
+      431,
+      38,
+      4.1,
+      29,
+      0
+    ],
+    "pecorino": [
+      390,
+      28,
+      4,
+      32,
+      0
+    ],
+    "feta": [
+      264,
+      14,
+      4,
+      21,
+      0
+    ],
+    "greek_yogurt": [
+      95,
+      9,
+      4,
+      4.5,
+      0
+    ],
+    "miso": [
+      199,
+      12,
+      26,
+      6,
+      5.4
+    ],
+    "soy_sauce": [
+      53,
+      8,
+      5,
+      0.6,
+      0.8
+    ],
+    "vinegar": [
+      18,
+      0,
+      0.3,
+      0,
+      0
+    ],
+    "cumin": [
+      375,
+      18,
+      44,
+      22,
+      10
+    ],
+    "chili": [
+      40,
+      1.9,
+      9,
+      0.4,
+      1.5
+    ],
+    "potato": [
+      77,
+      2,
+      17,
+      0.1,
+      2.2
+    ],
+    "nuts": [
+      607,
+      20,
+      21,
+      54,
+      8
+    ],
+    "cocoa": [
+      228,
+      20,
+      58,
+      14,
+      33
+    ],
+    "lucuma": [
+      95,
+      1.5,
+      24,
+      0.4,
+      2.2
+    ],
+    "berries": [
+      50,
+      1,
+      12,
+      0.5,
+      4
+    ],
+    "dark_chocolate": [
+      600,
+      8,
+      30,
+      48,
+      11
+    ],
+    "water": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "herbs": [
+      30,
+      2,
+      5,
+      0,
+      2
+    ],
+    "vegetable_stock": [
+      6,
+      0.5,
+      0.8,
+      0.1,
+      0
+    ]
+  },
+  "curatedRecipes": [
+    {
+      "id": "nikkei-salmon-bowl",
+      "title": "Nikkei salmon & sesame brown-rice bowl",
+      "es": "Bowl nikkei de salmón, arroz integral y sésamo",
+      "category": "Lunch or dinner",
+      "type": "Nikkei",
+      "servings": 4,
+      "activeMinutes": 30,
+      "totalMinutes": 45,
+      "note": "Saucy umami, creamy avocado, crisp cucumbers and citrus. Partially cooked components kept cold for texture.",
+      "ingredients": [
+        {
+          "id": "salmon",
+          "label": "Salmon fillet",
+          "quantity": 560,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "salmon",
+          "weightG": 560.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "brown_rice_dry",
+          "label": "Brown rice, DRY",
+          "quantity": 220,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "brown_rice_dry",
+          "weightG": 220.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "edamame",
+          "label": "Edamame, shelled",
+          "quantity": 280,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "edamame",
+          "weightG": 280.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "cucumber",
+          "label": "Cucumber",
+          "quantity": 300,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "cucumber",
+          "weightG": 300.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "carrot",
+          "label": "Carrot",
+          "quantity": 160,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "carrot",
+          "weightG": 160.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "avocado",
+          "label": "Avocado flesh",
+          "quantity": 200,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "avocado",
+          "weightG": 200.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "sesame",
+          "label": "Sesame seeds",
+          "quantity": 20,
+          "unit": "g",
+          "category": "Pantry",
+          "nutrientKey": "sesame",
+          "weightG": 20.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "soy_sauce",
+          "label": "Reduced-sodium soy sauce",
+          "quantity": 40,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "soy_sauce",
+          "weightG": 40.0,
+          "weightBasis": "label dependent"
+        },
+        {
+          "id": "lime",
+          "label": "Lime juice",
+          "quantity": 80,
+          "unit": "ml",
+          "category": "Produce",
+          "nutrientKey": "lime",
+          "weightG": 80.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Extra-virgin olive oil",
+          "quantity": 20,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 18.2,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Cook 220 g DRY brown rice with water; cool promptly if serving later.",
+        "Sear or roast salmon to 63 °C internally for a conservative food-safety endpoint; rest briefly.",
+        "Steam the edamame. Slice cucumber and carrot immediately before assembly.",
+        "Whisk soy sauce, lime juice and olive oil. Divide rice, salmon and edamame evenly into 4 bowls.",
+        "Add avocado, raw vegetables, sesame and dressing at service; keep crunchy vegetables separate for meal prep."
+      ],
+      "science": "Fish texture is best protected by avoiding prolonged holding; acid added at service brightens fatty salmon."
+    },
+    {
+      "id": "chifa-lomo-quinoa",
+      "title": "Wok-charred chifa lomo with quinoa",
+      "es": "Lomo saltado chifa con quinua",
+      "category": "Lunch or dinner",
+      "type": "Peruvian–Chinese",
+      "servings": 4,
+      "activeMinutes": 30,
+      "totalMinutes": 40,
+      "note": "Wok-seared beef, juicy tomatoes, onion, vinegar and bold savoriness; generous vegetables.",
+      "ingredients": [
+        {
+          "id": "beef_sirloin",
+          "label": "Beef sirloin, raw",
+          "quantity": 520,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "beef_sirloin",
+          "weightG": 520.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "quinoa_dry",
+          "label": "Quinoa, DRY",
+          "quantity": 240,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "quinoa_dry",
+          "weightG": 240.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "onion",
+          "label": "Red onions",
+          "quantity": 2,
+          "unit": "each",
+          "category": "Produce",
+          "nutrientKey": "onion",
+          "weightG": 300.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "tomato",
+          "label": "Tomatoes",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "tomato",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "bell_pepper",
+          "label": "Bell peppers",
+          "quantity": 240,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "bell_pepper",
+          "weightG": 240.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "broccoli",
+          "label": "Broccoli florets",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "broccoli",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "soy_sauce",
+          "label": "Reduced-sodium soy sauce",
+          "quantity": 45,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "soy_sauce",
+          "weightG": 45.0,
+          "weightBasis": "label dependent"
+        },
+        {
+          "id": "vinegar",
+          "label": "Red wine vinegar",
+          "quantity": 40,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "vinegar",
+          "weightG": 40.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Olive oil",
+          "quantity": 30,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 27.3,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "garlic",
+          "label": "Garlic",
+          "quantity": 20,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "garlic",
+          "weightG": 20.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Rinse quinoa and cook covered until tender, about 15 minutes; fluff.",
+        "Heat a very hot wok; sear beef in 2 batches to avoid steaming.",
+        "Cook onions, peppers and broccoli until charred-tender, then add tomatoes for the final minute.",
+        "Combine quickly with soy, vinegar, garlic and beef; serve over quinoa."
+      ],
+      "science": "Small batches promote browning rather than steaming; acid is added late to protect fresh tomato texture."
+    },
+    {
+      "id": "aji-chicken-tacos",
+      "title": "Ají-verde crispy chicken tacos & cabbage",
+      "es": "Tacos de pollo crujiente con ají verde y col",
+      "category": "Lunch or dinner",
+      "type": "Peruvian–Mexican",
+      "servings": 4,
+      "activeMinutes": 30,
+      "totalMinutes": 45,
+      "note": "Crisp-tender meat, piquant yogurt crema, cabbage crunch and tortillas. No deep-frying.",
+      "ingredients": [
+        {
+          "id": "chicken_breast",
+          "label": "Chicken breast, raw",
+          "quantity": 640,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "chicken_breast",
+          "weightG": 640.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "corn_tortilla",
+          "label": "Corn tortillas",
+          "quantity": 320,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "corn_tortilla",
+          "weightG": 320.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "cabbage",
+          "label": "Cabbage",
+          "quantity": 440,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "cabbage",
+          "weightG": 440.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "avocado",
+          "label": "Avocado flesh",
+          "quantity": 200,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "avocado",
+          "weightG": 200.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "greek_yogurt",
+          "label": "Plain Greek yogurt, UNSWEETENED",
+          "quantity": 200,
+          "unit": "g",
+          "category": "Dairy",
+          "nutrientKey": "greek_yogurt",
+          "weightG": 200.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "onion",
+          "label": "Red onion",
+          "quantity": 0.5,
+          "unit": "each",
+          "category": "Produce",
+          "nutrientKey": "onion",
+          "weightG": 75.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "bell_pepper",
+          "label": "Ají amarillo pepper (fresh)",
+          "quantity": 80,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "bell_pepper",
+          "weightG": 80.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "lime",
+          "label": "Lime juice",
+          "quantity": 70,
+          "unit": "ml",
+          "category": "Produce",
+          "nutrientKey": "lime",
+          "weightG": 70.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Olive oil",
+          "quantity": 25,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 22.8,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "garlic",
+          "label": "Garlic",
+          "quantity": 15,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "garlic",
+          "weightG": 15.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Slice chicken evenly, season with ají amarillo and garlic; pan-sear in olive oil to at least 74 °C internally.",
+        "Blend yogurt, lime and avocado for the ají-verde crema.",
+        "Shred cabbage and finely slice half a red onion just before eating.",
+        "Warm tortillas individually until pliable; assemble chicken, slaw and crema."
+      ],
+      "science": "Drying the chicken and using adequate pan heat encourages browning; cabbage added last keeps crunch."
+    },
+    {
+      "id": "artichoke-cacio-pepe",
+      "title": "Artichoke, mushroom & cacio e pepe pasta",
+      "es": "Pasta cacio e pepe con alcachofas y hongos",
+      "category": "Lunch or dinner",
+      "type": "Italian–Peruvian",
+      "servings": 4,
+      "activeMinutes": 30,
+      "totalMinutes": 35,
+      "note": "Full pasta portion, salty cheese umami and seared mushrooms, with ample artichokes and greens.",
+      "ingredients": [
+        {
+          "id": "wholewheat_pasta_dry",
+          "label": "Whole-grain pasta, DRY",
+          "quantity": 320,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "wholewheat_pasta_dry",
+          "weightG": 320.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "parmesan",
+          "label": "Parmigiano Reggiano",
+          "quantity": 80,
+          "unit": "g",
+          "category": "Dairy",
+          "nutrientKey": "parmesan",
+          "weightG": 80.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "pecorino",
+          "label": "Pecorino",
+          "quantity": 40,
+          "unit": "g",
+          "category": "Dairy",
+          "nutrientKey": "pecorino",
+          "weightG": 40.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "artichoke",
+          "label": "Artichoke hearts",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "artichoke",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "mushroom",
+          "label": "Mushrooms",
+          "quantity": 440,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "mushroom",
+          "weightG": 440.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "greens",
+          "label": "Spinach / leafy greens",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "greens",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Olive oil",
+          "quantity": 30,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 27.3,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "garlic",
+          "label": "Garlic",
+          "quantity": 16,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "garlic",
+          "weightG": 16.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Cook pasta to al dente, reserving 250 ml starchy cooking water.",
+        "Sear mushrooms in olive oil until browned, then add artichokes and garlic.",
+        "Wilt spinach separately to preserve vivid color and avoid excess water.",
+        "Off heat, emulsify finely grated cheese with a little warm pasta water and toss with pasta.",
+        "Serve with vegetables and freshly cracked black pepper."
+      ],
+      "science": "Emulsification off heat minimizes stringy cheese; starch helps sauce cling with less cream."
+    },
+    {
+      "id": "shakshuka-potato-pita",
+      "title": "Ají-tomato shakshuka with potato & whole-grain pita",
+      "es": "Shakshuka de ají y tomate con papa y pita integral",
+      "category": "Breakfast or brunch",
+      "type": "Mediterranean–Peruvian",
+      "servings": 4,
+      "activeMinutes": 25,
+      "totalMinutes": 40,
+      "note": "Egg yolk richness, smoky tomato sauce, tender potato, whole grains, greens and tangy feta.",
+      "ingredients": [
+        {
+          "id": "egg",
+          "label": "Eggs",
+          "quantity": 8,
+          "unit": "each",
+          "category": "Proteins",
+          "nutrientKey": "egg",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "tomato",
+          "label": "Tomatoes, crushed",
+          "quantity": 700,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "tomato",
+          "weightG": 700.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "bell_pepper",
+          "label": "Bell pepper + ají amarillo",
+          "quantity": 300,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "bell_pepper",
+          "weightG": 300.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "onion",
+          "label": "Onion",
+          "quantity": 1,
+          "unit": "each",
+          "category": "Produce",
+          "nutrientKey": "onion",
+          "weightG": 150.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "greens",
+          "label": "Spinach",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "greens",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "potato",
+          "label": "Potatoes, raw",
+          "quantity": 360,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "potato",
+          "weightG": 360.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "wholewheat_pita",
+          "label": "Whole-grain pita",
+          "quantity": 240,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "wholewheat_pita",
+          "weightG": 240.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "feta",
+          "label": "Feta",
+          "quantity": 100,
+          "unit": "g",
+          "category": "Dairy",
+          "nutrientKey": "feta",
+          "weightG": 100.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Olive oil",
+          "quantity": 30,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 27.3,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "garlic",
+          "label": "Garlic",
+          "quantity": 18,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "garlic",
+          "weightG": 18.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Roast potato cubes at 210 °C until golden, approximately 25 minutes.",
+        "Soften onions and peppers in olive oil; add tomatoes and simmer 12 minutes until thick.",
+        "Wilt spinach into sauce, make 8 wells, add eggs and cover until eggs are cooked to the eater’s desired safe doneness.",
+        "Finish with feta, serve with potatoes and warm pita."
+      ],
+      "science": "Slow tomato reduction concentrates glutamates, while roasted potato offers crispy contrast and volume."
+    },
+    {
+      "id": "birria-beans-rice",
+      "title": "Birria-style beef, black bean & brown-rice bowls",
+      "es": "Bowls de birria con frejoles negros y arroz integral",
+      "category": "Lunch or dinner",
+      "type": "Mexican–Japanese",
+      "servings": 4,
+      "activeMinutes": 35,
+      "totalMinutes": 180,
+      "note": "Pressure-friendly tender beef, beans and rice, finishing with crunchy slaw and citrus.",
+      "ingredients": [
+        {
+          "id": "beef_chuck",
+          "label": "Beef chuck, raw",
+          "quantity": 600,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "beef_chuck",
+          "weightG": 600.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "beans_cooked",
+          "label": "Black beans, COOKED, no added salt",
+          "quantity": 480,
+          "unit": "g",
+          "category": "Proteins",
+          "nutrientKey": "beans_cooked",
+          "weightG": 480.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "brown_rice_dry",
+          "label": "Brown rice, DRY",
+          "quantity": 220,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "brown_rice_dry",
+          "weightG": 220.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "onion",
+          "label": "Red onions",
+          "quantity": 2,
+          "unit": "each",
+          "category": "Produce",
+          "nutrientKey": "onion",
+          "weightG": 300.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "tomato",
+          "label": "Tomatoes",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "tomato",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "cabbage",
+          "label": "Cabbage, for serving",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "cabbage",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "chili",
+          "label": "Dried guajillo/ancho peppers",
+          "quantity": 45,
+          "unit": "g",
+          "category": "Spices",
+          "nutrientKey": "chili",
+          "weightG": 45.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "lime",
+          "label": "Lime juice",
+          "quantity": 60,
+          "unit": "ml",
+          "category": "Produce",
+          "nutrientKey": "lime",
+          "weightG": 60.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "olive_oil",
+          "label": "Olive oil",
+          "quantity": 25,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "olive_oil",
+          "weightG": 22.8,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "garlic",
+          "label": "Garlic",
+          "quantity": 18,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "garlic",
+          "weightG": 18.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "vegetable_stock",
+          "label": "Unsalted stock",
+          "quantity": 400,
+          "unit": "ml",
+          "category": "Pantry",
+          "nutrientKey": "vegetable_stock",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Toast and soak dried chiles; blend with garlic, tomato, onion and stock.",
+        "Sear beef in Instant Pot on Sauté, working in batches. Add blended sauce and pressure cook HIGH for approximately 50 minutes, then natural release at least 15 minutes; check tenderness and liquid requirements for your model.",
+        "Cook brown rice separately and fold cooked black beans into hot birria broth.",
+        "Shred beef and serve over rice with thinly sliced cabbage and fresh lime."
+      ],
+      "science": "Moist heat converts connective tissue collagen into gelatin; beans and rice increase dietary fiber and satiety."
+    },
+    {
+      "id": "lucuma-cacao-parfait",
+      "title": "Lúcuma, cacao & pistachio breakfast parfait",
+      "es": "Parfait de lúcuma, cacao y pistacho",
+      "category": "Breakfast or substantial dessert",
+      "type": "Peruvian pâtisserie",
+      "servings": 4,
+      "activeMinutes": 15,
+      "totalMinutes": 15,
+      "note": "Indulgent mousse-like yogurt with sweet lúcuma and chocolate aroma; dark chocolate sugar depends on label.",
+      "ingredients": [
+        {
+          "id": "greek_yogurt",
+          "label": "Plain Greek yogurt, UNSWEETENED",
+          "quantity": 800,
+          "unit": "g",
+          "category": "Dairy",
+          "nutrientKey": "greek_yogurt",
+          "weightG": 800.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "rolled_oats_dry",
+          "label": "Rolled oats, DRY",
+          "quantity": 180,
+          "unit": "g",
+          "category": "Grains",
+          "nutrientKey": "rolled_oats_dry",
+          "weightG": 180.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "lucuma",
+          "label": "Lúcuma pulp, unsweetened",
+          "quantity": 400,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "lucuma",
+          "weightG": 400.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "nuts",
+          "label": "Pistachios or nuts, unsalted",
+          "quantity": 100,
+          "unit": "g",
+          "category": "Pantry",
+          "nutrientKey": "nuts",
+          "weightG": 100.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "cocoa",
+          "label": "Unsweetened cocoa powder",
+          "quantity": 40,
+          "unit": "g",
+          "category": "Pantry",
+          "nutrientKey": "cocoa",
+          "weightG": 40.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "berries",
+          "label": "Fresh berries",
+          "quantity": 300,
+          "unit": "g",
+          "category": "Produce",
+          "nutrientKey": "berries",
+          "weightG": 300.0,
+          "weightBasis": "raw / uncooked unless noted"
+        },
+        {
+          "id": "dark_chocolate",
+          "label": "Dark chocolate 85%, check added sugar label",
+          "quantity": 60,
+          "unit": "g",
+          "category": "Pantry",
+          "nutrientKey": "dark_chocolate",
+          "weightG": 60.0,
+          "weightBasis": "raw / uncooked unless noted"
+        }
+      ],
+      "steps": [
+        "Toast oats gently in a dry pan until aromatic; cool.",
+        "Whisk yogurt with unsweetened lúcuma pulp and cocoa.",
+        "Layer yogurt, oats, fresh berries and pistachios into 4 glasses.",
+        "Shave dark chocolate over the top at service. Verify added sugar on its package before claiming ≤10 g per meal."
+      ],
+      "science": "Acidic yogurt and intense unsweetened cocoa offset the perceived sweetness of lúcuma; nuts add crunch and fat."
+    }
+  ],
+  "legacyRecipeAudits": [
+    {
+      "id": "artichoke-benedict-with-roasted-trout",
+      "name": "Artichoke Benedict with Roasted Trout",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "birria-ramen-with-sous-vide-egg",
+      "name": "Birria Ramen with Sous-Vide Egg",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "brown-rice-risotto-alla-parmigiana-with-artichokes-scallops",
+      "name": "Brown Rice Risotto alla Parmigiana with Artichokes & Scallops",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "chifa-lomo-saltado-quinoa-bowl",
+      "name": "Chifa Lomo Saltado Quinoa Bowl",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "chocolate-cinnamon-churro-sundae-with-dark-chocolate-sorbet",
+      "name": "Chocolate-Cinnamon Churro Sundae with Dark Chocolate Sorbet",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Added sugar: calculate sugar per plated portion, including chocolate/condiments; ≤10 g/meal cannot be certified from prose",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "crispy-fish-tacos-with-mango-slaw-black-bean-salad",
+      "name": "Crispy Fish Tacos with Mango Slaw & Black Bean Salad",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "dark-chocolate-chicha-morada-mousse-with-roasted-pineapple",
+      "name": "Dark Chocolate & Chicha Morada Mousse with Roasted Pineapple",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Added sugar: calculate sugar per plated portion, including chocolate/condiments; ≤10 g/meal cannot be certified from prose",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "deconstructed-acevichado-cod-with-quinoa-crust-aji-emulsion",
+      "name": "Deconstructed Acevichado Cod with Quinoa Crust & Aji Emulsion",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "elote-style-corn-ribs",
+      "name": "Elote-Style Corn Ribs",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "grilled-chicken-parmigiana-with-aji-verde-quinoa-salad",
+      "name": "Grilled Chicken Parmigiana with Aji Verde & Quinoa Salad",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "korean-bulgogi-breakfast-burrito",
+      "name": "Korean Bulgogi Breakfast Burrito",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "lucuma-tiramisu",
+      "name": "Lucuma Tiramisu",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Added sugar: calculate sugar per plated portion, including chocolate/condiments; ≤10 g/meal cannot be certified from prose",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "mapo-tofu-with-quinoa-sichuan-peanuts",
+      "name": "Mapo Tofu with Quinoa & Sichuan Peanuts",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "miso-glazed-salmon-bowl-with-brown-rice-sesame-kale",
+      "name": "Miso-Glazed Salmon Bowl with Brown Rice & Sesame Kale",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "nikkei-quinoa-acevichado-salad",
+      "name": "Nikkei Quinoa Acevichado Salad",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "parmesan-reggiano-crisps-with-aji-amarillo-aioli",
+      "name": "Parmesan-Reggiano Crisps with Aji Amarillo Aioli",
+      "servings": "4 (snack)",
+      "status": "review-needed",
+      "issues": [
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "roasted-plantain-chips-with-rocoto-dip",
+      "name": "Roasted Plantain Chips with Rocoto Dip",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "slow-roasted-salmon-avocado-whole-grain-bagel",
+      "name": "Slow-Roasted Salmon & Avocado Whole-Grain Bagel",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "sous-vide-short-ribs-with-purple-potato-puree-sauteed-greens",
+      "name": "Sous-Vide Short Ribs with Purple Potato Purée & Sautéed Greens",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "sous-vide-eggs",
+      "name": "Sous-Vide Eggs",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "spaghetti-cacio-e-pepe-oatmeal",
+      "name": "Spaghetti Cacio e Pepe Oatmeal",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "takoyaki-inspired-omelette-roll",
+      "name": "Takoyaki-Inspired Omelette Roll",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Sodium: quantify branded condiments + cheese, not just table salt",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-chilaquiles-with-poached-eggs-and-salsa-roja",
+      "name": "Whole-Grain Chilaquiles with Poached Eggs and Salsa Roja",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-croissant-with-roast-turkey-queso-fresco",
+      "name": "Whole-Grain Croissant with Roast Turkey & Queso Fresco",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-gnocchi-a-la-huancaina-with-grilled-prawns",
+      "name": "Whole-Grain Gnocchi a la Huancaína with Grilled Prawns",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-pizza-diavola-with-spicy-mushrooms-rocoto-honey",
+      "name": "Whole-Grain Pizza Diavola with Spicy Mushrooms & Rocoto Honey",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Added sugar: calculate sugar per plated portion, including chocolate/condiments; ≤10 g/meal cannot be certified from prose",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-spaghetti-puttanesca-with-aji-panca-seafood",
+      "name": "Whole-Grain Spaghetti Puttanesca with Ají Panca Seafood",
+      "servings": "4",
+      "status": "review-needed",
+      "issues": [
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whiskey-pecan-dark-chocolate-tart",
+      "name": "Whiskey Pecan Dark Chocolate Tart",
+      "servings": "8",
+      "status": "review-needed",
+      "issues": [
+        "Added sugar: calculate sugar per plated portion, including chocolate/condiments; ≤10 g/meal cannot be certified from prose",
+        "Energy density/saturated fat: quantify cooking fat and portion weights",
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    },
+    {
+      "id": "whole-grain-bagels",
+      "name": "Whole-Grain Bagels",
+      "servings": "8 bagels",
+      "status": "review-needed",
+      "issues": [
+        "Meal composition: add vegetables/fruit elsewhere in the meal when needed",
+        "Starch portions: source specifies varying dry/raw measures; convert to served portions",
+        "Exact nutrients unverified: source lacks a weighed ingredient-level nutrient calculation"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "name": "Mozaffarian, 2026 JAMA Perspective (owner-supplied private copy; not redistributable)",
+      "url": null,
+      "access": "private-owner-supplied"
+    },
+    {
+      "name": "US Dietary Guidelines, 2025-2030",
+      "url": "https://odphp.health.gov/our-work/nutrition-physical-activity/dietary-guidelines/current-dietary-guidelines"
+    },
+    {
+      "name": "NIDDK Body Weight Planner",
+      "url": "https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner"
+    },
+    {
+      "name": "CDC Steps for Losing Weight",
+      "url": "https://www.cdc.gov/healthy-weight-growth/losing-weight/"
+    },
+    {
+      "name": "WHO carbohydrate quality and fiber guideline 2023",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK594788/"
+    },
+    {
+      "name": "USDA FoodData Central (food composition reference)",
+      "url": "https://fdc.nal.usda.gov/"
+    },
+    {
+      "name": "Weight loss + resistance meta-analysis 2025",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40909191/"
+    }
+  ]
+}

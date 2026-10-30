@@ -1,0 +1,17 @@
+{
+  "name": "Gourmet Meal Plan SPA - DGA Reviewed",
+  "short_name": "Gourmet SPA",
+  "description": "Personal gourmet chef dashboard with recipe, shopping, and dietary-guideline compliance review pages.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0b10",
+  "theme_color": "#0b0b10",
+  "icons": [
+    {
+      "src": "assets/icons/chef-hat.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "version": "2.0.0"
+}

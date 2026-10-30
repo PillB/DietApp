@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en" x-data="mealPlanApp()" x-init="init()" x-cloak>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A dark-mode personal gourmet meal-plan SPA with calendar, recipes, and shopping lists.">
+  <meta name="theme-color" content="#0b0b10">
+  <title>Gourmet Meal Plan SPA</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/chef-hat.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/tailwind.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            chef: {
+              ink: '#0b0b10',
+              card: '#181820',
+              gold: '#f6b45c',
+              rose: '#f97373',
+              herb: '#7dd3a8'
+            }
+          },
+          boxShadow: {
+            glow: '0 0 60px rgba(246, 180, 92, 0.16)'
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/app.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="min-h-screen text-stone-100 selection:bg-amber-400 selection:text-stone-950">
+  <div class="min-h-screen lg:flex">
+    <aside class="no-print app-glass lg:fixed lg:inset-y-0 lg:left-0 lg:w-80 p-5 lg:p-6 flex flex-col gap-6">
+      <a href="#dashboard" class="group flex items-center gap-3">
+        <div class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-400/15 ring-1 ring-amber-300/30 text-2xl">🍽️</div>
+        <div>
+          <h1 class="font-display text-2xl leading-none text-amber-100">Gourmet Month</h1>
+          <p class="text-xs uppercase tracking-[0.24em] text-amber-300/70">Personal Chef SPA</p>
+        </div>
+      </a>
+
+      <nav class="grid gap-2 text-sm">
+        <template x-for="item in [
+          ['dashboard','Overview','✦','#dashboard'],
+          ['calendar','Calendar','📅','#calendar'],
+          ['week','Weekly Menus','🗓️','#week/1'],
+          ['recipes','Recipes','📖','#recipes'],
+          ['shopping','Shopping Lists','🛒','#shopping/1'],
+          ['compliance','DGA Review','✅','#compliance'],
+          ['nutrition','Nutrition & Portions','⚖️','#nutrition'],
+          ['knowledge','Taste DNA','🧬','#knowledge']
+        ]" :key="item[0]">
+          <a :href="item[3]" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-300"
+             :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'">
+            <span class="text-lg" x-text="item[2]"></span>
+            <span x-text="item[1]"></span>
+          </a>
+        </template>
+      </nav>
+
+      <div class="mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
+        <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70">Kitchen Command</p>
+        <p class="mt-2 text-sm text-stone-300">Search, print, copy shopping lists, and open recipes from the calendar without reloading the page.</p>
+        <button @click="exportData()" class="mt-4 w-full rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-white/15">Export JSON</button>
+      </div>
+    </aside>
+
+    <main class="lg:ml-80 flex-1 p-4 sm:p-6 lg:p-10">
+      <header class="no-print mb-8 flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="text-xs uppercase tracking-[0.28em] text-amber-300/70">Dark-mode digital kitchen</p>
+          <h2 class="font-display text-3xl text-amber-50" x-text="data.meta.title"></h2>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button @click="printCurrentView()" class="rounded-2xl border border-white/10 px-4 py-2 text-sm text-stone-200 hover:bg-white/10">Print view</button>
+          <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Start shopping</a>
+        </div>
+      </header>
+
+      <section x-show="view === 'dashboard'" class="space-y-8">
+        <div class="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
+          <article class="rounded-[2rem] border border-white/10 bg-white/[0.07] p-6 shadow-glow">
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Executive Summary</p>
+            <h3 class="mt-3 font-display text-4xl text-amber-50">A Michelin-minded month built from your actual cravings.</h3>
+            <p class="mt-5 text-base leading-8 text-stone-300" x-text="data.executiveSummary"></p>
+          </article>
+          <article class="rounded-[2rem] border border-white/10 bg-stone-950/40 p-6">
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Validated Structure</p>
+            <dl class="mt-5 grid grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white/5 p-4"><dt class="text-stone-400">Weeks</dt><dd class="text-3xl font-bold text-amber-100">4</dd></div>
+              <div class="rounded-2xl bg-white/5 p-4"><dt class="text-stone-400">Days</dt><dd class="text-3xl font-bold text-amber-100" x-text="data.dailyPlans.length"></dd></div>
+              <div class="rounded-2xl bg-white/5 p-4"><dt class="text-stone-400">Recipes</dt><dd class="text-3xl font-bold text-amber-100" x-text="data.recipes.length"></dd></div>
+              <div class="rounded-2xl bg-white/5 p-4"><dt class="text-stone-400">Lists</dt><dd class="text-3xl font-bold text-amber-100" x-text="data.shoppingLists.length"></dd></div>
+            </dl>
+          </article>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <template x-for="week in data.weeklyOverviews" :key="week.week">
+            <a :href="`#week/${week.week}`" class="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:bg-white/10">
+              <p class="text-sm text-amber-300" x-text="`Week ${week.week}`"></p>
+              <h3 class="mt-2 font-display text-2xl text-amber-50" x-text="week.title.replace(/^Week \d+ - /,'')"></h3>
+              <p class="mt-3 line-clamp-4 text-sm leading-6 text-stone-300" x-text="week.theme"></p>
+            </a>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="view === 'calendar'" class="space-y-6">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">28-day interactive menu</p>
+            <h2 class="font-display text-4xl text-amber-50">Monthly Calendar</h2>
+          </div>
+          <p class="text-sm text-stone-400">Click any day to open its menu.</p>
+        </div>
+        <div class="grid grid-cols-7 gap-2 rounded-[2rem] border border-white/10 bg-white/5 p-3 sm:p-5">
+          <template x-for="label in dayLabels" :key="label">
+            <div class="no-print rounded-2xl bg-white/5 py-2 text-center text-xs font-bold uppercase tracking-widest text-amber-200" x-text="label"></div>
+          </template>
+          <template x-for="(day, index) in data.dailyPlans" :key="`${day.week}-${day.day}`">
+            <a :href="`#day/${day.week}/${(index % 7)}`" class="min-h-36 rounded-3xl border border-white/10 bg-stone-950/30 p-3 transition hover:-translate-y-1 hover:border-amber-300/40 hover:bg-amber-300/10">
+              <div class="flex items-center justify-between">
+                <span class="grid h-9 w-9 place-items-center rounded-2xl bg-amber-400 text-sm font-black text-stone-950" x-text="index + 1"></span>
+                <span class="text-xs text-stone-400" x-text="`W${day.week} · ${day.day}`"></span>
+              </div>
+              <p class="mt-3 line-clamp-2 text-sm font-semibold text-amber-50" x-text="day.dinner"></p>
+              <p class="mt-2 line-clamp-2 text-xs text-stone-400" x-text="day.snackDessert"></p>
+            </a>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="view === 'week'" class="space-y-6">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Weekly progression</p>
+            <h2 class="font-display text-4xl text-amber-50" x-text="currentWeekOverview().title"></h2>
+          </div>
+          <div class="flex gap-2">
+            <template x-for="week in [1,2,3,4]" :key="week">
+              <a :href="`#week/${week}`" class="rounded-2xl px-4 py-2 text-sm font-bold" :class="selectedWeek === week ? 'bg-amber-400 text-stone-950' : 'bg-white/10 text-stone-200 hover:bg-white/15'" x-text="`W${week}`"></a>
+            </template>
+          </div>
+        </div>
+        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+          <p class="text-lg leading-8 text-stone-200" x-text="currentWeekOverview().theme"></p>
+          <div class="mt-5 grid gap-3 md:grid-cols-2">
+            <template x-for="highlight in currentWeekOverview().highlights" :key="highlight">
+              <div class="rounded-2xl bg-stone-950/40 p-4 text-sm leading-6 text-stone-300">✦ <span x-text="highlight"></span></div>
+            </template>
+          </div>
+        </article>
+        <div class="grid gap-4 lg:grid-cols-2">
+          <template x-for="(day, idx) in weekDays(selectedWeek)" :key="day.day">
+            <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
+              <div class="mb-4 flex items-center justify-between">
+                <h3 class="font-display text-2xl text-amber-50" x-text="day.day"></h3>
+                <a :href="`#day/${selectedWeek}/${idx}`" class="text-sm font-bold text-amber-300 hover:text-amber-200">Open day →</a>
+              </div>
+              <div class="space-y-3">
+                <template x-for="slot in mealSlots" :key="slot.key">
+                  <button @click="openRecipeByMeal(day[slot.key])" class="w-full rounded-2xl bg-stone-950/40 p-3 text-left transition hover:bg-amber-300/10">
+                    <span class="text-xs uppercase tracking-widest text-stone-500" x-text="slot.icon + ' ' + slot.label"></span>
+                    <span class="mt-1 block font-semibold text-stone-100" x-text="day[slot.key]"></span>
+                  </button>
+                </template>
+              </div>
+            </article>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="view === 'day'" class="space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70" x-text="`Week ${selectedWeek}`"></p>
+          <h2 class="font-display text-4xl text-amber-50" x-text="selectedDay().day + ' Menu'"></h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <template x-for="slot in mealSlots" :key="slot.key">
+            <button @click="openRecipeByMeal(selectedDay()[slot.key])" class="group rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 text-left transition hover:-translate-y-1 hover:border-amber-300/30 hover:bg-white/10">
+              <span class="text-3xl" x-text="slot.icon"></span>
+              <p class="mt-4 text-xs uppercase tracking-[0.25em] text-amber-300/70" x-text="slot.label"></p>
+              <h3 class="mt-2 font-display text-2xl text-amber-50" x-text="selectedDay()[slot.key]"></h3>
+              <p class="mt-4 text-sm font-bold text-amber-300">Open full recipe →</p>
+            </button>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="view === 'recipes'" class="space-y-6">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Searchable recipe library</p>
+            <h2 class="font-display text-4xl text-amber-50">Full Recipes</h2>
+          </div>
+          <input x-model="query" type="search" placeholder="Search by dish, ingredient, method..." class="w-full rounded-2xl border border-white/10 bg-stone-950/70 px-4 py-3 text-stone-100 outline-none ring-amber-300/50 placeholder:text-stone-500 focus:ring-2 lg:max-w-md">
+        </div>
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <template x-for="recipe in filteredRecipes" :key="recipe.id">
+            <button @click="selectedRecipe = recipe" class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 text-left transition hover:-translate-y-1 hover:border-amber-300/30 hover:bg-white/10">
+              <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70" x-text="recipe.cuisine || 'Base recipe'"></p>
+              <h3 class="mt-2 font-display text-2xl text-amber-50" x-text="recipe.name"></h3>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs text-stone-300">
+                <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.servings ? `${recipe.servings} servings` : 'reference' "></span>
+                <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.totalTime || 'timing in source'"></span>
+                <span class="rounded-full bg-amber-300/15 px-3 py-1 text-amber-200" x-text="`${recipeSectionCount(recipe)} parsed fields`"></span>
+                <span class="rounded-full bg-emerald-300/15 px-3 py-1 text-emerald-200" x-text="recipe.compliance?.status || 'Reviewed'"></span>
+              </div>
+            </button>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="view === 'shopping'" class="space-y-6">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Checkboxes saved locally</p>
+            <h2 class="font-display text-4xl text-amber-50" x-text="`Week ${shoppingWeek} Shopping List`"></h2>
+            <p class="mt-2 text-sm text-stone-400" x-text="`${shoppingProgress(shoppingWeek).checked}/${shoppingProgress(shoppingWeek).total} checked · ${shoppingProgress(shoppingWeek).pct}% complete`"></p>
+          </div>
+          <div class="no-print flex flex-wrap gap-2">
+            <template x-for="week in [1,2,3,4]" :key="week">
+              <a :href="`#shopping/${week}`" class="rounded-2xl px-4 py-2 text-sm font-bold" :class="shoppingWeek === week ? 'bg-amber-400 text-stone-950' : 'bg-white/10 text-stone-200 hover:bg-white/15'" x-text="`W${week}`"></a>
+            </template>
+            <button @click="copyShoppingList()" class="rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-stone-100 hover:bg-white/15">Copy all</button>
+            <button @click="resetShoppingWeek()" class="rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-stone-100 hover:bg-white/15">Reset</button>
+            <button @click="printCurrentView()" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Print</button>
+          </div>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-2">
+          <template x-for="category in shoppingListForWeek(shoppingWeek)" :key="category.category">
+            <article class="print-card rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
+              <h3 class="font-display text-2xl text-amber-50" x-text="category.category"></h3>
+              <div class="mt-4 space-y-2">
+                <template x-for="item in category.items" :key="item">
+                  <label class="flex cursor-pointer items-start gap-3 rounded-2xl bg-stone-950/35 p-3 hover:bg-stone-950/55">
+                    <input type="checkbox" class="mt-1 h-5 w-5 rounded border-white/20 bg-stone-900 text-amber-400 focus:ring-amber-300"
+                      :checked="checkedItems[checkKey(shoppingWeek, category.category, item)]"
+                      @change="toggleCheck(checkKey(shoppingWeek, category.category, item))">
+                    <span class="text-sm leading-6" :class="checkedItems[checkKey(shoppingWeek, category.category, item)] ? 'text-stone-500 line-through' : 'text-stone-200'" x-text="item"></span>
+                  </label>
+                </template>
+              </div>
+            </article>
+          </template>
+        </div>
+      </section>
+
+
+      <section x-show="view === 'compliance'" class="space-y-6">
+        <p class="rounded-2xl border border-amber-300/35 bg-amber-300/10 p-4 text-sm leading-6 text-amber-100">Nutrition audit correction (October 2026): recipe ingredient edits do not establish verified calories, macros, sugar or appropriate weight-loss portions. All 29 original recipes remain nutritionally unverified. See <a class="underline" href="#nutrition">Nutrition &amp; Portions</a>.</p>
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">PDF compliance audit</p>
+            <h2 class="font-display text-4xl text-amber-50">Dietary Guideline Review</h2>
+            <p class="mt-3 max-w-3xl text-sm leading-7 text-stone-300" x-text="data.complianceAudit?.summary"></p>
+          </div>
+          <button @click="exportData()" class="no-print rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Export review JSON</button>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-4">
+          <template x-for="metric in complianceMetrics()" :key="metric.label">
+            <article class="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-5">
+              <p class="text-xs uppercase tracking-[0.20em] text-amber-300/70" x-text="metric.label"></p>
+              <p class="mt-2 text-3xl font-bold text-amber-100" x-text="metric.value"></p>
+              <p class="mt-2 text-xs leading-5 text-stone-400" x-text="metric.note"></p>
+            </article>
+          </template>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-2">
+          <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+            <h3 class="font-display text-2xl text-amber-50">Embedded rule set</h3>
+            <div class="mt-4 space-y-3">
+              <template x-for="rule in data.dietGuidelineRules" :key="rule.id">
+                <div class="rounded-2xl bg-stone-950/40 p-4">
+                  <p class="font-bold text-amber-200" x-text="rule.label"></p>
+                  <p class="mt-1 text-sm leading-6 text-stone-300" x-text="rule.rule"></p>
+                </div>
+              </template>
+            </div>
+          </article>
+
+          <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+            <h3 class="font-display text-2xl text-amber-50">Major corrections made</h3>
+            <ul class="mt-4 space-y-3 text-sm leading-7 text-stone-300">
+              <template x-for="item in data.complianceAudit?.majorCorrections || []" :key="item">
+                <li class="rounded-2xl bg-stone-950/40 p-4">✓ <span x-text="item"></span></li>
+              </template>
+            </ul>
+          </article>
+        </div>
+
+        <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+          <h3 class="font-display text-2xl text-amber-50">Recipe-by-recipe status</h3>
+          <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            <template x-for="recipe in data.recipes" :key="recipe.id">
+              <button @click="selectedRecipe = recipe" class="rounded-2xl bg-stone-950/40 p-4 text-left hover:bg-stone-950/70">
+                <p class="text-xs uppercase tracking-[0.18em] text-amber-300/70" x-text="recipe.compliance?.status || 'Reviewed'"></p>
+                <h4 class="mt-1 font-display text-xl text-amber-50" x-text="recipe.name"></h4>
+                <p class="mt-2 text-xs leading-5 text-stone-400" x-text="(recipe.compliance?.revisionNotes || ['No revisions required.'])[0]"></p>
+              </button>
+            </template>
+          </div>
+        </article>
+      </section>
+
+      <section x-show="view === 'knowledge'" class="space-y-6">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Taste DNA extracted from ordering behavior</p>
+          <h2 class="font-display text-4xl text-amber-50">User Flavor Knowledge Map</h2>
+        </div>
+        <div class="grid gap-5 lg:grid-cols-2">
+          <template x-for="(items, sectionName) in data.knowledgeMap" :key="sectionName">
+            <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+              <h3 class="font-display text-2xl text-amber-50" x-text="sectionName"></h3>
+              <div class="mt-4 space-y-3">
+                <template x-for="item in items" :key="item.label + item.description">
+                  <p class="text-sm leading-7 text-stone-300">
+                    <template x-if="item.label"><strong class="text-amber-200" x-text="item.label + ': '"></strong></template>
+                    <span x-text="item.description"></span>
+                  </p>
+                </template>
+              </div>
+            </article>
+          </template>
+        </div>
+      </section>
+
+      <!-- Nutrition/portioning module: separate from historic 29 recipe corpus to avoid false precision. -->
+      <section x-show="view === 'nutrition'" id="nutrition-root" class="n-dashboard space-y-6" x-cloak>
+        <div class="n-hero">
+          <div class="n-ornament" aria-hidden="true">❦ ━━━━━ ◇ ━━━━━ ❦</div>
+          <p class="n-overline">PERSONAL GOURMET KITCHEN • EVIDENCE & PORTIONS</p>
+          <h2 data-nt="nutrition">Nutrition, portioning and safe planning</h2>
+          <p data-nt="feature">Seven measured gourmet variants for a practical starter week. Original recipes remain available under Recipes, but unstructured ingredients cannot reliably produce exact shopping totals.</p>
+          <div class="n-hero-footer">
+            <label>Interface language <select id="n-language" aria-label="Nutrition module language"><option value="en">English</option><option value="es">Español</option></select></label>
+            <a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="noopener noreferrer">NIH weight planner ↗</a>
+          </div>
+        </div>
+        <p class="n-caution" data-nt="warning">Estimates only — not verified nutritional labels. Original recipes are not nutritionally certified.</p>
+        <div class="n-columns">
+          <section class="n-panel">
+            <h3>01 · Evidence-based starting point</h3>
+            <p>All inputs are optional, blank by default and held only in this browser form. This Mifflin–St Jeor estimate is <strong>not a medical recommendation</strong> and not equivalent to the NIH dynamic Body Weight Planner.</p>
+            <form id="n-energy-form" class="n-form">
+              <label>Adult age (years) <input type="number" id="n-age" min="18" max="100" required placeholder="Age"></label>
+              <label>Current mass (kg) <input type="number" id="n-weight" min="30" max="350" step="0.1" required placeholder="kg"></label>
+              <label>Height (cm) <input type="number" id="n-height" min="120" max="230" step="0.1" required placeholder="cm"></label>
+              <label>Physiology equation constant
+                <select id="n-physiology" required><option value="">Select</option><option value="female">Female (-161)</option><option value="male">Male (+5)</option></select>
+              </label>
+              <label>Activity multiplier
+                <select id="n-activity"><option value="1.2">Mostly seated (1.20)</option><option value="1.375" selected>Light activity (1.375)</option><option value="1.55">Moderately active (1.55)</option><option value="1.725">Very active (1.725)</option></select>
+              </label>
+              <label>Illustrative energy deficit (kcal/day)
+                <select id="n-deficit"><option value="300">300</option><option value="400" selected>400</option><option value="500">500</option></select>
+              </label>
+              <label>Protein calculation reference mass (kg, optional) <input type="number" id="n-reference-weight" min="30" max="300" step="0.1" placeholder="Current mass if blank"></label>
+              <button class="n-primary" type="submit">Estimate energy & protein</button>
+            </form>
+            <div id="n-energy-result" aria-live="polite" class="n-result"><p>Enter current measurements to display a tentative range. Nothing is prefilled from old measurements.</p></div>
+          </section>
+          <section class="n-panel">
+            <h3>02 · Build balanced gourmet plates</h3>
+            <div class="n-plate" role="img" aria-label="Plate heuristic: about half colorful vegetables and fruit, a quarter protein, a quarter whole grains or starchy vegetables, plus measured fats and sauces">
+              <div class="n-plate-veg">Vegetables & fruit<br><strong>~½ plate</strong></div><div class="n-plate-protein">Protein<br><strong>~¼</strong></div><div class="n-plate-starch">Whole grains / potato<br><strong>~¼</strong></div>
+            </div>
+            <p>Use this as a <strong>composition heuristic</strong>, not a rule that all foods occupy equal caloric shares. Count olive oil, cheese, creamy sauces, beverages and desserts too. Never remove carbohydrates automatically.</p>
+            <ul class="n-bullets"><li>WHO: at least 400 g fruits and vegetables per day, and dietary fiber at least 25 g/day.</li><li>PDF: prioritizes varied protein, whole grains and minimally processed food; <strong>10 g added sugar per meal</strong> is described, not proven for every menu here.</li><li>Strength training during energy loss helps preserve lean mass. Rate and calorie need vary across individuals.</li><li>For kidney disease, pregnancy, diabetes medications or eating-disorder history, involve a clinician.</li></ul>
+          </section>
+        </div>
+        <section class="n-panel">
+          <h3>03 · Schedule measured recipes & repeat weeks</h3>
+          <p data-nt="planning">Upcoming-week sample schedule</p>
+          <form id="n-assign-form" class="n-form n-meal-form">
+            <label data-nt="recipe">Recipe</label><select id="n-recipe" required aria-label="Select measured recipe"></select>
+            <label data-nt="date">Date</label><input id="n-date" type="date" required>
+            <label data-nt="meal">Meal</label><select id="n-meal"><option>Breakfast</option><option>Lunch</option><option selected>Dinner</option><option>Snack</option></select>
+            <label data-nt="portions">Individual portions</label><input id="n-portions" type="number" min="1" max="24" value="1" required>
+            <label class="n-check"><input id="n-repeat" type="checkbox"><span data-nt="repeat">Repeat weekly for 4 weeks</span></label>
+            <button class="n-primary" type="submit" data-nt="add">Add to plan</button>
+          </form>
+          <div id="n-recipe-preview" class="n-recipe-preview"></div>
+          <div class="n-range"><label>From <input type="date" id="n-range-start"></label><label>Through <input type="date" id="n-range-end"></label><button id="n-reset" class="n-secondary" type="button">Clear example schedule</button></div>
+          <p id="n-notice" role="status" aria-live="polite" class="n-caution"></p>
+          <ul id="n-schedule-list" class="n-events"></ul>
+        </section>
+        <section class="n-panel n-print-list">
+          <div class="n-shopping-head"><div><h3 data-nt="shopping">Aggregated shopping</h3><p id="n-coverage" aria-live="polite"></p></div><div class="n-actions"><button id="n-copy" type="button" class="n-secondary">Copy list</button><button id="n-print" type="button" class="n-secondary">Print</button></div></div>
+          <div id="n-shopping-list" class="n-shopping-list"></div>
+          <p class="n-caution">Quantities add only matching ingredient IDs and units from measured recipe variants; household packing formats, trimming losses and optional garnishes need a final shopper review. Raw and dry weights are explicit.</p>
+        </section>
+        <section class="n-panel">
+          <h3>04 · Audit of the original 29 recipes</h3>
+          <p id="n-legacy-summary"></p>
+          <div id="n-legacy-audit" class="n-audit-list"></div>
+        </section>
+        <section class="n-panel">
+          <h3>05 · Documentation and evidence</h3>
+          <p>See <a href="NUTRITION_RESEARCH.md" target="_blank" rel="noopener noreferrer">NUTRITION_RESEARCH.md</a> for assumptions, dietary PDF interpretation, uncertainty, original research, audit, and prioritised next steps.</p>
+          <p>Nutrition values in the seven measured variants are <strong>illustrative calculations using generic food composition references</strong>; brands and preparation affect them substantially.</p>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="no-print fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-amber-400 px-5 py-3 text-sm font-bold text-stone-950 shadow-glow transition" x-show="toast" x-transition x-text="toast"></div>
+
+  <div class="fixed inset-0 z-40 overflow-y-auto bg-black/75 p-4 backdrop-blur-sm" x-show="selectedRecipe" x-transition.opacity x-cloak @keydown.escape.window="selectedRecipe = null">
+    <div class="mx-auto my-6 max-w-5xl rounded-[2rem] border border-white/10 bg-[#111117] shadow-2xl">
+      <div class="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-t-[2rem] border-b border-white/10 bg-[#111117]/95 p-5 backdrop-blur">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70" x-text="selectedRecipe?.cuisine || 'Recipe'"></p>
+          <h2 class="font-display text-3xl text-amber-50" x-text="selectedRecipe?.name"></h2>
+          <p class="mt-2 text-sm text-stone-400">
+            <span x-text="selectedRecipe?.servings ? selectedRecipe.servings + ' servings' : 'Reference recipe'"></span>
+            <span x-show="selectedRecipe?.activeTime"> · Active <span x-text="selectedRecipe?.activeTime"></span></span>
+            <span x-show="selectedRecipe?.totalTime"> · Total <span x-text="selectedRecipe?.totalTime"></span></span>
+          </p>
+        </div>
+        <button @click="selectedRecipe = null" class="rounded-full bg-white/10 px-4 py-2 text-2xl leading-none text-stone-100 hover:bg-white/15" aria-label="Close recipe">×</button>
+      </div>
+      <div class="grid gap-5 p-5 lg:grid-cols-2">
+        <section class="rounded-[1.5rem] bg-white/[0.04] p-5">
+          <h3 class="font-display text-2xl text-amber-100">Mise en place</h3>
+          <ul class="mt-4 space-y-2 text-sm leading-6 text-stone-300">
+            <template x-for="step in selectedRecipe?.miseEnPlace || []" :key="step"><li>• <span x-text="step"></span></li></template>
+          </ul>
+        </section>
+        <section class="rounded-[1.5rem] bg-white/[0.04] p-5">
+          <h3 class="font-display text-2xl text-amber-100">Ingredients</h3>
+          <ul class="mt-4 space-y-2 text-sm leading-6 text-stone-300">
+            <template x-for="item in selectedRecipe?.ingredients || []" :key="item"><li>• <span x-text="item"></span></li></template>
+          </ul>
+        </section>
+        <section class="rounded-[1.5rem] bg-white/[0.04] p-5 lg:col-span-2">
+          <h3 class="font-display text-2xl text-amber-100">Method</h3>
+          <ol class="mt-4 space-y-3 text-sm leading-7 text-stone-300">
+            <template x-for="(step, index) in selectedRecipe?.method || []" :key="step"><li><span class="mr-2 text-amber-300" x-text="index + 1 + '.'"></span><span x-text="step"></span></li></template>
+          </ol>
+        </section>
+        <section class="rounded-[1.5rem] bg-amber-300/10 p-5">
+          <h3 class="font-display text-2xl text-amber-100">Why this works</h3>
+          <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.whyThisWorks || 'See the full preserved recipe text below.'"></p>
+        </section>
+        <section class="rounded-[1.5rem] bg-rose-300/10 p-5">
+          <h3 class="font-display text-2xl text-amber-100">Plating / Pairing</h3>
+          <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.plating || 'See the full preserved recipe text below.'"></p>
+        </section>
+        <section class="rounded-[1.5rem] bg-emerald-300/10 p-5 lg:col-span-2">
+          <h3 class="font-display text-2xl text-amber-100">PDF Compliance Review</h3>
+          <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.compliance?.auditSummary || 'Reviewed against the dietary guideline rule set.'"></p>
+          <ul class="mt-3 space-y-2 text-sm leading-6 text-stone-300">
+            <template x-for="note in selectedRecipe?.compliance?.revisionNotes || []" :key="note"><li>✓ <span x-text="note"></span></li></template>
+          </ul>
+        </section>
+        <details class="recipe-prose rounded-[1.5rem] bg-stone-950/50 p-5 lg:col-span-2">
+          <summary class="cursor-pointer font-display text-xl text-amber-100">Full preserved source text</summary>
+          <div class="mt-4 whitespace-pre-wrap text-sm leading-7 text-stone-300" x-html="renderInlineMarkdown(selectedRecipe?.fullMarkdown || '')"></div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="assets/js/nutrition-data.js"></script>
+  <script defer src="assets/js/nutrition-core.js"></script>
+  <script defer src="assets/js/nutrition-ui.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

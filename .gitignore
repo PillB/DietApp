@@ -1,0 +1,17 @@
+# PRIVATE SOURCE DATA — never publish, commit, or ship to Pages (AGENTS.md §safety 1)
+data/private/
+context/private/
+context/*.json
+context/2026-05-01-2026-10-26-flavor-profile-analysis/
+# Unreviewed user context drop (contains order-derived analysis; audit at P0.2 before reconsidering)
+Context information/
+
+# Secrets / environment
+.env
+.env.*
+
+# OS and tooling noise
+.DS_Store
+node_modules/
+__pycache__/
+*.pyc

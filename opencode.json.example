@@ -1,0 +1,5 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_README": "EXAMPLE ONLY. Do not activate until `opencode models` confirms the actual provider/model id. Remove this property when copying into opencode.json.",
+  "model": "REPLACE_WITH_EXACT_PROVIDER_ID/MODEL_ID"
+}
