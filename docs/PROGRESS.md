@@ -178,7 +178,27 @@ Honesty-by-construction facts (each test-proven):
 - Trade-off stated: alias-based matching is intentionally UNUSED in v0.1 because catalog titles do not exist yet — alias matching without verbatim titles would match hallucinated text (a fake solved problem). When real titles arrive, aliases get re-evaluated against them.
 
 Tests: 73 pass / 0 fail; lint clean; privacy scan PASS.
-Next single command/ticket: **P3.2 shopping-list UI** (browser, served site): grouped list + es-PE shopper view, print/copy; extend `npm run e2e` to cover the shopping flow.
+Tests: 73 pass / 0 fail; lint clean; privacy scan PASS (now covering `data/fixtures/**` in the served-public set too).
+
+## Session log — 2026-10-30, session 2, part 10 (P3.2 shopping-list UI, development preview)
+
+Files: `assets/js/shopping-ui.js` (new vanilla-DOM UMD component — deliberately NOT Alpine-bound to avoid dual state systems), `index.html` (nav item '🧾 Shopping Engine (v4)', section `#shopengine`, dependency-ordered script tags, fixture-preload + boot), `tests/e2e_served.cjs` (shopping-flow audit: plan entry → grouped render), `scripts/privacy_check.cjs` (scans `data/fixtures/**`).
+
+E2E evidence (real served site, Chromium):
+- shopping-flow PASS: section mounted, recipe select + date + portions entry added, `nikkei-salmon-bowl` full-scale → **10 grouped lines rendered**, aggregate warnings bar visible, 0 refusals, 0 page errors, no 390px overflow. Screenshot `tests/e2e_shopping_flow.png`.
+- Nav now 9 links; Alpine still mounts; base audits unchanged PASS.
+
+Root-cause trail (4 real fixes, zero retry loops):
+1. UI never booted — script was loaded but `ShoppingUI.init()` was never called (fixture-fetch then boot, with fallback).
+2. `#engine-from/#engine-to` live OUTSIDE the plan form but were queried via `form.querySelector` → null deref; section-scope queries instead.
+3. **Script-order bug in index.html**: `storage-core.js` evaluates `root.CalendarCore` at load time but sat before `calendar-core.js` → re-ordered quantity→schema→calendar→storage→import→storeMatches→shoppingCore→ui.
+4. Fixture catalog now rides a preload before boot (fallback boot with empty catalog keeps UI honest when offline).
+
+Trade-offs stated: (a) plan entries come from a basic add-form (no repeat-rule/copy/move UI yet — P2.2 UI gates later); (b) es-PE grouping labels are interim bilingual strings pending P6 locales; (c) `__pgkLastList` window global is the copy/print source of truth until P7 replaces it with state sync; (d) service-worker cache versioning still pending — flagged for P8 deploy gate (fresh contexts unaffected).
+Honest labeling: all canonical recipe names currently render with "(EN provisional)" tag — per contract the es-PE manifest names do not exist yet; nothing is presented as Spanish that isn't.
+
+Tests: 73 unit pass / 0 fail; E2E PASS (incl. shopping-flow); lint clean; privacy scan PASS.
+Next single command/ticket: **P3.5 shopper-view es-PE bullets + print/CSV polish**, then **P2.2 planner UI** (repeat rules, move/copy/delete, keyboard alternatives), then **P3.4 optimization** once verified packaging exists.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

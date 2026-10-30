@@ -45,8 +45,7 @@ function createServer(root) {
   });
 }
 
-async function audit(viewport, tag, report) {
-  const browser = await chromium.launch();
+async function audit(viewport, tag, report) {  const browser = await chromium.launch();
   const page = await browser.newPage({ viewport });
   const consoleErrors = [];
   const pageErrors = [];
@@ -81,6 +80,40 @@ async function audit(viewport, tag, report) {
   return row;
 }
 
+/** P3.2 shopping-engine flow: plan an entry, grouped list renders, no overflow. */
+async function shoppingFlow(port, report) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const pageErrors = [];
+  page.on('pageerror', (e) => pageErrors.push(String(e)));
+  await page.goto(`http://localhost:${port}/`, { waitUntil: 'load' });
+  await page.waitForTimeout(1500); // fixture fetch + scripts
+  const steps = {};
+  steps.sectionMounted = await page.locator('#shopengine').count();
+  if (steps.sectionMounted === 0) { report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.fill('#engine-from', '2026-11-01');
+  await page.fill('#engine-to', '2026-11-30');
+  await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
+  await page.fill('#engine-date', '2026-11-03');
+  await page.fill('#engine-portions', '4');
+  await page.click('#engine-plan-form button[type="submit"]');
+  await page.waitForTimeout(300);
+  steps.lineCount = await page.locator('#engine-groups li').count();
+  steps.groupHeadings = await page.locator('#engine-groups h3').count();
+  steps.refusalShown = await page.locator('#engine-groups .text-red-300').count();
+  await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_shopping_flow.png'), fullPage: false });
+  await browser.close();
+  const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0;
+  report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed });
+  if (failed) {
+    console.log(`\n== shopping-flow (FAIL) == steps: ${JSON.stringify(steps)}`);
+    console.log(`pageErrors: ${JSON.stringify(pageErrors)}`);
+  } else {
+    console.log(`\n== shopping-flow (PASS) == steps: ${JSON.stringify(steps)}`);
+  }
+  return failed;
+}
+
 async function main() {
   const server = createServer(ROOT);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -91,24 +124,36 @@ async function main() {
     const guardURL = `http://localhost:${port}/data/private/report.md`;
     const res = await fetch(guardURL);
     if (res.status !== 403) throw new Error(`private path guard failed: got ${res.status} for ${guardURL}`);
-    console.log('guard check: /data/private/* refused with 403 ✔');
-    await audit({ width: 1360, height: 900 }, 'desktop', report);
-    await audit({ width: 390, height: 844 }, 'mobile', report);
+    const fixtureRes = await fetch(`http://localhost:${port}/data/fixtures/lima-stores-v1.json`);
+    if (fixtureRes.status !== 200) throw new Error(`public fixture should be served, got ${fixtureRes.status}`);
+    console.log('guard check: /data/private/* refused with 403 ✔ ; fixtures served with 200 ✔');
+    await auditBook(report, { width: 1360, height: 900 }, 'desktop');
+    await auditBook(report, { width: 390, height: 844 }, 'mobile');
+    const shopFailed = await shoppingFlow(port, report);
+    summarize(report, shopFailed);
   } finally {
     server.close();
   }
+}
 
-  let failed = false;
+/** diagnostics-block rows keep old format {rows} for report readers */
+async function auditBook(report, viewport, tag) {
+  return audit(viewport, tag, report);
+}
+
+function summarize(report, shopFailed) {
+  let failed = Boolean(shopFailed);
   for (const row of report.rows) {
     console.log(`\n== ${row.tag} ==`);
-    console.log(`title: ${row.title}`);
-    console.log(`nav links: ${row.navCount} | alpineMounted: ${row.alpineMounted} | hOverflow: ${row.overflow}`);
-    console.log(`consoleErrors: ${JSON.stringify(row.consoleErrors)}`);
-    console.log(`pageErrors: ${JSON.stringify(row.pageErrors)}`);
-    console.log(`localMissing(404+): ${JSON.stringify(row.localMissing)}`);
-    console.log(`external responses: ${row.cdnResults.join(' | ') || 'none'}`);
+    if (row.title !== undefined) {
+      console.log(`title: ${row.title}`);
+      console.log(`nav links: ${row.navCount} | alpineMounted: ${row.alpineMounted} | hOverflow: ${row.overflow}`);
+      console.log(`consoleErrors: ${JSON.stringify(row.consoleErrors)}`);
+      console.log(`localMissing(404+): ${JSON.stringify(row.localMissing)}`);
+      console.log(`external responses: ${row.cdnResults.join(' | ') || 'none'}`);
+    }
     // GATES: local assets must all exist; no uncaught JS errors; header/nav must render.
-    if (row.localMissing.length || row.pageErrors.length || row.navCount < 4) failed = true;
+    if (row.localMissing && (row.localMissing.length || row.pageErrors.length || row.navCount < 4)) failed = true;
     if (row.tag === 'mobile' && row.overflow) failed = true; // 390px gate
   }
   fs.writeFileSync(path.join(ROOT, 'tests', 'e2e_served_report.json'), JSON.stringify(report, null, 2));

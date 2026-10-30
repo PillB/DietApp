@@ -56,6 +56,7 @@
           ['week','Weekly Menus','🗓️','#week/1'],
           ['recipes','Recipes','📖','#recipes'],
           ['shopping','Shopping Lists','🛒','#shopping/1'],
+          ['shopengine','Shopping Engine (v4)','🧾','#shopengine'],
           ['compliance','DGA Review','✅','#compliance'],
           ['nutrition','Nutrition & Portions','⚖️','#nutrition'],
           ['knowledge','Taste DNA','🧬','#knowledge']
@@ -475,9 +476,33 @@
     </div>
   </div>
 
+  <section id="shopengine" class="max-w-full"></section>
+
   <script defer src="assets/js/nutrition-data.js"></script>
   <script defer src="assets/js/nutrition-core.js"></script>
   <script defer src="assets/js/nutrition-ui.js"></script>
+  <script defer src="assets/js/quantity.js"></script>
+  <script defer src="assets/js/domain-schema.js"></script>
+  <script defer src="assets/js/calendar-core.js"></script>
+  <script defer src="assets/js/storage-core.js"></script>
+  <script defer src="assets/js/import-weighed.js"></script>
+  <script defer src="assets/js/store-matches.js"></script>
+  <script defer src="assets/js/shopping-core.js"></script>
+  <script defer src="assets/js/shopping-ui.js"></script>
+  <script>
+    // catalog preload for the shopping engine (structure-only fixture), then boot
+    (function () {
+      function boot() {
+        if (window.ShoppingUI && window.ShoppingUI.init) {
+          try { window.ShoppingUI.init({}); } catch (e) { console.error('ShoppingUI init failed:', e); }
+        }
+      }
+      fetch('data/fixtures/lima-stores-v1.json')
+        .then((r) => r.json())
+        .then((j) => { window.LIMA_STORES_FIXTURE = j.products; boot(); })
+        .catch(() => boot());
+    })();
+  </script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
