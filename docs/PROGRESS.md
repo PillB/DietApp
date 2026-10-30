@@ -54,6 +54,24 @@ Blockers: none. **Next ticket: P0.3** — served-site E2E baseline; command: `py
 
 Next single command/ticket: **P1.1** canonical schema; command: implement `docs/DATA_CONTRACT.md` schemas + fixture, tests first (`tests/data_contract.test.cjs`).
 
+## Session log — 2026-10-30, session 2, part 3 (P1.1 canonical schema)
+
+Files: `assets/js/domain-schema.js` (new, dual browser/Node UMD like nutrition-core.js), `tests/data_contract.test.cjs` (8 tests, seeded-negative first), package.json test script updated.
+
+What the schema now makes structurally impossible (encoded, not convention):
+- `parseFloat('1/2')`: quantities are exact rational/decimal strings only (`^…$` pattern; P1.3 will add the exact parser).
+- Provenance-free stock claims: `availability: observed|verified` REQUIRES exact RFC-3339 observation timestamp + (sku|productUrl) + locale; date-only "2026-10-30" is rejected as not exact provenance (the strictness was discovered by the test catching a too-lax regex — kept exact).
+- Pressure times (`pressureMin`/`releaseMin`) without pressure equipment listed → `pressure_without_equipment` (anti-inference rule from P4.2, enforced at P1 already).
+- localDate is calendar-validated (`2026-02-30` → `invalid_local_date`), independent of UTC.
+- ids follow the contract's own examples (`match-1`, `order-c32`): lowercase slugs with `_-` — first draft ID_RE was wrong vs contract; fixed by reading actual outputs.
+- count-quantity basis must be `raw`; `dry` is meaningless for ml/count; units beyond canonical {count,g,kg,ml,l} (e.g. `cups`) rejected — all conversions belong in sourced conversion factors (P3).
+
+Debug/analysis trail (per error-fix discipline): 3 rounds of failures → root causes were test bugs (self-inconsistent locale expectation, invalid `kg` seeded negative, stray unused var) plus 2 CC-15 violations refactored by extracting sub-rules (`storeListingRule`/`storePackageRule`, `ingredientUseRule`), NOT by disabling rules.
+Trade-off stated: `kg`/`l` accepted in v0.1 recipe uses (contract's shopping example uses kg) with dimension mapping to g/ml; strict shape enforcement of `nutrition` status enum is `not-assessed|draft|assessed` — expandable, versioned `domain-schema/v0.1`.
+
+Tests: 27 pass / 0 fail; lint 0 problems.
+Next single command/ticket: **P1.2** importer — seven weighed recipes from `nutrition-reviewed.json` → normalized RecipeVersion fixtures + legacy-29 quarantine marking; test: round-trip import of the 7 curated recipes with quantity re-parsing (tests/import_weighed.test.cjs).
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …
