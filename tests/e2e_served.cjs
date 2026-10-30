@@ -101,9 +101,11 @@ async function shoppingFlow(port, report) {
   steps.lineCount = await page.locator('#engine-groups li').count();
   steps.groupHeadings = await page.locator('#engine-groups h3').count();
   steps.refusalShown = await page.locator('#engine-groups .text-red-300').count();
+  steps.esPeDraftName = await page.locator('#engine-groups', { hasText: 'salmón' }).count();
+  steps.esPeDraftTag = await page.locator('#engine-groups', { hasText: '(es-PE borrador)' }).count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_shopping_flow.png'), fullPage: false });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0;
+  const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0 || steps.esPeDraftName === 0 || steps.esPeDraftTag === 0;
   report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed });
   if (failed) {
     console.log(`\n== shopping-flow (FAIL) == steps: ${JSON.stringify(steps)}`);

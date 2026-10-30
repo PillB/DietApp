@@ -198,7 +198,26 @@ Trade-offs stated: (a) plan entries come from a basic add-form (no repeat-rule/c
 Honest labeling: all canonical recipe names currently render with "(EN provisional)" tag — per contract the es-PE manifest names do not exist yet; nothing is presented as Spanish that isn't.
 
 Tests: 73 unit pass / 0 fail; E2E PASS (incl. shopping-flow); lint clean; privacy scan PASS.
-Next single command/ticket: **P3.5 shopper-view es-PE bullets + print/CSV polish**, then **P2.2 planner UI** (repeat rules, move/copy/delete, keyboard alternatives), then **P3.4 optimization** once verified packaging exists.
+Next single command/ticket: done this pass (P3.5 — see part 11).
+
+## Session log — 2026-10-30, session 2, part 11 (P3.5 shopper es-PE + print/CSV)
+
+Files: `assets/js/food-names-es-pe.js` (new UMD dictionary, REVIEW_STATUS draft-machine-assisted-needs-native-review), `assets/js/shopping-ui.js` (es-PE line names + draft tag, es_pe_name CSV column, @media print styles), `index.html` script order + `tests/shopper_view.test.cjs` (5 tests), E2E shopping-flow extended.
+
+Facts:
+- ALL 41 canonical ingredients have at least a DRAFT es-PE callsign (test-pinned coverage; unknown ids fail soft to null — never invented).
+- Display: 'salmón (es-PE borrador)' style tags keep P6's no-fake-fluency rule honest; CSV lines carry the es-PE name column first.
+- Print: dedicated @media print sheet — shopper list only (forms/nav/warnings hidden), es-PE print header explicitly says 'borrador — no implica verificación de tienda' (no silent pretending of store verification on paper).
+- E2E: shopping flow now asserts both the es-PE name and the draft tag render (PASS), plus 78 unit tests.
+- User standing instructions recorded in PROGRESS: messages must start with 'PillB'; outside-project-path access requires prior justification.
+- Self-caught dictionary typos (machine-draft with gibberish entries) corrected before commit — drafts must be wrong-in-content, never sloppy.
+
+Tests: 78 pass / 0 fail; E2E PASS; lint clean; privacy PASS.
+Next single command/ticket: **P2.2 planner UI** (repeat rules ×N weeks, move/copy/delete, keyboard alternatives to drag) — the last planner-internal gap before P3.4 optimization; then P4 guided cooking-mode.
+
+## Standing user instructions (do not lose)
+- Every message to the user must START with their name: PillB.
+- Before requesting access to any path outside the project folder: first try to avoid the need; if unavoidable, explain which file and why BEFORE requesting access.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

@@ -21,10 +21,11 @@
     return {
       Q: root.Quantity, S: root.DomainSchema, C: root.CalendarCore,
       SHOP: root.ShoppingCore, ST: root.StorageCore, IM: root.ImportWeighed, SM: root.StoreMatches,
+      F: root.FoodNamesEsPe,
     };
   }
 
-  function dependenciesReady(c) { return c.Q && c.S && c.C && c.SHOP && c.ST && c.IM && c.SM; }
+  function dependenciesReady(c) { return c.Q && c.S && c.C && c.SHOP && c.ST && c.IM && c.SM && c.F; }
 
   function init(opts) {
     const c = cli();
@@ -65,7 +66,7 @@
     section.dataset.built = '1';
     section.innerHTML = `
       <h2 id="shopengine-h2" class="text-xl font-bold text-amber-200">Shopping list — canonical engine (development preview)</h2>
-      <p class="text-sm text-stone-300">Exact-rational quantities from your plan; every store row is <em>not checked</em> (no stock or price claims). Grouped by food family.</p>
+      <p class="text-sm text-stone-300">Exact-rational quantities from your plan; every store row is <em>not checked</em> (no stock or price claims). Grouped by food family; es-PE names shown with draft tag pending native review.</p>
       <form id="engine-plan-form" class="flex flex-wrap gap-3 items-end">
         <label class="text-sm">Recipe
           <select id="engine-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
@@ -86,6 +87,29 @@
       <div id="engine-groups" class="mt-4 grid gap-4"></div>
       <p class="mt-4 text-xs text-stone-400">Store data: structure fixture only — titles/prices/stock pending real verification.</p>
     `;
+    injectPrintStyles();
+  }
+
+  /** Print: only the shopper list section ships to paper, grouped bullets intact. */
+  function injectPrintStyles() {
+    if (root.__pgkPrintStyle) return;
+    root.__pgkPrintStyle = true;
+    const style = document.createElement('style');
+    style.textContent = `
+      @media print {
+        aside, nav, form, #engine-plan-form, #engine-copy, #engine-print,
+        #engine-status, #engine-warnings, .no-print { display: none !important; }
+        body { background: #fff !important; color: #111 !important; }
+        #shopengine, #shopengine * {
+          color: #111 !important; text-shadow: none !important;
+        }
+        #shopengine h2, #shopengine h3 { border-bottom: 1px solid #999; }
+        #shopengine::before {
+          content: 'Lista de compras (es-PE borrador) — no implica verificación de tienda';
+          display: block; font-size: 11px; margin-bottom: 6px;
+        }
+      }`;
+    document.head.appendChild(style);
   }
 
   function readDate() {
@@ -178,6 +202,10 @@
       const ing = model.ingredientById.get(line.ingredientId)
         || { family: 'pantrystaples', name: { en: line.ingredientId }, nameProvisional: true };
       const fam = ing.nameProvisional ? 'provisional-names' : (ing.family || 'pantrystaples');
+      const shopperName = root.FoodNamesEsPe.nameBilingual(line.ingredientId, ing.name.en);
+      const nameHtml = shopperName.es
+        ? `${escapeHtml(shopperName.es)} <span class="text-[10px] text-stone-400">(es-PE borrador)</span>`
+        : `${escapeHtml(ing.name.en)}${ing.nameProvisional ? ' (EN provisional)' : ''}`;
       const buyText = line.purchaseRecommendation
         ? `buy <strong>${line.purchaseRecommendation.packages}</strong> × ${escapeHtml(line.purchaseRecommendation.unit)}`
         : 'package decision pending';
@@ -186,7 +214,7 @@
       groups.set(fam, (groups.get(fam) || []).concat([`
         <li class="flex flex-wrap items-center gap-2">
           <input type="checkbox" data-line="${escapeHtml(line.ingredientId)}" aria-label="bought ${escapeHtml(line.ingredientId)}">
-          <span class="text-stone-200">${escapeHtml(ing.name.en)}${ing.nameProvisional ? ' (EN provisional)' : ''}</span>
+          <span class="text-stone-200">${nameHtml}</span>
           <span class="text-amber-200">need ${escapeHtml(line.neededString)} ${escapeHtml(line.unit)}</span>
           <span class="text-emerald-300">${pantryText} ${buyText}</span>
         </li>`]));
@@ -223,12 +251,13 @@
   }
 
   function listToCsv(out, model) {
-    const header = 'family,ingredient,basis,unit,needed,net_required,purchase_packages,package_unit,rule,source_entries';
+    const header = 'family,ingredient,es_pe_name,basis,unit,needed,net_required,purchase_packages,package_unit,rule,source_entries';
     const rows = out.lines.map((l) => {
       const ing = model.ingredientById.get(l.ingredientId) || {};
+      const esName = root.FoodNamesEsPe.nameForIngredient(l.ingredientId) || '';
       const rec = l.purchaseRecommendation;
       const recPart = rec ? `${rec.packages},${rec.unit},${rec.rule}` : 'none,-,needs_package_decision';
-      return [ing.family || '', l.ingredientId, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
+      return [ing.family || '', l.ingredientId, esName, l.basis, l.unit, l.neededString, l.netRequiredString, recPart, l.sourcePlanEntryIds.join('|')]
         .map(csvCell).join(',');
     });
     return [header].concat(rows).join('\n');
