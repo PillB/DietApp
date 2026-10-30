@@ -90,6 +90,22 @@ Trade-off stated: `weightG` used as the quantity source for g/ml items (source k
 Tests: 35 pass / 0 fail; lint clean.
 Next single command/ticket: **P1.3** exact rational quantity parser + unit family conversions (no float): tests for 1/2, 2 1/2, ⅓, decimals, g↔kg, ml↔l, refusal to convert across dimensions without sourced factors; implement `assets/js/quantity.js` + `tests/quantity.test.cjs`.
 
+## Session log — 2026-10-30, session 2, part 5 (P1.3 exact quantities)
+
+Files: `assets/js/quantity.js` (new UMD pure module), `tests/quantity.test.cjs` (8 tests), package.json test list grows.
+
+Engine facts (all test-proven, no pretty claims):
+- Exact rational arithmetic: `⅓+⅓+⅓ = 1` exactly, `0.1+0.2 = 0.3` exactly where IEEE-754 drifts (test pinned).
+- Parses `1/2`, `2 1/2`, 17 vulgar glyphs, integer and decimal strings to reduced (num,den) pairs with safe-integer guard (`q_overflow`); negatives and scientific form are REFUSED at parse (schema already guarantees nonnegative uses; subtraction in code handles pantry offsets in P3).
+- Conversions: count identity; kg↔g, l↔ml via definitional family ratio with provenance `'canonical-definition'`. Cross-dimension `g→ml` throws `cross_dimension_no_sourced_factor` unless an explicit `{factor, sourceEvidenceId}` record is passed — even a bare factor value is refused (value isn't provenance).
+- Aggregation: `1/2 + 2 count → 2.5 count` in ONE line; `kg` and `g` stay separate until converted (P3 rule), and `500 g + 0.75 kg = 1250 g` after explicit conversion.
+
+Debug trail: 2 root causes: (1) vulgar-glyph substitution inserted a leading space AFTER `trim()` order was fixed; (2) my float-drift *control* assumption was wrong twice (`(1/3)*3` and `1/3+1/3+1/3` both round to exactly 1.0 in IEEE-754) — per the research rule the control was replaced with the documented `0.1+0.2 !== 0.3` exhibit. Analysed, not hand-waved.
+Trade-off stated: rational烃 state stays in (num,den) integers; UI needs `toNumber()` explicitly — display only; BigInt not used, so quantities cap at 2^53.
+
+Tests: 43 pass / 0 fail; lint clean.
+Next single command/ticket: **P1.4** error report UX — actionable importer + aggregation warnings surfaced (may be deferred to fusion with P3 UI); OR proceed **P2.1** calendar core. Decide at session start by reading `docs/IMPLEMENTATION_ROADMAP.md`.
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …
