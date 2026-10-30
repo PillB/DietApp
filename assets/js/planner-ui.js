@@ -43,20 +43,28 @@
     const listEl = section.querySelector('#planner-entries');
     const status = section.querySelector('#planner-status');
     if (!listEl) return;
-    const rows = model.state.planEntries.slice().sort((a, b) => a.localDate.localeCompare(b.localDate) || a.id.localeCompare(b.id));
-    listEl.innerHTML = rows.length ? rows.map((e) => `
+    const rows = model.state.planEntries.slice().sort((a, b) => a.localDate.localeCompare(b.localDate) || (a.repeatRuleId || '').localeCompare(b.repeatRuleId || '') || a.id.localeCompare(b.id));
+    const familySizes = new Map();
+    for (const e of rows) if (e.repeatRuleId) familySizes.set(e.repeatRuleId, (familySizes.get(e.repeatRuleId) || 0) + 1);
+    listEl.innerHTML = rows.length ? rows.map((e) => {
+      const fam = e.repeatRuleId ? `<span class="text-amber-300 text-xs" title="repeat family ${e.repeatRuleId}">⟲×${familySizes.get(e.repeatRuleId)}</span>` : '';
+      return `
       <li class="flex flex-wrap items-center gap-2 rounded border border-stone-700 px-2 py-1" data-entry="${e.id}">
         <span class="text-stone-200 w-28">${e.localDate}</span>
         <span class="text-stone-300">${e.recipeId} ×${e.portions}</span>
+        ${fam}
         <label class="sr-only" for="move-${e.id}">Move ${e.recipeId} (${e.id}) to date</label>
-        <input id="move-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="move" data-entry="${e.id}">
-        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="copy" data-entry="${e.id}" aria-label="Copy ${e.recipeId} ${e.id} to chosen date">Copy to date →</button>
+        <input id="move-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="move" data-entry="${e.id}" aria-label="move ${e.recipeId} ${e.id}">
+        <label class="sr-only" for="copydate-${e.id}">Copy ${e.recipeId} (${e.id}) to date</label>
+        <input id="copydate-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="copydate" data-entry="${e.id}">
+        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="copy" data-entry="${e.id}" aria-label="Copy ${e.recipeId} ${e.id} to copy date">Copy →</button>
         <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="del" data-entry="${e.id}" aria-label="Delete ${e.recipeId} ${e.id}">Delete</button>
         <label class="text-xs" for="weeks-${e.id}">Repeat ×</label>
         <input id="weeks-${e.id}" type="number" min="1" max="52" value="2" data-op="weeks" data-entry="${e.id}" class="w-14 bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs">
         <button class="rounded border border-amber-300 px-2 py-0.5 text-xs text-amber-200" data-op="repeat" data-entry="${e.id}" aria-label="Repeat ${e.recipeId} ${e.id} weekly by weekday">Repeat weekly (same weekday)</button>
-      </li>`).join('') : '<li class="text-stone-400">(no plan entries yet — add one at the shopping panel)</li>';
-    status.textContent = `${rows.length} plan entr${rows.length === 1 ? 'y' : 'ies'}`;
+      </li>`;
+    }).join('') : '<li class="text-stone-400">(no plan entries yet — add one at the shopping panel)</li>';
+    status.textContent = `${rows.length} plan entr${rows.length === 1 ? 'y' : 'ies'}${familySizes.size ? `, ${familySizes.size} repeat famil${familySizes.size === 1 ? 'y' : 'ies'}` : ''}`;
   }
 
   function entryAction(ev, model, deps, section) {
@@ -71,7 +79,7 @@
       if (!entry || entry.localDate === target.value) return;
       res = P.moveEntry(model.state, id, target.value);
     } else if (op === 'copy') {
-      const pendingDate = target.closest('li').querySelector('[data-op="move"]').value;
+      const pendingDate = target.closest('li').querySelector('[data-op="copydate"]').value;
       res = P.copyEntry(model.state, id, pendingDate);
     } else if (op === 'del') {
       res = P.deleteEntry(model.state, id);

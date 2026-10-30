@@ -137,11 +137,19 @@ async function plannerFlow(port, report) {
   await page.waitForTimeout(200);
   steps.afterRepeat = await page.locator('#planner-entries li').count();
   steps.scrollText = await page.locator('#planner-status').textContent();
+  // repeat-family badge: ⟲×N appears on generated rows (count == weeks+source)
+  steps.familyBadges = await page.locator('#planner-entries span[title^="repeat family"]').count();
+  // separate copy-date semantics: copy the LAST listed row into a distinct date
+  const lastRow = page.locator('#planner-entries li').last();
+  await lastRow.locator('[data-op="copydate"]').fill('2026-11-20');
+  await lastRow.locator('[data-op="copy"]').click();
+  await page.waitForTimeout(200);
+  steps.afterCopy = await page.locator('#planner-entries li').count();
   // shopping line growth via shared refresh (4×3 portions in range now)
   steps.shoppingLinesAfter = await page.locator('#engine-groups li').count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_planner_flow.png') });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.shoppingLinesAfter <= steps.beforeRepeat;
+  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat;
   report.rows.push({ tag: 'planner-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== planner-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
