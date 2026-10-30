@@ -269,7 +269,7 @@ Evidence-grounded (cited, zero invention):
 - **P4.2 structural gate**: `pressureValidated` is TRUE only with (a) pressure equipment listed, (b) provenance record sourceType ∈ {kitchen_experiment, public_doc}, (c) the safety checklist fields affirmed (min liquid, fill line, release model). `generated_report` provenance is explicitly NOT validation; no stovetop-minute inference anywhere.
 - **P4.3 dual-review map**: food-scientist (quantities, cooking-outcome evidence) AND an independent food-safety reviewer (temperatures, chilling/storage, allergens, pressure safety, ingredient suitability) each need field-level evidence + approval — `readyForPublication` is false by default.
 
-Debug trail: 1 test-authoring bug (missing temp argument), 2 semantic improvements from real output before shaming-out proofs on (a) the rest rule being part of the standard (kept enforced, test meets '63 without rest' → exactly ['rest_time_required']) and (b) pressure checklist fields required in the validating record (test tightened rather than module loosened).
+Debug trail: 1 test-authoring bug (missing temp argument); 2 expectations tightened after reading the real outputs — (a) the 3-min rest is part of the whole-cut standard (kept enforced; bare-63 row reports exactly ['rest_time_required']) and (b) the pressure validation record must carry its safety-checklist fields (test record tightened, module NOT loosened).
 
 Tests: 94 pass / 0 fail; lint clean.
 
