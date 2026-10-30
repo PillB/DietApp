@@ -1,7 +1,6 @@
 const {test}=require('node:test');const assert=require('node:assert/strict');
 const C=require('../assets/js/nutrition-core.js');
 const data=require('../nutrition-reviewed.json');
-const by=(id)=>data.curatedRecipes.find(r=>r.id===id);
 test('no zero/default private calorie prescription',()=>{
   assert.equal(C.estimateEnergy({age:'',weightKg:'',heightCm:'',physiology:''}).ok,false);
   assert.equal(C.estimateEnergy({age:16,weightKg:70,heightCm:175,physiology:'female'}).ok,false);

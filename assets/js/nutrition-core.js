@@ -30,20 +30,32 @@
   /** Calculate Mifflin–St Jeor RMR, activity-adjusted TDEE and illustrative target.
    * Require user-entered data: no profile is assumed. This is NOT NIDDK's
    * dynamic, validated Body Weight Planner; it is a static starting estimate. */
-  function estimateEnergy({age,weightKg,heightCm,physiology,activity=1.375,deficit=400}) {
-    const a=Number(age),w=Number(weightKg),h=Number(heightCm),pal=Number(activity),cut=Number(deficit);
-    if (![a,w,h,pal,cut].every(Number.isFinite) || a<18 || a>100 || w<30 || w>350 || h<120 || h>230 || pal<1.1 || pal>2.1 || cut<0 || cut>750) return {ok:false,error:'Enter valid adult age, current mass, height, activity and deficit; calculator is for adults only.'};
-    if (!['female','male'].includes(physiology)) return {ok:false,error:'Choose the physiology constant used by Mifflin–St Jeor, or use an externally established maintenance estimate.'};
-    const rmr=10*w+6.25*h-5*a+(physiology==='male'?5:-161);
-    const maintenance=rmr*pal;
-    const target=maintenance-cut;
-    const floor=physiology==='male'?1500:1200;
-    const flags=[];
-    if (target<floor) flags.push(`Target below the conservative ${floor} kcal/day review threshold; do not use without clinician review.`);
-    if (cut/maintenance>.25) flags.push('Deficit exceeds 25% of estimated expenditure; seek individualized review.');
-    flags.push('Activity multipliers and prediction equations have considerable individual error; recalibrate from weight trend over several weeks.');
-    return {ok:true,rmr:round(rmr),maintenance:round(maintenance),target:round(target),deficit:cut,reviewRequired:target<floor,flags};
-  }
+// refactor: validation split out of estimateEnergy to satisfy the CC ceiling; behavior identical (see tests)
+function validateEnergyInputs({age,weightKg,heightCm,physiology,activity=1.375,deficit=400}) {
+  const a=Number(age),w=Number(weightKg),h=Number(heightCm),pal=Number(activity),cut=Number(deficit);
+  if (![a,w,h,pal,cut].every(Number.isFinite) || a<18 || a>100 || w<30 || w>350 || h<120 || h>230 || pal<1.1 || pal>2.1 || cut<0 || cut>750)
+    return {ok:false,error:'Enter valid adult age, current mass, height, activity and deficit; calculator is for adults only.'};
+  if (!['female','male'].includes(physiology))
+    return {ok:false,error:'Choose the physiology constant used by Mifflin–St Jeor, or use an externally established maintenance estimate.'};
+  return {ok:true,valid:{a,w,h,pal,cut,physiology}};
+}
+function buildEnergyFlags(target,floor,cut,maintenance) {
+  const flags=[];
+  if (target<floor) flags.push(`Target below the conservative ${floor} kcal/day review threshold; do not use without clinician review.`);
+  if (cut/maintenance>.25) flags.push('Deficit exceeds 25% of estimated expenditure; seek individualized review.');
+  flags.push('Activity multipliers and prediction equations have considerable individual error; recalibrate from weight trend over several weeks.');
+  return flags;
+}
+function estimateEnergy(opts) {
+  const check=validateEnergyInputs(opts);
+  if (!check.ok) return check;
+  const {a,w,h,pal,cut,physiology}=check.valid;
+  const rmr=10*w+6.25*h-5*a+(physiology==='male'?5:-161);
+  const maintenance=rmr*pal;
+  const target=maintenance-cut;
+  const floor=physiology==='male'?1500:1200;
+  return {ok:true,rmr:round(rmr),maintenance:round(maintenance),target:round(target),deficit:cut,reviewRequired:target<floor,flags:buildEnergyFlags(target,floor,cut,maintenance)};
+}
   /** Protein range reflects a DISCUSSED population guidance, not a prescription.
    * The reference mass must be chosen explicitly; no automatic obesity adjustment. */
   function proteinRange(referenceKg) {

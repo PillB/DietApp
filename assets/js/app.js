@@ -487,3 +487,6 @@ function mealPlanApp() {
     renderInlineMarkdown
   };
 }
+/* Alpine binds this component from index.html via x-data="mealPlanApp()";
+ * the explicit global keeps the binding alive if app.js ever converts to a module. */
+window.mealPlanApp = mealPlanApp;

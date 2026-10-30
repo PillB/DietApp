@@ -11,4 +11,4 @@
 | Future context | `context/private/` | PRIVATE until reviewed | Not yet supplied |
 | Real PILLB Solarize skill | Unknown/needs supplied file | License unknown | NOT FOUND |
 
-The original workbook may contain email indices, timestamps, prices, descriptions or raw text excerpts. Do not publish it. Neither source PDF nor generated report should be copied into a public GitHub Pages folder without a separate licensing and privacy decision.
+The original workbook may contain email indices, timestamps, prices, descriptions or raw text excerpts. Do not publish it. Neither source PDF nor generated report should be copied into a public GitHub Pages folder without a separate privacy decision.

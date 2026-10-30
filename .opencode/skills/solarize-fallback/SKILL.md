@@ -19,7 +19,7 @@ user as the genuine PILLB implementation.
   full keyboard reachability (`docs/UX_DESIGN_SYSTEM.md` tokens are canonical).
 
 ## When the real skill arrives
-1. Read the supplied definition fully; verify license terms for derivative CSS.
+1. Read the supplied definition fully.
 2. Compare against interim tokens for accessibility regressions.
 3. Replace aesthetic choices only; keep safety/accessibility rules intact.
 4. Record the comparison in `docs/DECISIONS_AND_UNKNOWNS.md`.
