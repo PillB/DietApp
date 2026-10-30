@@ -10,7 +10,7 @@
 |---|---|---|---|
 | P0.1 privacy scan | **done 2026-10-30 (session 1)** | `scripts/privacy_check.cjs` + `tests/privacy.test.cjs` (15/15 pass); CLI exit 0; 2 real leaks found & redacted in served assets; `.gitignore` created; repo initialized | — |
 | P0.2 source inventory | **done 2026-10-30 (session 1)** | `scripts/inventory_sources.py` → `docs/source-inventory.json` (83 artifacts hashed); `tests/source_inventory.test.cjs` seeded-negative proof; findings in `docs/SOURCE_INVENTORY.md` | Ask user: deduplicate the twice-stored context drop (keep one copy?) |
-| P0.3 served E2E baseline | pending | previous isolated test | Run true HTTP with all scripts (python http.server + Playwright); confirm repo assets vs `context/…/website_prototype.zip` |
+| P0.3 served E2E baseline | **done 2026-10-30 (session 2)** | `tests/e2e_served.cjs` + Playwright chromium: real served site, 8 nav links, Alpine mounts, 0 pageerrors, 0 local asset failures, no 390px overflow, private-path guard 403 ✔; screenshots `tests/e2e_served_*.png`; report `tests/e2e_served_report.json` | — |
 | P1/P2/P3/P4/P5/P6/P7/P8 | pending | roadmap | Must execute sequentially |
 
 ## Session log — 2026-10-30, session 1 (P0.1)
@@ -44,6 +44,15 @@ Tests: `npm test` → **19 pass / 0 fail**; `npx eslint .` → 0 problems; `node
 Negative findings + root causes: (1) first test draft used `assert.throws` on a verifier that returns problems instead of throwing — design mismatch, fixed by asserting on returned problems; (2) `NUTRITION_RESEARCH.md` (public) is byte-identical to a private drop artifact — already public, scans clean, documented; (3) context drop triple-stores identical data (user decision pending on dedup).
 Trade-offs stated: CC ceiling 15 for gate but a legacy override slot (currently empty) exists so measured hotspots are ratcheted, not hacked; ESLint added as devDependency (~86 packages) — accepted for a reproducible `package-lock.json`, stated per docs rule.
 Blockers: none. **Next ticket: P0.3** — served-site E2E baseline; command: `python3 -m http.server 8000` + existing `tests/test_ui_playwright.py` (attended to true server next round).
+
+## Session log — 2026-10-30, session 2, part 2 (P0.3 served E2E)
+
+- First-attempt pip install of Playwright blocked by PEP 668 (externally-managed env). Root cause/hypothesis: not a flake — system Python is managed. Resolution per expert practice: **consolidate on the existing pinned npm toolchain** (`npm i -D playwright`, chromium downloaded to user cache) instead of `--break-system-packages`. Trade-off stated: dev dependency count in package.json grew; browser binary (~104 MB) lives outside the repo in `~/Library/Caches/ms-playwright`.
+- Old `tests/test_ui_playwright.py` is NOT runnable here: it hardcodes Linux path `/usr/bin/chromium`; superseded for QA evidence by `tests/e2e_served.cjs` (kept for reference until P7 replaces it with full locale coverage).
+- Evidence (real served site, not `set_content`): title renders; 8 nav links; Alpine mounts; zero console/page errors; zero local 404s; `cdn.tailwindcss.com → 3.4.17` and `unpkg alpinejs@3.x.x → 3.17.5` resolve and load NOW — **floating major CDN pins are a reproducibility/time-bomb risk** (recorded as a real issue for P1 design: ship local vendored Alpine + compiled Tailwind per AGENTS.md architecture decision).
+- Guard: dev/static server refuses `data/private|context*` with 403 (verified in-run).
+
+Next single command/ticket: **P1.1** canonical schema; command: implement `docs/DATA_CONTRACT.md` schemas + fixture, tests first (`tests/data_contract.test.cjs`).
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
