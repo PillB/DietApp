@@ -247,10 +247,21 @@ Root-cause trail (4 real fixes from real output, zero retries):
 E2E evidence: planner-flow PASS — add entry via shopping form (11-03, portions 4) → planner shows 1 → 'Repeat weekly (same weekday)' ×2 → 3 entries, status 'repeat ok', shopping re-render fresh; 0 page errors. Shopping-flow still PASS.
 
 Tests: 88 pass / 0 fail; E2E PASS (both flows); lint clean; privacy PASS.
-Known-scope statement (not absorbed): 'Copy to date' currently uses the row's move-date field; a separate copy-date field + repeat-family visualization are the P2 UI polish items.
-Next single command/ticket: **P2 UI polish** (repeat-family visualization + separate copy-date field), then **P4 guided cook mode** with the food-science double-review gate.
+Known-scope statement: resolved THIS pass — family badges + separate copy-date shipped (see part 14).
+Next single command/ticket: done this pass (P2 polish — part 14 below); next is P4.
+
+## Session log — 2026-10-30, session 2, part 14 (P2 UI polish)
+
+Files: `assets/js/planner-ui.js` (family badges + sort + separate copy-date), `tests/e2e_served.cjs` (planner-flow assert badge + copy semantics), new screenshot.
+
+Facts: entries sharing a `rep-…` family render '⟲×N' with title tooltip; status line reports repeat families; 'Copy →' now commits against its OWN date field (`data-op="copydate"`), defaulting to the row date; E2E planner-flow PASS with `familyBadges: 2`, `afterCopy: 4`.
+
+Tests: 88 pass / 0 fail; E2E PASS (desktop/mobile/shopping/planner flows); lint clean.
+Next single command/ticket: **P4.1/P4.3 guided cook mode core** — pure step-card model with thermometry/sensory checkpoints (FoodSafety.gov temps), Instant Pot validation gate (P4.2), double-review fields; tests first in `tests/cooking.test.cjs`; UI after the schema/gate is tested.
 
 ## Update template for next session
+
+## Standing user instructions (do not lose)
 
 ## Standing user instructions (do not lose)
 - Every message to the user must START with their name: PillB.
