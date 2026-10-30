@@ -104,7 +104,23 @@ Debug trail: 2 root causes: (1) vulgar-glyph substitution inserted a leading spa
 Trade-off stated: quantity state stays in exact (num,den) integer rationals; UI converts via `toNumber()` for display only; BigInt is not used, so values cap at 2^53 (irrelevant at kitchen scale) and the guard throws (`q_overflow`) rather than silently losing precision..
 
 Tests: 43 pass / 0 fail; lint clean.
-Next single command/ticket: **P1.4** error report UX — actionable importer + aggregation warnings surfaced (may be deferred to fusion with P3 UI); OR proceed **P2.1** calendar core. Decide at session start by reading `docs/IMPLEMENTATION_ROADMAP.md`.
+Next single command/ticket: **P2.1** calendar core (done this pass — see part 6).
+
+## Session log — 2026-10-30, session 2, part 6 (P2.1/P2.2 calendar core)
+
+Files: `assets/js/calendar-core.js` (new UMD pure module), `tests/calendar.test.cjs` (6 tests), test list updated.
+
+Confirmed facts (test-proven):
+- `nextMonday` strictly-next-Monday semantics (P2.4 disclosure rule: "week containing today" is a separate call `weekOf(today)`, never conflated).
+- `weekOf` Monday-anchored windows are correct across leap day (2028-02-29 inside its week), year rollover (2027-01-01 → week starts 2026-12-28), and month boundaries.
+- `expandRepeatRule`: weekdays 0=Sun..6=Sat (Date.get indices, tested), weeks counted from the Monday of startDate so mid-week starts don't shorten the first week; exceptions honored; output ascending; `acrossWeeks` capped 1..105 (bounded expansion).
+- `sumPortionsInRange`: inclusive ranges; same-day duplicate occurrences of the same recipe BOTH count (2+3 = 5 portions on 2026-11-02) — P2.2's "concurrent same recipe twice in a day permitted and correctly counted" now enforced in core, upstream of shopping math.
+- All input/output dates validated as real calendar dates at 12:00 local noon in both directions (no UTC-rollover, timezone-safe even though Lima has no DST).
+
+Trade-off stated: repeat rules expand eagerly to concrete dates (bounded) rather than lazy iterators — simpler to validate (each expansion is a real date) and trivially countable; re-expansion replaces rule output wholesale when the rule changes, recorded as the P2.3 persistence migration contract.
+
+Tests: 49 pass / 0 fail; lint clean.
+Next single command/ticket: **P3.1** shopping aggregation (pure): canonical ingredients + PlanEntries + baseServings scaling + pantry offsets + package rounding; tests include the contract transformations (2.5 onions → 3; 500ml+0.5L=1000ml; no cup/gram merge; optional exclusions; 4→2 servings = 0.5×).
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
