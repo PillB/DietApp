@@ -1,0 +1,18 @@
+{
+  "name": "personal-gourmet-kitchen",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal Gourmet Kitchen / Lima market edition — static recipe, planning and shopping app (see AGENTS.md).",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs tests/storage.test.cjs tests/store_matches.test.cjs tests/shopper_view.test.cjs tests/planner_core.test.cjs tests/cooking.test.cjs tests/cook_mode.test.cjs",
+    "e2e": "node tests/e2e_served.cjs",
+    "lint": "eslint .",
+    "privacy": "node scripts/privacy_check.cjs",
+    "check": "npm run lint && npm run test && npm run privacy && python3 scripts/check_handover.py"
+  },
+  "devDependencies": {
+    "eslint": "^9.18.0",
+    "playwright": "^1.64.1"
+  }
+}

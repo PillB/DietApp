@@ -139,8 +139,73 @@
     return { readyForPublication: missing.length === 0, missing };
   }
 
+  /** P4.1 — labeled extraction of temperature CLAIMS from prose (°C/°F only). */
+  function extractHeatClaims(steps) {
+    const F_TO_C = (f) => (f - 32) * (5 / 9);
+    return (steps || []).map((text) => {
+      const s = String(text || '');
+      const gc = s.match(/(-?\d+(?:[.,]\d+)?)\s*°\s*C\b/i);
+      const gf = s.match(/(-?\d+(?:[.,]\d+)?)\s*°\s*F\b/i);
+      if (gc) return { stepIdx: null, tempC: Number(gc[1].replace(',', '.')), verified: false, basis: 'extracted-from-prose' };
+      if (gf) return { stepIdx: null, tempC: Math.round(F_TO_C(Number(gf[1].replace(',', '.'))) * 100) / 100, verified: false, basis: 'extracted-from-prose' };
+      return null;
+    }).map((c, i) => c && { ...c, stepIdx: i });
+  }
+
+  const PROTEIN_FOOD_TYPE = {
+    salmon: 'fish', tuna: 'fish', trout: 'fish',
+    chicken_breast: 'poultry', chicken: 'poultry', turkey: 'poultry', duck: 'poultry',
+    beef_sirloin: 'whole_cut_beef_pork_lamb', beef_chuck: 'whole_cut_beef_pork_lamb', pork: 'whole_cut_beef_pork_lamb', lamb: 'whole_cut_beef_pork_lamb',
+  };
+
+  /** Conservative inference: unambiguous single protein → labeled inferred;
+   * none or multiple divergent classes → null (refuses to guess). */
+  function inferFoodType(ingredientIds) {
+    const hits = (ingredientIds || []).map((id) => PROTEIN_FOOD_TYPE[id]).filter(Boolean);
+    const unique = [...new Set(hits)];
+    if (unique.length !== 1) return null;
+    return { foodType: unique[0], confidence: 'inferred', needs: 'food-safety review' };
+  }
+
+  /** P4.1 mode badge: generic directions UNLESS the P4.2 gate validates. */
+  function modeBadge(timesRecipe) {
+    const gate = pressureGate(timesRecipe, null);
+    if ((timesRecipe.times || {}).pressureMin != null) {
+      return {
+        mode: gate.pressureValidated ? 'pressure-validated' : 'pressure-unvalidated',
+        badgeText: 'Instant Pot times NOT validated (never inferred from stovetop minutes)',
+      };
+    }
+    return { mode: 'generic-modified', badgeText: 'Generic stovetop directions (pressure times unvalidated)' };
+  }
+
+  /** Verdict card: gate applied to lab article claims + inferred food type. */
+  function stepVerdict(claim, inferred) {
+    if (!inferred) {
+      return { gate: 'no-heat-risk-basis', requires: ['food-safety classification by reviewer'], cited: SOURCE };
+    }
+    const synthesized = {
+      order: claim.stepIdx + 1,
+      id: `extracted-${claim.stepIdx}`,
+      text: { en: '(from prose — verbatim claim, unverified)' },
+      ingredients: [],
+      timeMin: null,
+      targetTempC: claim.tempC,
+      checkpoint: 'sensory-color', // prose supplies no thermometer evidence
+      hazardNotes: [],
+      foodType: inferred.foodType,
+    };
+    const g = validateStepGate(synthesized);
+    const codes = g.errors.map((e) => e.code);
+    if (codes.includes('temp_below_authoritative_min')) {
+      return { gate: 'fails-authoritative-floor', requires: ['authoritative floor', inferred.needs, 'thermometer'], floor: getMinTempC(inferred.foodType), cited: SOURCE };
+    }
+    return { gate: 'unverified-prose-claim', requires: ['thermometer', inferred.needs], claimedTempC: claim.tempC, cited: SOURCE };
+  }
+
   return {
     SOURCE, MIN_TEMP_C, getMinTempC,
     validateStepGate, leftoverAdvice, pressureGate, reviewGateForPublication,
+    extractHeatClaims, inferFoodType, modeBadge, stepVerdict,
   };
 });

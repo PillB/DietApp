@@ -272,17 +272,32 @@ Evidence-grounded (cited, zero invention):
 Debug trail: 1 test-authoring bug (missing temp argument), 2 semantic improvements from real output before shaming-out proofs on (a) the rest rule being part of the standard (kept enforced, test meets '63 without rest' → exactly ['rest_time_required']) and (b) pressure checklist fields required in the validating record (test tightened rather than module loosened).
 
 Tests: 94 pass / 0 fail; lint clean.
-Next single command/ticket: **P4.1 cook-mode UI** (step cards over the imported 7 recipes with gate wiring; cooking-mode badge showing validated vs generic directions), then P4.4 test-cook workflow.
 
-## Update template for next session
-
-## Update template for next session
 
 ## Standing user instructions (do not lose)
 
 ## Standing user instructions (do not lose)
 - Every message to the user must START with their name: PillB.
 - Before requesting access to any path outside the project folder: first try to avoid the need; if unavoidable, explain which file and why BEFORE requesting access.
+
+## Session log — 2026-10-30, session 2, part 16 (P4.1 cook-mode UI)
+
+Files: assets/js/cook-mode-ui.js (new vanilla-DOM UMD), cooking-core additions (extractHeatClaims / inferFoodType / modeBadge / stepVerdict), index.html (section #cookmode, nav 'Cook Mode (v4)', scripts + boot chain), tests/cook_mode.test.cjs (4 tests), E2E cook-flow audit + screenshot.
+
+Provenance labels end-to-end (nothing upgrades prose to fact):
+- Temperatures inside recipe prose are EXTRACTED CLAIMS (verified:false, basis:'extracted-from-prose'); missing degree symbol -> NO claim (nothing invented); F->C exact-formula with 2-dp rounding.
+- FoodType classification is conservative: single unambiguous protein id -> labeled confidence:'inferred', needs:'food-safety review'; ambiguous mixes -> null (refuses to guess).
+- Mode badge lives off the P4.2 gate: 'Generic stovetop directions (pressure times unvalidated)' for the imported 7 — and NEVER 'tested' — while the dual-review footer reads 'not ready for publication'.
+- Step cards show per-step gate verdicts: 'claim 63C (unverified) — gate: unverified-prose-claim; requires: thermometer, food-safety review'.
+- Leftovers panel uses the USDA builder directly ('within-usda-window ... reheat to 74C').
+- E2E cook-flow PASS: 5 step cards on nikkei-salmon-bowl, badge + fish-classification chips, 63C claims labeled, review-pending footer, leftover status; 0 page errors. Screenshot tests/e2e_cook_flow.png.
+
+Debug trail: 2 test-prose defects (missing degree-symbol case, badge casing) + a malformed innerHTML string caught on write — reader-first fixes, one attempt each.
+Trade-off stated: extraction regex deliberately REQUIRES the degree symbol; '100 F'-style loose prose stays claim-free (fewer salvage-claims, more honesty); classification lives at ingredient-id level with an inference flag, to be replaced by reviewer-supplied foodType at P4.3 completion.
+
+Tests: 98 pass / 0 fail; E2E PASS (5 flows); lint clean; privacy PASS.
+Next single command/ticket: P4.4 test-cook worksheet (weigh+yield/tasting fields per recipe -> 'needs kitchen validation' + Evidence kitchen_experiment), which NEEDS owner data; or P5 flavor atlas core while awaiting input. Decision deferred to next session start (paused-state friendly).
+
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

@@ -157,6 +157,38 @@ async function plannerFlow(port, report) {
   return failed || pageErrors.length > 0;
 }
 
+/** P4.1 cook-mode flow: default recipe, badges, extraction verdicts, leftover advice. */
+async function cookFlow(port, report) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const pageErrors = [];
+  page.on('pageerror', (e) => pageErrors.push(String(e)));
+  await page.goto(`http://localhost:${port}/`, { waitUntil: 'load' });
+  await page.waitForTimeout(1500);
+  const steps = {};
+  steps.sectionMounted = await page.locator('#cookmode').count();
+  if (!steps.sectionMounted) { report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.selectOption('#cook-recipe', 'nikkei-salmon-bowl');
+  await page.waitForTimeout(200);
+  steps.badge = (await page.locator('#cook-badge').textContent()).trim().slice(0, 90);
+  steps.stepCards = await page.locator('#cook-steps li').count();
+  steps.sixtyThreeClaim = await page.locator('#cook-steps', { hasText: '63°C (unverified)' }).count()
+    + await page.locator('#cook-steps', { hasText: 'claim 63°C (unverified)' }).count();
+  steps.failsAuthority = await page.locator('#cook-steps', { hasText: 'fails-authoritative-floor' }).count();
+  steps.reviewPending = await page.locator('#cook-review-status', { hasText: 'not ready for publication' }).count();
+  await page.click('#cook-leftovers');
+  await page.waitForTimeout(150);
+  steps.leftoverStatus = (await page.locator('#cook-leftover-result').textContent()).trim().slice(0, 60);
+  await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_cook_flow.png') });
+  await browser.close();
+  const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0;
+  report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed });
+  console.log(failed
+    ? `\n== cook-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
+    : `\n== cook-flow (PASS) == steps: ${JSON.stringify(steps)}`);
+  return failed;
+}
+
 async function main() {
   const server = createServer(ROOT);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -174,7 +206,8 @@ async function main() {
     await auditBook(report, { width: 390, height: 844 }, 'mobile');
     const shopFailed = await shoppingFlow(port, report);
     const planFailed = await plannerFlow(port, report);
-    summarize(report, shopFailed || planFailed);
+    const cookFailed = await cookFlow(port, report);
+    summarize(report, shopFailed || planFailed || cookFailed);
   } finally {
     server.close();
   }
