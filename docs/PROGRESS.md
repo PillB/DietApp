@@ -122,6 +122,29 @@ Trade-off stated: repeat rules expand eagerly to concrete dates (bounded) rather
 Tests: 49 pass / 0 fail; lint clean.
 Next single command/ticket: **P3.1** shopping aggregation (pure): canonical ingredients + PlanEntries + baseServings scaling + pantry offsets + package rounding; tests include the contract transformations (2.5 onions → 3; 500ml+0.5L=1000ml; no cup/gram merge; optional exclusions; 4→2 servings = 0.5×).
 
+## Session log — 2026-10-30, session 2, part 7 (P3.1 shopping aggregation engine)
+
+Files: `assets/js/shopping-core.js` (new UMD pure module, deps injected Quantity + DomainSchema), `tests/shopping.test.cjs` (11 tests).
+
+Every contract transformation from `DATA_CONTRACT.md §Required transformations` is now enforced in engine code with a test:
+- `(1/2 + 2) count onion = 2.5` (at full scale), purchase `ceil → 3`-style default for produce count units (`ceil-count-default`).
+- `500 g + 3/4 kg = 1250 g` merged into ONE line post-conversion; `30 ml + 1/2 l = 530 ml` likewise (canonical base units g/ml).
+- `1 serving of 4-serving base = 0.25×` (`rice 125 g`, `oil 7.5 ml`, `onion 1/8`).
+- optional excluded by default with `optional_excluded` audit, included on explicit choice.
+- Pantry offsets require same ingredientId+unit+basis: `min(have,need)` consumed; cooked-grams pantry NEVER offsets dry grams (`pantry_basis_mismatch` per line + aggregate).
+- raw/cooked from recipes stay separate lines with `basis_lines_not_merged` warning (no silent combine attempt).
+- g/ml without recorded packaging → `needs_package_decision` (NO invented bundle); count units get the produce-ceiling default only.
+- Quarantined plan references refuse the WHOLE output (`refused: true`, atomicity).
+- Range filtering exact/inclusive; empty range → empty list (no zero filler).
+- Words not yet tautology: purchaseRecommendation for `kg`-recorded packages converts via definitional family merge to line unit (`recorded-package` rule).
+
+Debug trail: 4 initial failures were self-authored test defects (portions misused for full-scale expectation, missing optionalChoices, missing choices in merge expectation, wrong pantry semantics) + engine pantry line upgraded to consumed-min semantics per data-contract "netBuy intent". CC-33 monolith refactored into `validateEntries`/`totalsForRange`/`scaleTotals`/`applyOptional`/`assembleLines` — every helper lint-verifiably under 15.
+Integration smoke on REAL imported data: 2 recipes × 4 portions each at full scale → 18 canonical lines, no refusal, 19 audit warnings (mostly needs_package_decision + optional_excluded) — the pipeline import→schema→calendar→shopping runs end-to-end.
+Trade-off stated: kg/l packages record-free per-ingredient maps keyed by ingredientId (P3.3 will move to StoreProduct package rows with provenance); real purchase optimization/spend minimization stays P3.4, deliberately not built yet.
+
+Tests: 59 pass / 0 fail; lint clean.
+Next single command/ticket: **P2.3/P2.4 persistence + week disclosure** — versioned localStorage persistence with export/import + `America/Lima` "upcoming week" preference, then P3.2 UI gates the engine behind real names.
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …
