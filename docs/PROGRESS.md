@@ -101,7 +101,7 @@ Engine facts (all test-proven, no pretty claims):
 - Aggregation: `1/2 + 2 count → 2.5 count` in ONE line; `kg` and `g` stay separate until converted (P3 rule), and `500 g + 0.75 kg = 1250 g` after explicit conversion.
 
 Debug trail: 2 root causes: (1) vulgar-glyph substitution inserted a leading space AFTER `trim()` order was fixed; (2) my float-drift *control* assumption was wrong twice (`(1/3)*3` and `1/3+1/3+1/3` both round to exactly 1.0 in IEEE-754) — per the research rule the control was replaced with the documented `0.1+0.2 !== 0.3` exhibit. Analysed, not hand-waved.
-Trade-off stated: rational烃 state stays in (num,den) integers; UI needs `toNumber()` explicitly — display only; BigInt not used, so quantities cap at 2^53.
+Trade-off stated: quantity state stays in exact (num,den) integer rationals; UI converts via `toNumber()` for display only; BigInt is not used, so values cap at 2^53 (irrelevant at kitchen scale) and the guard throws (`q_overflow`) rather than silently losing precision..
 
 Tests: 43 pass / 0 fail; lint clean.
 Next single command/ticket: **P1.4** error report UX — actionable importer + aggregation warnings surfaced (may be deferred to fusion with P3 UI); OR proceed **P2.1** calendar core. Decide at session start by reading `docs/IMPLEMENTATION_ROADMAP.md`.
