@@ -31,8 +31,15 @@ async function screenshot(page, label) {
   await page.screenshot({ path:file, animations:'disabled', fullPage:false });
   report.screenshots.push(path.relative(ROOT, file));
 }
+async function openMobileNavigation(page) {
+  const toggle = page.locator('#mobile-nav-toggle');
+  if (await toggle.count() && await toggle.getAttribute('aria-expanded') === 'false') {
+    await toggle.click();
+  }
+}
 async function observeRoute(page, hash, width) {
   const view = hash.slice(1).split('/')[0];
+  await openMobileNavigation(page);
   const nav = page.locator(`nav a[href="${hash}"]`);
   if (!await nav.count()) {record({width,hash,ok:false,reason:'missing_navigation_link'},'routes'); return;}
   await nav.first().click();
@@ -50,6 +57,7 @@ async function observeRoute(page, hash, width) {
   await screenshot(page, `${width}-${view}`);
 }
 async function exercise(page, width) {
+  await openMobileNavigation(page);
   await page.locator('nav a[href="#recipes"]').first().click();
   const btn = page.locator('section[x-show="view === \'recipes\'"] .grid button').first();
   if (await btn.count()) {
@@ -58,9 +66,11 @@ async function exercise(page, width) {
     const opened = await modal.isVisible();
     await screenshot(page, `${width}-recipe-modal`);
     await page.locator('button[aria-label="Close recipe"]').click();
+    await modal.waitFor({ state: 'hidden', timeout: 2500 }).catch(() => {});
     const closed = !(await modal.isVisible());
     record({width,action:'open-close-recipe-modal',ok:opened&&closed});
   }
+  await openMobileNavigation(page);
   await page.locator('nav a[href="#shopengine"]').first().click();
   const recipe = page.locator('#engine-recipe');
   if (await recipe.count()) {
@@ -73,6 +83,7 @@ async function exercise(page, width) {
     await page.locator('#shopengine').scrollIntoViewIfNeeded();
     await screenshot(page, `${width}-shopping-after-add`);
   }
+  await openMobileNavigation(page);
   await page.locator('nav a[href="#cookmode"]').first().click();
   if (await page.locator('#cook-recipe').count()) {
     const values = await page.locator('#cook-recipe option').evaluateAll(xs=>xs.map(x=>x.value));
