@@ -162,6 +162,8 @@ async function copyLastRow(page) {
 }
 
 async function addNikkeiEntry(page) {
+  await page.locator('nav a[href="#shopengine"]').first().click();
+  await page.locator('#engine-from').waitFor({ state: 'visible' });
   await page.fill('#engine-from', '2026-11-01');
   await page.fill('#engine-to', '2026-11-30');
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
