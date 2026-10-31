@@ -35,7 +35,7 @@
   const add = (a, b) => makeQ(a.num * b.den + b.num * a.den, a.den * b.den);
   const sub = (a, b) => makeQ(a.num * b.den - b.num * a.den, a.den * b.den);
   const mul = (a, b) => makeQ(a.num * b.num, a.den * b.den);
-  const eq = (a, b) => a.num === b.num && a.den === b.den;
+  const eq = (a, b) => a.num * b.den === b.num * a.den; // value equality via cross-multiply (representation-independent)
   const gt = (a, b) => a.num * b.den > b.num * a.den;
   const isZero = (a) => a.num === 0;
   /** UI/display only — never used in intermediate arithmetic. */
