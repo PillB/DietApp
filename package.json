@@ -9,6 +9,7 @@
     "e2e": "node tests/e2e_served.cjs",
     "staging": "node tests/staging_qa.cjs",
     "live": "node tests/e2e_live.cjs",
+    "redteam": "node tests/redteam_live.cjs",
     "lint": "eslint .",
     "privacy": "node scripts/privacy_check.cjs",
     "check": "npm run lint && npm run test && npm run privacy && python3 scripts/check_handover.py"

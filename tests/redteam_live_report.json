@@ -1,0 +1,87 @@
+{
+  "findings": [
+    {
+      "ok": true,
+      "label": "1-buttons: 185 buttons found",
+      "detail": "[{\"id\":\"\",\"text\":\"Export JSON\",\"disabled\":false},{\"id\":\"\",\"text\":\"Print view\",\"disabled\":false},{\"id\":\"\",\"text\":\"☕ Break"
+    },
+    {
+      "ok": true,
+      "label": "1-selects: 10",
+      "detail": "[{\"id\":\"n-language\",\"optionCount\":2},{\"id\":\"n-physiology\",\"optionCount\":3},{\"id\":\"n-activity\",\"optionCount\":4},{\"id\":\"n-"
+    },
+    {
+      "ok": true,
+      "label": "1-links: 64",
+      "detail": "[{\"href\":\"#dashboard\",\"text\":\"🍽️\\n        \\n          Gourmet\"},{\"href\":\"#dashboard\",\"text\":\"✦\\n            Overview\"},"
+    },
+    {
+      "ok": true,
+      "label": "2-cook-recipe-nikkei-salmon-bowl: nutrition card shown",
+      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        0 kcal · 0 g protein · 0 g fiber\n   "
+    },
+    {
+      "ok": true,
+      "label": "2-cook-recipe-pescado_ajonjoli_diet: nutrition card shown",
+      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        0 kcal · 0 g protein · 0 g fiber\n   "
+    },
+    {
+      "ok": true,
+      "label": "3-aggressive-1200-no-ack: refused honestly",
+      "detail": "Refused: unacknowledged_aggressive"
+    },
+    {
+      "ok": true,
+      "label": "3-aggressive-1200-with-ack: built successfully",
+      "detail": "Week built for 1200 kcal (aggressive): 14"
+    },
+    {
+      "ok": true,
+      "label": "3-week-entries: 14 entries on screen",
+      "detail": "Week built for 1200 kcal (aggressive): 14"
+    },
+    {
+      "ok": true,
+      "label": "4-sub-floor-1100: UI refuses or stays (cannot go below published 1200 floor via UI)",
+      "detail": "Refused: below_floor"
+    },
+    {
+      "ok": true,
+      "label": "5-shopping-per-serving: nikkei ×2 gives 10 ingredient lines",
+      "detail": "TCA composition shows missing rows too"
+    },
+    {
+      "ok": true,
+      "label": "6-print: window.print() succeeds without crash",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "7-copy-csv-button-exercised: no crash",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "8-i18n-cycle-6-locales: no console errors",
+      "detail": "0 errors"
+    },
+    {
+      "ok": false,
+      "label": "9-keyboard-reach: 1 focusable elements via [tabindex]",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "10-sw-registered: 1",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "11-console-errors: 0 (clean)",
+      "detail": ""
+    }
+  ],
+  "hardfails": [
+    "9-keyboard-reach: 1 focusable elements via [tabindex]"
+  ]
+}
