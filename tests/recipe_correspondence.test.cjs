@@ -15,9 +15,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
 const Q = require('../assets/js/quantity.js');
-const S = require('../assets/js/domain-schema.js');
 const importer = require('../assets/js/import-weighed.js');
-const bridge = require('../assets/js/composition-bridge.js');
 const N = require('../assets/js/diet-nutrition-core.js');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -38,8 +36,7 @@ function gramsOf(use) {
   return null;
 }
 
-function recipeLedger(recipe, allRecipes) {
-  const scale = { num: recipe.baseServings, den: recipe.baseServings }; // 1 portion recipes stay 1:1
+function recipeLedger(recipe) {
   const rows = [];
   for (const use of recipe.ingredients) {
     const g = gramsOf(use);
@@ -63,7 +60,6 @@ function recipeLedger(recipe, allRecipes) {
 test('7 weighed recipes: every ingredient referenced in ≥1 step OR explicitly optional+garnish (no silent ghost rows)', () => {
   for (const r of imported.recipes) {
     const ledger = recipeLedger(r);
-    const ghosts = ledger.filter((x) => x.usedInSteps.length === 0);
     // weighed recipes come from a different pipeline (prose steps list no ingredient refs)
     // so ghost-detection is skipped for them; assert only the ledger itself is computable
     assert.ok(ledger.every((x) => x.declaredG === null || x.declaredG > 0), `${r.id} ledger has nonpositive grams`);
