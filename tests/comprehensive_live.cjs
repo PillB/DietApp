@@ -14,6 +14,30 @@ function check(ok, label, detail) {
   if (!ok) hardFail = true;
 }
 
+
+async function auditNavRoute(page, hash, link) {
+  await link.click();
+  const viewName = hash.slice(1).split('/')[0];
+  const target = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(viewName)
+    ? page.locator('#' + viewName)
+    : page.locator(`section[x-show="view === '${viewName}'"]`);
+  await target.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+  const visible = await target.isVisible().catch(() => false);
+  const bounds = visible ? await target.boundingBox() : null;
+  const viewport = page.viewportSize();
+  const inViewport = Boolean(bounds && bounds.y < viewport.height && bounds.y + bounds.height > 0);
+  const routeMatches = new URL(page.url()).hash === hash;
+  const otherVisible = await Promise.all(
+    ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin']
+      .filter((name) => name !== viewName)
+      .map((name) => page.locator('#' + name).isVisible())
+  );
+  check(visible && inViewport && routeMatches && otherVisible.every((v) => !v),
+    `2-nav-${hash}`,
+    `visible=${visible}; viewport=${inViewport}; route=${routeMatches}; otherEngines=${otherVisible.filter(Boolean).length}`);
+
+}
+
 async function main() {
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1360, height: 900 } });
@@ -39,26 +63,7 @@ async function main() {
   for (const hash of hashes) {
     const link = page.locator(`nav a[href="${hash}"]`);
     if (!(await link.count())) { check(false, `2-nav-${hash}`, 'absent'); continue; }
-    await link.click();
-    const viewName = hash.slice(1).split('/')[0];
-    const target = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(viewName)
-      ? page.locator('#' + viewName)
-      : page.locator(`section[x-show="view === '${viewName}'"]`);
-    await target.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
-    const visible = await target.isVisible().catch(() => false);
-    const bounds = visible ? await target.boundingBox() : null;
-    const viewport = page.viewportSize();
-    const inViewport = Boolean(bounds && bounds.y < viewport.height && bounds.y + bounds.height > 0);
-    const routeMatches = new URL(page.url()).hash === hash;
-    const otherVisible = await Promise.all(
-      ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin']
-        .filter((name) => name !== viewName)
-        .map((name) => page.locator('#' + name).isVisible())
-    );
-    check(visible && inViewport && routeMatches && otherVisible.every((v) => !v),
-      `2-nav-${hash}`,
-      `visible=${visible}; viewport=${inViewport}; route=${routeMatches}; otherEngines=${otherVisible.filter(Boolean).length}`);
-
+    await auditNavRoute(page, hash, link);
   }
 
   // 3. Recipe modal (es-PE headings)
