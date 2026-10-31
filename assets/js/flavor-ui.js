@@ -33,6 +33,7 @@
     buildStaticSkeleton(section);
     // ATLAS AUTO-LOAD: owner decree 2026-10-31 makes context/generated public;
     // the UI auto-loads the small generated atlas (upload stays as fallback).
+    if (!root.FLAVOR_ATLAS_DEMO) section.querySelector('#flavor-demo').classList.add('hidden');
     const ATLAS_URL = 'context/generated/flavor-atlas-v1.json';
     fetch(ATLAS_URL).then((r) => {
       if (!r.ok) throw new Error(`atlas http ${r.status}`);

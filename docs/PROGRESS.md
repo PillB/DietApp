@@ -411,6 +411,24 @@ Debug trail: 3 real fixes - (1) week anchoring: nextMonday jumps a full week whe
 Tests: 134 pass / 0 fail; lint clean.
 Next single command/ticket: serve the deficit-week assembler in the planner UI (target kcal presets + acknowledgment checkbox -> real week view), the final P2/Diet UI; then P6 localization pass.
 
+## Session log — 2026-10-31, session 3, part 25 (deficit builder UI served)
+
+Files: assets/js/planner-ui.js (Week builder: preset select 1500/1400/1200 + acknowledgment checkbox + Build week button; slot-candidate rules from docx dietaryContext + weighed pool; applyWeekEntries → StorageCore.addPlanEntry ×7xslots; visible explanations per pick + warning chips), data/fixtures/ingredient-bridge-v1.json (60-entry curated bridge; disclosed inference), index.html boot: deficit scripts + lexicon/bridge fetch; flavor-demo button hidden when no demo atlas (honesty).
+
+E2E planner-flow PASS extended: 1400 without the acknowledgment refuses ('unacknowledged_aggressive' shown); 1500 builds 14 entries (almuerzo + cena x7) and status 'moderate'; 'Why this rank' explanations visible; storage persists.
+
+Debug trail (one fix each, found by reading outputs):
+1. DeficitPlanner not defined in browser — script tag missing; added (plus diet-core).
+2. Eager factory DI captured root.FlavorRanking before its script loaded — deps now resolve at CALL time; caught ONE additional reference('root is not defined') in flavor-ranking's buildGraphRef using root outside its factory scope — fixed to its own param.
+3. Missing-observed-category context (planner used before atlas load) crashed the strict graph: rankRecipes now degrades unknown_category to a zero-fit graph (ability to refuse other failures preserved) — tradeoff stated: strictness preserved via other codes.
+
+CC-12 honored: buildDeficitWeek decomposed into collectSlotCandidates/deficitArgs/applyWeekEntries/renderDeficitExplanations.
+
+Tests: 134 pass / 0 fail; E2E PASS (6 flows); lint clean.
+Next single command/ticket: P6 localization of all shipped controls (es de zh-Hans hi ja en), starting from the shipped strings inventory (grep-able tokens), then production-staging QA per docs/QA_RELEASE.md.
+
+## Update template for next session
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …

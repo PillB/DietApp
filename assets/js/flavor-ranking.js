@@ -15,10 +15,10 @@
  * Browser (window.FlavorRanking) + Node (module.exports).
  */
 (function (root, factory) {
-  const api = factory();
+  const api = factory(typeof require === 'function' ? globalThis : root);
   if (typeof module === 'object' && module.exports) module.exports = api;
   root.FlavorRanking = api;
-})(typeof window !== 'undefined' ? window : globalThis, function () {
+})(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
 
   const DEFAULT_FEATURES = {
@@ -33,17 +33,31 @@
     return typeof require === 'function' ? require('./flavor-graph.js') : root.FlavorGraph;
   }
 
-  function rankRecipes({ recipes, profile, lexicon, storeCatalog, householdEquipment, featureWeights, features, ingredientCategories }) {
-    const weights = featureWeights || DEFAULT_FEATURES;
-    const ids = Object.keys(weights);
+  function validateRankingInputs({ weights, ids, lexicon, features }) {
     const known = Object.keys(DEFAULT_FEATURES);
     for (const id of ids) if (!known.includes(id)) throw Object.assign(new Error(`unknown feature ${id}`), { code: 'unknown_feature' });
     if (Math.abs(ids.reduce((s, id) => s + weights[id], 0) - 1) > 1e-6) throw Object.assign(new Error('feature weights must sum to 1'), { code: 'bad_weights' });
     if (features && !ids.includes(features)) throw Object.assign(new Error('focus feature must be one of the weights'), { code: 'unknown_feature' });
     if (lexicon.schema !== 'flavor-lexicon/v1') throw Object.assign(new Error('lexicon must be flavor-lexicon/v1'), { code: 'bad_lexicon_schema' });
-    const graph = buildGraphRef().buildGraph({ dishPool: profile.dishPool, items: profile.items, excluded: profile.excluded, monthsSeries: profile.monthsSeries || {}, confidenceProfile: profile.confidenceProfile || {}, caveats: profile.caveats || [] }, lexicon);
-    const tasteByCuisine = tasteIndex(graph);
+  }
+
+  /** Graph build is strict; missing observed-category context (planner boot with no atlas
+   * loaded yet) degrades to 0 fit labeling instead of refusing the whole rank. */
+  function safeGraph(profile, lexicon) {
+    try {
+      return buildGraphRef().buildGraph({ dishPool: profile.dishPool, items: profile.items, excluded: profile.excluded, monthsSeries: profile.monthsSeries || {}, confidenceProfile: profile.confidenceProfile || {}, caveats: profile.caveats || [] }, lexicon);
+    } catch (e) {
+      if (e.code !== 'unknown_category') throw e;
+      return null;
+    }
+  }
+
+  function rankRecipes({ recipes, profile, lexicon, storeCatalog, householdEquipment, featureWeights, features, ingredientCategories }) {
+    const weights = featureWeights || DEFAULT_FEATURES;
+    validateRankingInputs({ weights, ids: Object.keys(weights), lexicon, features });
+    const graph = safeGraph(profile, lexicon);
     const countsByCategory = new Map(profile.items.flatMap((x) => x.topCategories).map((c) => [c.id, c.count]));
+    const tasteByCuisine = graph ? tasteIndex(graph) : new Map();
     const catalogIds = new Set((storeCatalog || []).filter((r) => r.ingredientId).map((r) => r.ingredientId));
     const observedNames = new Set(profile.items.map((x) => x.name));
     const observedCategories = new Set(countsByCategory.keys());

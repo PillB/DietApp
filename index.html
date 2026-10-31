@@ -498,10 +498,13 @@
   <script defer src="assets/js/shopping-ui.js"></script>
   <script defer src="assets/js/planner-core.js"></script>
   <script defer src="assets/js/planner-ui.js"></script>
+  <script defer src="assets/js/diet-core.js"></script>
+  <script defer src="assets/js/deficit-planner.js"></script>
   <script defer src="assets/js/cooking-core.js"></script>
   <script defer src="assets/js/cook-mode-ui.js"></script>
   <script defer src="assets/js/flavor-core.js"></script>
   <script defer src="assets/js/flavor-graph.js"></script>
+  <script defer src="assets/js/flavor-ranking.js"></script>
   <script defer src="assets/js/flavor-ui.js"></script>
   <script>
     // catalog preload for the shopping engine (structure-only fixture), then boot
@@ -517,9 +520,13 @@
           const shopping = window.ShoppingUI.init({});
           window.PlannerUI.init({ model: shopping.model });
           window.CookModeUI.init({ model: shopping.model });
-          fetch('data/fixtures/flavor-atlas-demo.json').then((r) => r.ok ? r.json() : null)
-            .then((demo) => { window.FLAVOR_ATLAS_DEMO = demo; window.FlavorUI.init({}); })
-            .catch(() => window.FlavorUI.init({}));
+          window.FlavorUI.init({});
+          fetch('data/fixtures/ingredient-bridge-v1.json').then((r) => r.ok ? r.json() : null)
+            .then((bridge) => { window.INGREDIENT_CATEGORY_BRIDGE = bridge ? bridge.bridge : {}; })
+            .catch(() => { window.INGREDIENT_CATEGORY_BRIDGE = {}; });
+          fetch('data/fixtures/flavor-lexicon-v1.json').then((r) => r.ok ? r.json() : null)
+            .then((lex) => { window.FLAVOR_LEXICON = lex; })
+            .catch(() => { window.FLAVOR_LEXICON = null; });
         } catch (e) { console.error('engine init failed:', e); }
       }
       fetch('data/fixtures/lima-stores-v1.json')

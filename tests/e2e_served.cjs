@@ -145,11 +145,23 @@ async function plannerFlow(port, report) {
   await lastRow.locator('[data-op="copy"]').click();
   await page.waitForTimeout(200);
   steps.afterCopy = await page.locator('#planner-entries li').count();
+  // DEFICIT week builder: 1500 kcal without ack builds; 1400 without ack refuses
+  await page.selectOption('#deficit-target', '1400');
+  await page.click('#deficit-build-btn');
+  await page.waitForTimeout(200);
+  steps.deficitRefusal = (await page.locator('#planner-status').textContent()).includes('unacknowledged_aggressive');
+  await page.selectOption('#deficit-target', '1500');
+  await page.click('#deficit-build-btn');
+  await page.waitForTimeout(300);
+  steps.afterDeficit = await page.locator('#planner-entries li').count();
+  steps.deficitStatus = (await page.locator('#planner-status').textContent()).trim().slice(0, 70);
+  steps.deficitExplanations = await page.locator('#deficit-explanations div').count();
   // shopping line growth via shared refresh (4×3 portions in range now)
   steps.shoppingLinesAfter = await page.locator('#engine-groups li').count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_planner_flow.png') });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat;
+  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat
+    || !steps.deficitRefusal || steps.afterDeficit <= steps.afterCopy || !String(steps.deficitStatus).includes('moderate') || steps.deficitExplanations === 0;
   report.rows.push({ tag: 'planner-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== planner-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`

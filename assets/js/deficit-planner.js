@@ -8,16 +8,21 @@
  * Browser (window.DeficitPlanner) + Node (module.exports). CC ≤ 12 per function.
  */
 (function (root, factory) {
-  const D = typeof require === 'function' ? require('./diet-core.js') : root.DietCore;
-  const RANK = typeof require === 'function' ? require('./flavor-ranking.js') : root.FlavorRanking;
-  const C = typeof require === 'function' ? require('./calendar-core.js') : root.CalendarCore;
-  const api = factory(D, RANK, C);
+  const api = factory(typeof require === 'function' ? globalThis : root);
   if (typeof module === 'object' && module.exports) module.exports = api;
   root.DeficitPlanner = api;
-})(typeof window !== 'undefined' ? window : globalThis, function (D, RANK, C) {
+})(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
 
+  // dependencies resolve at CALL time (browser script order varies; Node uses require)
+  const deps = () => ({
+    D: typeof require === 'function' ? require('./diet-core.js') : root.DietCore,
+    RANK: typeof require === 'function' ? require('./flavor-ranking.js') : root.FlavorRanking,
+    C: typeof require === 'function' ? require('./calendar-core.js') : root.CalendarCore,
+  });
+
   function planDeficitWeek({ recipes, slotHints, targetKcal, policy, startFromIso, profile, lexicon, storeCatalog, householdEquipment, ingredientCategories, defaultPortions }) {
+    const { D, RANK, C } = deps();
     const plan = D.buildPlan({ targetKcal }, policy || {});
     const days = sevenDays(C, startFromIso);
     const entries = [];
