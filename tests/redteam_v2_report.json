@@ -1,0 +1,140 @@
+{
+  "findings": [
+    {
+      "ok": true,
+      "label": "v3-nav-dashboard: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-calendar: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-week: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-recipes: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-shopping: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-knowledge: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-compliance: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-nutrition: view visible after click",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-day: reachable via week view (nested nav)",
+      "detail": "visible"
+    },
+    {
+      "ok": true,
+      "label": "v3-nav-walk: 0 page errors across 9 views",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "modal-setup: recipe card buttons in the x-for grid",
+      "detail": "count=29"
+    },
+    {
+      "ok": true,
+      "label": "modal-opens: clicked → visible",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "modal-content: mise/ingredients/method all present",
+      "detail": "{\"mise\":true,\"ingredients\":true,\"method\":true}"
+    },
+    {
+      "ok": true,
+      "label": "modal-close-x: overlay hidden after × click",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "diagram-pescado_ajonjoli_diet: all 9 ingredients diagrammed (2 stations)",
+      "detail": "missing: none"
+    },
+    {
+      "ok": true,
+      "label": "steps-pescado_ajonjoli_diet: order strictly ascending",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "mise-pescado_ajonjoli_diet: mise_en_place present",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "diagram-galletas_avena_diet: all 5 ingredients diagrammed (2 stations)",
+      "detail": "missing: none"
+    },
+    {
+      "ok": true,
+      "label": "steps-galletas_avena_diet: order strictly ascending",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "mise-galletas_avena_diet: mise_en_place present",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "diagram-muesli_frutado_diet: all 5 ingredients diagrammed (1 stations)",
+      "detail": "missing: none"
+    },
+    {
+      "ok": true,
+      "label": "steps-muesli_frutado_diet: order strictly ascending",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "mise-muesli_frutado_diet: mise_en_place present",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "diagram-budin_platano_diet: all 3 ingredients diagrammed (1 stations)",
+      "detail": "missing: none"
+    },
+    {
+      "ok": true,
+      "label": "steps-budin_platano_diet: order strictly ascending",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "mise-budin_platano_diet: mise_en_place present",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "espe-quality: all docx steps carry genuine Spanish phrasing",
+      "detail": "[]"
+    }
+  ],
+  "hardFail": false
+}
