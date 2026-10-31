@@ -1,0 +1,47 @@
+name: DietApp PR quality and browser evidence
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout candidate commit
+        uses: actions/checkout@v4
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate generated recipe data
+        run: node scripts/sync_data_js.cjs --check
+      - name: Static analysis and complexity gate
+        run: npm run chore:lint
+      - name: Unit, property and food-science checks
+        run: npm test
+      - name: Privacy gate
+        run: npm run privacy
+      - name: Handover contract
+        run: python3 scripts/check_handover.py
+      - name: Install Chromium for interaction tests
+        run: npx playwright install --with-deps chromium
+      - name: Locally served browser interactions
+        run: npm run e2e
+      - name: Staging responsive and accessibility audit
+        run: npm run staging
+      - name: Upload browser traces and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dietapp-browser-audit
+          if-no-files-found: warn
+          path: |
+            tests/screenshots/
+            tests/e2e_served_report.json
+            tests/staging_qa_report.json
