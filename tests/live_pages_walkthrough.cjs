@@ -53,7 +53,23 @@ async function observeRoute(page, hash, width) {
   const otherEngines = [];
   for (const engine of ENGINES) if (engine !== view && await page.locator('#' + engine).isVisible()) otherEngines.push(engine);
   const ok = visible && inViewport && urlMatches && otherEngines.length === 0;
-  record({width,hash,view,ok,visible,inViewport,urlMatches,otherEngines,controls:await inventory(page)},'routes');
+  const debug = ok ? null : await page.evaluate((view) => {
+    const el = document.querySelector('#' + view) || document.querySelector(`section[x-show="view === '${view}'"]`);
+    const root = document.documentElement;
+    const entry = root._x_dataStack?.[0];
+    const ancestry = [];
+    let cur = el;
+    while (cur && ancestry.length < 7) {
+      const style = getComputedStyle(cur);
+      ancestry.push({tag:cur.tagName,id:cur.id||null,cls:(cur.className||'').slice(0,80),
+        inline:cur.getAttribute('style'),display:style.display,visibility:style.visibility,
+        clientHeight:cur.clientHeight,childCount:cur.childElementCount,
+        htmlLength:cur.innerHTML?.length || 0,xShow:cur.getAttribute('x-show')});
+      cur=cur.parentElement;
+    }
+    return {alpine:!!window.Alpine,appView:entry?.view,href:location.href,ancestry};
+  },view);
+  record({width,hash,view,ok,visible,inViewport,urlMatches,otherEngines,controls:await inventory(page),debug},'routes');
   await screenshot(page, `${width}-${view}`);
 }
 async function exercise(page, width) {
