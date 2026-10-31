@@ -144,6 +144,11 @@
   }
 
   function bind(c, model, section) {
+    const t = (k, map) => {
+      let s = root.I18N ? root.I18N.t(k) : null;
+      if (s && map) for (const [key, v] of Object.entries(map)) s = s.replaceAll(`{${key}}`, v);
+      return s;
+    };
     const form = section.querySelector('#engine-plan-form');
     // HTML5 validation blocks submit silently; surface WHY inline (a11y + UX)
     form.addEventListener('invalid', (ev) => {
