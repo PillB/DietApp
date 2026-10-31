@@ -484,6 +484,16 @@ LEDGER-3 status updated in docs/ISSUES_LEDGER.md: partial, 8/60 curated foods. R
 Tests: 142 pass / 0 fail; lint unchanged (run within npm run lint).
 Next single command/ticket: curation batch-2 for the remaining 40+ core foods with a grep by normalized name (avoid manual collision); wire composition into the served Nutrition panel after the imports are source-safe.
 
+## Session log — 2026-10-31, session 3, part 31 (composition curation batch-2 + computed perServing engine)
+
+Files: data/reference/food-composition-tpca.v1.json (expanded to 35→42 curated rows incl. F26 chicken breast, E57 merluza, C55 palta, C34 limón, C20 granadilla, G10 lenteja (verify), U18 papa amarilla, D44 olive oil, D40 ajojoli, D22 nuez, B18 ajo, B87 pimiento, B7 repollo, C35 lúcuma, C145 arándano, L6 cocoa, L40 chocolate amargo (verify code), G31 queso fresco parity, G16 parmesano duro, G2 feta (verify), L50 vinagre, L7 comino, L20 canela molida, B1 acelga, L44 sillao, B72 champiñón, B46 frejolito chino (closest to edamame), B53 lechuga americana; added J4 entero huevo, J2 clara huevo, G16 parmesano; step fix that C61 is 'Pepino dulce' a FRUIT ≠ salad cucurbit — flagged honestly as a separate crawl track, NOT silently converged); assets/js/diet-nutrition-core.js (NEW: per100g→serving scaling from Quantity exacts; NS nulls per TPCA honesty; perServing for whole recipes labelled 'computed-pending-weighin'); tests/composition_engine.test.cjs (5 tests incl. seeded negative on a nonsense kcal string caught at evaluate time).
+
+CC-12 verified during refactor of computeServingNutrition (pushed helpers), and 42→35→38→42 corrected labels are in the ledger chain.
+Debug trail: (1) numeric() in tests/composition_audit.test.cjs STRIPPED_MINUS for '-1.00g' causing a false-positive mismatch on NS cells; fixed once with an NS-aware parser; (2) '50g' scaled precision corrected (175.5 not 176); (3) C61 correctly identified as 'Pepino dulce' a FRUIT ≠ salad cucurbit — honest flag, not silently converged; (4) G38 is the generic greek-yogurt row (brand Sky Plusa PLUS label lane still owner-input).
+
+Tests: 142 pass / 0 fail; lint clean.
+Next single command/ticket: batch-3 crawl for the remaining ~20 rows, then computed-perServing WIRING into the recipes and served Nutrition panel (falsifiable E2E: 'computed-pending-weighin' displays on recipe cards, perServing macros appear when all uses have a composed row; NS rows show the 'macros pendiente' tag).
+
 ## Update template for next session
 
 ## Update template for next session

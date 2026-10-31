@@ -14,7 +14,14 @@ const curation = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/reference/tpca
 const composed = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/reference/food-composition-tpca.v1.json'), 'utf8'));
 
 const findCrawlRow = (code) => curation.rows.find((r) => r && r[0] === code) || null;
-const numeric = (s) => (s ? parseFloat(String(s).replace(/[^0-9.\-]/g, '')) : null);
+// honors TPCA's NS convention: rows where the cell is '-1', '-1.00g' style, '-' or '•' mean not-specified → null (never coerced into ±)
+const numeric = (s) => {
+  if (s == null) return null;
+  const t = String(s).trim().replace(/kcal|KJ|g|mg|μg|%/g, '');
+  if (t === '' || parseFloat(t) === -1) return null;
+  const m = /^(-?\d+(?:\.\d+)?)/.exec(t);
+  return m ? parseFloat(m[1]) : null;
+};
 
 function rowValues(code) {
   const r = findCrawlRow(code);
