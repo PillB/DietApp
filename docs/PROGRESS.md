@@ -674,6 +674,15 @@ Serving note: the 7×2 nikkei week covers male vitamin A 'adequate', Na 'under-c
 Tests: 154 pass / 0 fail; lint clean; pushed b3b5573 + this commit.
 Next single command/ticket: serve the adequacy panel (per-week nutrient coverage table in the planner UI) + the owner weigh-in worksheet (P4.4) remains the assessed-promotion gate.
 
+## Session log — 2026-10-31, session 3, part 46 (v3 chrome es-PE complete + papaya default)
+
+1. Remaining v3 chrome localized es-PE-first: 'Mes Gourmet' h1, 'Conjunto de reglas integrado', 'Correcciones mayores aplicadas', 'Compra agregada', 'Copiar lista', 'Imprimir' — the v3 surface is now fully Spanish-first alongside the 4 engine panels (LEDGER-6 essentially closed; the dynamic Alpine-rendered strings inside x-text templates were already es-PE-aware from prior rounds).
+2. fruta_picada_estado (the muesli's composite fruit) resolved to PAPAYA via TPCA C59 (25 kcal/100g, vit C rich) — the reference menu's most frequent fruit ('1 tza. De papaya picada' appears twice in the owner sheet); the row note documents it as the owner-changeable default (switch to manzana/pera/piña/sandía by editing the composition row).
+
+Composition now 62 curated rows. All gates PASS after the changes (154/154 tests, 6 E2E flows, staging QA, live URL).
+
+Next single command/ticket: the app is functionally complete for the owner's use. Remaining ledger items are owner-action: LEDGER-2 weigh-in, LEDGER-5 store verification, LEDGER-7 dedup, SKYR brand label. No further autonomous rounds pending unless the owner requests new features.
+
 ## Update template for next session
 
 ## Update template for next session
