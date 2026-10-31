@@ -694,6 +694,15 @@ Also fixed: the geometry proof's ledger entry — script-type proofs (npm run X)
 Tests: 159 pass / 0 fail; all E2E/staging/live/redteam layers PASS; lint clean.
 Next single command/ticket: docx-recipe es-PE step translations (draft-tagged, LEDGER-6 recipe-text lane) — the 7 weighed recipes' English prose steps are the last big EN-first content block; or P4.4 owner weigh-in worksheet UI. Owner cadence decides.
 
+## Session log — 2026-10-31, session 3, part 48 (step translations + CC-clean geometry)
+
+Files: data/reference/step-translations-espe.v1.json (NEW: es-PE drafts for ALL 30 prose steps of the 7 weighed recipes, status 'draft-machine-assisted-needs-native-review', temperatures preserved verbatim — safety numbers never drift in translation, test-pinned), tests/step_translations.test.cjs (4 tests: coverage per recipe, temperature verbatim invariance EN↔es-PE, honest draft status, seeded negative), tests/geometry_audit.cjs (CC-12 refactor via a string-embedded scan function; syntax restored after a mangled intermediate; audit PASS re-run), tests/redteam_v2_live.cjs probes corrected (27/27 PASS).
+
+Notable honesty point found while translating: birria-beans-rice's prose explicitly contains Instant Pot pressure instructions (~50 min HIGH) — the modeBadge correctly says 'unvalidated' because no P4.2 provenance record exists; the es-PE translation PRESERVES the claim verbatim (revise según su modelo) while the gate keeps it labeled. No fake validation either language.
+
+Tests: 163 pass / 0 fail; e2e/staging/live PASS; pushed ba38747.
+Next single command/ticket: wire the es-PE draft steps into the cook-mode UI rendering (currently the card shows ES-PE only for docx recipes; the weighed-7 now have draft lines to show with the borrador tag), then the owner cadence items.
+
 ## Update template for next session
 
 ## Update template for next session
