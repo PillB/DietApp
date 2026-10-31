@@ -60,7 +60,9 @@
   }
 
   function adequacyWeek(weekPlan, composition, { sex = 'male' } = {}) {
-    const { totals, perServingBasis } = aggregateWeek(weekPlan, composition);
+    const agg = aggregateWeek(weekPlan, composition);
+    const totals = agg.totals;
+    const perServingBasis = agg.perServingBasis;
     const nutrients = [
       adequacyRow('vitaminA', totals.vitaminAUg, rda.vitaminAUg * 7, 'target'),
       adequacyRow('vitaminC', totals.vitaminCMg, rda.vitaminCMg * 7, 'target'),
@@ -72,7 +74,7 @@
       adequacyRow('protein', totals.proteinG, null, 'info'),
       adequacyRow('sodium', totals.sodiumMg, rda.sodiumCeilingMg * 7, 'ceiling'),
     ];
-    return { totals, nutrients, missingRows, perServingBasis, sex, RDA_SOURCE };
+    return { totals, nutrients, missingRows: agg.missingRows, perServingBasis, sex, RDA_SOURCE };
   }
 
   function r1(x) { return Math.round(x * 10) / 10; }
