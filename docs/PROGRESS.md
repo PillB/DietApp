@@ -747,6 +747,14 @@ Root causes fixed en route:
 Full re-verification after push: npm test 169/169, e2e 6 flows PASS, staging PASS, live PASS, redteam2 27/27, geometry PASS - ALL GREEN at the deployed URL.
 
 Remaining: owner-action items only (weigh-in, brand labels, store walk, dedup).
+## Session log - 2026-10-31, session 3, part 54 (P6 FULLY VERIFIED LIVE - zero English chrome)
+
+The dashboard + compliance + recipes + shopping views' static chrome is now es-PE on the LIVE Pages URL (verified by browser probe after the CDN edge caught up ~4 min): Resumen ejecutivo, Semanas/Dias/Recetas/Listas, Semana N week labels, Biblioteca de recetas, Exportar revision JSON, 'Un mes con mentalidad Michelin...' h3. englishLeft=0 across ALL h1/h2/h3 in the page. Screenshot: tests/screenshots/live-es-dashboard.png committed.
+
+CDN lag lesson: GitHub Pages' build completes in ~60s but the FASTLY edge can serve the previous build for up to ~4 minutes after. Probes need cache-busting (?v=Date.now()) AND a settle-wait, or they see the stale edge.
+
+The ENTIRE visible surface is now Peruvian-Spanish-first: v3 chrome (nav/headings/buttons/dt labels/week labels), 4 engine panels, recipe modal, cook cards (es-PE steps both authored + draft-tagged), shopping groups (es-PE names), flavor atlas (es-PE heading), weigh-in (Registrar pesa), nutrition card (Por porcion). The 6-locale switcher covers the engine chrome dynamically.
+
 ## Update template for next session
 
 ## Update template for next session
