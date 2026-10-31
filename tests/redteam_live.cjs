@@ -18,7 +18,6 @@ const LIVE = 'https://pillb.github.io/DietApp/';
 const ROOT = path.resolve(__dirname, '..');
 const findings = [];
 const hardfails = [];
-const consoleWarns = [];
 const hx = (s) => String(s).slice(0, 120);
 
 async function note(ok, label, detail) {
@@ -26,7 +25,6 @@ async function note(ok, label, detail) {
   if (!ok) hardfails.push(label);
 }
 
-function findEnginePanel(name) { return (page) => page.locator(name); }
 
 async function enumeratePage(page) {
   return page.evaluate(() => {
@@ -41,40 +39,6 @@ async function enumeratePage(page) {
   });
 }
 
-async function exerciseInteractive(page, type) {
-  const inter = await enumeratePage(page);
-  let clickCount = 0;
-  let failCount = 0;
-  const fails = [];
-  for (const btn of inter.buttons) {
-    if (btn.disabled || !btn.id) continue;
-    try {
-      const before = await page.evaluate(() => document.querySelector('#planner-status')?.textContent || '');
-      await page.click(`#${btn.id}`, { timeout: 3000 });
-      clickCount += 1;
-      await page.waitForTimeout(100);
-      // detect crash or permanent overlay
-      const after = await page.evaluate(() => document.activeElement?.tagName || '');
-      if (after === 'BODY' && btn.text.toLowerCase().includes('submit')) { failCount += 1; fails.push(`${btn.id} lost focus`); }
-    } catch (e) {
-      failCount += 1; fails.push(`${btn.id}: ${e.message.split('\n')[0].slice(0, 80)}`);
-    }
-  }
-  for (const s of inter.selects) {
-    try {
-      const opts = await page.locator(`#${s.id} option`).count();
-      if (opts > 1) {
-        await page.selectOption(`#${s.id}`, { index: 0 });
-        await page.waitForTimeout(50);
-        await page.selectOption(`#{$i.id}`, { index: opts - 1 });
-        await page.waitForTimeout(50);
-      }
-      clickCount += 1;
-    } catch (e) { failCount += 1; fails.push(`${s.id}: ${e.message.split('\n')[0].slice(0, 60)}`); }
-  }
-  await note(failCount === 0, `${type}: ${clickCount} interactive actions exercised, ${failCount} errors`, fails.join('; ').slice(0, 300));
-}
-
 async function main() {
   const browser = await chromium.launch();
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
@@ -82,8 +46,7 @@ async function main() {
   const consoleErrors = [];
   page.on('console', (msg) => { if (msg.type() === 'error') consoleErrors.push(msg.text().slice(0, 100)); });
   page.on('pageerror', (e) => consoleErrors.push(`PAGE: ${e.message}`));
-  const report = findEnginePanel;
-
+  
   // --- 1. Boot and enumerate
   await page.goto(LIVE, { waitUntil: 'load' });
   await page.waitForTimeout(2500);
@@ -155,19 +118,9 @@ async function main() {
   const langErrors = consoleErrors.filter((e) => /i18n|missing/.test(e));
   await note(langErrors.length === 0, `8-i18n-cycle-6-locales: no console errors`, `${langErrors.length} errors`);
 
-  // --- 9. Keyboard tab reachability (top-tabbing reaches interactive nodes)
-  const tabCount = await page.evaluate(() => {
-    let count = 0;
-    let seen = new Set();
-    let el = document.activeElement;
-    for (let i = 0; i < 30; i++) {
-      const next = document.querySelector('[tabindex]:not([tabindex^="-"]), a, button, input, select, textarea, [href], [tabindex="0"]');
-      if (!next || seen.has(next)) break;
-      seen.add(next); next.focus(); count++;
-    }
-    return count;
-  });
-  await note(tabCount >= 5, `9-keyboard-reach: ${tabCount} focusable elements via [tabindex]`, '');
+  // --- 9. Keyboard tab reachability (how many interactive elements are visible+focusable)
+  const focusableCount = await page.evaluate(() => Array.from(document.querySelectorAll('button:not([disabled]), a[href], input:not([type=hidden]), select, textarea')).filter((el) => { const st = getComputedStyle(el); return st.display !== 'none' && st.visibility !== 'hidden' && el.offsetWidth > 0; }).length);
+  await note(focusableCount >= 5, `9-keyboard-reach: ${focusableCount} focusable elements visible in the DOM`, '');
 
   // --- 10. SW install + offline fetch of cached shell works
   await page.goto(LIVE + '#sw-probe', { waitUntil: 'load' });
