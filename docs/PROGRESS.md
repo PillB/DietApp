@@ -754,6 +754,14 @@ The dashboard + compliance + recipes + shopping views' static chrome is now es-P
 CDN lag lesson: GitHub Pages' build completes in ~60s but the FASTLY edge can serve the previous build for up to ~4 minutes after. Probes need cache-busting (?v=Date.now()) AND a settle-wait, or they see the stale edge.
 
 The ENTIRE visible surface is now Peruvian-Spanish-first: v3 chrome (nav/headings/buttons/dt labels/week labels), 4 engine panels, recipe modal, cook cards (es-PE steps both authored + draft-tagged), shopping groups (es-PE names), flavor atlas (es-PE heading), weigh-in (Registrar pesa), nutrition card (Por porcion). The 6-locale switcher covers the engine chrome dynamically.
+## Session log - 2026-10-31, session 3, part 55 (handover section 9 source-language notice)
+
+The legacy-29 recipes' EN names keep their source language (the handover explicitly allows source-language names WITH a notice) — each card + the modal now shows '(EN - sin traduccion)' under the name. Live-verified: 29/29 cards carry the notice at the Pages URL. Screenshot: tests/screenshots/live-es-recipes-en-notice.png committed.
+
+This closes the LAST i18n surface: every recipe now displays either an es-PE name (the weighed-7 + docx-4) or a source-language name with the explicit notice (the legacy-29) — no silent untranslated content.
+
+Tests: 169 pass / 0 fail; e2e PASS; pushed 7b0866e.
+Next single command/ticket: owner-action items only (LEDGER-2 weigh-in, brand labels, store walk, dedup). The application is complete and fully live.
 
 ## Update template for next session
 
