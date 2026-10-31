@@ -122,6 +122,7 @@ async function assertIntlSwitches(page, steps) {
   await page.waitForTimeout(200);
   steps.langEspe = await page.locator('#planner-h2', { hasText: 'Planificador' }).count();
   steps.shoppingHeaderEs = await page.locator('#shopengine-h2', { hasText: 'Lista de compras' }).count();
+  // Spanish-first default check happens in a fresh context (see e2e default-load probe)
   await page.selectOption('#planner-lang', 'zh-Hans');
   await page.waitForTimeout(200);
   steps.langZh = await page.locator('#planner-h2', { hasText: '计划器' }).count();

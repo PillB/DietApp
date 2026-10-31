@@ -42,3 +42,10 @@ test('setLanguage refuses unknown locales without mutating state', () => {
   assert.strictEqual(r.ok, false);
   assert.strictEqual(I.getLanguage(), before);
 });
+
+test('DEFAULT language is es-PE (owner standing directive: Peruvian Spanish first)', () => {
+  // fresh module load to see the real default, not whatever a prior test set
+  delete require.cache[require.resolve('../assets/js/i18n.js')];
+  const fresh = require('../assets/js/i18n.js');
+  assert.strictEqual(fresh.getLanguage(), 'es-PE');
+});

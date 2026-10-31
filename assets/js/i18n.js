@@ -48,7 +48,7 @@
     'slots.11am': { 'en': '11am snack', 'es-PE': 'picoteo 11am', 'zh-Hans': '上午11点加餐', 'hi': '11 बजे स्नैक', 'de': '11-Uhr-Snack', 'ja': '11時の間食' },
   };
 
-  let language = 'en';
+  let language = 'es-PE'; // OWNER DEFAULT: Peruvian Spanish per standing directive
   const listeners = [];
 
   function t(key) {
