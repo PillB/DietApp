@@ -6,7 +6,7 @@
  *
  * A11y floor: real <label>s, focus-visible outlines (site CSS), buttons that do
  * exactly what their text says, aria-live status region.
- * Development preview: es-PE names show the EN label with an "(EN provisional)"
+ * Development preview: es-PE names show the EN label with an "${tr('shopping.uiEnProvisional')}"
  * tag while the ingredient manifest nameProvisional flag is true — never
  * silently presented as Spanish.
  */
@@ -16,6 +16,14 @@
   root.ShoppingUI = api;
 })(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
+
+  function tr(key, replacements) {
+    let text = root.I18N ? root.I18N.t(key) : key;
+    for (const [name, value] of Object.entries(replacements || {})) {
+      text = text.replaceAll('{' + name + '}', String(value));
+    }
+    return text;
+  }
 
   function cli() {
     return {
@@ -92,7 +100,7 @@
       <form id="engine-plan-form" class="flex flex-wrap gap-3 items-end">
         <label class="text-sm">${t('shopping.recipe')}
           <select id="engine-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
-        <label class="text-sm">${t('shopping.date')}
+        <label class="text-sm">${tr('shopping.date')}
           <input id="engine-date" type="date" required class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
         <label class="text-sm">${t('shopping.portions')}
           <input id="engine-portions" type="number" min="1" value="4" class="bg-stone-800 border border-stone-600 rounded px-2 py-1 w-20"></label>
@@ -107,7 +115,7 @@
       <div id="engine-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80"></div>
       <div id="engine-warnings" class="mt-3 text-xs text-stone-300"></div>
       <div id="engine-groups" class="mt-4 grid gap-4"></div>
-      <p class="mt-4 text-xs text-stone-400">Store data: structure fixture only — titles/prices/stock pending real verification.</p>
+      <p class="mt-4 text-xs text-stone-400">${tr('shopping.uiStoreFixture')}</p>
     `;
     injectPrintStyles();
   }
@@ -165,11 +173,11 @@
       const res = c.ST.addPlanEntry(model.state, entry);
       const status = section.querySelector('#engine-status');
       if (!res.ok) {
-        status.textContent = `Refused: ${res.errors.map((e) => e.code).join(', ')}`;
+        status.textContent = tr('shopping.uiRefused', { reason: res.errors.map(e => e.code).join(', ') });
         section.querySelector('#engine-groups').innerHTML = '';
         return;
       }
-      status.textContent = `Added ${entry.recipeId} × ${entry.portions} on ${entry.localDate}`;
+      status.textContent = tr('shopping.uiAdded', {recipe: entry.recipeId, n: entry.portions, date: entry.localDate});
       c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });
       if (root.PlannerUI && root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
@@ -199,18 +207,17 @@
   }
 
   const FAMILY_LABELS = {
-    proteins: 'Proteins / Proteínas',
-    grains: 'Grains and cereals / Granos y cereales',
-    vegetables: 'Vegetables / Verduras',
-    dairy: 'Dairy / Lácteos',
-    condiments: 'Condiments / Aliños',
-    pantrystaples: 'Pantry / Despensa',
-    'provisional-names': 'Provisional names / Nombres provisionales (pending es-PE)',
+    proteins: 'shopping.familyProteins',
+    grains: 'shopping.familyGrains',
+    vegetables: 'shopping.familyVegetables',
+    dairy: 'shopping.familyDairy',
+    condiments: 'shopping.familyCondiments',
+    pantrystaples: 'shopping.familyPantry',
+    'provisional-names': 'shopping.familyProvisional',
   };
 
   function render(c, model, section, opts) {
     const form = section.querySelector('#engine-plan-form');
-    if (root.I18N) console.log('[render] lang=' + root.I18N.getLanguage() + ' model-recipes=' + (model.recipes || []).length + ' sel-len=' + (form.querySelector('#engine-recipe') && form.querySelector('#engine-recipe').options && form.querySelector('#engine-recipe').options.length));
     if (form.dataset.recipesReady !== '1') {
       const select = form.querySelector('#engine-recipe');
       const allRecipes = [...(model.recipes || []), ...(model.docxRecipes || [])];
@@ -222,13 +229,13 @@
     renderGroups(section, out, model);
     renderWarnings(section, out);
     root.__pgkLastList = out; // copy/print source of truth
-    if (!opts.silent) section.querySelector('#engine-status').textContent = 'Engine ready';
+    if (!opts.silent) section.querySelector('#engine-status').textContent = tr('shopping.uiReady');
   }
 
   function renderGroups(section, out, model) {
     const groupsEl = section.querySelector('#engine-groups');
     if (out.refused) {
-      groupsEl.innerHTML = `<p class="text-red-300">Refused: ${escapeHtml(out.errors[0].code)}</p>`;
+      groupsEl.innerHTML = `<p class="text-red-300">${escapeHtml(tr('shopping.uiRefused', {reason: out.errors[0].code}))}</p>`;
       return;
     }
     const groups = new Map();
@@ -239,26 +246,26 @@
       const shopperName = root.FoodNamesEsPe.bilingual(line.ingredientId, ing.name.en);
       const synText = shopperName.syn.length ? ` (${escapeHtml(shopperName.syn.slice(0, 2).join(', '))})` : '';
       const nameHtml = shopperName.es
-        ? `${escapeHtml(shopperName.es)}${synText} <span class="text-[10px] text-stone-400">(es-PE borrador)</span>`
+        ? `${escapeHtml(shopperName.es)}${synText} <span class="text-[10px] text-stone-400">${tr('shopping.uiEsDraft')}</span>`
         : `${escapeHtml(ing.name.en)}${ing.nameProvisional ? ' (EN provisional)' : ''}`;
       const buyText = line.purchaseRecommendation
-        ? `buy <strong>${line.purchaseRecommendation.packages}</strong> × ${escapeHtml(line.purchaseRecommendation.unit)}`
-        : 'package decision pending';
+        ? escapeHtml(tr('shopping.uiBuy', {n: line.purchaseRecommendation.packages, unit: line.purchaseRecommendation.unit}))
+        : tr('shopping.uiPackage');
       const pantryText = line.pantry && !isZeroRational(line.pantry)
-        ? ` (pantry covers ${escapeHtml(root.ShoppingCore.rationalToString(line.pantry))})` : '';
+        ? ` (${escapeHtml(tr('shopping.uiPantry', {amount: root.ShoppingCore.rationalToString(line.pantry)}))})` : '';
       groups.set(fam, (groups.get(fam) || []).concat([`
         <li class="flex flex-wrap items-center gap-2">
-          <input type="checkbox" data-line="${escapeHtml(line.ingredientId)}" aria-label="bought ${escapeHtml(line.ingredientId)}">
+          <input type="checkbox" data-line="${escapeHtml(line.ingredientId)}" aria-label="${escapeHtml(tr('shopping.uiBought', {name: line.ingredientId}))}">
           <span class="text-stone-200">${nameHtml}</span>
-          <span class="text-amber-200">need ${escapeHtml(line.neededString)} ${escapeHtml(line.unit)}</span>
+          <span class="text-amber-200">${escapeHtml(tr('shopping.uiNeed', { amount: line.neededString, unit: line.unit }))}</span>
           <span class="text-emerald-300">${pantryText} ${buyText}</span>
         </li>`]));
     }
     groupsEl.innerHTML = [...groups.entries()].map(([fam, items]) => `
       <div>
-        <h3 class="font-bold text-amber-300">${escapeHtml(FAMILY_LABELS[fam] || fam)}</h3>
+        <h3 class="font-bold text-amber-300">${escapeHtml(FAMILY_LABELS[fam] ? tr(FAMILY_LABELS[fam]) : fam)}</h3>
         <ul class="list-disc pl-6 space-y-1">${items.join('')}</ul>
-      </div>`).join('') || '<p class="text-stone-400">(no plan entries in range)</p>';
+      </div>`).join('') || `<p class="text-stone-400">${escapeHtml(tr('shopping.uiEmpty'))}</p>`;
   }
 
   function isZeroRational(q) { return q.num === 0; }
@@ -267,20 +274,20 @@
     const counts = {};
     for (const w of out.warnings) counts[w.code] = (counts[w.code] || 0) + 1;
     section.querySelector('#engine-warnings').innerHTML = Object.entries(counts)
-      .map(([code, n]) => `<span class="mr-3">⚠ ${escapeHtml(code)} ×${n}</span>`).join('')
-      || '<span>(no warnings)</span>';
+      .map(([code, n]) => `<span class="mr-3">⚠ ${escapeHtml(code === 'needs_package_decision' ? tr('shopping.uiPackage') : code)} ×${n}</span>`).join('')
+      || `<span>${escapeHtml(tr('shopping.uiWarningsNone'))}</span>`;
   }
 
   async function copyCsv(model, section) {
     const out = root.__pgkLastList;
     const status = section.querySelector('#engine-status');
-    if (!out || !out.lines.length) { status.textContent = 'Nothing to copy yet'; return; }
+    if (!out || !out.lines.length) { status.textContent = tr('shopping.uiNothingToCopy'); return; }
     const csv = listToCsv(out, model);
     try {
       await root.navigator.clipboard.writeText(csv);
-      status.textContent = 'CSV copied to clipboard';
+      status.textContent = tr('shopping.uiCopied');
     } catch {
-      status.textContent = 'Clipboard unavailable — CSV placed on the Copy button data attribute';
+      status.textContent = tr('shopping.uiClipboardFail');
       section.querySelector('#engine-copy').setAttribute('data-csv', csv);
     }
   }
