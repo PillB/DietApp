@@ -3,7 +3,7 @@
     {
       "ok": true,
       "label": "1-buttons: 187 buttons found",
-      "detail": "[{\"id\":\"\",\"text\":\"Export JSON\",\"disabled\":false},{\"id\":\"\",\"text\":\"Print view\",\"disabled\":false},{\"id\":\"\",\"text\":\"☕ Break"
+      "detail": "[{\"id\":\"\",\"text\":\"Export JSON\",\"disabled\":false},{\"id\":\"\",\"text\":\"Imprimir vista\",\"disabled\":false},{\"id\":\"\",\"text\":\"☕ B"
     },
     {
       "ok": true,
@@ -28,7 +28,7 @@
     {
       "ok": true,
       "label": "3-aggressive-1200-no-ack: refused honestly",
-      "detail": "Refused: unacknowledged_aggressive"
+      "detail": "Rechazado: unacknowledged_aggressive"
     },
     {
       "ok": true,
@@ -43,7 +43,7 @@
     {
       "ok": true,
       "label": "4-sub-floor-1100: UI refuses or stays (cannot go below published 1200 floor via UI)",
-      "detail": "Refused: below_floor"
+      "detail": "Rechazado: below_floor"
     },
     {
       "ok": true,

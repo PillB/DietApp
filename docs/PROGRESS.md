@@ -798,6 +798,13 @@ Next single command/ticket: a sync script (json -> data.js) to close the served-
 Gates: 173/173 tests | eslint clean | audit 33/33 | live E2E PASS | redteam2 27/27.
 
 Next single command/ticket: owner-action items only (weigh-in LEDGER-2, brand labels, store walk LEDGER-5, dedup LEDGER-7).
+## Session log - 2026-10-31, session 3, part 60 (Spanish-first sweep, D44)
+
+Programmatic EN sweep (Playwright TreeWalker over 7 views + EN-function-word heuristic) found: (a) 10 index.html chrome strings EN, (b) the whole planner skeleton (RDA form, entry buttons, statuses) EN-hardcoded in planner-ui.js, (c) nutrition-ui defaulting lang='en' against the es-PE decree, (d) executiveSummary + week-view theme + highlights EN data. Fixed all: 20 new i18n keys ×6 locales (test-enforced completeness), nutrition default from I18N.getLanguage() + 8 es text branches, es data fields (executiveSummaryEs, highlightsEs ×4) authored draft-tagged + served via npm run sync, index.html bindings prefer Es. E2E planner-flow broke on the EN badge-title selector — updated to the es-PE identifier (selecting on user-visible text was the fragile pattern; noted).
+
+Verified LIVE at f189cdc: all chrome es-PE (incl. '1500 kcal (moderado)', 'Sexo (para RDA de Fe/Zn)', nutrition h2 via data-nt), week view fully es. Gates: 173/173 · e2e · staging · live · redteam ×2 · geometry · audit 33 — ALL PASS.
+
+Next single command/ticket: the remaining EN is (a) legacy method/recipe data (LEDGER-6 — needs native review) and (b) compliance/knowledge/atlas narrative data blocks — a candidate follow-up round translating those data narratives draft-tagged.
 
 ## Update template for next session
 
