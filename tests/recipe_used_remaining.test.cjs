@@ -57,67 +57,65 @@ const STEP_CLAIM_RULES = [
   { id: 'chili', re: /chile|chili|guajillo|ancho/i },
 ];
 
+function makePlanEntry(recipe, imported, portions) {
+  return {
+    id: 'e1', localDate: '2027-03-02', slot: 'dinner', recipeId: recipe.id,
+    version: imported.version || 1, portions, repeatRuleId: null, pantryOverride: null,
+  };
+}
+function sumDeclarations(recipe, field) {
+  const total = new Map();
+  for (const item of recipe.ingredients) {
+    total.set(item.id, (total.get(item.id) || 0) + Number(item[field] || 0));
+  }
+  return total;
+}
+function checkBatchIdentity(recipe, imported) {
+  const expectedGrams = sumDeclarations(recipe, 'weightG');
+  const expectedCounts = sumDeclarations(recipe, 'quantity');
+  const batch = SHOP.buildShoppingList({
+    recipes: [imported], planEntries: [makePlanEntry(recipe, imported, recipe.servings)],
+    from: '2027-03-02', to: '2027-03-02',
+  });
+  assert.ok(!batch.refused, `${recipe.id} refused: ${JSON.stringify(batch.errors)}`);
+  const actual = new Map();
+  for (const line of batch.lines) {
+    assert.ok(line.ingredientId, `${recipe.id}: line without ingredientId`);
+    const amount = line.netRequired ? line.netRequired.num / line.netRequired.den : Number(line.quantity ?? NaN);
+    assert.ok(Number.isFinite(amount), `${recipe.id}/${line.ingredientId}: invalid amount`);
+    actual.set(line.ingredientId, (actual.get(line.ingredientId) || 0) + amount);
+  }
+  for (const [id, grams] of expectedGrams) {
+    const line = batch.lines.find(row => row.ingredientId === id);
+    assert.ok(line, `${recipe.id}/${id}: missing from shopping`);
+    const amount = actual.get(id);
+    const expected = ['each', 'count'].includes(line.unit) ? expectedCounts.get(id) : grams;
+    assert.strictEqual(Number(amount), Number(expected), `${recipe.id}/${id}: shopping=${amount}, expected=${expected}`);
+  }
+}
+function checkSingleServingIdentity(recipe, imported) {
+  const single = SHOP.buildShoppingList({
+    recipes: [imported], planEntries: [makePlanEntry(recipe, imported, 1)],
+    from: '2027-03-02', to: '2027-03-02',
+  });
+  assert.ok(!single.refused, `${recipe.id}: single portion refused`);
+  for (const line of single.lines) {
+    const declaration = recipe.ingredients.find(item => item.id === line.ingredientId);
+    if (!declaration) continue;
+    const base = ['each', 'count'].includes(line.unit) ? Number(declaration.quantity) : Number(declaration.weightG);
+    const actual = line.netRequired ? line.netRequired.num / line.netRequired.den : NaN;
+    const expected = base / recipe.servings;
+    assert.ok(Math.abs(actual - expected) < 1e-9,
+      `${recipe.id}/${line.ingredientId}: ${actual} vs ${expected}`);
+  }
+}
 test('(A) exact correspondence: batch-linked entry (portions=baseServings) aggregates EXACTLY the declared grams; a 1-portion entry aggregates exactly the per-serving fraction', () => {
-  for (const cr of ND.curatedRecipes) {
-    const imp = recipes.find((r) => r.id === cr.id);
-    assert.ok(imp, `imported recipe missing: ${cr.id}`);
-    assert.strictEqual(imp.baseServings, cr.servings, `${cr.id}: baseServings lost in import`);
-
-    const declared = new Map();
-    for (const ing of cr.ingredients) declared.set(ing.id, (declared.get(ing.id) || 0) + Number(ing.weightG || 0));
-
-    // batch case: portions = baseServings ⇒ scale 1 ⇒ exact ingredient totals
-    // Identity check in the LINE unit domain: 'g' lines ≡ weightG sums; 'ml' lines
-    // ≡ quantity sums; 'each' lines ≡ count sums (dual representation is honest)
-    const mk = (portions) => ({
-      id: 'e1', localDate: '2027-03-02', slot: 'dinner', recipeId: cr.id,
-      version: imp.version || 1, portions, repeatRuleId: null, pantryOverride: null,
-    });
-    const batch = SHOP.buildShoppingList({
-      recipes: [imp], planEntries: [mk(cr.servings)],
-      from: '2027-03-02', to: '2027-03-02',
-    });
-    assert.ok(!batch.refused, `${cr.id} refused: ${JSON.stringify(batch.errors)}`);
-    const wantUnit = (id) => {
-      const ing = cr.ingredients.find((i) => i.id === id);
-      return ing ? (ing.countEach != null ? 'each' : (ing.unit || 'g')) : 'g';
-    };
-    const cnt = new Map();
-    for (const ing of cr.ingredients) cnt.set(ing.id, (cnt.get(ing.id) || 0) + Number(ing.quantity || 0));
-    const agg = new Map();
-    for (const line of batch.lines) {
-      assert.ok(line.ingredientId, `${cr.id}: line without ingredientId\n${JSON.stringify(line).slice(0, 300)}`);
-      const g = line.netRequired ? (line.netRequired.num / line.netRequired.den) : Number(line.quantity ?? NaN);
-      assert.ok(Number.isFinite(g), `${cr.id}/${line.ingredientId}: line has no quantity field\n${JSON.stringify(Object.keys(line))}`);
-      agg.set(line.ingredientId, (agg.get(line.ingredientId) || 0) + g);
-    }
-    for (const [ingId, grams] of declared) {
-      const got = agg.get(ingId);
-      assert.ok(got !== undefined, `${cr.id}/${ingId}: shopping MISSED a declared ingredient`);
-      // the identity is in the line's own unit: g→weightG, each/count→count, ml→quantity
-      const line = batch.lines.find((l) => l.ingredientId === ingId);
-      const unit = (line && line.unit) || 'g';
-      const expectedParts = unit === 'each' || unit === 'count' ? cnt.get(ingId) : grams;
-      assert.strictEqual(Number(got), Number(expectedParts), `${cr.id}/${ingId} [${unit}]: shopping=${got} vs declared=${expectedParts}`);
-    }
-
-    // single-portion case: portions=1 ⇒ exactly declared/servings (no rounding drift)
-    const single = SHOP.buildShoppingList({
-      recipes: [imp], planEntries: [mk(1)],
-      from: '2027-03-02', to: '2027-03-02',
-    });
-    for (const line of single.lines) {
-      const ingDecl = cr.ingredients.find((i) => i.id === line.ingredientId);
-      if (!ingDecl) continue; // package/pantry lines irrelevant to the identity
-      const unit = line.unit || 'g';
-      const base = unit === 'each' || unit === 'count' ? Number(ingDecl.quantity) : Number(ingDecl.weightG);
-      const expected = base / cr.servings;
-      const got = line.netRequired ? (line.netRequired.num / line.netRequired.den) : NaN;
-      assert.ok(
-        Math.abs(got - expected) < 1e-9,
-        `${cr.id}/${line.ingredientId}: 1-portion shopping=${got} vs declared/servings=${expected}`,
-      );
-    }
+  for (const recipe of ND.curatedRecipes) {
+    const imported = recipes.find(row => row.id === recipe.id);
+    assert.ok(imported, `imported recipe missing: ${recipe.id}`);
+    assert.strictEqual(imported.baseServings, recipe.servings);
+    checkBatchIdentity(recipe, imported);
+    checkSingleServingIdentity(recipe, imported);
   }
 });
 

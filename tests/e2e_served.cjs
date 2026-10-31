@@ -91,6 +91,8 @@ async function shoppingFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#shopengine').count();
   if (steps.sectionMounted === 0) { report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#shopengine"]').first().click();
+  await page.locator('#engine-from').waitFor({state:'visible'});
   await page.fill('#engine-from', '2026-11-01');
   await page.fill('#engine-to', '2026-11-30');
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
@@ -102,7 +104,7 @@ async function shoppingFlow(port, report) {
   steps.groupHeadings = await page.locator('#engine-groups h3').count();
   steps.refusalShown = await page.locator('#engine-groups .text-red-300').count();
   steps.esPeDraftName = await page.locator('#engine-groups', { hasText: 'salmón' }).count();
-  steps.esPeDraftTag = await page.locator('#engine-groups', { hasText: '(es-PE borrador)' }).count();
+  steps.esPeDraftTag = await page.locator('#engine-groups', { hasText: 'es-PE en revisión' }).count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_shopping_flow.png'), fullPage: false });
   await browser.close();
   const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0 || steps.esPeDraftName === 0 || steps.esPeDraftTag === 0;
@@ -160,6 +162,8 @@ async function copyLastRow(page) {
 }
 
 async function addNikkeiEntry(page) {
+  await page.locator('nav a[href="#shopengine"]').first().click();
+  await page.locator('#engine-from').waitFor({state:'visible'});
   await page.fill('#engine-from', '2026-11-01');
   await page.fill('#engine-to', '2026-11-30');
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
@@ -178,6 +182,8 @@ async function plannerFlow(port, report) {
   await page.waitForTimeout(1500); // boot + fixture
   const steps = {};
   await addNikkeiEntry(page);
+  await page.locator('nav a[href="#planner"]').first().click();
+  await page.locator('#planner-h2').waitFor({state:'visible'});
   await page.waitForTimeout(200);
   steps.beforeRepeat = await countPlannerRows(page);
   await page.click('[data-op="repeat"]');
@@ -222,6 +228,8 @@ async function cookFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#cookmode').count();
   if (!steps.sectionMounted) { report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#cookmode"]').first().click();
+  await page.locator('#cook-recipe').waitFor({state:'visible'});
   await page.selectOption('#cook-recipe', 'nikkei-salmon-bowl');
   await page.waitForTimeout(200);
   steps.badge = (await page.locator('#cook-badge').textContent()).trim().slice(0, 90);
@@ -274,6 +282,8 @@ async function flavorFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#flavoratlas').count();
   if (!steps.sectionMounted) { report.rows.push({ tag: 'flavor-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#flavoratlas"]').first().click();
+  await page.locator('#flavoratlas').waitFor({state:'visible'});
   steps.barsRendered = await page.locator('#flavor-bars g').count();
   steps.topText = (await page.locator('#flavor-status').textContent()).includes('decreto del dueño');
   const first = page.locator('#flavor-ranks button').first();

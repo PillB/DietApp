@@ -50,14 +50,15 @@
         </div>
       </a>
 
-      <nav class="grid gap-2 text-sm">
+      <button id="mobile-nav-toggle" type="button" class="lg:hidden rounded-xl border border-amber-300/40 px-4 py-3 text-left text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300" aria-controls="primary-nav" :aria-expanded="String(mobileNavOpen)" @click="mobileNavOpen = !mobileNavOpen"><span x-text="window.I18N.t(mobileNavOpen ? 'nav.mobileClose' : 'nav.mobileOpen')"></span></button>
+      <nav id="primary-nav" :class="mobileNavOpen ? 'grid' : 'hidden lg:grid'" class="gap-2 text-sm">
         <template x-for="item in [
           ['dashboard','nav.overview','✦','#dashboard'],
           ['calendar','nav.calendar','📅','#calendar'],
           ['week','nav.week','🗓️','#week/1'],
           ['recipes','nav.recipes','📖','#recipes'],
           ['shopping','nav.shopping','🛒','#shopping/1'],
-          ['shopengine','nav.shopping','🧾','#shopengine'],
+          ['shopengine','nav.shopengine','🧾','#shopengine'],
           ['planner','nav.planner','🗓','#planner'],
           ['cookmode','nav.cook','🔥','#cookmode'],
           ['flavoratlas','nav.flavor','🗺','#flavoratlas'],
@@ -67,15 +68,15 @@
           ['knowledge','nav.knowledge','🧬','#knowledge']
         ]" :key="item[0]">
           <a :href="item[3]" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-300"
-             :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'">
+             :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'" @click="mobileNavOpen = false">
             <span class="text-lg" x-text="item[2]"></span>
             <span x-text="(window.I18N && window.I18N.DICT[item[1]]) ? window.I18N.t(item[1]) : item[1]"></span>
           </a>
         </template>
       </nav>
 
-      <div class="mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
-        <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70">Kitchen Command</p>
+      <div class="hidden lg:block mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
+        <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70">Centro de cocina</p>
         <p class="mt-2 text-sm text-stone-300">Busca, imprime y copia listas de compras y abre recetas desde el calendario sin recargar la página.</p>
         <button @click="exportData()" class="mt-4 w-full rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-white/15">Export JSON</button>
       </div>
@@ -84,12 +85,12 @@
     <main class="lg:ml-80 flex-1 p-4 sm:p-6 lg:p-10">
       <header class="no-print mb-8 flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p class="text-xs uppercase tracking-[0.28em] text-amber-300/70">Dark-mode digital kitchen</p>
+          <p class="text-xs uppercase tracking-[0.28em] text-amber-300/70">Cocina digital</p>
           <h2 class="font-display text-3xl text-amber-50" x-text="data.meta.title"></h2>
         </div>
         <div class="flex flex-wrap gap-2">
           <button @click="printCurrentView()" class="rounded-2xl border border-white/10 px-4 py-2 text-sm text-stone-200 hover:bg-white/10">Imprimir vista</button>
-          <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300"class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Iniciar compras</a>
+          <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Iniciar compras</a>
         </div>
       </header>
 
@@ -422,11 +423,11 @@
         </section>
       </section>
 
-      <section id="shopengine" class="max-w-full mt-8"></section>
-      <section id="planner" class="max-w-full mt-8"></section>
-      <section id="cookmode" class="max-w-full mt-8"></section>
-      <section id="flavoratlas" class="max-w-full mt-8"></section>
-      <section id="weighin" class="max-w-full mt-8"></section>
+      <section id="shopengine" x-show="view === 'shopengine'" x-cloak class="max-w-full mt-8"></section>
+      <section id="planner" x-show="view === 'planner'" x-cloak class="max-w-full mt-8"></section>
+      <section id="cookmode" x-show="view === 'cookmode'" x-cloak class="max-w-full mt-8"></section>
+      <section id="flavoratlas" x-show="view === 'flavoratlas'" x-cloak class="max-w-full mt-8"></section>
+      <section id="weighin" x-show="view === 'weighin'" x-cloak class="max-w-full mt-8"></section>
     </main>
   </div>
 

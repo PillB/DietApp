@@ -2,10 +2,10 @@
   "name": "personal-gourmet-kitchen",
   "version": "0.1.0",
   "private": true,
-  "description": "Personal Gourmet Kitchen / Lima market edition \u2014 static recipe, planning and shopping app (see AGENTS.md).",
+  "description": "Personal Gourmet Kitchen / Lima market edition — static recipe, planning and shopping app (see AGENTS.md).",
   "type": "commonjs",
   "scripts": {
-    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs tests/storage.test.cjs tests/store_matches.test.cjs tests/shopper_view.test.cjs tests/planner_core.test.cjs tests/cooking.test.cjs tests/cook_mode.test.cjs tests/flavor_core.test.cjs tests/flavor_graph.test.cjs tests/diet_core.test.cjs tests/flavor_ranking.test.cjs tests/recipe_redteam.test.cjs tests/recipe_ledger.test.cjs tests/deficit_planner.test.cjs tests/i18n.test.cjs tests/composition_audit.test.cjs tests/composition_bridge.test.cjs tests/recipe_correspondence.test.cjs tests/property.test.cjs tests/step_translations.test.cjs tests/weighin.test.cjs tests/calendar_fuzz.test.cjs tests/shopping_range.test.cjs tests/recipe_used_remaining.test.cjs",
+    "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs tests/storage.test.cjs tests/store_matches.test.cjs tests/shopper_view.test.cjs tests/planner_core.test.cjs tests/cooking.test.cjs tests/cook_mode.test.cjs tests/flavor_core.test.cjs tests/flavor_graph.test.cjs tests/diet_core.test.cjs tests/flavor_ranking.test.cjs tests/recipe_redteam.test.cjs tests/recipe_ledger.test.cjs tests/deficit_planner.test.cjs tests/i18n.test.cjs tests/composition_audit.test.cjs tests/composition_bridge.test.cjs tests/recipe_correspondence.test.cjs tests/property.test.cjs tests/step_translations.test.cjs tests/weighin.test.cjs tests/calendar_fuzz.test.cjs tests/shopping_range.test.cjs tests/recipe_used_remaining.test.cjs tests/food_release_control.test.cjs tests/step_consumption.test.cjs",
     "e2e": "node tests/e2e_served.cjs",
     "staging": "node tests/staging_qa.cjs",
     "live": "node tests/e2e_live.cjs",
@@ -17,7 +17,9 @@
     "geometry": "node tests/geometry_audit.cjs",
     "audit": "node tests/comprehensive_live.cjs",
     "r3": "bash tests/release_regression.sh",
-    "sync": "node scripts/sync_data_js.cjs"
+    "sync": "node scripts/sync_data_js.cjs",
+    "candidate:routes": "node tests/candidate_route_audit.cjs",
+    "live:walkthrough": "node tests/live_pages_walkthrough.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
