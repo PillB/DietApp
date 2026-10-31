@@ -189,7 +189,7 @@ function mealPlanApp() {
       const raw = (window.location.hash || '#dashboard').replace(/^#/, '');
       const parts = raw.split('/').filter(Boolean);
       const page = parts[0] || 'dashboard';
-      if (['dashboard', 'calendar', 'recipes', 'knowledge', 'compliance', 'nutrition'].includes(page)) {
+      if (['dashboard', 'calendar', 'recipes', 'knowledge', 'compliance', 'nutrition', 'shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(page)) {
         this.view = page;
       } else if (page === 'week') {
         this.view = 'week';
