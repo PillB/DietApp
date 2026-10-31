@@ -316,7 +316,24 @@ Root-cause trail: 4 real fixes — tuple-vs-int iteration (`most_common()` destr
 Model routing block added to AGENTS.md (falls in line with the global user-wide rules effective this session; discipline: CC-12 ceiling noted for new/changed functions and applied to `flavor-core.js` helpers).
 
 Tests: 103 pass / 0 fail; lint clean; privacy scan PASS (public build set unchanged).
-Next single command/ticket: **P5.2 semantic graph core** (Cuisine/Ingredient/Texture/Taste/Technique/Dish nodes + weighted inferred edges with WHY provenance + uncertainty, fed by atlas aggregates AND the recovered assistant classification commentary labeled as prior-agent commentary, not evidence), then P5.3 UI visualization; P4.4 worksheet remains pending owner data.
+Next single command/ticket: done this pass (P5.2 — part 18).
+
+## Session log — 2026-10-30, session 2, part 18 (P5.2 semantic flavor graph)
+
+Files: `assets/js/flavor-graph.js` (new pure), `tests/flavor_graph.test.cjs` (6 seeded-negative incl. happy path), test list updated.
+
+Graph semantics test-proven:
+- Node kinds: dish / cuisine / taste / texture / technique (enum-enforced); noise categories can never become cuisine nodes (even with lexicon entries).
+- Edges: `dish -(ordered)-> cuisine` with weight = REAL atlas pair count, basis `{kind: 'behavioral-count', confidence: 'observed'}` + the frequency-is-behavioral honesty note baked in.
+- Lexicon edges `cuisine -(pairs-with-flavor)-> taste/texture/technique` — weights are CURATED 0..1 values tagged `{kind:'curated-lexicon', confidence:'inferred', note: why}` and carry the non-evidence disclaimer inline ('NOT behavioral evidence'); weights outside [0,1] REFUSE (no silent normalization), unknown categories refuse (`unknown_category`), unsupported kinds refuse (`bad_edge_kind`).
+- Deterministic pure output guaranteed (serialize-twice identical test) and every node/edge carries provenance fields (P5.2 'why provenance + uncertainty' satisfied structurally).
+
+Debug trail: 2 test defects caught by reading real output (node id lookup missing the `dish:` prefix; case-sensitive honesty-tag match), one fix each — module never changed semantics.
+
+Tests: 109 pass / 0 fail; lint clean; privacy PASS.
+Next single command/ticket: **P5.3 semantic visualization UI** — SVG graph (vanilla first), keyboard-accessible TEXT list alternative (a11y mandatory per roadmap), click a node → inspect evidence panel; then P5.4 recipe ranking with explainable features.
+
+## Update template for next session
 
 ## Update template for next session
 
