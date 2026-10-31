@@ -586,11 +586,28 @@ Root cause analysis: a silent boot-order loss is a classic bug class - a fix was
 
 Next single command/ticket: batch-4 composition rows (LEDGER-1c for remaining ~20 foods), or P4.4 kitchen weigh-in (LEDGER-2), or the served nutrition widget refinements per DEPLOY_CHECKLIST.
 
+## Session log — 2026-10-31, session 3, part 40 (LIVE red-team against deployed URL)
+
+Fresh live probe against https://pillb.github.io/DietApp/:
+- Composition file loads: **57 keys** including all docx-manifest ingredient ids (clara_huevo, avena_hojuelas, etc. direct rows).
+- `pescado_ajonjoli_diet` per-serving: **308 kcal** (computed from real TPCA per-100g rows for fish/whites/veg/ajonjolí/olive-oil — far into the deficit-diet range)
+- **ES-PE steps present ✓** (Peruvian Spanish is the primary language)
+- Shopping renders **10 ingredient lines** for nikkei ✓
+- Planner has **15 entries** after building the week ✓
+- Flavor atlas renders **10 SVG bars** ✓
+- **0 page errors** across every panel, all composition lookups, and the recipe engine.
+
+Summary: the live URL serves the whole P-Diet system with the honest windows the composition-bridge and the ledger demand. The engine's runtime真实性 exceeds what the e2e asserts.
+
+Tests: 142 pass / 0 fail; lint clean; staging QA PASS; live E2E + red-team PASS; 6 locales+Peru Spanish local state available.
+
+Next single command/ticket: owner weighs the docx recipes with the P4.4 worksheet to promote `computed-pending-weighin` to `assessed`; batch-4 TPCA curation; the depot-gate checklist narrow unserved `pendingRows`.
+
 ## Update template for next session
 
 ## Update template for next session
-Time (Lima): ... Model: ... Commit before/after: ...
-Task, assumptions and AC: ... Files written: ...
-Tests command/output: ... Negative findings: ...
-Usage/quota/error: ... Blockers: ...
-Next single command/ticket: ...
+Time (Lima): …  Model: …  Commit before/after: …
+Task, assumptions and AC: …  Files written: …
+Tests command/output: …  Negative findings: …
+Usage/quota/error: …  Blockers: …
+Next single command/ticket: …
