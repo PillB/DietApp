@@ -663,6 +663,17 @@ Files: data/reference/food-composition-tpca.v1.json (vitamin columns synced), as
 Tests: 154 pass / 0 fail; e2e PASS; lint clean; pushed 55bf42c.
 Next single command/ticket: the DASH-style daily vitamin coverage view (does the planned week meet vitamin A/C/folate/iron targets per published RDA?) — a new ledger item (LEDGER-8) for the weekly micronutrient adequacy summary; requires only engine work (targets from published RDA tables) + a served panel.
 
+## Session log — 2026-10-31, session 3, part 45 (mineral fix verified live + adequacy engine)
+
+VERIFIED LIVE at the Pages URL after rebuild (b3b5573): the pescado card's Micros line now reads SANE values — 'Ca 317 mg · Fe 0.9 mg · Zn 0.7 mg · Na 14 mg' (the pre-fix card showed Fe 185 mg = phosphorus!). The column-offset bug is dead in production.
+
+New: assets/js/adequacy-core.js + tests/adequacy.test.cjs (5 tests) — the weekly adequacy engine: NIH ODS adult RDA table constants (vit A 900 µg / C 90 mg / folate 400 µg / Ca 1000 mg / Fe 8-18 mg sex-split / Zn 11-8 mg sex-split / Na 2300 ceiling); aggregateWeek(weekPlan) accumulates via computedPerServing × portions × days; adequacyWeek returns per-nutrient status ('adequate' / 'below-rda' / 'under-ceiling' / 'inadequate-no-data' for empty weeks) with the honest 'computed-pending-weighin' basis + RDA source string. Sex-specific iron/zinc proven by test.
+
+Serving note: the 7×2 nikkei week covers male vitamin A 'adequate', Na 'under-ceiling'; empty weeks are flagged inadequate-no-data (never rubber-stamped).
+
+Tests: 154 pass / 0 fail; lint clean; pushed b3b5573 + this commit.
+Next single command/ticket: serve the adequacy panel (per-week nutrient coverage table in the planner UI) + the owner weigh-in worksheet (P4.4) remains the assessed-promotion gate.
+
 ## Update template for next session
 
 ## Update template for next session
