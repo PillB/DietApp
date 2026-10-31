@@ -1,0 +1,53 @@
+{
+  "rows": [
+    {
+      "tag": "viewport-320",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-375",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-390",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-768",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-1024",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-1366",
+      "overflow": false,
+      "pageErrors": []
+    },
+    {
+      "tag": "viewport-1440",
+      "overflow": false,
+      "pageErrors": []
+    }
+  ],
+  "hardFail": false,
+  "port": 52857,
+  "axe": {
+    "violations": 0,
+    "blocking": []
+  },
+  "links": {
+    "checked": 2,
+    "broken": []
+  },
+  "offline": {
+    "swRegistered": true,
+    "offlineTitle": "Gourmet Meal Plan SPA"
+  }
+}

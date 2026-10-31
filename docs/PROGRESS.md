@@ -449,6 +449,22 @@ Debug trail: 3 rounds of self-declared requirements caused 2 small bugs (flavor 
 Tests: 139 pass / 0 fail; E2E PASS (6 flows); lint clean.
 Next single command/ticket: production-staging QA bundle per docs/QA_RELEASE.md (offline/SW, links, axe) + attempt LEDGER-1 retry of web research; then deploy-gate checklist for the owner.
 
+## Session log — 2026-10-31, session 3, part 28 (staging QA + LEDGER-1 recovery)
+
+Files: tests/staging_qa.cjs (NEW: `npm run staging` — 7-viewport overflow sweep, axe accessibility run (critical/serious gate), internal-link 404 check, SW-registered + OFFLINE reload check recorded honestly as SW-cache topic for owner), @axe-core/playwright devDependency (pinned in package.json), assets/js/flavor-ui.js (SVG role fix img→list resolving axe 'aria-required-parent' CRITICAL), docs/RECIPE_DESIGN_STANDARD.md (NEW, research-sourced), docs/ISSUES_LEDGER.md updated (LEDGER-1 recovered with sub-items 1a/1b DONE + 1c OPEN for TPCA/USDA composition datasets).
+
+Ledger-1 websearch retried TODAY and SUCCEEDED (tool recovered):
+- FoodSafety.gov safe-temperature chart verified EXACTLY against our constants (74/71/63+3-min rest/74; reviewed 2024-11-21) — the numbers in cooking-core.js are authoritative-source-cited, not invented; cross-checked against FSIS chart as well.
+- America's Test Kitchen 5-recipe-test methodology + home-tester ≥80% make-again gate + mise-honesty principle run into docs/RECIPE_DESIGN_STANDARD.md and encoded as our 5-lens red-team mandate (already passing per tests/recipe_redteam.test.cjs).
+- TPCA/USDA composition-table search remains unresolved (LEDGER-1c kept OPEN with the quoted 'No search results found' for the TPCA dataset query) — nutrition perServing wiring (LEDGER-3) still gated on that.
+
+Staging QA `npm run staging` PASS: 7 viewports 0 overflow; axe 0 blocking violations; 2 internal links OK; SW registered; offline reload serves the app shell (title); no console errors in any sweep. Debug trail: 3 quick fixes — AxeBuilder import (named/`{ default }`), constructor `{ page }` (not page), browser.newContext requirement; plus the SVG role fix; a CC-15 violation on plannerFlow required extracting assertIntlSwitches/helpers to hold the CC-12/15 gate.
+
+Tests: 139 pass / 0 fail; npm run staging PASS; e2e 6 flows PASS; lint clean.
+Next single command/ticket: (1) TPCA composition-table hunt (LEDGER-3) — search or dataset decision; (2) deploy-gate checklist for Pages (needs owner URL/consent).
+
+## Update template for next session
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …

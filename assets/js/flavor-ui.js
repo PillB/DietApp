@@ -82,7 +82,7 @@
         <button id="flavor-demo" class="rounded border border-stone-500 px-3 py-1 text-xs text-stone-300">${tF("flavor.loadDemo")}</button>
       </div>
       <div id="flavor-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80">(no atlas loaded)</div>
-      <svg id="flavor-bars" role="img" aria-label="dish frequency bars" class="mt-3 w-full" viewBox="0 0 640 240"></svg>
+      <svg id="flavor-bars" role="list" aria-label="dish frequency bars" class="mt-3 w-full" viewBox="0 0 640 240"></svg>
       <div id="flavor-caveats" class="mt-2 text-xs text-stone-400"></div>
       <ol id="flavor-ranks" class="mt-3 space-y-1" tabindex="0"></ol>
       <div id="flavor-inspector" class="mt-3 rounded border border-stone-700 p-3 text-sm text-stone-300" aria-live="polite"></div>

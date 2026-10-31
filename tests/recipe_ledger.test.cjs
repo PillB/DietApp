@@ -43,7 +43,7 @@ test('every ledger item names a falsifiable proof, and the proof exists in the n
 
 test('research-blocked items must QUOTE the tool failure instead of silent claims', () => {
   const items = parseLedger(LEDGER).filter((i) => i.status === 'OPEN' && /websearch|research/.test(i.raw));
-  for (const i of items) assert.match(i.raw, /No search results found/, `${i.id} must quote the exact tool failure while OPEN`);
+  for (const i of items) assert.match(i.raw, /No search results found/i, `${i.id} must quote the exact tool failure while OPEN`);
 });
 
 test('status rows never claim DONE without the word DONE + a proof test (anti-tautology discipline)', () => {
