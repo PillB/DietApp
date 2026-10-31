@@ -116,7 +116,58 @@ async function shoppingFlow(port, report) {
   return failed;
 }
 
-/** P2.2 planner flow: repeat weekly ×2 from the added entry; expect family growth. */
+/** P6 language-switch assertions split out of the planner flow (CC budget). */
+async function assertIntlSwitches(page, steps) {
+  await page.selectOption('#planner-lang', 'es-PE');
+  await page.waitForTimeout(200);
+  steps.langEspe = await page.locator('#planner-h2', { hasText: 'Planificador' }).count();
+  steps.shoppingHeaderEs = await page.locator('#shopengine-h2', { hasText: 'Lista de compras' }).count();
+  await page.selectOption('#planner-lang', 'zh-Hans');
+  await page.waitForTimeout(200);
+  steps.langZh = await page.locator('#planner-h2', { hasText: '计划器' }).count();
+  steps.cookHeaderZh = await page.locator('#cookmode h2', { hasText: '烹饪模式' }).count();
+  await page.selectOption('#planner-lang', 'ja');
+  await page.waitForTimeout(200);
+  steps.langJa = await page.locator('#planner-h2', { hasText: 'プランナー' }).count();
+  await page.selectOption('#planner-lang', 'en');
+  await page.waitForTimeout(200);
+}
+
+async function assertDeficitBuilder(page, steps) {
+  await page.selectOption('#deficit-target', '1400');
+  await page.click('#deficit-build-btn');
+  await page.waitForTimeout(200);
+  steps.deficitRefusal = (await page.locator('#planner-status').textContent()).includes('unacknowledged_aggressive');
+  await page.selectOption('#deficit-target', '1500');
+  await page.click('#deficit-build-btn');
+  await page.waitForTimeout(300);
+  steps.afterDeficit = await countPlannerRows(page);
+  steps.deficitStatus = (await page.locator('#planner-status').textContent()).trim().slice(0, 70);
+  steps.deficitExplanations = await page.locator('#deficit-explanations div').count();
+}
+
+async function countPlannerRows(page) {
+  return await page.locator('#planner-entries li').count();
+}
+
+async function copyLastRow(page) {
+  const lastRow = page.locator('#planner-entries li').last();
+  await lastRow.locator('[data-op="copydate"]').fill('2026-11-20');
+  await lastRow.locator('[data-op="copy"]').click();
+  await page.waitForTimeout(200);
+  return await page.locator('#planner-entries li').count();
+}
+
+async function addNikkeiEntry(page) {
+  await page.fill('#engine-from', '2026-11-01');
+  await page.fill('#engine-to', '2026-11-30');
+  await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
+  await page.fill('#engine-date', '2026-11-03');
+  await page.fill('#engine-portions', '4');
+  await page.click('#engine-plan-form button[type="submit"]');
+  await page.waitForTimeout(200);
+}
+
 async function plannerFlow(port, report) {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
@@ -125,61 +176,38 @@ async function plannerFlow(port, report) {
   await page.goto(`http://localhost:${port}/`, { waitUntil: 'load' });
   await page.waitForTimeout(1500); // boot + fixture
   const steps = {};
-  await page.fill('#engine-from', '2026-11-01');
-  await page.fill('#engine-to', '2026-11-30');
-  await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
-  await page.fill('#engine-date', '2026-11-03');
-  await page.fill('#engine-portions', '4');
-  await page.click('#engine-plan-form button[type="submit"]');
+  await addNikkeiEntry(page);
   await page.waitForTimeout(200);
-  steps.beforeRepeat = await page.locator('#planner-entries li').count();
+  steps.beforeRepeat = await countPlannerRows(page);
   await page.click('[data-op="repeat"]');
   await page.waitForTimeout(200);
-  steps.afterRepeat = await page.locator('#planner-entries li').count();
+  steps.afterRepeat = await countPlannerRows(page);
   steps.scrollText = await page.locator('#planner-status').textContent();
   // repeat-family badge: ⟲×N appears on generated rows (count == weeks+source)
   steps.familyBadges = await page.locator('#planner-entries span[title^="repeat family"]').count();
+
   // separate copy-date semantics: copy the LAST listed row into a distinct date
-  const lastRow = page.locator('#planner-entries li').last();
-  await lastRow.locator('[data-op="copydate"]').fill('2026-11-20');
-  await lastRow.locator('[data-op="copy"]').click();
-  await page.waitForTimeout(200);
-  steps.afterCopy = await page.locator('#planner-entries li').count();
+  steps.afterCopy = await copyLastRow(page);
   // DEFICIT week builder: 1500 kcal without ack builds; 1400 without ack refuses
-  await page.selectOption('#deficit-target', '1400');
-  await page.click('#deficit-build-btn');
-  await page.waitForTimeout(200);
-  steps.deficitRefusal = (await page.locator('#planner-status').textContent()).includes('unacknowledged_aggressive');
-  await page.selectOption('#deficit-target', '1500');
-  await page.click('#deficit-build-btn');
-  await page.waitForTimeout(300);
-  steps.afterDeficit = await page.locator('#planner-entries li').count();
-  steps.deficitStatus = (await page.locator('#planner-status').textContent()).trim().slice(0, 70);
-  steps.deficitExplanations = await page.locator('#deficit-explanations div').count();
-  // P6 language switcher: change planner language and assert the title re-renders
-  await page.selectOption('#planner-lang', 'es-PE');
-  await page.waitForTimeout(200);
-  steps.langEspe = await page.locator('#planner-h2', { hasText: 'Planificador' }).count();
-  await page.selectOption('#planner-lang', 'zh-Hans');
-  await page.waitForTimeout(200);
-  steps.langZh = await page.locator('#planner-h2', { hasText: '计划器' }).count();
-  await page.selectOption('#planner-lang', 'ja');
-  await page.waitForTimeout(200);
-  steps.langJa = await page.locator('#planner-h2', { hasText: 'プランナー' }).count();
-  await page.selectOption('#planner-lang', 'en');
-  await page.waitForTimeout(200);
+  await assertDeficitBuilder(page, steps);
+  // P6 language switcher through the split helper (CC budget)
+  await assertIntlSwitches(page, steps);
   // shopping line growth via shared refresh (4×3 portions in range now)
   steps.shoppingLinesAfter = await page.locator('#engine-groups li').count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_planner_flow.png') });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat
-    || !steps.deficitRefusal || steps.afterDeficit <= steps.afterCopy || !String(steps.deficitStatus).includes('moderate') || steps.deficitExplanations === 0
-    || steps.langEspe === 0 || steps.langZh === 0 || steps.langJa === 0;
+  const failed = plannerFlowFailed(steps) || pageErrors.length > 0;
   report.rows.push({ tag: 'planner-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== planner-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
     : `\n== planner-flow (PASS) == steps: ${JSON.stringify(steps)}`);
   return failed || pageErrors.length > 0;
+}
+
+function plannerFlowFailed(steps) {
+  return steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat
+    || !steps.deficitRefusal || steps.afterDeficit <= steps.afterCopy || !String(steps.deficitStatus).includes('moderate') || steps.deficitExplanations === 0
+    || steps.langEspe === 0 || steps.langZh === 0 || steps.langJa === 0 || steps.shoppingHeaderEs === 0 || steps.cookHeaderZh === 0;
 }
 
 /** P4.1 cook-mode flow: default recipe, badges, extraction verdicts, leftover advice. */

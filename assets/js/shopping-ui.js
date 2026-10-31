@@ -40,6 +40,13 @@
     bind(c, model, section);
     render(c, model, section, { silent: false });
     root.__pgkRefreshShopping = () => render(c, model, section, { silent: true });
+    if (root.I18N) root.I18N.onChange(() => {
+      section.dataset.built = '0';
+      buildStaticSkeleton(section);
+      bind(c, model, section);
+      section.querySelector('#engine-plan-form').dataset.recipesReady = '0';
+      render(c, model, section, { silent: true });
+    });
     return { mounted: true, model };
   }
 
@@ -65,23 +72,24 @@
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
+    const t = (k) => (root.I18N ? root.I18N.t(k) : null);
     section.innerHTML = `
-      <h2 id="shopengine-h2" class="text-xl font-bold text-amber-200">Shopping list — canonical engine (development preview)</h2>
-      <p class="text-sm text-stone-300">Exact-rational quantities from your plan; every store row is <em>not checked</em> (no stock or price claims). Grouped by food family; es-PE names shown with draft tag pending native review.</p>
+      <h2 id="shopengine-h2" class="text-xl font-bold text-amber-200">${t('shopping.title')}</h2>
+      <p class="text-sm text-stone-300">${t('shopping.note')}</p>
       <form id="engine-plan-form" class="flex flex-wrap gap-3 items-end">
-        <label class="text-sm">Recipe
+        <label class="text-sm">${t('shopping.recipe')}
           <select id="engine-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
-        <label class="text-sm">Date
+        <label class="text-sm">${t('shopping.date')}
           <input id="engine-date" type="date" required class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
-        <label class="text-sm">Portions
+        <label class="text-sm">${t('shopping.portions')}
           <input id="engine-portions" type="number" min="1" value="4" class="bg-stone-800 border border-stone-600 rounded px-2 py-1 w-20"></label>
-        <button type="submit" class="bg-amber-400 text-stone-950 font-bold rounded px-3 py-1 focus:outline-none focus:ring-2">Add plan entry</button>
+        <button type="submit" class="bg-amber-400 text-stone-950 font-bold rounded px-3 py-1 focus:outline-none focus:ring-2">${t('shopping.addEntry')}</button>
       </form>
       <div class="flex flex-wrap gap-3 items-end mt-3">
-        <label class="text-sm">From <input id="engine-from" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
-        <label class="text-sm">To <input id="engine-to" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
-        <button id="engine-copy" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">Copy CSV</button>
-        <button id="engine-print" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">Print list</button>
+        <label class="text-sm">${t('shopping.from')} <input id="engine-from" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
+        <label class="text-sm">${t('shopping.to')} <input id="engine-to" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
+        <button id="engine-copy" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">${t('shopping.copyCsv')}</button>
+        <button id="engine-print" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">${t('shopping.printList')}</button>
       </div>
       <div id="engine-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80"></div>
       <div id="engine-warnings" class="mt-3 text-xs text-stone-300"></div>

@@ -13,6 +13,8 @@
 })(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
 
+  function tC(key) { return root.I18N ? root.I18N.t(key) : key; }
+
   function init(opts) {
     const dom = opts.dom || document;
     const section = dom.getElementById('cookmode');
@@ -37,22 +39,39 @@
     const render = () => renderRecipe(section, opts.model);
     select.addEventListener('change', render);
     const cookDate = section.querySelector('#cook-date');
-    cookDate.addEventListener('change', () => renderLeftovers(section, opts));
-    section.querySelector('#cook-leftovers').addEventListener('click', () => renderLeftovers(section, opts));
+    cookDate.addEventListener('change', () => renderLeftovers(section));
+    section.querySelector('#cook-leftovers').addEventListener('click', () => renderLeftovers(section));
+    if (root.I18N) root.I18N.onChange(() => {
+      section.dataset.built = '0';
+      buildStaticSkeleton(section);
+      rebindCook(section, opts);
+      renderRecipe(section, opts.model);
+    });
+    rebindCook(section, opts);
     render();
     return { mounted: true };
+  }
+
+  function rebindCook(section, opts) {
+    const select = section.querySelector('#cook-recipe');
+    select.innerHTML = [...opts.model.recipes, ...(opts.model.docxRecipes || [])]
+      .map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}${r.sourceFamily === 'owner-docx' ? ' ⭐' : ''}</option>`).join('');
+    select.addEventListener('change', () => renderRecipe(section, opts.model));
+    const cookDate = section.querySelector('#cook-date');
+    cookDate.addEventListener('change', () => renderLeftovers(section));
+    section.querySelector('#cook-leftovers').addEventListener('click', () => renderLeftovers(section));
   }
 
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
     section.innerHTML = `
-      <h2 class="text-xl font-bold text-amber-200">Cook mode (development preview)</h2>
-      <p class="text-sm text-stone-300">Step cards with gate verdicts. Temperature claims are extracted from prose (unverified); food-type is inferred and labeled; thermometer checkpoints are required for protein steps before anything is EVER 'validated'.</p>
+      <h2 class="text-xl font-bold text-amber-200">${tC("cookmode.title")}</h2>
+      <p class="text-sm text-stone-300">${tC("cookmode.subtitle")}</p>
       <div class="flex flex-wrap items-end gap-3 mt-2">
         <label class="text-sm">Recipe <select id="cook-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
-        <label class="text-sm">Cooked on <input id="cook-date" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
-        <button id="cook-leftovers" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">Leftover status</button>
+        <label class="text-sm">${tC("cookmode.cookedOn")} <input id="cook-date" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
+        <button id="cook-leftovers" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">${tC("cookmode.leftoverStatus")}</button>
       </div>
       <div id="cook-badge" class="mt-2 text-sm"></div>
       <div id="cook-diagram" class="mt-3"></div>

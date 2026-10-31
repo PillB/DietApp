@@ -438,7 +438,16 @@ Trade-off stated: this slice covers the four engine panels' chrome and statuses;
 Tests: 139 pass / 0 fail; E2E PASS (6 flows); lint clean.
 Next single command/ticket: extend i18n to shopping/cook/flavor panels' remaining static strings + expand dictionary tokens (serverless plan: one token audit script), then production-staging QA per docs/QA_RELEASE.md (offline/SW behavior + link checks + axe).
 
-## Update template for next session
+## Session log — 2026-10-31, session 3, part 27 (P6 spread across panels)
+
+Files: assets/js/shopping-ui.js + cook-mode-ui.js + flavor-ui.js (chrome strings routed through I18N; live language switches rebuild the panel skeletons and rebind handlers), assets/js/i18n.js (added cookmode.subtitle token), tests/e2e_served.cjs (intl switch steps now assert PANEL-level localization: shopping header es-PE + cook h2 zh-Hans; helpers split to hold CC within 12), E2E full re-run.
+
+E2E planner-flow PASS, extended: switcher cycles es-PE → SHOPPING header 'Lista de compras' ✓ and zh-Hans → COOK header '烹饪模式' ✓ + planner title in three languages; flows/rank/repeat/copy/deficit checks unchanged PASS.
+Spot-note: flavor demo button hides when no demo atlas (honesty); panel i18n remains chrome-only — recipe texts untouched per handover §9.
+Debug trail: 3 rounds of self-declared requirements caused 2 small bugs (flavor tF scope; cookbook rebind lacks re-render) fixed by reading browser output; CC gates enforced with helper extraction in e2e (plannerFlow/assertIntlSwitches/assertDeficitBuilder/addNikkeiEntry/copyLastRow).
+
+Tests: 139 pass / 0 fail; E2E PASS (6 flows); lint clean.
+Next single command/ticket: production-staging QA bundle per docs/QA_RELEASE.md (offline/SW, links, axe) + attempt LEDGER-1 retry of web research; then deploy-gate checklist for the owner.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

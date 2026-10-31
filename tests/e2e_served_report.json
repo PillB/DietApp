@@ -1,5 +1,5 @@
 {
-  "port": 50854,
+  "port": 52037,
   "rows": [
     {
       "tag": "desktop",
@@ -60,7 +60,9 @@
         "deficitStatus": "Week built for 1500 kcal (moderate): 14",
         "deficitExplanations": 3,
         "langEspe": 1,
+        "shoppingHeaderEs": 1,
         "langZh": 1,
+        "cookHeaderZh": 1,
         "langJa": 1,
         "shoppingLinesAfter": 10
       },

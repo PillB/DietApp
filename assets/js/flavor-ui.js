@@ -60,27 +60,26 @@
         section.querySelector('#flavor-inspector').textContent = '';
       }
     });
-    // demo atlas so evaluation does not require the owner's file
-    if (root.FLAVOR_ATLAS_DEMO) {
-      section.querySelector('#flavor-demo').addEventListener('click', () => {
-        const profile = root.FlavorCore.buildTasteProfile(root.FLAVOR_ATLAS_DEMO, {});
-        renderProfile(section, profile);
-        section.querySelector('#flavor-status').textContent = 'DEMO profile loaded (synthetic — not personal data)';
-      });
-    }
+    if (root.I18N) root.I18N.onChange(() => {
+      const currentStatus = section.querySelector('#flavor-status').textContent;
+      section.dataset.built = '0';
+      buildStaticSkeleton(section);
+      section.querySelector('#flavor-status').textContent = currentStatus;
+    });
     return { mounted: true };
   }
 
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
+    const tF = (key) => (root.I18N ? root.I18N.t(key) : key);
     section.innerHTML = `
-      <h2 id="flavoratlas-h2" class="text-xl font-bold text-amber-200">Flavor Atlas (development preview)</h2>
+      <h2 id="flavoratlas-h2" class="text-xl font-bold text-amber-200">${tF("flavor.title")}</h2>
       <p class="text-sm text-stone-300">Frequency counts from the order workbook — displayed as behavioral aggregates with their caveats. Upload the atlas JSON locally (it never leaves this browser).</p>
       <div class="flex flex-wrap items-end gap-3 mt-2">
         <label class="text-sm">Atlas JSON
           <input id="flavor-file" type="file" accept=".json,application/json" class="text-xs border border-stone-600 rounded px-2 py-1"></label>
-        <button id="flavor-demo" class="rounded border border-stone-500 px-3 py-1 text-xs text-stone-300">Load DEMO data (synthetic)</button>
+        <button id="flavor-demo" class="rounded border border-stone-500 px-3 py-1 text-xs text-stone-300">${tF("flavor.loadDemo")}</button>
       </div>
       <div id="flavor-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80">(no atlas loaded)</div>
       <svg id="flavor-bars" role="img" aria-label="dish frequency bars" class="mt-3 w-full" viewBox="0 0 640 240"></svg>
@@ -96,8 +95,7 @@
     renderList(section, profile);
     renderCaveats(section, profile);
   }
-
-  function renderBars(section, items) {
+function renderBars(section, items) {
     const svg = section.querySelector('#flavor-bars');
     const top = items.slice(0, 10);
     const max = Math.max(1, ...top.map((x) => x.count));
