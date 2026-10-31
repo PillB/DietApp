@@ -640,6 +640,18 @@ The two calorie surfaces are now aligned: legacy panel (per-user TDEE with defic
 Tests: 154 pass / 0 fail; e2e 6 flows PASS; staging PASS; live PASS; lint clean.
 Next single command/ticket: owner actions remain (LEDGER-2 weigh-in; LEDGER-5 store verification; LEDGER-7 dedup decision) + LEDGER-1c batch-3 label/brand lane. Optional dev round: v3 Alpine chrome es-PE-first localization (LEDGER-6 remainder).
 
+## Session log — 2026-10-31, session 3, part 43 (composition COMPLETE — verified live on Pages)
+
+The salmon gap closed via USDA FoodData Central FDC 175167 (the handover's designated fallback source): 208 kcal / 20.42 g protein / 13.42 g fat / 59 mg Na per 100 g raw Atlantic farmed — cross-verified across 4 independent FDC mirrors. Audit test extended: null-code rows now accept EITHER an NS note OR a documented `usda-fdc/<id>` source.
+
+VERIFIED LIVE after the Pages rebuild:
+- nikkei-salmon-bowl: 693.2 kcal · 37.8 g protein · 3.6 g fiber — **all uses composed ✓** (0 missing rows)
+- pescado_ajonjoli_diet: 307.9 kcal · 31.2 g protein · 7.2 g fiber — **all uses composed ✓**
+Both cards show the Spanish es-PE label + the NOT-a-weighed-yield disclaimer. The composition chain is now complete for all 11 recipes' protein anchors; the only remaining NS rows are the composite fruta_picada_estado (owner picks the fruit) and the SKYR brand label.
+
+Tests: 154 pass / 0 fail; e2e/live/staging PASS; ledger D17 recorded; pushed 217ae95.
+Next single command/ticket: LEDGER-4's preset panel + LEDGER-2's weigh-in remain owner-action; optional next dev round: per-recipe VITAMIN coverage display (vitamin A/B12/D/selemium from TPCA columns — the crawl carries them) to answer the owner's 'micros and vitamins' requirement fully.
+
 ## Update template for next session
 
 ## Update template for next session
