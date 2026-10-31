@@ -223,10 +223,10 @@ function mealPlanApp() {
     complianceMetrics() {
       const counts = this.data.complianceAudit?.counts || {};
       return [
-        { label: 'Recipes', value: counts.recipesReviewed || this.data.recipes.length, note: 'Every recipe has a guideline audit block.' },
-        { label: 'Menus', value: counts.dailyMenusReviewed || this.data.dailyPlans.length, note: 'All daily meal slots were checked for recipe links.' },
-        { label: 'Lists', value: counts.shoppingListsReviewed || this.data.shoppingLists.length, note: 'Shopping lists remove processed-meat and additive traps.' },
-        { label: 'Rule set', value: (this.data.dietGuidelineRules || []).length, note: 'PDF-derived checks embedded in the data layer.' }
+        { label: 'Recetas', value: counts.recipesReviewed || this.data.recipes.length, note: 'Cada receta tiene un bloque de auditoría de guidelines.' },
+        { label: 'Menús', value: counts.dailyMenusReviewed || this.data.dailyPlans.length, note: 'Todos los espacios de comida diarios fueron verificados con enlaces de receta.' },
+        { label: 'Listas', value: counts.shoppingListsReviewed || this.data.shoppingLists.length, note: 'Las listas de compras retiran carnes procesadas y trampas de aditivos.' },
+        { label: 'Reglas', value: (this.data.dietGuidelineRules || []).length, note: 'Verificaciones derivadas del PDF incrustadas en la capa de datos.' }
       ];
     },
 
