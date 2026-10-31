@@ -35,19 +35,19 @@
 
   function aggregateWeek(weekPlan, composition) {
     const totals = emptyTotals();
-    let missingRows = 0;
+    let missing = 0;
     for (const item of weekPlan || []) {
       const per = N.computedPerServing(item.recipe, composition);
       const factor = (item.portionsPerDay || 1) * (item.days || 7);
       for (const k of Object.keys(totals)) {
         if (per[k] != null) totals[k] += per[k] * factor;
       }
-      totals.__missing = (totals.__missing || 0) + per.missingRows;
+      missing += per.missingRows;
     }
     const r1 = (x) => Math.round(x * 10) / 10;
     const clean = {};
-    for (const [k, v] of Object.entries(totals)) if (k !== '__missing') clean[k] = r1(v);
-    return { totals: clean, missingRows: totals.__missing || 0, perServingBasis: 'computed-pending-weighin' };
+    for (const [k, v] of Object.entries(totals)) clean[k] = r1(v);
+    return { totals: clean, missingRows: missing, perServingBasis: 'computed-pending-weighin' };
   }
 
   function adequacyRow(id, actual, target, kind) {
