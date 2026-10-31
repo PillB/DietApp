@@ -24,6 +24,7 @@
     'nav.week': { 'en': 'Weekly Menus', 'es-PE': 'Menús semanales', 'zh-Hans': '每周菜单', 'hi': 'साप्ताहिक मेनू', 'de': 'Wochenmenüs', 'ja': '週メニュー' },
     'nav.recipes': { 'en': 'Recipes', 'es-PE': 'Recetas', 'zh-Hans': '食谱', 'hi': 'व्यंजन', 'de': 'Rezepte', 'ja': 'レシピ' },
     'nav.shopping': { 'en': 'Shopping Lists', 'es-PE': 'Listas de compras', 'zh-Hans': '购物清单', 'hi': 'शॉपिंग सूची', 'de': 'Einkaufslisten', 'ja': '買い物リスト' },
+    'nav.shopengine': { 'en': 'Plan-based shopping', 'es-PE': 'Compras según tu plan', 'zh-Hans': '按计划购物', 'hi': 'योजना से खरीदारी', 'de': 'Einkauf nach Plan', 'ja': '献立から買い物' },
     'nav.compliance': { 'en': 'DGA Review', 'es-PE': 'Revisión DGA', 'zh-Hans': '准则审查', 'hi': 'डीजीए समीक्षा', 'de': 'DGA-Prüfung', 'ja': 'ガイドライン確認' },
     'nav.nutrition': { 'en': 'Nutrition & Portions', 'es-PE': 'Nutrición y porciones', 'zh-Hans': '营养与份量', 'hi': 'पोषण और भाग', 'de': 'Ernährung & Portionen', 'ja': '栄養と份量' },
     'nav.knowledge': { 'en': 'Taste DNA', 'es-PE': 'ADN del sabor', 'zh-Hans': '口味DNA', 'hi': 'स्वाद DNA', 'de': 'Geschmacks-DNA', 'ja': '味のDNA' },
