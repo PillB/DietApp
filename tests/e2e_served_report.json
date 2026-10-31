@@ -1,5 +1,5 @@
 {
-  "port": 61409,
+  "port": 62242,
   "rows": [
     {
       "tag": "desktop",
@@ -69,7 +69,11 @@
         "sixtyThreeClaim": 2,
         "failsAuthority": 0,
         "reviewPending": 1,
-        "leftoverStatus": "within-usda-window — Within the USDA 3-4 days refrigerated ("
+        "leftoverStatus": "within-usda-window — Within the USDA 3-4 days refrigerated (",
+        "docxDiagram": 1,
+        "diagramStations": 3,
+        "diagramFishTokens": 1,
+        "docxCoveredGate": 1
       },
       "failed": false
     },

@@ -177,11 +177,18 @@ async function cookFlow(port, report) {
   steps.failsAuthority = await page.locator('#cook-steps', { hasText: 'fails-authoritative-floor' }).count();
   steps.reviewPending = await page.locator('#cook-review-status', { hasText: 'not ready for publication' }).count();
   await page.click('#cook-leftovers');
-  await page.waitForTimeout(150);
   steps.leftoverStatus = (await page.locator('#cook-leftover-result').textContent()).trim().slice(0, 60);
+  // docx ⭐ recipes + CFE diagram rendering
+  await page.selectOption('#cook-recipe', 'pescado_ajonjoli_diet');
+  await page.waitForTimeout(200);
+  steps.docxDiagram = await page.locator('#cook-diagram table').count();
+  steps.diagramStations = await page.locator('#cook-diagram thead th').count();
+  steps.diagramFishTokens = await page.locator('#cook-diagram', { hasText: 'filete_pescado_blanco' }).count();
+  steps.docxCoveredGate = await page.locator('#cook-steps', { hasText: '63°C' }).count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_cook_flow.png') });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0;
+  const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0
+    || steps.docxDiagram === 0 || steps.diagramStations < 3 || steps.diagramFishTokens === 0 || steps.docxCoveredGate === 0;
   report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== cook-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`

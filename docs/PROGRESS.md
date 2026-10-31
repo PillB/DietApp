@@ -386,7 +386,16 @@ Ledger checker semantics: every item names `file :: test`; conflicts caught & fi
 Process bug caught: I overwrote tests/recipe_redteam.test.cjs with the ledger test — restored harness from memory + verified identical lens coverage; lesson: new test files get their own name the FIRST time (recorded in PROGRESS).
 
 Tests: 131 pass / 0 fail; lint clean; privacy PASS.
-Next single command/ticket: (1) print/serve a Rendering for the CFE diagrams on the served site (cook-mode step cards draw the diagram above steps); (2) recipe NUTRITION composition wiring startup (TPCA lookup script — needs web or offline table decision); (3) menu planning merge of the 7 weighed + 4 docx recipes into the owner's deficit week with DietCore gates.
+
+## Session log — 2026-10-31, session 3, part 23 (CFE diagrams served + docx recipes in cook mode)
+
+Files: `assets/js/cook-mode-ui.js` (docx⭐ recipes merged into the cook selector; per-step es-PE line + missing-mise warning; renderDiagram renders the cooking-for-engineers table w/ caption, scope=col headers, station columns, per-row time/temp; a11y <table> structure), `index.html` (loads data/canonical JSON before boot), `tests/e2e_served.cjs` cook-flow extended.
+
+E2E cook-flow PASS (extended): docx recipe `pescado_ajonjoli_diet` selectable (⭐ marker), CFE diagram table present with 3 station columns + fish token + 63°C coverage line; nikkei flow untouched; 0 page errors. Diagram id/caption + station header remain visible to screen readers via native table semantics.
+data/canonical/docx-diet-recipes-canon.v1.json is now a SERVED asset (public; validated by red-team 5 lenses; owner-decree style exclusion not needed — not private).
+
+Tests: 131 pass / 0 fail; lint clean; E2E PASS (6 flows).
+Next single command/ticket: merge the 7 weighed + 4 docx recipes into an owner DEFICIT WEEK in the planner (DietCore gates + FlavorRanking visible explanations on pick), then P6 locale pass en route to production staging.
 
 ## Update template for next session
 

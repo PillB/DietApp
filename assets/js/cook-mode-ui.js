@@ -18,8 +18,22 @@
     const section = dom.getElementById('cookmode');
     if (!section || !opts.model) return { mounted: false };
     buildStaticSkeleton(section);
+    if (root.DOCX_DIET_RECIPES) {
+      opts.model.docxRecipes = root.DOCX_DIET_RECIPES.recipes.map((r) => ({
+        ...r.meta,
+        equipment: (r.meta.equipment || []).map((e) => String(e).split('|')[0]),
+        ingredients: r.ingredients,
+        steps: r.steps,
+        flavorTags: r.meta.flavorTags || [],
+        diagram: r.diagram,
+        mise_en_place: r.mise_en_place,
+        allergens: r.allergens,
+        sourceFamily: 'owner-docx',
+      }));
+    }
+    const allRecipes = () => [...opts.model.recipes, ...(opts.model.docxRecipes || [])];
     const select = section.querySelector('#cook-recipe');
-    select.innerHTML = opts.model.recipes.map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}</option>`).join('');
+    select.innerHTML = allRecipes().map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}${r.sourceFamily === 'owner-docx' ? ' ⭐' : ''}</option>`).join('');
     const render = () => renderRecipe(section, opts.model);
     select.addEventListener('change', render);
     const cookDate = section.querySelector('#cook-date');
@@ -41,6 +55,7 @@
         <button id="cook-leftovers" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">Leftover status</button>
       </div>
       <div id="cook-badge" class="mt-2 text-sm"></div>
+      <div id="cook-diagram" class="mt-3"></div>
       <ol id="cook-steps" class="mt-3 space-y-2"></ol>
       <div id="cook-leftover-result" class="mt-3 text-xs text-stone-300"></div>
       <div id="cook-review-status" class="mt-3 text-xs"></div>
@@ -49,7 +64,7 @@
 
   function renderRecipe(section, model) {
     const id = section.querySelector('#cook-recipe').value;
-    const recipe = model.recipes.find((r) => r.id === id);
+    const recipe = [...model.recipes, ...(model.docxRecipes || [])].find((r) => r.id === id);
     if (!recipe) return;
     const COOK = root.CookingCore;
     // protein classes from canonical ingredient ids — conservative, labeled inferred
@@ -74,16 +89,39 @@
       }
       verdictHtml += '</span>';
       void proteinIds;
+      const miseLine = recipe.mise_en_place && recipe.mise_en_place.some((m) => (s.station || '').startsWith(m.station.split(' - ')[0]))
+        ? '' : '<span class="ml-2 text-red-300 translate-y-0.5">(no mise line!)</span>';
       return `<li class="rounded border border-stone-700 px-3 py-2">
-        <span class="text-stone-200">Step ${i + 1}:</span> <span class="text-stone-300">${escapeHtml(s.text.en)}</span>
-        ${verdictHtml}
+        <span class="text-stone-200">Step ${i + 1}${s.station ? ` (${escapeHtml(s.station)})` : ''}:</span> <span class="text-stone-300">${escapeHtml(s.text.en)}</span>
+        <span class="block mt-1 text-emerald-200/80 text-xs">ES-PE: ${escapeHtml(s.esPE || '(missing)')}</span>
+        ${verdictHtml}${miseLine}
       </li>`;
     }).join('');
+    renderDiagram(section, recipe);
     const review = COOK.reviewGateForPublication(recipe);
     section.querySelector('#cook-review-status').innerHTML = review.readyForPublication
       ? '<span class="text-emerald-300">dual review complete</span>'
       : `<span class="text-red-300">not ready for publication: pending dual review (${review.missing.filter((m) => m.field === 'approval').length} approvals, ${review.missing.filter((m) => m.field !== 'approval').length} fields)</span>`;
     renderLeftovers(section);
+  }
+
+  /** Cooking-for-Engineers style diagram: stations across columns, ordered
+   * operations down rows, ingredient tokens inside cells. A <table> keeps it
+   * screen-reader-native (caption + th scope). */
+  function renderDiagram(section, recipe) {
+    const host = section.querySelector('#cook-diagram');
+    if (!recipe.diagram) { host.innerHTML = '<p class="text-xs text-stone-500">(no diagram data for this recipe yet)</p>'; return; }
+    const d = recipe.diagram;
+    const head = `<caption class="text-left text-xs text-stone-400 px-2 pt-2">Diagram — ${escapeHtml(d.style)}; ingredient flow left-to-right per station</caption>
+      <thead><tr><th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">Operation ↑ / Station →</th>${d.columns.map((c) => `<th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">${escapeHtml(c)}</th>`).join('')}</tr></thead>`;
+    const body = d.rows.map((row) => {
+      const cells = d.columns.map((_, idx) => idx === row.stationIdx
+        ? `<td class="px-2 py-1 align-top text-xs text-stone-200">${row.tokens.filter(Boolean).map(escapeHtml).join(' + ')}<span class="block text-stone-400">${row.timeMin ? `${row.timeMin} min` : ''}${row.tempC != null ? ` · ${escapeHtml(String(row.tempC))}°C` : ''}</span></td>`
+        : '<td class="px-2 py-1"></td>').join('');
+      return `<tr class="border-t border-stone-800"><th scope="row" class="px-2 py-1 text-left align-top text-xs text-stone-300 font-normal">${escapeHtml(row.label)}</th>${cells}</tr>`;
+    }).join('');
+    host.innerHTML = `<table id="cook-diagram-table" class="w-full border border-stone-800 rounded-lg text-left">${head}<tbody>${body}</tbody></table>
+      <p class="mt-1 text-xs text-stone-500">station columns left→right; each row is a fold of its tokens; anything listed once must be consumed by the END of that row (ledger L5 checked).</p>`;
   }
 
   function renderLeftovers(section) {
