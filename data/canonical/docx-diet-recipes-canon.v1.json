@@ -425,7 +425,22 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Batir 1 clara y añadir 8 g de hojuelas hasta tener una pasta espesa."
+          "esPE": "Batir 1 clara y añadir 8 g de hojuelas hasta tener una pasta espesa.",
+          "ingredientUses": [
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "1",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "avena_hojuelas",
+              "quantity": "8",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s2",
@@ -439,7 +454,9 @@
           "targetTempC": null,
           "checkpoint": "sensory-bubbles",
           "hazardNotes": [],
-          "esPE": "Calentar una sartén antiadherente sin aceite a fuego mínimo; verter la pasta y comprimir en forma redonda."
+          "esPE": "Calentar una sartén antiadherente sin aceite a fuego mínimo; verter la pasta y comprimir en forma redonda.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s3",
@@ -453,7 +470,9 @@
           "targetTempC": null,
           "checkpoint": "sensory-golden",
           "hazardNotes": [],
-          "esPE": "Voltear con espátula cuando suban burbujas y esté dorada la base (2-3 min por lado). Servir caliente."
+          "esPE": "Voltear con espátula cuando suban burbujas y esté dorada la base (2-3 min por lado). Servir caliente.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s4",
@@ -471,7 +490,28 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Servir con 60 g yogurt 0% y rodajas de plátano y canela."
+          "esPE": "Servir con 60 g yogurt 0% y rodajas de plátano y canela.",
+          "ingredientUses": [
+            {
+              "ingredientId": "yogurt_griego_0",
+              "quantity": "60",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "platano_bizcochito",
+              "quantity": "0.5",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "canela_polvo",
+              "quantity": "2",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         }
       ],
       "diagram": {
@@ -656,7 +696,28 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Pase el pescado por las claras y por el plato tendido con ajonjolí, cubriendo los lados."
+          "esPE": "Pase el pescado por las claras y por el plato tendido con ajonjolí, cubriendo los lados.",
+          "ingredientUses": [
+            {
+              "ingredientId": "filete_pescado_blanco",
+              "quantity": "120",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "2",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "ajonjoli_tostado",
+              "quantity": "24",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s2",
@@ -673,7 +734,12 @@
           "hazardNotes": [
             "raw fish — cross-contamination with salad to be kept separated till plating"
           ],
-          "esPE": "Cocer TAPADO a fuego mínimo SIN aceite; 12 min por un lado, voltear 10 min más, hasta deshacerse en escamas. El pescado debe llegar a 63 °C interna (pauta publicada)."
+          "esPE": "Cocer TAPADO a fuego mínimo SIN aceite; 12 min por un lado, voltear 10 min más, hasta deshacerse en escamas. El pescado debe llegar a 63 °C interna (pauta publicada).",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed",
+          "processRefs": [
+            "filete_pescado_blanco"
+          ]
         },
         {
           "id": "s3",
@@ -694,7 +760,46 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Servir el pescado caliente y terminar la ensalada; añada el ajonjolí restante a la ensalada; aliñar con limón, aceite y vinagre."
+          "esPE": "Servir el pescado caliente y terminar la ensalada; añada el ajonjolí restante a la ensalada; aliñar con limón, aceite y vinagre.",
+          "ingredientUses": [
+            {
+              "ingredientId": "lechuga_picada",
+              "quantity": "30",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "zanahoria_rallada",
+              "quantity": "40",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "tomate_cherry",
+              "quantity": "60",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "cebolla_blanca_pluma",
+              "quantity": "15",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "aceite_oliva",
+              "quantity": "5",
+              "unit": "ml",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "vinagre_liquido",
+              "quantity": "5",
+              "unit": "ml",
+              "basis": "raw"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         }
       ],
       "diagram": {
@@ -840,7 +945,16 @@
           "hazardNotes": [
             "food safety: refrigerate during soak if your kitchen is warm (Do NOT leave outside overnight in >20 °C rooms)"
           ],
-          "esPE": "NOCHE ANTERIOR: remojar 30 g de hojuelas en agua hervida FRÍA cubiertas, 4-8 h."
+          "esPE": "NOCHE ANTERIOR: remojar 30 g de hojuelas en agua hervida FRÍA cubiertas, 4-8 h.",
+          "ingredientUses": [
+            {
+              "ingredientId": "avena_hojuelas",
+              "quantity": "30",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s2",
@@ -857,7 +971,22 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "MAÑANA: escurra el excedente; mezclar con 245 g yogurt estilo islandés y canela."
+          "esPE": "MAÑANA: escurra el excedente; mezclar con 245 g yogurt estilo islandés y canela.",
+          "ingredientUses": [
+            {
+              "ingredientId": "yogurt_estilo_island",
+              "quantity": "245",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "canela_polvo",
+              "quantity": "2",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s3",
@@ -874,7 +1003,22 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Agregar 140 g de fruta picada; terminar con 6 g de ajonjolí tostado."
+          "esPE": "Agregar 140 g de fruta picada; terminar con 6 g de ajonjolí tostado.",
+          "ingredientUses": [
+            {
+              "ingredientId": "fruta_picada_estado",
+              "quantity": "140",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "ajonjoli_tostado",
+              "quantity": "6",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         }
       ],
       "diagram": {
@@ -1004,7 +1148,22 @@
           "hazardNotes": [
             "raw egg — cook the bake fully before serving"
           ],
-          "esPE": "Triture los plátanos con 2 huevos batidos hasta tener una mezcla suave."
+          "esPE": "Triture los plátanos con 2 huevos batidos hasta tener una mezcla suave.",
+          "ingredientUses": [
+            {
+              "ingredientId": "platano_bizcochito",
+              "quantity": "360",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "2",
+              "unit": "count",
+              "basis": "raw"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s2",
@@ -1020,7 +1179,16 @@
           "targetTempC": null,
           "checkpoint": null,
           "hazardNotes": [],
-          "esPE": "Incorporar 20 g de quinua graneada; emparejar en el recipiente (hidrata y revienta en el microondas)."
+          "esPE": "Incorporar 20 g de quinua graneada; emparejar en el recipiente (hidrata y revienta en el microondas).",
+          "ingredientUses": [
+            {
+              "ingredientId": "quinua_graneada",
+              "quantity": "20",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         },
         {
           "id": "s3",
@@ -1036,7 +1204,9 @@
           "hazardNotes": [
             "hot dish — plate carefully"
           ],
-          "esPE": "Microondas 8 min a POTENCIA MÁXIMA hasta cuajar y rebotar; reposar 5 min; cortar en 4."
+          "esPE": "Microondas 8 min a POTENCIA MÁXIMA hasta cuajar y rebotar; reposar 5 min; cortar en 4.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
         }
       ],
       "diagram": {
@@ -1080,5 +1250,7 @@
       ],
       "dietaryContext": "snack/shared dessert (portion ×4); sugar-free by design"
     }
-  ]
+  ],
+  "ingredientAllocationProvenance": "Each ingredient is allocated at the first referencing step. Process steps may reuse prepared material without a second ingredient debit. Not a physical cook-through or measured yield.",
+  "ingredientAllocationValidationStatus": "planned-unverified-awaiting-kitchen-cookthrough"
 }
