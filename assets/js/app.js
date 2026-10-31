@@ -147,6 +147,11 @@ function mealPlanApp() {
       this.data.recipes.forEach((recipe) => {
         recipe.normalizedName = normalizeText(recipe.name);
         recipe.slug = recipe.id || slugify(recipe.name);
+        // es-PE-first: pull the authored es title from the weighed-7 (nutrition-reviewed.json)
+        if (window.GOURMET_NUTRITION_DATA) {
+          const curated = window.GOURMET_NUTRITION_DATA.curatedRecipes.find((c) => c.id === recipe.slug || c.title === recipe.name);
+          if (curated && curated.es) recipe.es = curated.es;
+        }
       });
     },
 

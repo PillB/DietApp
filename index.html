@@ -216,7 +216,7 @@
           <template x-for="recipe in filteredRecipes" :key="recipe.id">
             <button @click="selectedRecipe = recipe" class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 text-left transition hover:-translate-y-1 hover:border-amber-300/30 hover:bg-white/10">
               <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70" x-text="recipe.cuisine || 'Base recipe'"></p>
-              <h3 class="mt-2 font-display text-2xl text-amber-50" x-text="recipe.name"></h3>
+              <h3 class="mt-2 font-display text-2xl text-amber-50" x-text="recipe.es || recipe.name"></h3><p class="text-xs text-stone-400" x-show="recipe.es" x-text="recipe.name"></p>
               <div class="mt-4 flex flex-wrap gap-2 text-xs text-stone-300">
                 <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.servings ? `${recipe.servings} servings` : 'reference' "></span>
                 <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.totalTime || 'timing in source'"></span>
@@ -436,7 +436,7 @@
       <div class="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-t-[2rem] border-b border-white/10 bg-[#111117]/95 p-5 backdrop-blur">
         <div>
           <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70" x-text="selectedRecipe?.cuisine || 'Recipe'"></p>
-          <h2 class="font-display text-3xl text-amber-50" x-text="selectedRecipe?.name"></h2>
+          <h2 class="font-display text-3xl text-amber-50" x-text="selectedRecipe?.es || selectedRecipe?.name"></h2><p class="text-xs text-stone-400" x-show="selectedRecipe?.es" x-text="selectedRecipe?.name"></p>
           <p class="mt-2 text-sm text-stone-400">
             <span x-text="selectedRecipe?.servings ? selectedRecipe.servings + ' servings' : 'Reference recipe'"></span>
             <span x-show="selectedRecipe?.activeTime"> · Active <span x-text="selectedRecipe?.activeTime"></span></span>
