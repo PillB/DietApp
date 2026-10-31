@@ -53,6 +53,15 @@ test('curated kcal/protein/fat/carb match the crawl row exactly (no typed-from-m
     assert.strictEqual(Math.abs((vals.protein || 0) - (spec.per100g.proteinG || 0)) < 0.01, true, `${canon} protein`);
     assert.strictEqual(Math.abs((vals.fat || 0) - (spec.per100g.fatG || 0)) < 0.01, true, `${canon} fat`);
     assert.strictEqual(Math.abs((vals.carb || 0) - (spec.per100g.carbG || 0)) < 0.01, true, `${canon} carb`);
+    // MINERALS: the column-offset bug class (Ca=12, Zn=14, Fe=15, Na=16 in the TPCA row)
+    const raw = findCrawlRow(spec.code);
+    const mineral = (i) => numeric(raw[i]);
+    for (const [idx, key] of [[12, 'calciumMg'], [14, 'zincMg'], [15, 'ironMg'], [16, 'sodiumMg']]) {
+      const real = mineral(idx);
+      if (real != null && spec.per100g[key] != null) {
+        assert.strictEqual(Math.abs(real - spec.per100g[key]) < 0.01, true, `${canon} ${key}: crawl ${real} ≠ curated ${spec.per100g[key]}`);
+      }
+    }
   }
 });
 
