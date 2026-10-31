@@ -50,7 +50,8 @@
         </div>
       </a>
 
-      <nav class="grid gap-2 text-sm">
+      <button type="button" class="lg:hidden rounded-xl border border-amber-300/40 px-4 py-3 text-left font-semibold text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300" id="mobile-nav-toggle" aria-controls="primary-nav" :aria-expanded="String(mobileNavOpen)" @click="mobileNavOpen = !mobileNavOpen"><span x-text="mobileNavOpen ? 'Cerrar menú' : 'Abrir menú'"></span></button>
+      <nav id="primary-nav" class="gap-2 text-sm" :class="mobileNavOpen ? 'grid' : 'hidden lg:grid'">
         <template x-for="item in [
           ['dashboard','nav.overview','✦','#dashboard'],
           ['calendar','nav.calendar','📅','#calendar'],
@@ -67,14 +68,14 @@
           ['knowledge','nav.knowledge','🧬','#knowledge']
         ]" :key="item[0]">
           <a :href="item[3]" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-300"
-             :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'">
+             :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'" @click="mobileNavOpen = false">
             <span class="text-lg" x-text="item[2]"></span>
             <span x-text="(window.I18N && window.I18N.DICT[item[1]]) ? window.I18N.t(item[1]) : item[1]"></span>
           </a>
         </template>
       </nav>
 
-      <div class="mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
+      <div class="hidden lg:block mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
         <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70">Centro de cocina</p>
         <p class="mt-2 text-sm text-stone-300">Busca, imprime y copia listas de compras y abre recetas desde el calendario sin recargar la página.</p>
         <button @click="exportData()" class="mt-4 w-full rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-white/15">Export JSON</button>
