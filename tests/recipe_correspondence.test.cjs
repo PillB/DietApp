@@ -47,9 +47,8 @@ function recipeLedger(recipe) {
     for (const ref of step.ingredients) {
       const row = rows.find((x) => x.ingredientId === ref);
       if (!row) { rows.push({ ingredientId: ref, declaredG: null, usedInSteps: [step.id], leftOverG: null }); continue; }
-      const per = row.declaredG;
-      // the use-row's declared grams are consumed by the steps that reference it;
-      // with a single declared total and multi-step spread, we mark the FULL amount consumed
+      // the row's declared grams are consumed by the steps that reference it;
+      // with a single declared total and multi-step spread, mark the FULL amount consumed
       if (row.leftOverG != null) row.leftOverG = 0;
       row.usedInSteps.push(step.id);
     }
