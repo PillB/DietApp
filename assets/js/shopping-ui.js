@@ -247,7 +247,7 @@
       const synText = shopperName.syn.length ? ` (${escapeHtml(shopperName.syn.slice(0, 2).join(', '))})` : '';
       const nameHtml = shopperName.es
         ? `${escapeHtml(shopperName.es)}${synText} <span class="text-[10px] text-stone-400">${tr('shopping.uiEsDraft')}</span>`
-        : `${escapeHtml(ing.name.en)}${ing.nameProvisional ? ' (EN provisional)' : ''}`;
+        : `${escapeHtml(ing.name.en)}${ing.nameProvisional ? ` (${escapeHtml(tr('shopping.uiEnProvisional'))})` : ''}`;
       const buyText = line.purchaseRecommendation
         ? escapeHtml(tr('shopping.uiBuy', {n: line.purchaseRecommendation.packages, unit: line.purchaseRecommendation.unit}))
         : tr('shopping.uiPackage');
