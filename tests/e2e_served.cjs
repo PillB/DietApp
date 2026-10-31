@@ -106,8 +106,23 @@ async function shoppingFlow(port, report) {
   steps.esPeDraftName = await page.locator('#engine-groups', { hasText: 'salmón' }).count();
   steps.esPeDraftTag = await page.locator('#engine-groups', { hasText: 'es-PE en revisión' }).count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_shopping_flow.png'), fullPage: false });
+  const purchaseBox = page.locator('#engine-groups input[data-purchase-key]').first();
+  await purchaseBox.check();
+  steps.checkedBeforeRefresh = await purchaseBox.isChecked();
+  const purchaseKey = await purchaseBox.getAttribute('data-purchase-key');
+  await page.reload({ waitUntil: 'load' });
+  await page.waitForTimeout(1200);
+  await page.locator('nav a[href="#shopengine"]').first().click();
+  await page.locator('#engine-from').fill('2026-11-01');
+  await page.locator('#engine-to').fill('2026-11-30');
+  const restored = page.locator('#engine-groups input[data-purchase-key]').first();
+  steps.purchaseKeyAfterRefresh = await restored.getAttribute('data-purchase-key');
+  steps.checkedAfterRefresh = await restored.isChecked();
+  steps.sameDemand = purchaseKey === steps.purchaseKeyAfterRefresh;
+  await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_shopping_persistence.png') });
   await browser.close();
-  const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0 || steps.esPeDraftName === 0 || steps.esPeDraftTag === 0;
+  const failed = pageErrors.length > 0 || steps.lineCount === 0 || steps.refusalShown > 0 || steps.esPeDraftName === 0
+    || steps.esPeDraftTag === 0 || !steps.checkedBeforeRefresh || !steps.checkedAfterRefresh || !steps.sameDemand;
   report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed });
   if (failed) {
     console.log(`\n== shopping-flow (FAIL) == steps: ${JSON.stringify(steps)}`);
