@@ -1,0 +1,20 @@
+{
+  "schema": "flavor-lexicon/v1",
+  "sourceNote": "curated taste/texture associations from dated design commentary (NOT behavioral evidence). Shapes the P5.2 graph + P5.4 rankings; weights are editorial, not measured.",
+  "entries": [
+    { "category": "Sushi / Nikkei / japonesa", "edge": { "kind": "taste", "id": "umami-rich", "weight": 0.6, "note": "soy/tamari, dashi, cured fish" } },
+    { "category": "Sushi / Nikkei / japonesa", "edge": { "kind": "texture", "id": "tender-chewy", "weight": 0.4, "note": "rice, raw fish, dashi custards" } },
+    { "category": "Carne / pescado / mariscos", "edge": { "kind": "taste", "id": "citrus-bright", "weight": 0.55, "note": "limón/leche de tigre style acidity" } },
+    { "category": "Carne / pescado / mariscos", "edge": { "kind": "taste", "id": "umami-rich", "weight": 0.45, "note": "pescado en sillao/fish sauces" } },
+    { "category": "Pasta / italiana", "edge": { "kind": "taste", "id": "savoury-rich", "weight": 0.55, "note": "pecorino/parmesan, butter, eggs" } },
+    { "category": "Pasta / italiana", "edge": { "kind": "texture", "id": "creamy-saucy", "weight": 0.5, "note": "emulsified sauces; risotto-style" } },
+    { "category": "Pollería / idioma propia", "edge": { "kind": "taste", "id": "mild-heat", "weight": 0.5, "note": "ají-amarillo-forward heat" } },
+    { "category": "Pollo / comida rápida", "edge": { "kind": "texture", "id": "crispy-crunchy", "weight": 0.5, "note": "breaded/fried context" } },
+    { "category": "Rapé / hamburguesas", "edge": { "kind": "texture", "id": "crispy-crunchy", "weight": 0.6, "note": "fries + patties" } },
+    { "category": "Desayuno / huevos", "edge": { "kind": "taste", "id": "savoury-rich", "weight": 0.5, "note": "hollandaise, cheese" } },
+    { "category": "Ensalada / bowl / crudo", "edge": { "kind": "taste", "id": "citrus-bright", "weight": 0.5, "note": "dressings lime-forward" } },
+    { "category": "Panadería / empanada", "edge": { "kind": "texture", "id": "crispy-crunchy", "weight": 0.5, "note": "laminated dough, baked shells" } },
+    { "category": "Postre / snack dulce", "edge": { "kind": "taste", "id": "sweet-moderate", "weight": 0.55, "note": "chocolate, dulce-style desserts" } },
+    { "category": "Carne / pescado / mariscos", "edge": { "kind": "taste", "id": "mild-moderate-heat", "weight": 0.35, "note": "ají/rocoto variants" } }
+  ]
+}
