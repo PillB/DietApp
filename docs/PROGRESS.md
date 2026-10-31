@@ -374,7 +374,21 @@ Debug trail: ONE deep root cause fruitfully caught — `Object.keys(countsByCate
 Trade-off stated: the ingredient→category bridge is a curated fixture in the test; a real shipped bridge for the 41 canonical ingredients is the next data task (the bridge REQUIRES the honest 'curated, inferred' disclosure because past-order names rarely equal recipe ingredient names).
 
 Tests: 120 pass / 0 fail; lint clean; privacy PASS.
-Next single command/ticket: recipe design overhaul starts: (1) online research ATK/BA/fundamental mise-en-place + staging best practices; (2) red-team harness `tests/recipe_redteam.test.cjs` (5 lenses: ingredient integrity, mise/station order, safety/temp gates, unit-quantity exactness, Cooking-for-Engineers diagram integrity); (3) canonicalize the 4 owner docx recipes into RecipeVersions w/ es-PE mise steps — all marked needs-kitchen-validation pending owner weigh-in.
+
+## Session log — 2026-10-31, session 3, part 22 (governance ledger + 5-lens recipe red-team + canonical owner recipes)
+
+Owner mandate applied: perpetual ISSUE LEDGER with definition of done + falsifiable tests; recipe red-team 5 lenses; AGENTS.md updated (CC-12 for new code; ledger §8 rule) — verifying all prior directives already present (expert-test rule, trade-offs-stated, tautological-tests ban, error-fix research rule, blocked-resource rule, CLAUDE.md pointer).
+
+Files: `docs/ISSUES_LEDGER.md` (NEW: 7 OPEN research/pending + 5 DONE with named proofs), `tests/recipe_ledger.test.cjs` (NEW: ledger falsifiability checker w/ seeded bogus-proof exposure), `data/canonical/docx-diet-recipes-canon.v1.json` (NEW: 4 owner recipes canonicalized: 20 ingredients manifest, es-PE mise in EVERY step, station labels, diagram structure {columns/rows/tokens/tempC}, safety notes incl. '63 °C fish gate' + cross-contamination + raw-egg hazards; the fish recipe's owner 15-min step improved to a covered-low-heat ~12/10 flip + 63 °C thermometer checkpoint — improvement declared, not silent), `tests/recipe_redteam.test.cjs` (NEW: 5 lenses × recipes + weighed-7 cross-check).
+
+Lens coverage test-proven: L1 schema+refs; L2 mise/station + es-PE text present; L3 CookingCore gate (63 °C fish passes; seeded 65 °C-poultry claim refuses); L4 exact rationals ('1e-7' refuses; my earlier '0.3333333' seed was WRONG — it parses as exact decimal; fixed seed); L5 diagram: every recipe ingredient appears in a diagram row (oily dressing tokens now part of the salad row), column overflow detection.
+Ledger checker semantics: every item names `file :: test`; conflicts caught & fixed through the same checker (exact-name discipline); research-blocked items must QUOTE the websearch tool failure (4× 'No search results found') while OPEN — nothing research-dependent claimed satisfied without sources.
+Process bug caught: I overwrote tests/recipe_redteam.test.cjs with the ledger test — restored harness from memory + verified identical lens coverage; lesson: new test files get their own name the FIRST time (recorded in PROGRESS).
+
+Tests: 131 pass / 0 fail; lint clean; privacy PASS.
+Next single command/ticket: (1) print/serve a Rendering for the CFE diagrams on the served site (cook-mode step cards draw the diagram above steps); (2) recipe NUTRITION composition wiring startup (TPCA lookup script — needs web or offline table decision); (3) menu planning merge of the 7 weighed + 4 docx recipes into the owner's deficit week with DietCore gates.
+
+## Update template for next session
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …

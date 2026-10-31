@@ -1,0 +1,24 @@
+# Issues ledger — definition of done + falsifiable proof (AGENTS.md §8)
+
+Format per item:
+`LEDGER-n | status OPEN|DONE | finding/root-cause | fix | falsifiable proof: <file> :: <test name> | re-check date`
+
+Rules: an item may NEVER close without its named falsifiable test green (RED→GREEN recorded in `docs/PROGRESS.md`), and no regression in `npm run check`. Any round that changes a recipe re-runs the 5-lens red team. Research-informed items that depend on the web tool must quote the tool failure while OPEN.
+
+## OPEN
+
+- LEDGER-1 | OPEN | websearch returned 'No search results found' ×4 (ATK/BA recipe-writing research + nutrition composition tables) | blocked per blocked-resource rule; sources must come from a future successful search | falsifiable proof: `tests/recipe_redteam.test.cjs` :: 'needs kitchen validation flag stands until owner weigh-in' (the estimate SHIP-GATE stays closed); ALSO ledger self-check asserts research items quote the tool failure | 2026-10-31
+- LEDGER-2 | OPEN | docx recipe grams are household-measure estimates; owner weigh-in pending (P4.4) | canonical file keeps `needsKitchenValidation: true`; no nutrition curves ship from these | falsifiable proof: `tests/recipe_redteam.test.cjs` :: 'needs kitchen validation flag stands until owner weigh-in' | 2026-10-31
+- LEDGER-3 | OPEN | per-recipe calories/macros/micros/vitamins NOT wired to TPCA/USDA composition tables | `nutrition.perServing` stays null via status 'not-assessed' | falsifiable proof: `tests/recipe_redteam.test.cjs` :: 'weighed 7 recipes also cross L1 (schema) and L4 (exact quantities) through the importer' | 2026-10-31
+- LEDGER-4 | OPEN | meal-target presets (1200/1400/1500) + the aggressive-band acknowledgment checkbox not yet in the served Nutrition panel | pending UI slice; DietCore refuses unacknowledged aggressive at the engine level | falsifiable proof: `tests/diet_core.test.cjs` :: 'deficit plan: aggressive requires acknowledged review' | 2026-10-31
+- LEDGER-5 | OPEN | Lima store catalog rows all `notChecked` (no titles/prices/stock) | user-verified rows will flip availability only WITH provenance | falsifiable proof: `tests/store_matches.test.cjs` :: 'fixture: every row is schema-valid, structure-only' | 2026-10-31
+- LEDGER-6 | OPEN | P6 six-locale UI translation (EN/es-PE done partly; zh-Hans/hi/de/ja not started) | localized builds after P5.4/P6 design token pass | falsifiable proof: `tests/shopper_view.test.cjs` :: 'es-PE draft dictionary covers EVERY canonical ingredient' (guests hash number per locale grows; locales TBD) | 2026-10-31
+- LEDGER-7 | OPEN | duplicate context drop triples storage (data/private + context/ + Context information/) | awaiting owner decision on canonical copy; all copies now PUBLIC per decree but unused ones still cost repo weight | falsifiable proof: `tests/source_inventory.test.cjs` :: 'real repo inventory: schema valid, no tracked private artifacts, no hash drift' | 2026-10-31
+
+## DONE
+
+- LEDGER-D1 | DONE | workbook filename/`data/private` paths leaked in served assets (P0.1) | redacted + scanner added | falsifiable proof: `tests/privacy.test.cjs` :: 'private workbook name in a public asset is flagged as error with no echoed text' | 2026-10-30
+- LEDGER-D2 | DONE | Map treated as object via `Object.keys` in the ranking engine (affinity always 0) | use `Map.keys()`; guard test on ranking features | falsifiable proof: `tests/flavor_ranking.test.cjs` :: 'affinity is count-based (observed), flavorFit is inferred via lexicon, and store coverage needs ONLY structure rows (still labeled)' | 2026-10-31
+- LEDGER-D3 | DONE | 3 engine sections rendered outside `<main>` and were overlapped by the fixed sidebar (un-clickable real UX bug) | moved inside the content column | falsifiable proof: `tests/e2e_served.cjs` :: 'flavor-flow' PASS (pointer clicks succeed; see flow summaries in the report JSON) | 2026-10-31
+- LEDGER-D4 | DONE | estimateEnergy cyclomatic complexity 19 > gate before refactor; supplied CC-12 for new code | extracted `validateEnergyInputs`/`buildEnergyFlags` | falsifiable proof: `tests/nutrition-core.test.cjs` :: 'Mifflin male and female constants and deficit' (behavior identity for the refactored function) — plus `npx eslint .` clean in every round | 2026-10-31
+- LEDGER-D5 | DONE | docx→canonical recipe ids drift (`quinua_cocida` vs manifest) | renamed manifest to `quinua_graneada` + step refs + diagram tokens | falsifiable proof: `tests/recipe_redteam.test.cjs` :: 'L1: every canonical recipe validates via DomainSchema and every step ingredient ref resolves (seeded-negative proves liveness)' | 2026-10-31
