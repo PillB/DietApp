@@ -652,6 +652,17 @@ Both cards show the Spanish es-PE label + the NOT-a-weighed-yield disclaimer. Th
 Tests: 154 pass / 0 fail; e2e/live/staging PASS; ledger D17 recorded; pushed 217ae95.
 Next single command/ticket: LEDGER-4's preset panel + LEDGER-2's weigh-in remain owner-action; optional next dev round: per-recipe VITAMIN coverage display (vitamin A/B12/D/selemium from TPCA columns — the crawl carries them) to answer the owner's 'micros and vitamins' requirement fully.
 
+## Session log — 2026-10-31, session 3, part 44 (micros/vitamins served live)
+
+The owner's 'micros and vitamins' requirement is now MET: TPCA columns (vitamin A/B1/B2/B3/C/folate + Ca/Fe/Zn/Na) synced into all 59 TPCA composition rows + the salmon USDA row (vitamins from the same FDC 175167 record); the perServing engine accumulates them; the cook-mode card renders a 'Micros:' line when vitamin A is computable.
+
+VERIFIED LIVE at https://pillb.github.io/DietApp/: pescado_ajonjoli_diet card shows 'Micros: Vit A 490.4 µg · Vit C 15.1 mg · folato 0 µg · Ca 4 mg…' alongside the kcal/protein/fiber line — all sourced, all honest.
+
+Files: data/reference/food-composition-tpca.v1.json (vitamin columns synced), assets/js/diet-nutrition-core.js (scale() helper carries vitamins through computeServingNutrition + computedPerServing), assets/js/cook-mode-ui.js (microsLine() helper — CC-12 clean), docs/ISSUES_LEDGER.md (D18).
+
+Tests: 154 pass / 0 fail; e2e PASS; lint clean; pushed 55bf42c.
+Next single command/ticket: the DASH-style daily vitamin coverage view (does the planned week meet vitamin A/C/folate/iron targets per published RDA?) — a new ledger item (LEDGER-8) for the weekly micronutrient adequacy summary; requires only engine work (targets from published RDA tables) + a served panel.
+
 ## Update template for next session
 
 ## Update template for next session
