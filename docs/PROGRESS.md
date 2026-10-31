@@ -503,6 +503,17 @@ E2E cook-flow PASS (extended): the docx pescado_ajonjoli_diet card displays the 
 Tests: 142 pass / 0 fail; E2E PASS (6 flows); lint clean after one no-self-assign cleanup.
 Next single command/ticket: batch-3 crawl (remaining ~20 rows so that every recipe use in the 7 weighed + 4 docx recipes is composed), then the computed-perServing macro panel on the SHOPPING side too (wheel-reinforcing the 'cautious' display), then the Pages deploy gate checklist.
 
+## Session log — 2026-10-31, session 3, part 33 (batch-3 + served composition coverage)
+
+Files: data/reference/food-composition-tpca.v1.json (57 curated rows, batch-3 mapped the remaining canonical ids with _mappingNote metadata where the code is a CUT-not-food alias — e.g. 'cebolla_blanca_pluma' → B26 row, the pluma cut noted; 6 pendingIds recorded honestly via pendingRows list: corn_tortilla, fruta_picada_estado, platano_bizcochito, vegetable_stock, salmon, SKYR brand label — plus one leaked 'salmon_row_stub' alias removed by the audit), assets/js/cook-mode-ui.js (nutrition card now LISTS the missing ids by name alongside the orange counter — visible exactly which ingredient needs composition), docs/ISSUES_LEDGER.md (LEDGER-3 updated with the pendingIds detail).
+
+Composition audit still PASS (no drift, exact-by-code). E2E cook-flow PASS, including perServing card + honest status + NOT-a-weighed-yield disclaimer visible at 0 page errors.
+
+Salt-water fish (salmon), corn tortilla, composite plantain/fruits, vegetable stock, and the owner-brand SKYR are NOT in TPCA (fish is imported via Lima supermarkets; the others are prepared/composite). The pendingRows list names them exactly so the owner-driven P4.4 weigh-in or an owner-supplied label can fill them.
+
+Tests: 142 pass / 0 fail; E2E PASS (6 flows); lint clean.
+Next single command/ticket: production staging + serve honest display of the deficit plan's computed perServing in the planner, then the Pages deploy-gate pass (requires owner URL/consent).
+
 ## Update template for next session
 
 ## Update template for next session
