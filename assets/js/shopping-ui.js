@@ -180,8 +180,7 @@
 
   function buildList(c, model, section) {
     return c.SHOP.buildShoppingList({
-      recipes: model.recipes,
-      planEntries: model.state.planEntries,
+      recipes: [...(model.recipes || []), ...(model.docxRecipes || [])],      planEntries: model.state.planEntries,
       from: section.querySelector('#engine-from').value,
       to: section.querySelector('#engine-to').value,
       pantry: model.state.pantry,
