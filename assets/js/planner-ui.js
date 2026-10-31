@@ -24,6 +24,7 @@
     listEl.addEventListener('click', (ev) => entryAction(ev, opts.model, deps, section));
     listEl.addEventListener('change', (ev) => entryAction(ev, opts.model, deps, section));
     section.querySelector('#deficit-build-btn').addEventListener('click', () => buildDeficitWeek(section, opts.model));
+    section.querySelector('#adequacy-btn').addEventListener('click', () => renderAdequacy(section, opts.model));
     renderEntries(section, opts.model);
     root.__pgkRefreshPlanner = () => renderEntries(section, opts.model);
     return { mounted: true };
@@ -149,6 +150,17 @@
         <div id="deficit-explanations" class="mt-2 text-xs" aria-live="polite"></div>
       </div>
       <div id="planner-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80"></div>
+      <div id="adequacy-panel" class="mt-4 rounded border border-stone-700 p-3">
+        <div class="flex flex-wrap items-end gap-3">
+          <label class="text-sm">Sex (for Fe/Zn RDA)
+            <select id="adequacy-sex" class="bg-stone-800 border border-stone-600 rounded px-2 py-1 text-xs">
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select></label>
+          <button id="adequacy-btn" class="rounded border border-amber-300 px-3 py-1 text-xs text-amber-200 focus:outline-none focus:ring-2">Coverage semanal de micronutrientes</button>
+        </div>
+        <div id="adequacy-table" class="mt-2 text-xs"></div>
+      </div>
       <ol id="planner-entries" class="mt-3 space-y-2"></ol>
     `;
     const langSel = section.querySelector('#planner-lang');
@@ -233,6 +245,40 @@
   function weekdayIndexOf(localDate) {
     const [y, m, d] = localDate.split('-').map(Number);
     return new Date(y, m - 1, d, 12).getDay();
+  }
+
+  /** LEDGER-8: weekly micronutrient coverage vs NIH ODS RDAs (computed-pending-weighin basis). */
+  function renderAdequacy(section, model) {
+    const host = section.querySelector('#adequacy-table');
+    const A = root.AdequacyCore;
+    if (!A) { host.textContent = '(adequacy engine not loaded)'; return; }
+    const sex = section.querySelector('#adequacy-sex').value;
+    const comp = root.__pgkComposition || {};
+    const allRecipes = [...(model.recipes || []), ...(model.docxRecipes || [])];
+    // group entries by recipeId with portions (a planned week = what's in state)
+    const byRecipe = {};
+    for (const e of model.state.planEntries) {
+      if (!byRecipe[e.recipeId]) byRecipe[e.recipeId] = { portions: 0 };
+      byRecipe[e.recipeId].portions += e.portions;
+    }
+    const weekPlan = Object.entries(byRecipe).map(([id, v]) => {
+      const recipe = allRecipes.find((r) => r.id === id);
+      return recipe ? { recipe, portionsPerDay: 1, days: Math.min(v.portions, 7) } : null;
+    }).filter(Boolean);
+    const week = A.adequacyWeek(weekPlan, comp, { sex });
+    const rows = week.nutrients.map((n) => {
+      const cls = n.status === 'adequate' || n.status === 'under-ceiling' ? 'text-emerald-300' : (n.status === 'inadequate-no-data' ? 'text-stone-400' : 'text-orange-300');
+      const val = n.actual != null ? n.actual : '—';
+      const target = n.rdaTarget != null ? n.rdaTarget : '—';
+      return `<tr><td class="px-2 py-0.5">${n.id}</td><td class="px-2 py-0.5 text-right">${val}</td><td class="px-2 py-0.5 text-right">${target}</td><td class="px-2 py-0.5 ${cls}">${n.status}${n.pctOfRda != null ? ` (${n.pctOfRda}%)` : ''}</td></tr>`;
+    }).join('');
+    host.innerHTML = `
+      <table class="w-full border border-stone-800 text-left">
+        <caption class="text-left text-xs text-stone-400 px-2 pt-1">Weekly adequacy — basis: ${week.perServingBasis} (${week.RDA_SOURCE.split(';')[0]})</caption>
+        <thead><tr><th class="px-2 py-1">Nutriente</th><th class="px-2 py-1 text-right">Semana</th><th class="px-2 py-1 text-right">RDA ×7</th><th class="px-2 py-1">Estado</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      ${week.missingRows > 0 ? `<p class="mt-1 text-orange-300 text-xs">⚠ ${week.missingRows} ingredient row(s) without composition — coverage is partial</p>` : ''}`;
   }
 
   return { init, renderEntries, entryAction, weekdayIndexOf };

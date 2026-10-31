@@ -56,7 +56,7 @@
       return { id, status: actual <= target ? 'under-ceiling' : 'over-ceiling', actual: r1(actual), rdaTarget: target };
     }
     const pct = Math.round((actual / target) * 100);
-    return { id, status: pct >= 100 ? 'adequate' : 'below-rda', actual: r1(actual), rdaTarget: target, pctOfRda: pct };
+    return { id, status: pct >= 100 ? 'adequate' : 'below-rda', actual: r1(actual), rdaTarget: target, pctOfRda: Number.isFinite(pct) ? pct : null };
   }
 
   function adequacyWeek(weekPlan, composition, { sex = 'male' } = {}) {
