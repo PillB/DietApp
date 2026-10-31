@@ -631,6 +631,15 @@ Live e2e updated: the nutrition-card assertion accepts the Spanish label ('Por p
 Tests: 154 pass / 0 fail; e2e/live PASS; lint clean.
 Next single command/ticket: batch-3b for the last NS composite (fruta per-fruit actual rows chosen by owner) + the SKYR/queso label lane (owner uploads); P4.4 weigh-in worksheet remains the assessed-promotion gate.
 
+## Session log — 2026-10-31, session 3, part 42 (LEDGER-4 closed: aggressive presets in the legacy panel)
+
+Files: index.html (n-deficit select now offers 600 + 750 kcal with 'aggressive — clinician review flag fires' label; the estimateEnergy engine already clamps at 750 + floors at 1200 + flags >25% deficits for clinician review — the SAME gates DietCore enforces, so both panels are consistent), tests/e2e_served.cjs (cook-flow nutrition-card assertion updated for the es-PE default label 'Por porción (cálculo estimado...)'), docs/ISSUES_LEDGER.md (LEDGER-4 → DONE with the named proofs).
+
+The two calorie surfaces are now aligned: legacy panel (per-user TDEE with deficit select) + planner Week Builder (target presets with acknowledgment). Both refuse sub-1200 and flag the aggressive band.
+
+Tests: 154 pass / 0 fail; e2e 6 flows PASS; staging PASS; live PASS; lint clean.
+Next single command/ticket: owner actions remain (LEDGER-2 weigh-in; LEDGER-5 store verification; LEDGER-7 dedup decision) + LEDGER-1c batch-3 label/brand lane. Optional dev round: v3 Alpine chrome es-PE-first localization (LEDGER-6 remainder).
+
 ## Update template for next session
 
 ## Update template for next session
