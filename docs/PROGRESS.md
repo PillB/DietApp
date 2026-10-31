@@ -791,6 +791,13 @@ Lesson recorded: in a zero-build static app, ANY data change must touch the SERV
 
 Tests: 173 pass / 0 fail; e2e PASS; pushed 40c4c0a.
 Next single command/ticket: a sync script (json -> data.js) to close the served-copy drift class permanently, or the owner cadence items.
+## Session log - 2026-10-31, session 3, part 59 (owner-directed walkthrough validation)
+
+19-screenshot Playwright walkthrough at live Pages (build 2e28441): all 12 nav views clicked through, recipe modal opened via real button click + Escape close, docx cook card selected (CFE diagram + micros line), deficit week built via #deficit-build-btn, adequacy computed, engine shopping with a real plan entry (nikkei-salmon-bowl x4 @ 2026-11-03, 2026-11-01..30 range), mobile 390px context. ZERO page errors. Visual inspection of 5 screenshots confirmed: es-PE chrome everywhere, legacy EN recipes carry '(EN — sin traducción)', exact rational quantities with honest needs_package_decision flags, es-PE dashboard themes live.
+
+Gates: 173/173 tests | eslint clean | audit 33/33 | live E2E PASS | redteam2 27/27.
+
+Next single command/ticket: owner-action items only (weigh-in LEDGER-2, brand labels, store walk LEDGER-5, dedup LEDGER-7).
 
 ## Update template for next session
 
