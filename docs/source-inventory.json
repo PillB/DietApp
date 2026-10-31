@@ -1,7 +1,7 @@
 {
  "schema": "source-inventory/v1",
  "generatedInDirectory": "DietApp",
- "privateEntryCount": 83,
+ "privateEntryCount": 84,
  "entries": [
   {
    "path": "data/private/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf",
@@ -343,6 +343,14 @@
    "path": "context/2026-05-01-2026-10-26-flavor-profile-analysis.json",
    "sizeBytes": 4379327,
    "sha256": "d9753a42e3f289b93015035b82c4af5129dc912495451bbc09434a00b8823a0c",
+   "mediaType": "application/json",
+   "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
+   "gitTracked": false
+  },
+  {
+   "path": "context/generated/flavor-atlas-v1.json",
+   "sizeBytes": 10407,
+   "sha256": "106a0d7bbd8ae56c432d04796f4dcb4e8c964b1e30bea26863e3115ce0381ade",
    "mediaType": "application/json",
    "confidentiality": "PRIVATE — unreviewed order-derived analysis; audit before any use",
    "gitTracked": false
