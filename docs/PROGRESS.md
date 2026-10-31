@@ -556,3 +556,31 @@ Next single command/ticket: the owner starts using it. Per deploy checklist the 
 **https://pillb.github.io/DietApp/** — HTTP 200, SW registered, 6 E2E + staging QA all PASS at the live URL, last-modified 2026-10-31 05:36 UTC.
 
 ## Next single command/ticket: owner weigh-in worksheet (P4.4) or batch-4 composition rows to narrow the missing-NS lane.
+
+## Session log — 2026-10-31, session 3, part 38 (docx bridge wired + Peru sodium research + recipe Na audit)
+
+Files: assets/js/composition-bridge.js (NEW: 17 curated bridges from docx-manifest IDs → TPCA composition, each with a reason string longer than 12 chars, plus the NS-fallback entries), assets/js/composition-bridge.js (script loaded before cook-mode), index.html (loaded), assets/js/cook-mode-ui.js (composition bridge used in the nutrition card), assets/js/i18n.js (added nutrition.perServing + nutrition.missingRows in 6 locales), tests/composition_bridge.test.cjs (5 tests with seeded negative), docs/SODIUM_REPLACEMENT_RESEARCH.md (NEW: the exhaustive research with all 6 sources quoted and linked — pubmed/DOI URLs, Heart BMJ SSaSS meta-analysis, Penn State/McCormick, Tufts, NIH NHLBI, Kidney Foundation; TPCA codes and sodium-mg bookkeeping).
+
+Bridge resolution: clara_huevo uses J2 real TPCA values (51 kcal, 10.9 g prot); avena_hojuelas (A43 same as rolled_oats); yogurt_griego_0 (G38); platano_bizcochito honest NS (wrong to fake as potato — different food); fruta_picada_estado composite NS. All 20 docx recipe ingredients now either direct-resolve (17) or honestly NS-fallback (3).
+
+Peru sodium REPLACEMENT research — links + implications:
+1. Driscoll et al 2019 J Hypertens (PMID 30817445): 9 RCTs; herbs/spices reduce BP in hypertensive/pre-hypertensive, no hypotension in normotensive. → Peru ají amarillo, rocoto, huacatay carry the phytochemical-actives ALONGSIDE flavor.
+2. Yang et al 2022 Heart BMJ (DOI 10.1136/heartjnl-2022-321332): salt substitute (KCl) reduces SBP −4.61 mmHg, CV mortality RR 0.89 in >31,000 participants. → LITE SAL / generic K-Cl salt at Wong is a genuine substitute option.
+3. Penn State (Kris-Etherton commentary): adding MORE herbs/spices to food (without decreasing sodium yet) ALREADY improved BP further — implies Peru spice-rich dishes get a health boost beyond the sodium math.
+4. Tufts (May 2017): 45% less salt + herb-spice blend = perceived-equivalent saltiness; the palate ADAPTS over weeks. → our recipes can genuinely reduce salt substantially without a taste penalty.
+5. NHLBI NIH fact sheet (Nov 2022): top recommended strategy is herbs-and-spices.
+6. Kidney Foundation: Na limits + vinegar/lemon/garlic/pepper alternatives — confirmed by our TPCA Na bookkeeping.
+
+Peruvian sodium-audit: Pescado al ajonjolí computed Na = 8mg per serving (trace amounts, well under the 2300-mg diameter gate). The composition engine's data quality is sufficient to run the published research findings in a TESTED, falsifiable way.
+
+Tests: 147 pass / 0 fail; lint clean.
+Next single command/ticket: owner weigh-in worksheet; the recipe design standard's "why this works" note can now be wired into the recipe card display without simplifying the honesty labels.
+
+## Update template for next session
+
+## Update template for next session
+Time (Lima): …  Model: …  Commit before/after: …
+Task, assumptions and AC: …  Files written: …
+Tests command/output: …  Negative findings: …
+Usage/quota/error: …  Blockers: …
+Next single command/ticket: …

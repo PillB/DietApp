@@ -134,9 +134,14 @@
     if (!NUTRITION) { host.innerHTML = '<p class="text-xs text-stone-500">(composition engine not loaded)</p>'; return; }
     const comp = {};
     const pendingNames = [];
+    const bridge = root.CompositionBridge;
     for (const u of recipe.ingredients) {
       if (root.__pgkComposition && root.__pgkComposition[u.ingredientId]) {
         comp[u.ingredientId] = root.__pgkComposition[u.ingredientId];
+      } else if (bridge) {
+        const resolved = bridge.applyBridge(root.__pgkComposition || {}, u.ingredientId);
+        if (resolved && resolved.per100g) { comp[u.ingredientId] = resolved; }
+        else { pendingNames.push(u.ingredientId); }
       } else {
         pendingNames.push(u.ingredientId);
       }
@@ -144,9 +149,9 @@
     const per = NUTRITION.computedPerServing(recipe, comp);
     host.innerHTML = `
       <div class="rounded border border-stone-700 px-3 py-2 text-sm">
-        <span class="text-amber-300">Per serving (computed-pending-weighin):</span>
+        <span class="text-amber-300">${tC('nutrition.perServing')}</span>
         <span class="text-stone-200">${per.kcal == null ? '—' : per.kcal + ' kcal'} · ${per.proteinG == null ? '—' : per.proteinG + ' g protein'} · ${per.fiberG == null ? '—' : per.fiberG + ' g fiber'}</span>
-        ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ingredient row(s) without composition — macros pendiente</span>` : '<span class="ml-2 text-emerald-300/80">all uses composed ✓</span>'}
+        ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ${tC("nutrition.missingRows")} — macros pendiente</span>` : '<span class="ml-2 text-emerald-300/80">all uses composed ✓</span>'}
         ${pendingNames.length ? `<span class="ml-2 text-stone-400 text-xs">missing: ${pendingNames.map((p) => escapeHtml(p)).join(', ')}</span>` : ''}
         <span class="block text-xs text-stone-500">TPCA-sourced computed estimate; NOT a weighed kitchen yield; P4.4 worksheet required to promote to 'assessed'.</span>
       </div>`;
