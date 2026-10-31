@@ -1,5 +1,5 @@
 {
-  "port": 57114,
+  "port": 57370,
   "rows": [
     {
       "tag": "desktop",
@@ -48,12 +48,7 @@
     },
     {
       "tag": "planner-flow",
-      "pageErrors": [
-        "ReferenceError: root is not defined",
-        "ReferenceError: root is not defined",
-        "ReferenceError: root is not defined",
-        "ReferenceError: root is not defined"
-      ],
+      "pageErrors": [],
       "steps": {
         "beforeRepeat": 1,
         "afterRepeat": 3,
@@ -64,14 +59,14 @@
         "afterDeficit": 18,
         "deficitStatus": "Week built for 1500 kcal (moderate): 14",
         "deficitExplanations": 3,
-        "langEspe": 0,
+        "langEspe": 1,
         "shoppingHeaderEs": 1,
-        "langZh": 0,
+        "langZh": 1,
         "cookHeaderZh": 1,
-        "langJa": 0,
+        "langJa": 1,
         "shoppingLinesAfter": 10
       },
-      "failed": true
+      "failed": false
     },
     {
       "tag": "cook-flow",
