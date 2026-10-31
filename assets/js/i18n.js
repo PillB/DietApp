@@ -72,6 +72,29 @@
     'slots.cena': { 'en': 'dinner (cena)', 'es-PE': 'cena', 'zh-Hans': '晚餐', 'hi': 'रात का भोजन', 'de': 'Abendessen', 'ja': '夕食' },
     'slots.refrigerio': { 'en': 'snack (refrigerio)', 'es-PE': 'refrigerio', 'zh-Hans': '加餐', 'hi': 'स्नैक', 'de': 'Snack', 'ja': '間食' },
     'slots.11am': { 'en': '11am snack', 'es-PE': 'picoteo 11am', 'zh-Hans': '上午11点加餐', 'hi': '11 बजे स्नैक', 'de': '11-Uhr-Snack', 'ja': '11時の間食' },
+
+    // P2.2 planner chrome strings (LEDGER-D44: the RDA/adequacy skeleton was EN-hardcoded)
+    'planner.langLabel': { 'en': 'Language', 'es-PE': 'Idioma', 'zh-Hans': '语言', 'hi': 'भाषा', 'de': 'Sprache', 'ja': '言語' },
+    'planner.moderate': { 'en': 'moderate', 'es-PE': 'moderado', 'zh-Hans': '适中', 'hi': 'मध्यम', 'de': 'moderat', 'ja': '中程度' },
+    'planner.aggressive': { 'en': 'aggressive', 'es-PE': 'agresivo', 'zh-Hans': '激进', 'hi': 'आक्रामक', 'de': 'aggressiv', 'ja': '積極的' },
+    'planner.sexLabel': { 'en': 'Sex (for Fe/Zn RDA)', 'es-PE': 'Sexo (para RDA de Fe/Zn)', 'zh-Hans': '性别（用于铁/锌RDA）', 'hi': 'लिंग (Fe/Zn RDA के लिए)', 'de': 'Geschlecht (für Fe/Zn-RDA)', 'ja': '性別（Fe/Zn RDA用）' },
+    'planner.male': { 'en': 'male', 'es-PE': 'masculino', 'zh-Hans': '男', 'hi': 'पुरुष', 'de': 'männlich', 'ja': '男性' },
+    'planner.female': { 'en': 'female', 'es-PE': 'femenino', 'zh-Hans': '女', 'hi': 'महिला', 'de': 'weiblich', 'ja': '女性' },
+    'planner.moveTo': { 'en': 'Move {r} ({id}) to date', 'es-PE': 'Mover {r} ({id}) a la fecha', 'zh-Hans': '将 {r} ({id}) 移动到日期', 'hi': '{r} ({id}) को तारीख पर ले जाएं', 'de': '{r} ({id}) auf Datum verschieben', 'ja': '{r} ({id}) を日付に移動' },
+    'planner.copyTo': { 'en': 'Copy {r} ({id}) to date', 'es-PE': 'Copiar {r} ({id}) a la fecha', 'zh-Hans': '将 {r} ({id}) 复制到日期', 'hi': '{r} ({id}) को तारीख पर कॉपी करें', 'de': '{r} ({id}) auf Datum kopieren', 'ja': '{r} ({id}) を日付にコピー' },
+    'planner.copyBtn': { 'en': 'Copy →', 'es-PE': 'Copiar →', 'zh-Hans': '复制 →', 'hi': 'कॉपी →', 'de': 'Kopieren →', 'ja': 'コピー →' },
+    'planner.deleteBtn': { 'en': 'Delete', 'es-PE': 'Eliminar', 'zh-Hans': '删除', 'hi': 'मिटाएं', 'de': 'Löschen', 'ja': '削除' },
+    'planner.repeatTimes': { 'en': 'Repeat ×', 'es-PE': 'Repetir ×', 'zh-Hans': '重复 ×', 'hi': 'दोहराएं ×', 'de': 'Wiederholen ×', 'ja': 'リピート ×' },
+    'planner.repeatWeeklyBtn': { 'en': 'Repeat weekly (same weekday)', 'es-PE': 'Repetir semanalmente (mismo día)', 'zh-Hans': '每周重复（同一星期）', 'hi': 'साप्ताहिक दोहराएं (उसी दिन)', 'de': 'Wöchentlich wiederholen (gleicher Wochentag)', 'ja': '毎週繰り返し（同じ曜日）' },
+    'planner.repeatWeeklyAria': { 'en': 'Repeat {r} {id} weekly by weekday', 'es-PE': 'Repetir {r} {id} semanalmente por día de semana', 'zh-Hans': '按星期每周重复 {r} {id}', 'hi': '{r} {id} को वार अनुसार साप्ताहिक दोहराएं', 'de': '{r} {id} wöchentlich nach Wochentag wiederholen', 'ja': '{r} {id} を曜日ごとに毎週繰り返し' },
+    'planner.familyTitle': { 'en': 'repeat family', 'es-PE': 'familia de repetición', 'zh-Hans': '重复系列', 'hi': 'दोहराव परिवार', 'de': 'Wiederholungsreihe', 'ja': '繰り返し系列' },
+    'planner.noEntries': { 'en': '(no plan entries yet — add one at the shopping panel)', 'es-PE': '(sin entradas de plan todavía — agrega una en el panel de compras)', 'zh-Hans': '（还没有计划条目 — 在购物面板添加）', 'hi': '(अभी कोई योजना प्रविष्टि नहीं — दुकान पैनल में जोड़ें)', 'de': '(noch keine Plan-Einträge — im Einkaufs-Panel hinzufügen)', 'ja': '（計画エントリなし — 買い物パネルで追加）' },
+    'planner.statusEntries': { 'en': 'plan entry(ies)', 'es-PE': 'entrada(s) de plan', 'zh-Hans': '条目', 'hi': 'योजना प्रविष्टि(यां)', 'de': 'Plan-Eintrag(s)', 'ja': '計画エントリ' },
+    'planner.statusFamilies': { 'en': 'repeat family(ies)', 'es-PE': 'familia(s) de repetición', 'zh-Hans': '重复系列', 'hi': 'दोहराव परिवार', 'de': 'Wiederholungsreihe(n)', 'ja': '繰り返し系列' },
+    'planner.opOk': { 'en': '{op} ok', 'es-PE': 'Operación {op} correcta', 'zh-Hans': '操作 {op} 成功', 'hi': 'संचालन {op} ठीक', 'de': 'Aktion {op} ok', 'ja': '操作 {op} 成功' },
+    'planner.adequacyNotLoaded': { 'en': '(adequacy engine not loaded)', 'es-PE': '(motor de adecuación no cargado)', 'zh-Hans': '（充足度引擎未加载）', 'hi': '(पर्याप्तता इंजन लोड नहीं)', 'de': '(Angemessenheits-Server nicht geladen)', 'ja': '（充足性エンジン未読込）' },
+    'planner.adequacyBasis': { 'en': 'Weekly adequacy — basis: {b}', 'es-PE': 'Adecuación semanal — base: {b}', 'zh-Hans': '每周充足度 — 基准: {b}', 'hi': 'साप्ताहिक पर्याप्तता — आधार: {b}', 'de': 'Wöchentliche Angemessenheit — Basis: {b}', 'ja': '週次充足性 — 基準: {b}' },
+    'planner.adequacyPartial': { 'en': '⚠ {n} ingredient row(s) without composition — coverage is partial', 'es-PE': '⚠ {n} fila(s) de ingrediente sin composición — la cobertura es parcial', 'zh-Hans': '⚠ {n} 行食材无成分数据 — 覆盖不完整', 'hi': '⚠ {n} सामग्री पंक्ति संरचना के बिना — कवरेज आंशिक है', 'de': '⚠ {n} Zutatenzeile(n) ohne Zusammensetzung — Abdeckung unvollständig', 'ja': '⚠ {n} 行の食材に成分データなし — カバー率は部分的' },
   };
 
   let language = 'es-PE'; // OWNER DEFAULT: Peruvian Spanish per standing directive

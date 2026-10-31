@@ -76,7 +76,7 @@
 
       <div class="mt-auto rounded-3xl border border-white/10 bg-white/5 p-4 shadow-glow">
         <p class="text-xs uppercase tracking-[0.22em] text-amber-300/70">Kitchen Command</p>
-        <p class="mt-2 text-sm text-stone-300">Search, print, copy shopping lists, and open recipes from the calendar without reloading the page.</p>
+        <p class="mt-2 text-sm text-stone-300">Busca, imprime y copia listas de compras y abre recetas desde el calendario sin recargar la página.</p>
         <button @click="exportData()" class="mt-4 w-full rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-white/15">Export JSON</button>
       </div>
     </aside>
@@ -88,7 +88,7 @@
           <h2 class="font-display text-3xl text-amber-50" x-text="data.meta.title"></h2>
         </div>
         <div class="flex flex-wrap gap-2">
-          <button @click="printCurrentView()" class="rounded-2xl border border-white/10 px-4 py-2 text-sm text-stone-200 hover:bg-white/10">Print view</button>
+          <button @click="printCurrentView()" class="rounded-2xl border border-white/10 px-4 py-2 text-sm text-stone-200 hover:bg-white/10">Imprimir vista</button>
           <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300"class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Iniciar compras</a>
         </div>
       </header>
@@ -98,7 +98,7 @@
           <article class="rounded-[2rem] border border-white/10 bg-white/[0.07] p-6 shadow-glow">
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Resumen ejecutivo</p>
             <h3 class="mt-3 font-display text-4xl text-amber-50">Un mes con mentalidad Michelin construido desde tus antojos reales.</h3>
-            <p class="mt-5 text-base leading-8 text-stone-300" x-text="data.executiveSummary"></p>
+            <p class="mt-5 text-base leading-8 text-stone-300" x-text="data.executiveSummaryEs || data.executiveSummary"></p>
             <div class="mt-3 rounded-xl border border-amber-300/25 p-3 text-sm leading-7 text-stone-300">Un plan gourmet de un mes que sintetiza las pautas dietéticas 2025-2030 con tus antojos reales. Analizando más de 1 300 pedidos a domicilio, el plan infiere una profunda apreciación por la fusión Nikkei-peruana, la comodidad italiana, la comida callejera Tex-Mex y los clásicos estadounidenses — con umami atrevido, calor moderado, salsas cremosas y texturas crujientes. Cada receta usa bases de granos enteros, productos frescos, lácteos enteros sin azúcar añadido y salsas caseras. El resultado: una aventura de sabor indulgente, variada y cohesiva que honra tanto tu ADN de sabor como las pautas nutricionales más recientes.</div>
           </article>
           <article class="rounded-[2rem] border border-white/10 bg-stone-950/40 p-6">
@@ -129,7 +129,7 @@
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">28-day interactive menu</p>
             <h2 class="font-display text-4xl text-amber-50">Calendario mensual</h2>
           </div>
-          <p class="text-sm text-stone-400">Click any day to open its menu.</p>
+          <p class="text-sm text-stone-400">Haz clic en cualquier día para abrir su menú.</p>
         </div>
         <div class="grid grid-cols-7 gap-2 rounded-[2rem] border border-white/10 bg-white/5 p-3 sm:p-5">
           <template x-for="label in dayLabels" :key="label">
@@ -161,9 +161,9 @@
           </div>
         </div>
         <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-          <p class="text-lg leading-8 text-stone-200" x-text="currentWeekOverview().theme"></p>
+          <p class="text-lg leading-8 text-stone-200" x-text="currentWeekOverview().themeEs || currentWeekOverview().theme"></p>
           <div class="mt-5 grid gap-3 md:grid-cols-2">
-            <template x-for="highlight in currentWeekOverview().highlights" :key="highlight">
+            <template x-for="highlight in (currentWeekOverview().highlightsEs || currentWeekOverview().highlights)" :key="highlight">
               <div class="rounded-2xl bg-stone-950/40 p-4 text-sm leading-6 text-stone-300">✦ <span x-text="highlight"></span></div>
             </template>
           </div>
@@ -173,7 +173,7 @@
             <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
               <div class="mb-4 flex items-center justify-between">
                 <h3 class="font-display text-2xl text-amber-50" x-text="day.day"></h3>
-                <a :href="`#day/${selectedWeek}/${idx}`" class="text-sm font-bold text-amber-300 hover:text-amber-200">Open day →</a>
+                <a :href="`#day/${selectedWeek}/${idx}`" class="text-sm font-bold text-amber-300 hover:text-amber-200">Abrir día →</a>
               </div>
               <div class="space-y-3">
                 <template x-for="slot in mealSlots" :key="slot.key">
@@ -211,7 +211,7 @@
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Biblioteca de recetas con búsqueda</p>
             <h2 class="font-display text-4xl text-amber-50">Recetas completas</h2>
           </div>
-          <input x-model="query" type="search" placeholder="Search by dish, ingredient, method..." class="w-full rounded-2xl border border-white/10 bg-stone-950/70 px-4 py-3 text-stone-100 outline-none ring-amber-300/50 placeholder:text-stone-500 focus:ring-2 lg:max-w-md">
+          <input x-model="query" type="search" placeholder="Buscar por plato, ingrediente, método..." class="w-full rounded-2xl border border-white/10 bg-stone-950/70 px-4 py-3 text-stone-100 outline-none ring-amber-300/50 placeholder:text-stone-500 focus:ring-2 lg:max-w-md">
         </div>
         <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           <template x-for="recipe in filteredRecipes" :key="recipe.id">
@@ -240,7 +240,7 @@
             <template x-for="week in [1,2,3,4]" :key="week">
               <a :href="`#shopping/${week}`" class="rounded-2xl px-4 py-2 text-sm font-bold" :class="shoppingWeek === week ? 'bg-amber-400 text-stone-950' : 'bg-white/10 text-stone-200 hover:bg-white/15'" x-text="`W${week}`"></a>
             </template>
-            <button @click="copyShoppingList()" class="rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-stone-100 hover:bg-white/15">Copy all</button>
+            <button @click="copyShoppingList()" class="rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-stone-100 hover:bg-white/15">Copiar todo</button>
             <button @click="resetShoppingWeek()" class="rounded-2xl bg-white/10 px-4 py-2 text-sm font-bold text-stone-100 hover:bg-white/15">Reset</button>
             <button @click="printCurrentView()" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Imprimir</button>
           </div>
@@ -325,7 +325,7 @@
 
       <section x-show="view === 'knowledge'" class="space-y-6">
         <div>
-          <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Taste DNA extracted from ordering behavior</p>
+          <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">ADN del sabor extraído del historial de pedidos</p>
           <h2 class="font-display text-4xl text-amber-50">Mapa de conocimiento del sabor</h2>
         </div>
         <div class="grid gap-5 lg:grid-cols-2">
@@ -353,7 +353,7 @@
           <h2 data-nt="nutrition">Nutrition, portioning and safe planning</h2>
           <p data-nt="feature">Seven measured gourmet variants for a practical starter week. Original recipes remain available under Recipes, but unstructured ingredients cannot reliably produce exact shopping totals.</p>
           <div class="n-hero-footer">
-            <label>Interface language <select id="n-language" aria-label="Nutrition module language"><option value="en">English</option><option value="es">Español</option></select></label>
+            <label>Idioma de la interfaz <select id="n-language" aria-label="Idioma del módulo de nutrición"><option value="en">English</option><option value="es">Español</option></select></label>
             <a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="noopener noreferrer">NIH weight planner ↗</a>
           </div>
         </div>

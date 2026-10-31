@@ -166,6 +166,7 @@
   ]
  },
  "executiveSummary": "This one-month gourmet plan synthesises the new 2025-2030 dietary guidelines with the user’s demonstrated tastes. By analysing more than 1 300 delivery orders, the plan infers a deep appreciation for Peruvian-Nikkei fusion, Italian comfort foods, Tex-Mex street fare and American classics, all featuring bold umami, controlled heat, creamy sauces and crispy textures. The guidelines demand avoidance of ultra-processed foods, refined grains, added sugars and artificial additives while emphasising whole grains, varied proteins, healthy fats and minimal processing. Each recipe in this plan uses whole-grain bases, fresh produce, full-fat dairy without added sugar, and homemade sauces to meet those standards. Over four themed weeks-Peruvian-Nikkei & seafood, Italian-Mediterranean, Mexican & Asian street food, and elevated American comfort-the user journeys through familiar flavours elevated to Michelin-level sophistication. Detailed mise en place lists, precise metric measurements, just-in-time prep instructions and food-science insights ensure the recipes are testable for skilled home cooks. Wine or beverage pairings and weekly shopping lists streamline execution. The result is an indulgent, varied and cohesive flavour adventure that honours both the user’s taste DNA and the latest nutritional guidance.",
+ "executiveSummaryEs": "Este plan gourmet de un mes sintetiza las nuevas guías alimentarias 2025-2030 con los gustos demonstrados del comensal. Analizando más de 1 300 pedidos a domicilio, el plan infiere una apreciación profunda por la fusión peruano-nikkei, la comida italiana reconfortante, la calle Tex-Mex y los clásicos americanos — todo con umami audaz, picante controlado, salsas cremosas y texturas crocantes. Las guías exigen evitar ultraprocesados, granos refinados, azúcares añadidos y aditivos artificiales, priorizando granos integrales, proteínas variadas y grasas saludables. Cada receta usa bases integrales, produce fresca, lácteos enteros sin azúcar añadida y salsas caseras. En cuatro semanas temáticas — peruano-nikkei y mariscos, italo-mediterránea, callejera mexicana y asiática, y confort americano elevado — el comensal recorre sabores familiares llevados a sofisticación Michelin. Las listas de mise en place, medidas métricas exactas, preparación just-in-time y notas de ciencia de alimentos hacen las recetas ejecutables para cocineros caseros expertos. Maridajes y listas de compra semanales agilizan la ejecución. El resultado es una aventura de sabor indulgente, variada y coherente que honra tanto el ADN del sabor como la última guía nutricional. [Traducción es-PE en borrador — pendiente de revisión nativa]",
  "weeklyOverviews": [
   {
    "week": 1,
@@ -177,7 +178,13 @@
     "Ají amarillo, rocoto and cilantro provide Peruvian heat; kombu, bonito flakes and soy bring Japanese umami.",
     "Early prep: make whole-grain English muffins and croissant dough; prepare fish stock and roast purple corn for dessert syrup."
    ],
-   "themeEs": "Presenta el mes con platos que celebran la herencia Nikkei de Perú y el amor del comensal por los huevos, alcachofas y mariscos. Espera cítricos brillantes y salsas de ají que equilibran los elementos cremosos."
+   "themeEs": "Presenta el mes con platos que celebran la herencia Nikkei de Perú y el amor del comensal por los huevos, alcachofas y mariscos. Espera cítricos brillantes y salsas de ají que equilibran los elementos cremosos.",
+   "highlightsEs": [
+    "Pescado fresco (salmón, atún, bacalao) y mariscos (camarones) en estilo ceviche y salteados. [es-PE borrador]",
+    "Muffines ingleses integrales, quinua y arroz integral para reemplazar panes blancos y refinados. [es-PE borrador]",
+    "Ají amarillo, rocoto y culantro dan el picante peruano; kombu, hojuelas de bonito y soya traen el umami japonés. [es-PE borrador]",
+    "Prep inicial: preparar muffines integrales y masa de croissant; hacer fondo de pescado y tostar maíz morado para el jarabe del postre. [es-PE borrador]"
+   ]
   },
   {
    "week": 2,
@@ -189,7 +196,13 @@
     "Artichokes, mushrooms, tomatoes and olives provide plant variety; herbs like basil, oregano and rosemary.",
     "Prep tasks include fermenting pizza dough overnight, soaking brown rice, and making lucuma purée for tiramisu."
    ],
-   "themeEs": "Honra los clásicos italianos —pasta, pizza, risotto— reimaginados con granos integrales y productos peruanos."
+   "themeEs": "Honra los clásicos italianos —pasta, pizza, risotto— reimaginados con granos integrales y productos peruanos.",
+   "highlightsEs": [
+    "Risotto de arroz integral, gnocchi integral y masa de pizza realzan los granos ricos en fibra. [es-PE borrador]",
+    "Parmesano, pecorino y mozzarella usados con juiciosa medida para dar umami sin abrumar. [es-PE borrador]",
+    "Alcachofas, champiñones, tomates y aceitunas dan variedad vegetal; hierbas como albahaca, orégano y romero. [es-PE borrador]",
+    "Prep: fermentar la masa de pizza de un día para otro, remojar el arroz integral y hacer puré de lúcuma para el tiramisú. [es-PE borrador]"
+   ]
   },
   {
    "week": 3,
@@ -201,7 +214,13 @@
     "Proteins include sustainable fish, miso-glazed salmon, slow-braised lamb or beef, turkey mince and tofu.",
     "Prepare birria base and ramen broth ahead; ferment kimchi and prepare churro dough a day prior."
    ],
-   "themeEs": "Una mezcla juguetona de platos callejeros mexicanos y favoritos del este de Asia, con proteínas magras y verduras crujientes."
+   "themeEs": "Una mezcla juguetona de platos callejeros mexicanos y favoritos del este de Asia, con proteínas magras y verduras crujientes.",
+   "highlightsEs": [
+    "Tortillas integrales, arroz integral y quinua soportan los tacos y bowles. [es-PE borrador]",
+    "Salsas caseras (salsa roja, crema de chipotle), glaseados de miso y caldo de birria dan profundidad. [es-PE borrador]",
+    "Proteínas: pescado sustentable, salmón glaseado en miso, cordero o res brazeados lentos, pavo molido y tofu. [es-PE borrador]",
+    "Prepara la base de birria y el caldo de ramen con anticipación; fermenta kimchi y haz la masa de churro un día antes. [es-PE borrador]"
+   ]
   },
   {
    "week": 4,
@@ -213,7 +232,13 @@
     "Desserts like whiskey-pecan tart use dark chocolate and nuts to satisfy sweet cravings while limiting added sugar.",
     "Prep includes curing salmon for bagels, marinating chicken and ribs, and making truffle salt for popcorn."
    ],
-   "themeEs": "Cierra con comida reconfortante elevada por técnica —costillas sous-vide, postres gourmet— sin azúcares añadidos."
+   "themeEs": "Cierra con comida reconfortante elevada por técnica —costillas sous-vide, postres gourmet— sin azúcares añadidos.",
+   "highlightsEs": [
+    "Bagels integrales y masa madre para el desayuno; empanizado de harina de almendras para el pollo frito; farro y papas moradas como almidón. [es-PE borrador]",
+    "Énfasis en sellado y sous-vide para texturas perfectas y grasa controlada. [es-PE borrador]",
+    "Postres como la tarta de whiskey y pecana usan chocolate oscuro y nueces para antojar lo dulce limitando azúcar añadida. [es-PE borrador]",
+    "Prep: curar el salmón para los bagels, marinar el pollo y las costillas, y hacer sal de trufa para palomitas. [es-PE borrador]"
+   ]
   }
  ],
  "dailyPlans": [

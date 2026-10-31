@@ -14,6 +14,13 @@
 })(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
 
+  /** i18n shortcut with {key} interpolation (LEDGER-D44 chrome translation). */
+  function T(key, map) {
+    let s = root.I18N.t(key);
+    if (map) for (const [k, v] of Object.entries(map)) s = s.replaceAll(`{${k}}`, v);
+    return s;
+  }
+
   function init(opts) {
     const dom = opts.dom || document;
     const section = dom.getElementById('planner');
@@ -56,7 +63,7 @@
     try {
       out = DP.planDeficitWeek(deficitArgs(model, ack, target, hints));
     } catch (err) {
-      status.textContent = `Refused: ${err.code || err.message}`;
+      status.textContent = `${T('planner.refused')} ${err.code || err.message}`;
       return;
     }
     applyWeekEntries(section, model, status, out);
@@ -125,12 +132,11 @@
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
-    const t = (k) => root.I18N.t(k);
-    section.innerHTML = `
+    const t = (k) => root.I18N.t(k);    section.innerHTML = `
       <h2 id="planner-h2" class="text-xl font-bold text-amber-200">${t('planner.title')}</h2>
       <p class="text-sm text-stone-300">${t('planner.keyboardNote')}</p>
       <div class="flex items-center gap-2 mt-2">
-        <label class="text-xs" for="planner-lang">Language</label>
+        <label class="text-xs" for="planner-lang">${T('planner.langLabel')}</label>
         <select id="planner-lang" class="bg-stone-800 border border-stone-600 rounded px-2 py-0.5 text-xs">
           ${root.I18N.LOCALES.map((l) => `<option value="${l}">${l}</option>`).join('')}
         </select>
@@ -140,9 +146,9 @@
         <div class="flex flex-wrap items-end gap-3 mt-2">
           <label class="text-sm">${t('planner.dayTarget')}
             <select id="deficit-target" class="bg-stone-800 border border-stone-600 rounded px-2 py-1">
-              <option value="1500">1500 kcal (moderate)</option>
-              <option value="1400">1400 kcal (aggressive)</option>
-              <option value="1200">1200 kcal (aggressive)</option>
+              <option value="1500">1500 kcal (${T('planner.moderate')})</option>
+              <option value="1400">1400 kcal (${T('planner.aggressive')})</option>
+              <option value="1200">1200 kcal (${T('planner.aggressive')})</option>
             </select></label>
           <label class="text-sm flex items-center gap-2"><input id="deficit-ack" type="checkbox" class="accent-amber-400"> ${t('planner.ackLabel')}</label>
           <button id="deficit-build-btn" class="rounded bg-amber-400 text-stone-950 font-bold px-3 py-1 focus:outline-none focus:ring-2">${t('planner.buildWeek')}</button>
@@ -152,10 +158,10 @@
       <div id="planner-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80"></div>
       <div id="adequacy-panel" class="mt-4 rounded border border-stone-700 p-3">
         <div class="flex flex-wrap items-end gap-3">
-          <label class="text-sm">Sex (for Fe/Zn RDA)
+          <label class="text-sm">${T('planner.sexLabel')}
             <select id="adequacy-sex" class="bg-stone-800 border border-stone-600 rounded px-2 py-1 text-xs">
-              <option value="male">male</option>
-              <option value="female">female</option>
+              <option value="male">${T('planner.male')}</option>
+              <option value="female">${T('planner.female')}</option>
             </select></label>
           <button id="adequacy-btn" class="rounded border border-amber-300 px-3 py-1 text-xs text-amber-200 focus:outline-none focus:ring-2">Coverage semanal de micronutrientes</button>
         </div>
@@ -180,24 +186,24 @@
     const familySizes = new Map();
     for (const e of rows) if (e.repeatRuleId) familySizes.set(e.repeatRuleId, (familySizes.get(e.repeatRuleId) || 0) + 1);
     listEl.innerHTML = rows.length ? rows.map((e) => {
-      const fam = e.repeatRuleId ? `<span class="text-amber-300 text-xs" title="repeat family ${e.repeatRuleId}">⟲×${familySizes.get(e.repeatRuleId)}</span>` : '';
+      const fam = e.repeatRuleId ? `<span class="text-amber-300 text-xs" title="${T('planner.familyTitle')} ${e.repeatRuleId}">⟲×${familySizes.get(e.repeatRuleId)}</span>` : '';
       return `
       <li class="flex flex-wrap items-center gap-2 rounded border border-stone-700 px-2 py-1" data-entry="${e.id}">
         <span class="text-stone-200 w-28">${e.localDate}</span>
         <span class="text-stone-300">${e.recipeId} ×${e.portions}</span>
         ${fam}
-        <label class="sr-only" for="move-${e.id}">Move ${e.recipeId} (${e.id}) to date</label>
-        <input id="move-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="move" data-entry="${e.id}" aria-label="move ${e.recipeId} ${e.id}">
-        <label class="sr-only" for="copydate-${e.id}">Copy ${e.recipeId} (${e.id}) to date</label>
+        <label class="sr-only" for="move-${e.id}">${T('planner.moveTo', { r: e.recipeId, id: e.id })}</label>
+        <input id="move-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="move" data-entry="${e.id}" aria-label="${T('planner.moveTo', { r: e.recipeId, id: e.id })}">
+        <label class="sr-only" for="copydate-${e.id}">${T('planner.copyTo', { r: e.recipeId, id: e.id })}</label>
         <input id="copydate-${e.id}" type="date" value="${e.localDate}" class="bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs" data-op="copydate" data-entry="${e.id}">
-        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="copy" data-entry="${e.id}" aria-label="Copy ${e.recipeId} ${e.id} to copy date">Copy →</button>
-        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="del" data-entry="${e.id}" aria-label="Delete ${e.recipeId} ${e.id}">Delete</button>
-        <label class="text-xs" for="weeks-${e.id}">Repeat ×</label>
+        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="copy" data-entry="${e.id}" aria-label="${T('planner.copyTo', { r: e.recipeId, id: e.id })}">${T('planner.copyBtn')}</button>
+        <button class="rounded border border-stone-500 px-2 py-0.5 text-xs" data-op="del" data-entry="${e.id}" aria-label="${T('planner.deleteBtn')} ${e.recipeId} ${e.id}">${T('planner.deleteBtn')}</button>
+        <label class="text-xs" for="weeks-${e.id}">${T('planner.repeatTimes')}</label>
         <input id="weeks-${e.id}" type="number" min="1" max="52" value="2" data-op="weeks" data-entry="${e.id}" class="w-14 bg-stone-800 border border-stone-600 rounded px-1 py-0.5 text-xs">
-        <button class="rounded border border-amber-300 px-2 py-0.5 text-xs text-amber-200" data-op="repeat" data-entry="${e.id}" aria-label="Repeat ${e.recipeId} ${e.id} weekly by weekday">Repeat weekly (same weekday)</button>
+        <button class="rounded border border-amber-300 px-2 py-0.5 text-xs text-amber-200" data-op="repeat" data-entry="${e.id}" aria-label="${T('planner.repeatWeeklyAria', { r: e.recipeId, id: e.id })}">${T('planner.repeatWeeklyBtn')}</button>
       </li>`;
-    }).join('') : '<li class="text-stone-400">(no plan entries yet — add one at the shopping panel)</li>';
-    status.textContent = `${rows.length} plan entr${rows.length === 1 ? 'y' : 'ies'}${familySizes.size ? `, ${familySizes.size} repeat famil${familySizes.size === 1 ? 'y' : 'ies'}` : ''}`;
+    }).join('') : `<li class="text-stone-400">${T('planner.noEntries')}</li>`;
+    status.textContent = `${rows.length} ${T('planner.statusEntries')}${familySizes.size ? `, ${familySizes.size} ${T('planner.statusFamilies')}` : ''}`;
   }
 
   function entryAction(ev, model, deps, section) {
@@ -236,9 +242,9 @@
       });
       renderEntries(section, model);
       if (root.ShoppingUI && root.__pgkRefreshShopping) root.__pgkRefreshShopping();
-      status.textContent = `${op} ok`;
+      status.textContent = T('planner.opOk', { op });
     } else {
-      status.textContent = `Refused: ${res.errors.map((e) => e.code).join(', ')}`;
+      status.textContent = `${T('planner.refused')} ${res.errors.map((e) => e.code).join(', ')}`;
     }
   }
 
@@ -251,7 +257,7 @@
   function renderAdequacy(section, model) {
     const host = section.querySelector('#adequacy-table');
     const A = root.AdequacyCore;
-    if (!A) { host.textContent = '(adequacy engine not loaded)'; return; }
+    if (!A) { host.textContent = T('planner.adequacyNotLoaded'); return; }
     const sex = section.querySelector('#adequacy-sex').value;
     const comp = root.__pgkComposition || {};
     const allRecipes = [...(model.recipes || []), ...(model.docxRecipes || [])];
@@ -274,11 +280,11 @@
     }).join('');
     host.innerHTML = `
       <table class="w-full border border-stone-800 text-left">
-        <caption class="text-left text-xs text-stone-400 px-2 pt-1">Weekly adequacy — basis: ${week.perServingBasis} (${week.RDA_SOURCE.split(';')[0]})</caption>
+        <caption class="text-left text-xs text-stone-400 px-2 pt-1">${T('planner.adequacyBasis', { b: `${week.perServingBasis} (${week.RDA_SOURCE.split(';')[0]})` })}</caption>
         <thead><tr><th class="px-2 py-1">Nutriente</th><th class="px-2 py-1 text-right">Semana</th><th class="px-2 py-1 text-right">RDA ×7</th><th class="px-2 py-1">Estado</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
-      ${week.missingRows > 0 ? `<p class="mt-1 text-orange-300 text-xs">⚠ ${week.missingRows} ingredient row(s) without composition — coverage is partial</p>` : ''}`;
+      ${week.missingRows > 0 ? `<p class="mt-1 text-orange-300 text-xs">${T('planner.adequacyPartial', { n: week.missingRows })}</p>` : ''}`;
   }
 
   return { init, renderEntries, entryAction, weekdayIndexOf };

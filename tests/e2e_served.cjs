@@ -185,7 +185,7 @@ async function plannerFlow(port, report) {
   steps.afterRepeat = await countPlannerRows(page);
   steps.scrollText = await page.locator('#planner-status').textContent();
   // repeat-family badge: ⟲×N appears on generated rows (count == weeks+source)
-  steps.familyBadges = await page.locator('#planner-entries span[title^="repeat family"]').count();
+  steps.familyBadges = await page.locator('#planner-entries span[title^="familia de repetición"]').count();
 
   // separate copy-date semantics: copy the LAST listed row into a distinct date
   steps.afterCopy = await copyLastRow(page);
