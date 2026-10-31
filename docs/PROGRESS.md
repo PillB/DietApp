@@ -395,7 +395,7 @@ E2E cook-flow PASS (extended): docx recipe `pescado_ajonjoli_diet` selectable (â
 data/canonical/docx-diet-recipes-canon.v1.json is now a SERVED asset (public; validated by red-team 5 lenses; owner-decree style exclusion not needed â€” not private).
 
 Tests: 131 pass / 0 fail; lint clean; E2E PASS (6 flows).
-Next single command/ticket: merge the 7 weighed + 4 docx recipes into an owner DEFICIT WEEK in the planner (DietCore gates + FlavorRanking visible explanations on pick), then P6 locale pass en route to production staging.
+## Update template for next session
 
 ## Update template for next session
 

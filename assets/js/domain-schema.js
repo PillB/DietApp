@@ -21,7 +21,7 @@
 
   const DIMENSION_UNITS = { count: ['count'], g: ['g', 'kg'], ml: ['ml', 'l'] };
   const ALL_UNITS = DIMENSION_UNITS.count.concat(DIMENSION_UNITS.g, DIMENSION_UNITS.ml);
-  const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack'];
+  const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack', 'desayuno', 'almuerzo', 'cena', 'refrigerio', '11am']; // v0.4: bilingual keys (es-PE retained alongside legacy EN)
   const BASIS = ['raw', 'dry', 'cooked'];
   const RETAILERS = ['Wong', 'Plaza Vea', 'Metro', 'Mercado', 'Puntomercado'];
   const AVAILABILITY = ['notChecked', 'unverified', 'listedWithoutLocation', 'listedForLocation', 'outOfStockAtTime', 'unavailable', 'unknown', 'confirmedAtCheckout', 'observed', 'verified'];
@@ -219,7 +219,7 @@
   }
 
   return {
-    SCHEMA_VERSION: 'domain-schema/v0.3',
+    SCHEMA_VERSION: 'domain-schema/v0.4',
     QUANTITY_RE,
     validateIngredient: makeValidator('Ingredient', [isIngredient]),
     validateRecipeVersion: makeValidator('RecipeVersion', [recipeHeaderRule, ingredientUseRule, pressureRule, stepsRule]),
