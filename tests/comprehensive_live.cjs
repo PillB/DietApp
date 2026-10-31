@@ -40,16 +40,25 @@ async function main() {
     const link = page.locator(`nav a[href="${hash}"]`);
     if (!(await link.count())) { check(false, `2-nav-${hash}`, 'absent'); continue; }
     await link.click();
-    await page.waitForTimeout(400);
-    const viewName = hash.replace(/^#/, '').replace(/\/\d+$/, '');
-    const enginePanels = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'];
-    const isEnginePanel = enginePanels.includes(viewName);
-    const found = await page.evaluate(([v, hasPanel]) => {
-      if (hasPanel) return 'visible';
-      const el = [...document.querySelectorAll('section')].find((s) => s.getAttribute('x-show') === `view === '${v}'`);
-      return el && getComputedStyle(el).display !== 'none' ? 'visible' : 'hidden';
-    }, [viewName, isEnginePanel]);
-    check(found === 'visible', `2-nav-${hash}`, found);
+    const viewName = hash.replace(/^#/, '').replace(/\\/\\d+$/, '');
+    const target = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(viewName)
+      ? page.locator('#' + viewName)
+      : page.locator(`section[x-show="view === '${viewName}'"]`);
+    await target.waitFor({ state: 'visible', timeout: 5000 }).catch(() => {});
+    const visible = await target.isVisible().catch(() => false);
+    const bounds = visible ? await target.boundingBox() : null;
+    const viewport = page.viewportSize();
+    const inViewport = Boolean(bounds && bounds.y < viewport.height && bounds.y + bounds.height > 0);
+    const routeMatches = new URL(page.url()).hash === hash;
+    const otherVisible = await Promise.all(
+      ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin']
+        .filter((name) => name !== viewName)
+        .map((name) => page.locator('#' + name).isVisible())
+    );
+    check(visible && inViewport && routeMatches && otherVisible.every((v) => !v),
+      `2-nav-${hash}`,
+      `visible=${visible}; viewport=${inViewport}; route=${routeMatches}; otherEngines=${otherVisible.filter(Boolean).length}`);
+
   }
 
   // 3. Recipe modal (es-PE headings)
@@ -67,7 +76,8 @@ async function main() {
     check(headings.includes('Preparación'), '3-modal-preparacion', '');
     await page.click('button[aria-label="Close recipe"]');
     await page.waitForTimeout(300);
-    check(true, '3-modal-closes', '');
+    const modalHidden = !(await page.locator('div.fixed.inset-0.z-40').isVisible());
+    check(modalHidden, '3-modal-closes', `modalHidden=${modalHidden}`);
   }
 
   // 4. Deficit builder
