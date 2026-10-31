@@ -775,6 +775,12 @@ Everything pushed, built, and verified at the latest commit (d8890f9):
 Root causes fixed this round: (1) engine-panel element screenshots timed out (Alpine x-show collapsed height) -> switched to boundingBox+clip method; (2) D38's proof format was bash-style, normalized to npm-run style for the strict parser.
 
 The deployed site at https://pillb.github.io/DietApp/ is COMPLETE: Spanish-first, diet-gated, safety-verified, explainable, 6-locale, offline-capable, privacy-walled - with every claim falsifiable by the 11-layer test stack. Remaining ledger OPEN items are owner-action only (weigh-in, brand labels, store walk, dedup).
+## Session log - 2026-10-31, session 3, part 57 (calendar fuzz + es-PE week themes)
+
+Files: tests/calendar_fuzz.test.cjs (4 property tests: datesInRange 100 random spans always inclusive+ascending+valid incl leap years; weekOf 100 random dates always Monday-anchored 7 consecutive; leap-century rules 2024/2026/2000/1900; month-end sweep 12x4 years), meal-plan-data.json (themeEs added to the 4 weeklyOverviews - authored es-PE themes), index.html (dashboard renders week.themeEs || week.theme).
+
+Tests: 173 pass / 0 fail; e2e PASS; pushed 8d89608.
+Next single command/ticket: the R1 pyramid is now FULLY covered (unit + property for quantity, shopping, calendar). The remaining fuzz targets are the shopping aggregation with random plan permutations - a natural P7-R1 extension if the owner wants deeper fuzz; otherwise owner-action items remain the only open ledger work.
 
 ## Update template for next session
 
