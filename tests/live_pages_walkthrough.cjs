@@ -119,10 +119,16 @@ async function run() {
       const ctx = await browser.newContext({viewport:{width,height:width===390?844:900},locale:'es-PE'});
       const page = await ctx.newPage();
       page.on('pageerror',e=>report.errors.push({width,type:'pageerror',error:e.message}));
+      page.on('console',m=>{ if(m.type()==='error') report.errors.push({width,type:'console-error',error:m.text().slice(0,500)}); });
+      page.on('requestfailed',r=>report.errors.push({width,type:'failed-network-request',url:r.url(),error:r.failure()?.errorText}));
       try {
         const response = await page.goto(LIVE,{waitUntil:'domcontentloaded',timeout:25000});
         if (!response || response.status()>=400) throw new Error('bad Pages HTTP status: '+response?.status());
-        await page.waitForTimeout(1800);
+        const started=Date.now();
+        await page.locator('#planner-h2').waitFor({state:'attached',timeout:20000});
+        await page.locator('#engine-recipe').waitFor({state:'attached',timeout:20000});
+        await page.locator('#cook-recipe').waitFor({state:'attached',timeout:20000});
+        record({width,action:'engine-mounted-before-interaction',ok:true,loadMs:Date.now()-started});
         for(const route of ROUTES) await observeRoute(page,route,width);
         await exercise(page,width);
       } catch(e) { report.errors.push({width,type:'walkthrough',error:String(e)}); }
