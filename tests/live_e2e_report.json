@@ -1,6 +1,6 @@
 {
   "url": "https://pillb.github.io/DietApp/",
-  "timestamp": "2026-10-31T15:01:02.549Z",
+  "timestamp": "2026-10-31T15:16:08.316Z",
   "hardFail": false,
   "failures": [],
   "rows": [
@@ -72,7 +72,7 @@
     {
       "label": "live_nutrition_card",
       "ok": true,
-      "detail": "Per serving (computed-pending-weighin):\n        307.9 kcal · 31.2 g protein · 7.2 g fiber\n        al"
+      "detail": "Por porción (cálculo estimado — pendiente de pesa en cocina):\n        307.9 kcal · 31.2 g protein · "
     },
     {
       "label": "live_lang_espe",

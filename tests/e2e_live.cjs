@@ -92,7 +92,8 @@ async function addRecipePlanCook(browser) {
   await page.selectOption('#cook-recipe', 'pescado_ajonjoli_diet');
   await page.waitForTimeout(200);
   const nut = await page.locator('#cook-nutrition').textContent();
-  pass('live_nutrition_card', nut.includes('computed-pending-weighin'), nut.trim().slice(0, 100));
+  // default language is es-PE (owner directive): the Spanish label is the expected live text
+  pass('live_nutrition_card', /por porc|computed-pending-weighin/i.test(nut), nut.trim().slice(0, 100));
   // i18n switcher
   await page.selectOption('#planner-lang', 'es-PE');
   await page.waitForTimeout(200);
