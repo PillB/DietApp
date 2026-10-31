@@ -91,6 +91,8 @@ async function shoppingFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#shopengine').count();
   if (steps.sectionMounted === 0) { report.rows.push({ tag: 'shopping-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#shopengine"]').first().click();
+  await page.locator('#engine-from').waitFor({ state: 'visible' });
   await page.fill('#engine-from', '2026-11-01');
   await page.fill('#engine-to', '2026-11-30');
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
@@ -178,6 +180,8 @@ async function plannerFlow(port, report) {
   await page.waitForTimeout(1500); // boot + fixture
   const steps = {};
   await addNikkeiEntry(page);
+  await page.locator('nav a[href="#planner"]').first().click();
+  await page.locator('#planner-h2').waitFor({ state: 'visible' });
   await page.waitForTimeout(200);
   steps.beforeRepeat = await countPlannerRows(page);
   await page.click('[data-op="repeat"]');
@@ -222,6 +226,8 @@ async function cookFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#cookmode').count();
   if (!steps.sectionMounted) { report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#cookmode"]').first().click();
+  await page.locator('#cook-recipe').waitFor({ state: 'visible' });
   await page.selectOption('#cook-recipe', 'nikkei-salmon-bowl');
   await page.waitForTimeout(200);
   steps.badge = (await page.locator('#cook-badge').textContent()).trim().slice(0, 90);
@@ -274,6 +280,8 @@ async function flavorFlow(port, report) {
   const steps = {};
   steps.sectionMounted = await page.locator('#flavoratlas').count();
   if (!steps.sectionMounted) { report.rows.push({ tag: 'flavor-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  await page.locator('nav a[href="#flavoratlas"]').first().click();
+  await page.locator('#flavoratlas').waitFor({ state: 'visible' });
   steps.barsRendered = await page.locator('#flavor-bars g').count();
   steps.topText = (await page.locator('#flavor-status').textContent()).includes('owner decree');
   const first = page.locator('#flavor-ranks button').first();
