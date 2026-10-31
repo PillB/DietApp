@@ -344,6 +344,25 @@ E2E evidence: FOUR engine flows + flavor-flow PASS (atlas auto-load status 'owne
 Tests: 109 pass / 0 fail; E2E PASS (6 flows); lint clean; privacy scan covers the new public set.
 Next single command/ticket: P5.4 explainable recipe ranking (affinity + novelty + equipment + store coverage, labels visible), then P6 six-locale localization of every shipped control.
 
+## Session log — 2026-10-31, session 3, part 20 (diet targets + satiety engine from owner files)
+
+Owner files analyzed (accessed from ~/Downloads, copied to data/private/ — outside-project justification: the owner attached exactly these two paths for this purpose; nothing else outside the project was touched):
+1. data/private/weekly diet.xlsx (7-day Peru menu: DESAYUNO muesli/SKYR/leche-0%; 11am fruit or 7 almonds or 15 g freeze-dried MALLI; ALMUERZO large salads + lean proteins + 1/2-tza legumes; REFRIGERIO fruit/yogurt; CENA fish/chicken + pan integral queso fresco + salads; notes: 2 L water, DHA capsule AM, zinc/magnesium PM (optional), brand callouts).
+2. data/private/RECETAS- LIBRE.docx (4 draft weighed-lite recipes: Galletas de avena; Pescado al ajonjolí; Muesli frutado; Budín de plátano ×4).
+
+Files: scripts/diet_extract.py (new; identity/phones REDACTED to '[identity withheld]' per the standing do-not-reference rule), data/private/extraction-summaries/*.json (structured 7-day grid slot-by-slot + docx recipes; self-checks on slot totals + muesli presence), assets/js/diet-core.js (new pure engine), tests/diet_core.test.cjs (6 tests), docs/DIET_TARGETS.md (analysis + cited values + stated safety stance).
+
+Engine decisions (each with a test):
+- 1200 kcal absolute floor (below_floor); <1500 = aggressive band requiring an OWNER/UI-acknowledged clinician-review flag (unacknowledged_aggressive); ≥1500 allowed unacknowledged (moderate).
+- mealTargets(): 25/35/30/10% share defaults with 20/30/25/8 g protein floors and 5/10/8/3 g fiber floors — slot columns sum EXACTLY to the day target (test-pinned arithmetic).
+- satietyScore(): protein/100 kcal + 2×fiber/100 kcal − sugar-energy share ×10, +1 low-ED bonus (≤1.0 kcal/g, published low-ED zone), −1.5 dense (>2.5); helper-decomposed to respect the CC-12 ceiling.
+- assessAgainstMealTarget(): gaps (protein/fiber/calories-over-slot) + flags (sodium-high vs the published 2300 ceiling distributed by meal share, added-sugar-heavy) — explicit gaps, NEVER silent pass.
+- Every plan output carries the 'NOT a medical prescription' caveat; supplements surface clinician-verify, never auto-enforced; the engine NEVER stores owner age/weight.
+Debug trail: 4 decorator failures were my first-pass threshold semantics vs the published band (aggressive threshold, low-ED boundary ≤ 1.0, sodium budget rule, dry target check) — semantics corrected in the ENGINE and the TESTS where each disagreed, all aligned to the published band definitions.
+
+Tests: 115 pass / 0 fail; lint clean.
+Next single command/ticket: menu/recipe uplift pipeline — (1) canonicalize the 4 docx recipes with weighed canonical quantities + needs-kitchen-validation, (2) expose mealTargets presets in the served Nutrition panel with the acknowledgment checkbox, (3) iterate proteins/fiber per recipe against flavor-atlas top nodes (keepers: ajonjolí/palta/limón/chile crafting from Peru shelves). P4.4 worksheet supplies the weigh-in evidence lane.
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …
