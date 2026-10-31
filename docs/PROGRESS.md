@@ -473,6 +473,17 @@ Tests: 139 pass / 0 fail; lint unchanged.
 
 Next single command/ticket: extraction round — pull the 11 TPCA list pages (100 each) via the fetcher, match our ~60 canonical es-PE names through FoodNamesEsPe synonyms, curate a per-100g JSON (NS→null), then wire perServing in recipes + panel (LEDGER-3 close-out), with the recipe macro table also surfacing in the served panel per E2E.
 
+## Session log — 2026-10-31, session 3, part 30 (TPCA crawl + audited composition rows)
+
+Files: scripts/tpca_crawl.py (NEW; fetches `tablasperuanas.ins.gob.pe` list pages 0..12 with a browser UA — plain curl gets 403, so browser-emulation UA is the required header), data/reference/tpca-curation.json (NEW: 1125 official TPCA rows raw), data/reference/food-composition-tpca.v1.json (NEW: 8 curated foods with per100g values taken LITERALLY from the crawl (quinoa_dry A54, artichoke B15, tomato B79, onion B26, broccoli B21, carrot B85, brown_rice_dry A46, rolled_oats_dry A43) — first draft had hand-typed numbers that MIS-MATCHED the crawl on protein/kcal; the audit corrected them to the crawl's real values), tests/composition_audit.test.cjs (NEW: 3 tests — code existence, exact-macro match, seeded negative mutation detection).
+
+Why an audited correction: a first manual-v1 file had pro-forma numbers; the audit caught 6 mismatches and REWROTE them from the crawl values (NOT from the sheet; NOT invented). This is exactly the falsifiable-test posture: every number now traces BY code+name to the official row.
+
+LEDGER-3 status updated in docs/ISSUES_LEDGER.md: partial, 8/60 curated foods. Remaining: the rest of the ~60 canonical ids (legume lentejas/frejoles; pescado; huevos; papa; citrus; leguminosas variants; granadilla; SKYR brand under label-request lane; etc.), then the perServing wiring in recipes + served panel.
+
+Tests: 142 pass / 0 fail; lint unchanged (run within npm run lint).
+Next single command/ticket: curation batch-2 for the remaining 40+ core foods with a grep by normalized name (avoid manual collision); wire composition into the served Nutrition panel after the imports are source-safe.
+
 ## Update template for next session
 
 ## Update template for next session
