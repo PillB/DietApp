@@ -51,23 +51,23 @@
 
       <nav class="grid gap-2 text-sm">
         <template x-for="item in [
-          ['dashboard','Overview','✦','#dashboard'],
-          ['calendar','Calendar','📅','#calendar'],
-          ['week','Weekly Menus','🗓️','#week/1'],
-          ['recipes','Recipes','📖','#recipes'],
-          ['shopping','Shopping Lists','🛒','#shopping/1'],
-          ['shopengine','Shopping Engine (v4)','🧾','#shopengine'],
-          ['planner','Planner (v4)','🗓','#planner'],
-          ['cookmode','Cook Mode (v4)','🔥','#cookmode'],
-          ['flavoratlas','Flavor Atlas (v4)','🗺','#flavoratlas'],
-          ['compliance','DGA Review','✅','#compliance'],
-          ['nutrition','Nutrition & Portions','⚖️','#nutrition'],
-          ['knowledge','Taste DNA','🧬','#knowledge']
+          ['dashboard','nav.overview','✦','#dashboard'],
+          ['calendar','nav.calendar','📅','#calendar'],
+          ['week','nav.week','🗓️','#week/1'],
+          ['recipes','nav.recipes','📖','#recipes'],
+          ['shopping','nav.shopping','🛒','#shopping/1'],
+          ['shopengine','nav.shopping','🧾','#shopengine'],
+          ['planner','nav.planner','🗓','#planner'],
+          ['cookmode','nav.cook','🔥','#cookmode'],
+          ['flavoratlas','nav.flavor','🗺','#flavoratlas'],
+          ['compliance','nav.compliance','✅','#compliance'],
+          ['nutrition','nav.nutrition','⚖️','#nutrition'],
+          ['knowledge','nav.knowledge','🧬','#knowledge']
         ]" :key="item[0]">
           <a :href="item[3]" class="flex items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-amber-300"
              :class="view === item[0] ? 'bg-amber-300/15 text-amber-100 ring-1 ring-amber-200/20' : 'text-stone-300'">
             <span class="text-lg" x-text="item[2]"></span>
-            <span x-text="item[1]"></span>
+            <span x-text="(window.I18N && window.I18N.DICT[item[1]]) ? window.I18N.t(item[1]) : item[1]"></span>
           </a>
         </template>
       </nav>
@@ -87,7 +87,7 @@
         </div>
         <div class="flex flex-wrap gap-2">
           <button @click="printCurrentView()" class="rounded-2xl border border-white/10 px-4 py-2 text-sm text-stone-200 hover:bg-white/10">Print view</button>
-          <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Start shopping</a>
+          <a href="#shopping/1" class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300"class="rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Iniciar compras</a>
         </div>
       </header>
 
@@ -124,7 +124,7 @@
         <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">28-day interactive menu</p>
-            <h2 class="font-display text-4xl text-amber-50">Monthly Calendar</h2>
+            <h2 class="font-display text-4xl text-amber-50">Calendario mensual</h2>
           </div>
           <p class="text-sm text-stone-400">Click any day to open its menu.</p>
         </div>
@@ -206,7 +206,7 @@
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Searchable recipe library</p>
-            <h2 class="font-display text-4xl text-amber-50">Full Recipes</h2>
+            <h2 class="font-display text-4xl text-amber-50">Recetas completas</h2>
           </div>
           <input x-model="query" type="search" placeholder="Search by dish, ingredient, method..." class="w-full rounded-2xl border border-white/10 bg-stone-950/70 px-4 py-3 text-stone-100 outline-none ring-amber-300/50 placeholder:text-stone-500 focus:ring-2 lg:max-w-md">
         </div>
@@ -267,7 +267,7 @@
         <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">PDF compliance audit</p>
-            <h2 class="font-display text-4xl text-amber-50">Dietary Guideline Review</h2>
+            <h2 class="font-display text-4xl text-amber-50">Revisión de pautas dietéticas</h2>
             <p class="mt-3 max-w-3xl text-sm leading-7 text-stone-300" x-text="data.complianceAudit?.summary"></p>
           </div>
           <button @click="exportData()" class="no-print rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Export review JSON</button>
@@ -323,7 +323,7 @@
       <section x-show="view === 'knowledge'" class="space-y-6">
         <div>
           <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Taste DNA extracted from ordering behavior</p>
-          <h2 class="font-display text-4xl text-amber-50">User Flavor Knowledge Map</h2>
+          <h2 class="font-display text-4xl text-amber-50">Mapa de conocimiento del sabor</h2>
         </div>
         <div class="grid gap-5 lg:grid-cols-2">
           <template x-for="(items, sectionName) in data.knowledgeMap" :key="sectionName">
@@ -450,27 +450,27 @@
           </ul>
         </section>
         <section class="rounded-[1.5rem] bg-white/[0.04] p-5">
-          <h3 class="font-display text-2xl text-amber-100">Ingredients</h3>
+          <h3 class="font-display text-2xl text-amber-100">Ingredientes</h3>
           <ul class="mt-4 space-y-2 text-sm leading-6 text-stone-300">
             <template x-for="item in selectedRecipe?.ingredients || []" :key="item"><li>• <span x-text="item"></span></li></template>
           </ul>
         </section>
         <section class="rounded-[1.5rem] bg-white/[0.04] p-5 lg:col-span-2">
-          <h3 class="font-display text-2xl text-amber-100">Method</h3>
+          <h3 class="font-display text-2xl text-amber-100">Preparación</h3>
           <ol class="mt-4 space-y-3 text-sm leading-7 text-stone-300">
             <template x-for="(step, index) in selectedRecipe?.method || []" :key="step"><li><span class="mr-2 text-amber-300" x-text="index + 1 + '.'"></span><span x-text="step"></span></li></template>
           </ol>
         </section>
         <section class="rounded-[1.5rem] bg-amber-300/10 p-5">
-          <h3 class="font-display text-2xl text-amber-100">Why this works</h3>
+          <h3 class="font-display text-2xl text-amber-100">Por qué funciona</h3>
           <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.whyThisWorks || 'See the full preserved recipe text below.'"></p>
         </section>
         <section class="rounded-[1.5rem] bg-rose-300/10 p-5">
-          <h3 class="font-display text-2xl text-amber-100">Plating / Pairing</h3>
+          <h3 class="font-display text-2xl text-amber-100">Emplatado / maridaje</h3>
           <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.plating || 'See the full preserved recipe text below.'"></p>
         </section>
         <section class="rounded-[1.5rem] bg-emerald-300/10 p-5 lg:col-span-2">
-          <h3 class="font-display text-2xl text-amber-100">PDF Compliance Review</h3>
+          <h3 class="font-display text-2xl text-amber-100">Revisión de cumplimiento</h3>
           <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.compliance?.auditSummary || 'Reviewed against the dietary guideline rule set.'"></p>
           <ul class="mt-3 space-y-2 text-sm leading-6 text-stone-300">
             <template x-for="note in selectedRecipe?.compliance?.revisionNotes || []" :key="note"><li>✓ <span x-text="note"></span></li></template>
