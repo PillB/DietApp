@@ -67,25 +67,32 @@
       throw new Error(`bad kcal for ${ingredientId}: ${per.kcal}`);
     }
     const round = (x, n) => (x == null ? null : Math.round(x * 10 ** n) / 10 ** n);
+    const scale = (v) => (v == null ? null : (v * grams) / 100);
     return {
       ingredientId,
       gramsServed: round(grams, 1),
       kcal: round(rawKcal, 1),
-      proteinG: round(per.proteinG == null ? null : (per.proteinG * grams) / 100, 1),
-      fiberG: round(per.fiberG == null ? null : (per.fiberG * grams) / 100, 1),
+      proteinG: round(scale(per.proteinG), 1),
+      fiberG: round(scale(per.fiberG), 1),
+      // micronutrients (TPCA columns; NS stays null)
+      vitaminAUg: round(scale(per.vitaminAUg), 1),
+      vitaminCMg: round(scale(per.vitaminCMg), 1),
+      folateUg: round(scale(per.folateUg), 1),
+      calciumMg: round(scale(per.calciumMg), 1),
+      ironMg: round(scale(per.ironMg), 2),
+      zincMg: round(scale(per.zincMg), 2),
+      sodiumMg: round(scale(per.sodiumMg), 1),
       flags: [],
     };
   }
 
   /** Whole-recipe perServing: sum all ingredient uses, divide by baseServings. */
   function computedPerServing(recipe, composition) {
-    const totals = { kcal: 0, proteinG: 0, fiberG: 0, misses: 0 };
+    const totals = { kcal: 0, proteinG: 0, fiberG: 0, vitaminAUg: 0, vitaminCMg: 0, folateUg: 0, calciumMg: 0, ironMg: 0, zincMg: 0, sodiumMg: 0, misses: 0 };
     for (const use of recipe.ingredients) {
       const s = computeServingNutrition(use.ingredientId, use.quantity, use.unit, composition);
       if (s.kcal == null) { totals.misses += 1; continue; }
-      totals.kcal += s.kcal;
-      totals.proteinG += s.proteinG || 0;
-      totals.fiberG += s.fiberG || 0;
+      for (const k of Object.keys(totals)) if (k !== 'misses' && s[k] != null) totals[k] += s[k];
     }
     const bs = recipe.meta ? recipe.meta.baseServings : recipe.baseServings || 1;
     const r1 = (x) => Math.round(x * 10) / 10;
@@ -94,6 +101,13 @@
       kcal: r1(totals.kcal / bs),
       proteinG: r1(totals.proteinG / bs),
       fiberG: r1(totals.fiberG / bs),
+      vitaminAUg: r1(totals.vitaminAUg / bs),
+      vitaminCMg: r1(totals.vitaminCMg / bs),
+      folateUg: r1(totals.folateUg / bs),
+      calciumMg: r1(totals.calciumMg / bs),
+      ironMg: r1(totals.ironMg / bs),
+      zincMg: r1(totals.zincMg / bs),
+      sodiumMg: r1(totals.sodiumMg / bs),
       missingRows: totals.misses,
     };
   }

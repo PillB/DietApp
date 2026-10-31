@@ -126,6 +126,12 @@
     renderLeftovers(section);
   }
 
+  /** Micros line: shown only when vitamin A was computable (all-composed proxy). */
+  function microsLine(per) {
+    if (per.vitaminAUg == null) return '';
+    return `<span class="block mt-1 text-xs text-stone-400">Micros: Vit A ${per.vitaminAUg} µg · Vit C ${per.vitaminCMg} mg · folato ${per.folateUg} µg · Ca ${per.calciumMg} mg · Fe ${per.ironMg} mg · Zn ${per.zincMg} mg · Na ${per.sodiumMg} mg</span>`;
+  }
+
   /** Computed-pending-weighin per-serving macros; honest zero-field when compositions missing */
   function renderNutritionCard(section, recipe) {
     const host = section.querySelector('#cook-nutrition');
@@ -154,6 +160,7 @@
         ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ${tC("nutrition.missingRows")} — macros pendiente</span>` : '<span class="ml-2 text-emerald-300/80">all uses composed ✓</span>'}
         ${pendingNames.length ? `<span class="ml-2 text-stone-400 text-xs">missing: ${pendingNames.map((p) => escapeHtml(p)).join(', ')}</span>` : ''}
         <span class="block text-xs text-stone-500">TPCA-sourced computed estimate; NOT a weighed kitchen yield; P4.4 worksheet required to promote to 'assessed'.</span>
+        ${microsLine(per)}
       </div>`;
   }
 

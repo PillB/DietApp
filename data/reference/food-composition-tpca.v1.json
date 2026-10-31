@@ -16,7 +16,13 @@
     "sodiumMg": 7.5,
     "calciumMg": 2.5,
     "ironMg": 242.0,
-    "zincMg": 56.0
+    "zincMg": 56.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.48,
+    "riboflavinMg": 0.03,
+    "niacinMg": 1.4,
+    "vitaminCMg": 0.5,
+    "folateUg": null
    },
    "basis": "raw/dry",
    "extractedAt": "2026-10-31",
@@ -53,7 +59,13 @@
     "sodiumMg": 1.0,
     "calciumMg": 1.0,
     "ironMg": 51.0,
-    "zincMg": 42.0
+    "zincMg": 42.0,
+    "vitaminAUg": 7.0,
+    "thiaminMg": 0.07,
+    "riboflavinMg": 0.04,
+    "niacinMg": 0.85,
+    "vitaminCMg": 1.42,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -90,7 +102,13 @@
     "sodiumMg": 0.6,
     "calciumMg": 0.5,
     "ironMg": 20.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 42.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.06,
+    "niacinMg": 0.62,
+    "vitaminCMg": 18.4,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -127,7 +145,13 @@
     "sodiumMg": 0.2,
     "calciumMg": 0.4,
     "ironMg": 33.0,
-    "zincMg": 100.0
+    "zincMg": 100.0,
+    "vitaminAUg": 3.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.05,
+    "niacinMg": 0.14,
+    "vitaminCMg": 7.5,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -164,7 +188,13 @@
     "sodiumMg": 0.84,
     "calciumMg": 0.9,
     "ironMg": 86.0,
-    "zincMg": 93.0
+    "zincMg": 93.0,
+    "vitaminAUg": 66.0,
+    "thiaminMg": 0.12,
+    "riboflavinMg": 0.1,
+    "niacinMg": 0.83,
+    "vitaminCMg": 114.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -201,7 +231,13 @@
     "sodiumMg": 0.3,
     "calciumMg": 0.9,
     "ironMg": 40.0,
-    "zincMg": 51.0
+    "zincMg": 51.0,
+    "vitaminAUg": 1092.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.04,
+    "niacinMg": 0.18,
+    "vitaminCMg": 3.23,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -238,7 +274,13 @@
     "sodiumMg": 1.6,
     "calciumMg": 1.0,
     "ironMg": 107.0,
-    "zincMg": 40.0
+    "zincMg": 40.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.13,
+    "riboflavinMg": 0.14,
+    "niacinMg": 1.22,
+    "vitaminCMg": 1.0,
+    "folateUg": null
    },
    "basis": "raw/dry",
    "extractedAt": "2026-10-31",
@@ -275,7 +317,13 @@
     "sodiumMg": 2.0,
     "calciumMg": 3.2,
     "ironMg": 58.0,
-    "zincMg": 70.0
+    "zincMg": 70.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.09,
+    "riboflavinMg": 0.06,
+    "niacinMg": 4.45,
+    "vitaminCMg": 0.9,
+    "folateUg": null
    },
    "basis": "raw/dry",
    "extractedAt": "2026-10-31",
@@ -312,7 +360,13 @@
     "sodiumMg": 1.5,
     "calciumMg": 1.0,
     "ironMg": 173.0,
-    "zincMg": 12.0
+    "zincMg": 12.0,
+    "vitaminAUg": 16.0,
+    "thiaminMg": 0.07,
+    "riboflavinMg": 0.14,
+    "niacinMg": 8.24,
+    "vitaminCMg": 2.3,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -359,7 +413,13 @@
     "sodiumMg": 0.2,
     "calciumMg": 1.2,
     "ironMg": 185.0,
-    "zincMg": 15.0
+    "zincMg": 15.0,
+    "vitaminAUg": 17.0,
+    "thiaminMg": 0.06,
+    "riboflavinMg": 0.1,
+    "niacinMg": 3.8,
+    "vitaminCMg": 1.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -405,7 +465,13 @@
     "sodiumMg": 0.6,
     "calciumMg": 1.0,
     "ironMg": 67.0,
-    "zincMg": 30.0
+    "zincMg": 30.0,
+    "vitaminAUg": 7.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.1,
+    "niacinMg": 1.82,
+    "vitaminCMg": 6.8,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -451,7 +517,13 @@
     "sodiumMg": 0.5,
     "calciumMg": 0.3,
     "ironMg": 14.0,
-    "zincMg": 18.0
+    "zincMg": 18.0,
+    "vitaminAUg": 1.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.03,
+    "niacinMg": 0.11,
+    "vitaminCMg": 44.2,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -497,7 +569,13 @@
     "sodiumMg": 1.28,
     "calciumMg": 1.1,
     "ironMg": 128.0,
-    "zincMg": 17.0
+    "zincMg": 17.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.11,
+    "riboflavinMg": 0.13,
+    "niacinMg": 2.14,
+    "vitaminCMg": 9.88,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -543,7 +621,13 @@
     "sodiumMg": null,
     "calciumMg": 0.7,
     "ironMg": 125.0,
-    "zincMg": 171.0
+    "zincMg": 171.0,
+    "vitaminAUg": 51.0,
+    "thiaminMg": 0.2,
+    "riboflavinMg": 0.06,
+    "niacinMg": 0.09,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "cooked",
    "extractedAt": "2026-10-31",
@@ -590,7 +674,13 @@
     "sodiumMg": 0.4,
     "calciumMg": 1.1,
     "ironMg": 52.0,
-    "zincMg": 6.0
+    "zincMg": 6.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.07,
+    "riboflavinMg": 0.06,
+    "niacinMg": 1.85,
+    "vitaminCMg": 9.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -637,7 +727,13 @@
     "sodiumMg": 0.0,
     "calciumMg": 0.0,
     "ironMg": 0.0,
-    "zincMg": 0.0
+    "zincMg": 0.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.03,
+    "niacinMg": 0.04,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -683,7 +779,13 @@
     "sodiumMg": null,
     "calciumMg": 5.6,
     "ironMg": 630.0,
-    "zincMg": 995.0
+    "zincMg": 995.0,
+    "vitaminAUg": null,
+    "thiaminMg": null,
+    "riboflavinMg": null,
+    "niacinMg": 5.86,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -729,7 +831,13 @@
     "sodiumMg": 2.92,
     "calciumMg": 1.8,
     "ironMg": 280.0,
-    "zincMg": 86.0
+    "zincMg": 86.0,
+    "vitaminAUg": 1.0,
+    "thiaminMg": 0.34,
+    "riboflavinMg": 0.15,
+    "niacinMg": 2.48,
+    "vitaminCMg": 1.3,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -776,7 +884,13 @@
     "sodiumMg": 4.03,
     "calciumMg": 0.6,
     "ironMg": 30.0,
-    "zincMg": 20.0
+    "zincMg": 20.0,
+    "vitaminAUg": 1.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.3,
+    "niacinMg": 1.31,
+    "vitaminCMg": 8.82,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -822,7 +936,13 @@
     "sodiumMg": 0.3,
     "calciumMg": 0.6,
     "ironMg": 34.0,
-    "zincMg": 27.0
+    "zincMg": 27.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.01,
+    "riboflavinMg": 0.33,
+    "niacinMg": 0.42,
+    "vitaminCMg": 26.2,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -868,7 +988,13 @@
     "sodiumMg": 5.6,
     "calciumMg": 17.8,
     "ironMg": 35.0,
-    "zincMg": 175.0
+    "zincMg": 175.0,
+    "vitaminAUg": 48.0,
+    "thiaminMg": 0.12,
+    "riboflavinMg": 0.49,
+    "niacinMg": 0.7,
+    "vitaminCMg": 12.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -914,7 +1040,13 @@
     "sodiumMg": 0.79,
     "calciumMg": 1.2,
     "ironMg": 26.0,
-    "zincMg": 16.0
+    "zincMg": 16.0,
+    "vitaminAUg": 292.0,
+    "thiaminMg": 0.01,
+    "riboflavinMg": 0.14,
+    "niacinMg": 1.96,
+    "vitaminCMg": 0.77,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -961,7 +1093,13 @@
     "sodiumMg": 0.51,
     "calciumMg": 0.2,
     "ironMg": null,
-    "zincMg": null
+    "zincMg": null,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.0,
+    "niacinMg": 0.0,
+    "vitaminCMg": 20.08,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1007,7 +1145,13 @@
     "sodiumMg": 10.5,
     "calciumMg": 7.4,
     "ironMg": 801.0,
-    "zincMg": 220.0
+    "zincMg": 220.0,
+    "vitaminAUg": null,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.2,
+    "niacinMg": 2.5,
+    "vitaminCMg": 18.9,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1053,7 +1197,13 @@
     "sodiumMg": 3.29,
     "calciumMg": 1.7,
     "ironMg": 90.0,
-    "zincMg": 211.0
+    "zincMg": 211.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.3,
+    "riboflavinMg": 0.31,
+    "niacinMg": 4.44,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1100,7 +1250,13 @@
     "sodiumMg": 1.0,
     "calciumMg": 2.9,
     "ironMg": 345.0,
-    "zincMg": 540.0
+    "zincMg": 540.0,
+    "vitaminAUg": 148.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.22,
+    "niacinMg": 0.0,
+    "vitaminCMg": 2.01,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1147,7 +1303,13 @@
     "sodiumMg": 0.1,
     "calciumMg": 0.6,
     "ironMg": 80.0,
-    "zincMg": 96.0
+    "zincMg": 96.0,
+    "vitaminAUg": 181.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.15,
+    "niacinMg": 0.06,
+    "vitaminCMg": 0.8,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1194,7 +1356,13 @@
     "sodiumMg": 0.5,
     "calciumMg": 0.2,
     "ironMg": 8.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.0,
+    "niacinMg": 0.0,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1240,7 +1408,13 @@
     "sodiumMg": 1.2,
     "calciumMg": 7.6,
     "ironMg": 499.0,
-    "zincMg": 931.0
+    "zincMg": 931.0,
+    "vitaminAUg": 64.0,
+    "thiaminMg": 0.63,
+    "riboflavinMg": 0.33,
+    "niacinMg": 4.58,
+    "vitaminCMg": 8.0,
+    "folateUg": 0.0
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1286,7 +1460,13 @@
     "sodiumMg": 38.07,
     "calciumMg": 3.6,
     "ironMg": 61.0,
-    "zincMg": 1228.0
+    "zincMg": 1228.0,
+    "vitaminAUg": 14.0,
+    "thiaminMg": 0.08,
+    "riboflavinMg": 0.14,
+    "niacinMg": 1.3,
+    "vitaminCMg": 29.0,
+    "folateUg": 0.0
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1332,7 +1512,13 @@
     "sodiumMg": 14.4,
     "calciumMg": 1.4,
     "ironMg": 46.0,
-    "zincMg": 90.0
+    "zincMg": 90.0,
+    "vitaminAUg": 163.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.26,
+    "niacinMg": 0.56,
+    "vitaminCMg": 9.29,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1379,7 +1565,13 @@
     "sodiumMg": 1.65,
     "calciumMg": 3.4,
     "ironMg": 130.0,
-    "zincMg": 21.0
+    "zincMg": 21.0,
+    "vitaminAUg": null,
+    "thiaminMg": 0.13,
+    "riboflavinMg": 0.06,
+    "niacinMg": 1.18,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1425,7 +1617,13 @@
     "sodiumMg": 1.5,
     "calciumMg": 3.8,
     "ironMg": 63.0,
-    "zincMg": 377.0
+    "zincMg": 377.0,
+    "vitaminAUg": 251.0,
+    "thiaminMg": 0.06,
+    "riboflavinMg": 0.95,
+    "niacinMg": 1.2,
+    "vitaminCMg": 11.1,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1471,7 +1669,13 @@
     "sodiumMg": 0.86,
     "calciumMg": 0.3,
     "ironMg": 261.0,
-    "zincMg": 22.0
+    "zincMg": 22.0,
+    "vitaminAUg": 1.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.07,
+    "niacinMg": 0.97,
+    "vitaminCMg": 5.42,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1518,7 +1722,13 @@
     "sodiumMg": 0.1,
     "calciumMg": 0.3,
     "ironMg": 20.0,
-    "zincMg": 52.0
+    "zincMg": 52.0,
+    "vitaminAUg": 25.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.06,
+    "niacinMg": 0.13,
+    "vitaminCMg": 1.5,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1564,7 +1774,13 @@
     "sodiumMg": 2.6,
     "calciumMg": 1.1,
     "ironMg": 140.0,
-    "zincMg": 29.0
+    "zincMg": 29.0,
+    "vitaminAUg": 140.0,
+    "thiaminMg": 0.08,
+    "riboflavinMg": 0.26,
+    "niacinMg": 0.13,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1610,7 +1826,13 @@
     "sodiumMg": 0.6,
     "calciumMg": 6.6,
     "ironMg": 393.0,
-    "zincMg": 1260.0
+    "zincMg": 1260.0,
+    "vitaminAUg": 108.0,
+    "thiaminMg": 0.01,
+    "riboflavinMg": 0.38,
+    "niacinMg": 0.23,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1656,7 +1878,13 @@
     "sodiumMg": 0.08,
     "calciumMg": 0.6,
     "ironMg": 15.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.44,
+    "niacinMg": 0.11,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1703,7 +1931,13 @@
     "sodiumMg": 4.29,
     "calciumMg": 2.4,
     "ironMg": 170.0,
-    "zincMg": 110.0
+    "zincMg": 110.0,
+    "vitaminAUg": null,
+    "thiaminMg": 0.64,
+    "riboflavinMg": 0.34,
+    "niacinMg": 4.18,
+    "vitaminCMg": null,
+    "folateUg": 187.0
    },
    "basis": "raw/dry",
    "extractedAt": "2026-10-31",
@@ -1749,7 +1983,13 @@
     "sodiumMg": 0.9,
     "calciumMg": 0.7,
     "ironMg": 21.0,
-    "zincMg": 31.0
+    "zincMg": 31.0,
+    "vitaminAUg": 445.0,
+    "thiaminMg": 0.06,
+    "riboflavinMg": 0.58,
+    "niacinMg": 1.25,
+    "vitaminCMg": 60.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1795,7 +2035,13 @@
     "sodiumMg": 0.03,
     "calciumMg": 0.9,
     "ironMg": 70.0,
-    "zincMg": 126.0
+    "zincMg": 126.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.18,
+    "niacinMg": 0.21,
+    "vitaminCMg": 0.64,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1842,7 +2088,13 @@
     "sodiumMg": 0.3,
     "calciumMg": 0.4,
     "ironMg": 10.0,
-    "zincMg": 30.0
+    "zincMg": 30.0,
+    "vitaminAUg": 28.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.05,
+    "niacinMg": 0.58,
+    "vitaminCMg": 29.7,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1889,7 +2141,13 @@
     "sodiumMg": 0.0,
     "calciumMg": 0.0,
     "ironMg": 0.0,
-    "zincMg": 0.0
+    "zincMg": 0.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.03,
+    "niacinMg": 0.04,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1936,7 +2194,13 @@
     "sodiumMg": null,
     "calciumMg": 5.6,
     "ironMg": 630.0,
-    "zincMg": 995.0
+    "zincMg": 995.0,
+    "vitaminAUg": null,
+    "thiaminMg": null,
+    "riboflavinMg": null,
+    "niacinMg": 5.86,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -1983,7 +2247,13 @@
     "sodiumMg": null,
     "calciumMg": 1.2,
     "ironMg": null,
-    "zincMg": null
+    "zincMg": null,
+    "vitaminAUg": null,
+    "thiaminMg": null,
+    "riboflavinMg": null,
+    "niacinMg": null,
+    "vitaminCMg": null,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2030,7 +2300,13 @@
     "sodiumMg": 3.4,
     "calciumMg": 1.1,
     "ironMg": 208.0,
-    "zincMg": 16.0
+    "zincMg": 16.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.13,
+    "niacinMg": 6.82,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2077,7 +2353,13 @@
     "sodiumMg": 0.2,
     "calciumMg": 0.4,
     "ironMg": 33.0,
-    "zincMg": 100.0
+    "zincMg": 100.0,
+    "vitaminAUg": 3.0,
+    "thiaminMg": 0.03,
+    "riboflavinMg": 0.05,
+    "niacinMg": 0.14,
+    "vitaminCMg": 7.5,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2124,7 +2406,13 @@
     "sodiumMg": 0.08,
     "calciumMg": 0.6,
     "ironMg": 15.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.44,
+    "niacinMg": 0.11,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2171,7 +2459,13 @@
     "sodiumMg": 0.6,
     "calciumMg": 6.6,
     "ironMg": 393.0,
-    "zincMg": 1260.0
+    "zincMg": 1260.0,
+    "vitaminAUg": 108.0,
+    "thiaminMg": 0.01,
+    "riboflavinMg": 0.38,
+    "niacinMg": 0.23,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2218,7 +2512,13 @@
     "sodiumMg": 7.5,
     "calciumMg": 2.5,
     "ironMg": 242.0,
-    "zincMg": 56.0
+    "zincMg": 56.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.48,
+    "riboflavinMg": 0.03,
+    "niacinMg": 1.4,
+    "vitaminCMg": 0.5,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2265,7 +2565,13 @@
     "sodiumMg": 0.6,
     "calciumMg": 0.5,
     "ironMg": 20.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 42.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.06,
+    "niacinMg": 0.62,
+    "vitaminCMg": 18.4,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2312,7 +2618,13 @@
     "sodiumMg": 0.5,
     "calciumMg": 0.2,
     "ironMg": 8.0,
-    "zincMg": 7.0
+    "zincMg": 7.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.0,
+    "riboflavinMg": 0.0,
+    "niacinMg": 0.0,
+    "vitaminCMg": 0.0,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2359,7 +2671,13 @@
     "sodiumMg": 4.3,
     "calciumMg": 2.4,
     "ironMg": 344.0,
-    "zincMg": 80.0
+    "zincMg": 80.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 1.0,
+    "riboflavinMg": 0.3,
+    "niacinMg": 1.23,
+    "vitaminCMg": 1.1,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2406,7 +2724,13 @@
     "sodiumMg": 0.03,
     "calciumMg": 0.9,
     "ironMg": 70.0,
-    "zincMg": 126.0
+    "zincMg": 126.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.18,
+    "niacinMg": 0.21,
+    "vitaminCMg": 0.64,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2453,7 +2777,13 @@
     "sodiumMg": 0.03,
     "calciumMg": 0.9,
     "ironMg": 70.0,
-    "zincMg": 126.0
+    "zincMg": 126.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.18,
+    "niacinMg": 0.21,
+    "vitaminCMg": 0.64,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2500,7 +2830,13 @@
     "sodiumMg": 0.3,
     "calciumMg": 0.9,
     "ironMg": 40.0,
-    "zincMg": 51.0
+    "zincMg": 51.0,
+    "vitaminAUg": 1092.0,
+    "thiaminMg": 0.04,
+    "riboflavinMg": 0.04,
+    "niacinMg": 0.18,
+    "vitaminCMg": 3.23,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2547,7 +2883,13 @@
     "sodiumMg": 2.0,
     "calciumMg": 3.2,
     "ironMg": 58.0,
-    "zincMg": 70.0
+    "zincMg": 70.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.09,
+    "riboflavinMg": 0.06,
+    "niacinMg": 4.45,
+    "vitaminCMg": 0.9,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2594,7 +2936,13 @@
     "sodiumMg": 11.54,
     "calciumMg": 2.0,
     "ironMg": 150.0,
-    "zincMg": 153.0
+    "zincMg": 153.0,
+    "vitaminAUg": 0.0,
+    "thiaminMg": 0.34,
+    "riboflavinMg": 0.21,
+    "niacinMg": 0.53,
+    "vitaminCMg": null,
+    "folateUg": 94.0
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2641,7 +2989,13 @@
     "sodiumMg": 0.15,
     "calciumMg": 0.8,
     "ironMg": 40.0,
-    "zincMg": 4.0
+    "zincMg": 4.0,
+    "vitaminAUg": 2.0,
+    "thiaminMg": 0.02,
+    "riboflavinMg": 0.06,
+    "niacinMg": 0.95,
+    "vitaminCMg": 7.2,
+    "folateUg": null
    },
    "basis": "raw",
    "extractedAt": "2026-10-31",
@@ -2707,11 +3061,17 @@
     "sodiumMg": 59,
     "calciumMg": 9,
     "ironMg": 0.34,
-    "zincMg": 0.36
+    "zincMg": 0.36,
+    "vitaminAUg": 58,
+    "thiaminMg": 0.207,
+    "riboflavinMg": 0.155,
+    "niacinMg": 8.672,
+    "vitaminCMg": 3.9,
+    "folateUg": 26
    },
    "basis": "raw",
    "source": "usda-fdc/175167",
-   "note": "TPCA has no salmon row (imported fish in Peru). USDA FoodData Central FDC 175167 (SR Legacy): 208 kcal, 20.42 g protein, 13.42 g fat, 0 carb/fiber, 59 mg Na per 100 g raw. Cross-verified across 4 independent FDC mirrors.",
+   "note": "TPCA has no salmon row (imported fish in Peru). USDA FoodData Central FDC 175167 (SR Legacy): 208 kcal, 20.42 g protein, 13.42 g fat, 0 carb/fiber, 59 mg Na per 100 g raw. Cross-verified across 4 independent FDC mirrors. Vitamins from the same FDC record (A 58 µg, B1 0.207, B2 0.155, B3 8.672, C 3.9, folate 26 µg).",
    "extractedAt": "2026-10-31"
   }
  },
