@@ -1,5 +1,5 @@
 {
-  "port": 50643,
+  "port": 50854,
   "rows": [
     {
       "tag": "desktop",
@@ -12,8 +12,8 @@
       "localMissing": [],
       "cdnResults": [
         "302 https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",
-        "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
         "302 https://cdn.tailwindcss.com/",
+        "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
         "200 https://cdn.tailwindcss.com/3.4.17"
       ]
     },
@@ -57,8 +57,11 @@
         "afterCopy": 4,
         "deficitRefusal": true,
         "afterDeficit": 18,
-        "deficitStatus": "Week built for 1500 kcal (moderate): 14 entries",
+        "deficitStatus": "Week built for 1500 kcal (moderate): 14",
         "deficitExplanations": 3,
+        "langEspe": 1,
+        "langZh": 1,
+        "langJa": 1,
         "shoppingLinesAfter": 10
       },
       "failed": false

@@ -427,6 +427,17 @@ CC-12 honored: buildDeficitWeek decomposed into collectSlotCandidates/deficitArg
 Tests: 134 pass / 0 fail; E2E PASS (6 flows); lint clean.
 Next single command/ticket: P6 localization of all shipped controls (es de zh-Hans hi ja en), starting from the shipped strings inventory (grep-able tokens), then production-staging QA per docs/QA_RELEASE.md.
 
+## Session log — 2026-10-31, session 3, part 26 (P6 start: i18n core + live language switcher)
+
+Files: assets/js/i18n.js (new: six locales en/es-PE/zh-Hans/hi/de/ja; dict-completeness validateDict; setLanguage refuses unknown locales without mutation; onChange listeners), assets/js/planner-ui.js (skeleton from i18n tokens, language select, re-render on switch; build/refused status strings through i18n), index.html (i18n script), tests/i18n.test.cjs (5 tests), e2e planner-flow extended.
+
+E2E planner-flow PASS (extended): language switcher cycles es-PE / zh-Hans / ja and the planner header actually re-renders localized ('Planificador' / '计划器' / 'プランナー') — deficit week builder + all prior steps still green; 0 page errors.
+Dict-completeness test-pinned: every key present in EVERY locale; seeded-negative (delete one locale string) makes the validator fail; no personal identifiers; slots localized ('almuerzo'/'早餐'/'Abendessen').
+Trade-off stated: this slice covers the four engine panels' chrome and statuses; the BIG texts (recipe safety notes, dual-review footer, es-PE recipe steps) stay their native/sealed content per handover section 9 (no machine translation of safety-critical steps without reviewer QA); legacy v3 sections (Alpine panels) are out of this slice and tracked as LEDGER-6 scope.
+
+Tests: 139 pass / 0 fail; E2E PASS (6 flows); lint clean.
+Next single command/ticket: extend i18n to shopping/cook/flavor panels' remaining static strings + expand dictionary tokens (serverless plan: one token audit script), then production-staging QA per docs/QA_RELEASE.md (offline/SW behavior + link checks + axe).
+
 ## Update template for next session
 
 ## Update template for next session

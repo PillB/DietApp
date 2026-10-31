@@ -89,7 +89,7 @@
     const added = [];
     for (const e of out.entries) {
       const res = root.StorageCore.addPlanEntry(model.state, e);
-      if (res.ok) added.push(e.id); else status.textContent = `Refused entry: ${res.errors.map((x) => x.code).join(', ')}`;
+      if (res.ok) added.push(e.id); else status.textContent = `${root.I18N.t('planner.refused')} ${res.errors.map((x) => x.code).join(', ')}`;
     }
     root.StorageCore.save(model.state, localStoreAdapter());
     renderEntries(section, model);
@@ -109,7 +109,7 @@
     section.querySelector('#deficit-explanations').innerHTML
       = out.picks.map((p) => `<div class="mt-1">${escapeHtml(p.slot)} → <strong>${escapeHtml(p.recipeId)}</strong> — ${escapeHtml(p.explanation)}</div>`).join('')
       + out.warnings.map((w) => `<div class="mt-1 text-amber-300">⚠ ${escapeHtml(w.text || w.code)}</div>`).join('');
-    status.textContent = `Week built for ${out.targetKcal} kcal (${out.category}): ${added.length} entries`;
+    status.textContent = `${root.I18N.t('planner.weekBuilt')} ${out.targetKcal} kcal (${out.category}): ${added.length}`;
   }
 
   function todayLocal() {
@@ -124,26 +124,40 @@
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
+    const t = (k) => root.I18N.t(k);
     section.innerHTML = `
-      <h2 id="planner-h2" class="text-xl font-bold text-amber-200">Planner (development preview)</h2>
-      <p class="text-sm text-stone-300">Keyboard-first: <kbd>Tab</kbd> reaches every entry; buttons do exactly what they say. No drag-and-drop.</p>
+      <h2 id="planner-h2" class="text-xl font-bold text-amber-200">${t('planner.title')}</h2>
+      <p class="text-sm text-stone-300">${t('planner.keyboardNote')}</p>
+      <div class="flex items-center gap-2 mt-2">
+        <label class="text-xs" for="planner-lang">Language</label>
+        <select id="planner-lang" class="bg-stone-800 border border-stone-600 rounded px-2 py-0.5 text-xs">
+          ${root.I18N.LOCALES.map((l) => `<option value="${l}">${l}</option>`).join('')}
+        </select>
+      </div>
       <div id="deficit-build" class="mt-4 rounded border border-amber-300/40 p-3">
-        <h3 class="text-sm font-bold text-amber-300">Week builder (deficit week — structure only, kcal/macros pending LEDGER-3)</h3>
+        <h3 class="text-sm font-bold text-amber-300">${t('planner.weekBuilder')}</h3>
         <div class="flex flex-wrap items-end gap-3 mt-2">
-          <label class="text-sm">Day target
+          <label class="text-sm">${t('planner.dayTarget')}
             <select id="deficit-target" class="bg-stone-800 border border-stone-600 rounded px-2 py-1">
               <option value="1500">1500 kcal (moderate)</option>
               <option value="1400">1400 kcal (aggressive)</option>
               <option value="1200">1200 kcal (aggressive)</option>
             </select></label>
-          <label class="text-sm flex items-center gap-2"><input id="deficit-ack" type="checkbox" class="accent-amber-400"> I acknowledge below-1500 plans need clinician review</label>
-          <button id="deficit-build-btn" class="rounded bg-amber-400 text-stone-950 font-bold px-3 py-1 focus:outline-none focus:ring-2">Build week (Mon–Sun)</button>
+          <label class="text-sm flex items-center gap-2"><input id="deficit-ack" type="checkbox" class="accent-amber-400"> ${t('planner.ackLabel')}</label>
+          <button id="deficit-build-btn" class="rounded bg-amber-400 text-stone-950 font-bold px-3 py-1 focus:outline-none focus:ring-2">${t('planner.buildWeek')}</button>
         </div>
         <div id="deficit-explanations" class="mt-2 text-xs" aria-live="polite"></div>
       </div>
       <div id="planner-status" role="status" aria-live="polite" class="mt-2 text-xs text-amber-100/80"></div>
       <ol id="planner-entries" class="mt-3 space-y-2"></ol>
     `;
+    const langSel = section.querySelector('#planner-lang');
+    langSel.value = root.I18N.getLanguage();
+    langSel.addEventListener('change', () => {
+      root.I18N.setLanguage(langSel.value);
+      section.dataset.built = '0'; buildStaticSkeleton(section);
+      root.__pgkRefreshPlanner();
+    });
   }
 
   function renderEntries(section, model) {

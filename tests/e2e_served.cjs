@@ -156,12 +156,25 @@ async function plannerFlow(port, report) {
   steps.afterDeficit = await page.locator('#planner-entries li').count();
   steps.deficitStatus = (await page.locator('#planner-status').textContent()).trim().slice(0, 70);
   steps.deficitExplanations = await page.locator('#deficit-explanations div').count();
+  // P6 language switcher: change planner language and assert the title re-renders
+  await page.selectOption('#planner-lang', 'es-PE');
+  await page.waitForTimeout(200);
+  steps.langEspe = await page.locator('#planner-h2', { hasText: 'Planificador' }).count();
+  await page.selectOption('#planner-lang', 'zh-Hans');
+  await page.waitForTimeout(200);
+  steps.langZh = await page.locator('#planner-h2', { hasText: '计划器' }).count();
+  await page.selectOption('#planner-lang', 'ja');
+  await page.waitForTimeout(200);
+  steps.langJa = await page.locator('#planner-h2', { hasText: 'プランナー' }).count();
+  await page.selectOption('#planner-lang', 'en');
+  await page.waitForTimeout(200);
   // shopping line growth via shared refresh (4×3 portions in range now)
   steps.shoppingLinesAfter = await page.locator('#engine-groups li').count();
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_planner_flow.png') });
   await browser.close();
   const failed = pageErrors.length > 0 || steps.afterRepeat !== 3 || steps.familyBadges < 2 || steps.afterCopy !== 4 || steps.shoppingLinesAfter <= steps.beforeRepeat
-    || !steps.deficitRefusal || steps.afterDeficit <= steps.afterCopy || !String(steps.deficitStatus).includes('moderate') || steps.deficitExplanations === 0;
+    || !steps.deficitRefusal || steps.afterDeficit <= steps.afterCopy || !String(steps.deficitStatus).includes('moderate') || steps.deficitExplanations === 0
+    || steps.langEspe === 0 || steps.langZh === 0 || steps.langJa === 0;
   report.rows.push({ tag: 'planner-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== planner-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
