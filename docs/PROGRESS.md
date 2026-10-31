@@ -812,6 +812,13 @@ Round 2 of the Spanish sweep: translated the compliance view (audit summary/stat
 Gates: 173/173 · e2e · staging · live · redteam2 27/27 · geometry · audit 33 — ALL PASS.
 
 Next single command/ticket: per-recipe compliance.status value strings ('Editorial revision only…') still EN in the 29 cards — a final data-value translation pass or an es-status map; plus owner cadence items.
+## Session log - 2026-10-31, session 3, part 62 (engine/status cluster es-PE, D46/D47)
+
+Round 3 of the Spanish sweep: cook-mode card statuses + diagram captions via 8 new i18n keys x6 locales; flavor-engine caveat/status strings (aggregate-only, frequency-is-behavior, 'Por qué este puesto para X', Atlas cargado, frequency intro) draft-tagged; 33 knowledge labels Es; compliance metric tiles; dashboard 'Menú interactivo de 28 días'. Data translations: statusEs x29 + revisionNotesEs x49 + auditSummaryEs x29 (sync-served). Four test text-pins re-pointed to es identifiers — the suite now enforces the es-PE decree (regression to EN text fails tests). Live-verified at a7e8454 with 0 errors.
+
+Gates: 173/173 · e2e · staging · live · redteam x2 · geometry · audit 33 — ALL PASS.
+
+Next single command/ticket: the ONLY remaining EN is the legacy 29-recipe corpus (names/methods/steps/shopping items) under the '(EN — sin traducción)' notice — LEDGER-6 native-review class, owner decision required. All dev-side chrome/status/narrative text is now es-PE draft.
 
 ## Update template for next session
 
