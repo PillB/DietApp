@@ -1,0 +1,36 @@
+name: Weekly full-gate r3 (scheduled drift guard)
+on:
+  schedule:
+    # Wednesday and Sunday 03:20 UTC — off-peak; CDN already warm
+    - cron: '20 3 * * 3,0'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  r3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run the consolidated regression stack (lint, tests, e2e, staging, live, audit, redteam, geometry)
+        run: npm run r3 2>&1 | tee /tmp/r3_result.txt
+      - name: Archive r3 layer logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r3-layer-logs
+          if-no-files-found: warn
+          path: |
+            /tmp/r3_*.log
+            /tmp/r3_result.txt
+      - name: Fail loudly on any failed layer
+        if: always()
+        run: |
+          if grep -qE "R3 RESULT: [1-9][0-9]* failed layers" /tmp/r3_result.txt; then
+            echo "::error::r3 reported failed layers"; exit 1
+          fi
