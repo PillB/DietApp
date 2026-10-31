@@ -513,9 +513,14 @@
     // catalog preload for the shopping engine (structure-only fixture), then boot
     (function () {
       function boot() {
-        fetch('data/canonical/docx-diet-recipes-canon.v1.json').then((r) => r.ok ? r.json() : null)
-          .then((canon) => { window.DOCX_DIET_RECIPES = canon; boot2(); })
-          .catch(() => boot2());
+        Promise.all([
+          fetch('data/canonical/docx-diet-recipes-canon.v1.json').then((r) => r.ok ? r.json() : null),
+          fetch('data/reference/food-composition-tpca.v1.json').then((r) => r.ok ? r.json() : null),
+        ]).then(([canon, comp]) => {
+          window.DOCX_DIET_RECIPES = canon;
+          window.__pgkComposition = comp ? comp.rows : {};
+          boot2();
+        }).catch(() => boot2());
       }
       function boot2() {
         if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) { console.error('engine UI deps missing'); return; }
