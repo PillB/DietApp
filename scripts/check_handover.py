@@ -4,6 +4,8 @@ This is not a full recipe audit or browser test; it deliberately reports scope.
 """
 from pathlib import Path
 import json
+import os
+import subprocess
 import re
 import sys
 import zipfile
@@ -25,7 +27,15 @@ needed = [
     'data/private/food_delivery_orders_extracted(2).xlsx',
     'data/private/dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf',
 ]
-for x in needed: check((root/x).is_file(), 'file '+x)
+for x in needed:
+    if os.environ.get('CI') == 'true' and x.startswith('data/private/') and not (root/x).exists():
+        print('SKIP (not verified): private original is intentionally absent from CI checkout: '+x)
+    else:
+        check((root/x).is_file(), 'file '+x)
+if os.environ.get('CI') == 'true':
+    tracked = subprocess.run(['git', 'ls-files', '--', 'data/private/'], cwd=root,
+                             check=True, capture_output=True, text=True).stdout.strip()
+    check(not tracked, 'private originals are not git tracked')
 ignores = (root/'.gitignore').read_text('utf8') if (root/'.gitignore').is_file() else ''
 check(bool(ignores), '.gitignore exists')
 for pattern in ('data/private/', 'context/private/', '.env'):
