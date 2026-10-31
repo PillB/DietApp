@@ -33,7 +33,7 @@ async function screenshot(page, label) {
 }
 async function openMobileNavigation(page) {
   const toggle = page.locator('#mobile-nav-toggle');
-  if (await toggle.count() && await toggle.getAttribute('aria-expanded') === 'false') {
+  if (await toggle.count() && await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') {
     await toggle.click();
   }
 }
