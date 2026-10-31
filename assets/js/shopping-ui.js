@@ -82,6 +82,29 @@
     };
   }
 
+  const CHECKS_KEY = 'pgk:shopper-checked:v1';
+  function readPurchaseChecks() {
+    try {
+      const parsed = JSON.parse(root.localStorage.getItem(CHECKS_KEY) || '{}');
+      return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch { return {}; }
+  }
+  function writePurchaseCheck(key, checked) {
+    const checks = readPurchaseChecks();
+    if (checked) checks[key] = true;
+    else delete checks[key];
+    const keys = Object.keys(checks);
+    for (const expired of keys.slice(0, Math.max(0, keys.length - 400))) delete checks[expired];
+    try { root.localStorage.setItem(CHECKS_KEY, JSON.stringify(checks)); }
+    catch { return false; }
+    return true;
+  }
+  function purchaseKey(section, line) {
+    const from = section.querySelector('#engine-from').value;
+    const to = section.querySelector('#engine-to').value;
+    return [from,to,line.ingredientId,line.basis,line.unit,line.neededString].join('|');
+  }
+
   function tr(key, vars = {}) {
     let out = root.I18N ? root.I18N.t(key) : key;
     for (const [name, value] of Object.entries(vars)) out = String(out).replaceAll('{' + name + '}', String(value));
@@ -256,7 +279,9 @@
       return;
     }
     const groups = new Map();
+    const checks = readPurchaseChecks();
     for (const line of out.lines) {
+      const itemKey = purchaseKey(section, line);
       const ing = model.ingredientById.get(line.ingredientId)
         || { family: 'pantrystaples', name: { en: line.ingredientId }, nameProvisional: true };
       const fam = ing.nameProvisional ? 'provisional-names' : (ing.family || 'pantrystaples');
@@ -272,7 +297,7 @@
         ? ` (${escapeHtml(tr('shopping.uiPantry', {amount: root.ShoppingCore.rationalToString(line.pantry)}))})` : '';
       groups.set(fam, (groups.get(fam) || []).concat([`
         <li class="flex flex-wrap items-center gap-2">
-          <input type="checkbox" data-line="${escapeHtml(line.ingredientId)}" aria-label="${escapeHtml(tr('shopping.uiBought', {name: line.ingredientId}))}">
+          <input type="checkbox" data-line="${escapeHtml(line.ingredientId)}" data-purchase-key="${escapeHtml(itemKey)}" ${checks[itemKey] ? 'checked' : ''} aria-label="${escapeHtml(tr('shopping.uiBought', {name: line.ingredientId}))}">
           <span class="text-stone-200">${nameHtml}</span>
           <span class="text-amber-200">${escapeHtml(tr('shopping.uiNeed', {amount: line.neededString, unit: line.unit}))}</span>
           <span class="text-emerald-300">${pantryText} ${buyText}</span>
@@ -283,6 +308,13 @@
         <h3 class="font-bold text-amber-300">${escapeHtml(FAMILY_LABELS[fam] ? tr(FAMILY_LABELS[fam]) : fam)}</h3>
         <ul class="list-disc pl-6 space-y-1">${items.join('')}</ul>
       </div>`).join('') || `<p class="text-stone-400">${escapeHtml(tr('shopping.uiEmpty'))}</p>`;
+    groupsEl.onchange = (ev) => {
+      const box = ev.target;
+      if (!box || !box.matches('input[data-purchase-key]')) return;
+      if (!writePurchaseCheck(box.dataset.purchaseKey, box.checked)) {
+        section.querySelector('#engine-status').textContent = 'No se pudo guardar la selección en este navegador';
+      }
+    };
   }
 
   function isZeroRational(q) { return q.num === 0; }
