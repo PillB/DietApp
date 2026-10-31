@@ -271,7 +271,7 @@
           <div>
             <p class="text-xs uppercase tracking-[0.25em] text-amber-300/70">Auditoría de cumplimiento (PDF)</p>
             <h2 class="font-display text-4xl text-amber-50">Revisión de pautas dietéticas</h2>
-            <p class="mt-3 max-w-3xl text-sm leading-7 text-stone-300" x-text="data.complianceAudit?.summary"></p>
+            <p class="mt-3 max-w-3xl text-sm leading-7 text-stone-300" x-text="data.complianceAudit?.summaryEs || data.complianceAudit?.summary"></p>
           </div>
           <button @click="exportData()" class="no-print rounded-2xl bg-amber-400 px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-300">Exportar revisión JSON</button>
         </div>
@@ -292,8 +292,8 @@
             <div class="mt-4 space-y-3">
               <template x-for="rule in data.dietGuidelineRules" :key="rule.id">
                 <div class="rounded-2xl bg-stone-950/40 p-4">
-                  <p class="font-bold text-amber-200" x-text="rule.label"></p>
-                  <p class="mt-1 text-sm leading-6 text-stone-300" x-text="rule.rule"></p>
+                  <p class="font-bold text-amber-200" x-text="rule.labelEs || rule.label"></p>
+                  <p class="mt-1 text-sm leading-6 text-stone-300" x-text="rule.ruleEs || rule.rule"></p>
                 </div>
               </template>
             </div>
@@ -302,7 +302,7 @@
           <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
             <h3 class="font-display text-2xl text-amber-50">Correcciones mayores aplicadas</h3>
             <ul class="mt-4 space-y-3 text-sm leading-7 text-stone-300">
-              <template x-for="item in data.complianceAudit?.majorCorrections || []" :key="item">
+              <template x-for="item in (data.complianceAudit?.majorCorrectionsEs || data.complianceAudit?.majorCorrections || [])" :key="item">
                 <li class="rounded-2xl bg-stone-950/40 p-4">✓ <span x-text="item"></span></li>
               </template>
             </ul>
@@ -310,11 +310,11 @@
         </div>
 
         <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
-          <h3 class="font-display text-2xl text-amber-50">Recipe-by-recipe status</h3>
+          <h3 class="font-display text-2xl text-amber-50">Estado receta por receta</h3>
           <div class="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             <template x-for="recipe in data.recipes" :key="recipe.id">
               <button @click="selectedRecipe = recipe" class="rounded-2xl bg-stone-950/40 p-4 text-left hover:bg-stone-950/70">
-                <p class="text-xs uppercase tracking-[0.18em] text-amber-300/70" x-text="recipe.compliance?.status || 'Reviewed'"></p>
+                <p class="text-xs uppercase tracking-[0.18em] text-amber-300/70" x-text="recipe.compliance?.statusEs || recipe.compliance?.status || 'Revisado'"></p>
                 <h4 class="mt-1 font-display text-xl text-amber-50" x-text="recipe.name"></h4>
                 <p class="mt-2 text-xs leading-5 text-stone-400" x-text="(recipe.compliance?.revisionNotes || ['No revisions required.'])[0]"></p>
               </button>
@@ -331,12 +331,12 @@
         <div class="grid gap-5 lg:grid-cols-2">
           <template x-for="(items, sectionName) in data.knowledgeMap" :key="sectionName">
             <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
-              <h3 class="font-display text-2xl text-amber-50" x-text="sectionName"></h3>
+              <h3 class="font-display text-2xl text-amber-50" x-text="data.kmTitleEs ? data.kmTitleEs[sectionName] || sectionName : sectionName"></h3>
               <div class="mt-4 space-y-3">
                 <template x-for="item in items" :key="item.label + item.description">
                   <p class="text-sm leading-7 text-stone-300">
                     <template x-if="item.label"><strong class="text-amber-200" x-text="item.label + ': '"></strong></template>
-                    <span x-text="item.description"></span>
+                    <span x-text="item.descriptionEs || item.description"></span>
                   </p>
                 </template>
               </div>
@@ -349,12 +349,12 @@
       <section x-show="view === 'nutrition'" id="nutrition-root" class="n-dashboard space-y-6" x-cloak>
         <div class="n-hero">
           <div class="n-ornament" aria-hidden="true">❦ ━━━━━ ◇ ━━━━━ ❦</div>
-          <p class="n-overline">PERSONAL GOURMET KITCHEN • EVIDENCE & PORTIONS</p>
+          <p class="n-overline">COCINA GOURMET PERSONAL • EVIDENCIA Y PORCIONES</p>
           <h2 data-nt="nutrition">Nutrition, portioning and safe planning</h2>
           <p data-nt="feature">Seven measured gourmet variants for a practical starter week. Original recipes remain available under Recipes, but unstructured ingredients cannot reliably produce exact shopping totals.</p>
           <div class="n-hero-footer">
             <label>Idioma de la interfaz <select id="n-language" aria-label="Idioma del módulo de nutrición"><option value="en">English</option><option value="es">Español</option></select></label>
-            <a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="noopener noreferrer">NIH weight planner ↗</a>
+            <a href="https://www.niddk.nih.gov/health-information/weight-management/body-weight-planner" target="_blank" rel="noopener noreferrer">Planificador de peso NIH ↗</a>
           </div>
         </div>
         <p class="n-caution" data-nt="warning">Estimates only — not verified nutritional labels. Original recipes are not nutritionally certified.</p>

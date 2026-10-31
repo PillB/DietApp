@@ -105,6 +105,17 @@ function renderInlineMarkdown(value) {
 function mealPlanApp() {
   return {
     data: window.MEAL_PLAN_DATA,
+    // LEDGER-D45: knowledge-map section headers translate to es-PE (keys are
+    // the EN titles in the data object, so a static title map renders es).
+    kmTitleEs: {
+      'Cuisines & Cultural Inspirations': 'Cocinas e inspiraciones culturales [es-PE borrador]',
+      'Dominant Flavor Profiles': 'Perfiles de sabor dominantes [es-PE borrador]',
+      'Textures': 'Texturas',
+      'Key Ingredients & Spices': 'Ingredientes y especias clave',
+      'Preferred Techniques': 'Técnicas preferidas',
+      'Overall Taste DNA': 'ADN general del sabor',
+      'How This Will Guide the Month': 'Cómo guiará este el mes',
+    },
     view: 'dashboard',
     selectedWeek: 1,
     selectedDayIndex: 0,
