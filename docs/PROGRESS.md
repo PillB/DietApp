@@ -521,6 +521,23 @@ Files: assets/js/planner-ui.js (deficit-week explanations now display the per-pi
 E2E planner-flow PASS (extended card: the pick explanation now shows macros alongside the factual ranking — honest labels intact); unit tests 142 pass / 0 fail; lint clean.
 Next single command/ticket: owner action — supply the GitHub repo URL + authorization statement; then the deployment steps in docs/DEPLOY_CHECKLIST.md gates 3-4 can execute. Also the facet the pending LEDGER-2 weigh-in worksheet and the batch-4 composition rows (if owner expands beyond docx TPCA lane) can run in parallel while we wait for consent.
 
+## Session log — 2026-10-31, session 3, part 35 (PUSHED — deploy gate 1-3 passed)
+
+Owner authorized push to https://github.com/PillB/DietApp.git (quoted: "push push push"). Preflight `npm run check` ALL PASS; remote added; branch 'main' pushed and tracking; remote heads confirm 61a97e4ad963de565a7984a8c8480a9ba4f75f1b.
+
+What shipped: 33 checkpoints (P0.1 through part-34) — the full pipeline:
+- canonical domain model + rationals + calendar + shopping aggregation + persistence + store matching + composition engine
+- 6 E2E flows + staging QA (7 viewports incl. overflow/axe/links/offline, all PASS)
+- P-Diet deficit engine w/ 1500/1400/1200 kcal presets + clinician-acknowledgment gating
+- P4 safety gates (FoodSafety.gov + USDA verified 这次) — thermometer gates at 74/71/63°C
+- P5 flavor profile engine + explainable ranking
+- P6 i18n 6 locales
+- docs/DEPLOY_CHECKLIST.md is 3/4 gate-passed (Gate 1-2 met; Gate 3-4 can proceed once Pages is auto-enabled, though relative paths mean the deployed URL will be /DietApp/ subpath).
+
+NOT pushed: the private lane (data/private/, context/private/) remains LOCAL ONLY (gitignored). Owner's P4.4 kitchen weigh-in is still an OPEN ledger gate for anything promoted to 'assessed'.
+
+Next single command/ticket: owner choice — enable GitHub Pages (Settings → Pages → Deploy from branch → main / root) for the deployed URL https://pillb.github.io/DietApp/, or keep staging QA run against a local URL and wait for the Pages toggle. Also batch-4 composition rows continue the LEDGER-3 close-out.
+
 ## Update template for next session
 
 ## Update template for next session
