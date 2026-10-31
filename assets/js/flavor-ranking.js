@@ -38,7 +38,8 @@
     for (const id of ids) if (!known.includes(id)) throw Object.assign(new Error(`unknown feature ${id}`), { code: 'unknown_feature' });
     if (Math.abs(ids.reduce((s, id) => s + weights[id], 0) - 1) > 1e-6) throw Object.assign(new Error('feature weights must sum to 1'), { code: 'bad_weights' });
     if (features && !ids.includes(features)) throw Object.assign(new Error('focus feature must be one of the weights'), { code: 'unknown_feature' });
-    if (lexicon.schema !== 'flavor-lexicon/v1') throw Object.assign(new Error('lexicon must be flavor-lexicon/v1'), { code: 'bad_lexicon_schema' });
+    const lex = lexicon || { schema: 'flavor-lexicon/v1', sourceNote: 'empty (fetch-race)', entries: [] };
+    if (lex.schema !== 'flavor-lexicon/v1') throw Object.assign(new Error('lexicon must be flavor-lexicon/v1'), { code: 'bad_lexicon_schema' });
   }
 
   /** Graph build is strict; missing observed-category context (planner boot with no atlas

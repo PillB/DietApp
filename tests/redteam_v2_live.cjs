@@ -95,7 +95,7 @@ async function recipeModalWalk(browser) {
     // assert modal content: mise/ingredients/method sections render
     const modal = await page.evaluate(() => {
       const h = [...document.querySelectorAll('h3')].map((x) => x.textContent);
-      return { mise: h.some((x) => /Mise/i.test(x)), ingredients: h.some((x) => /Ingredients/i.test(x)), method: h.some((x) => /Method/i.test(x)) };
+      return { mise: h.some((x) => /Mise|Preparación/i.test(x)), ingredients: h.some((x) => /Ingredients|Ingredientes/i.test(x)), method: h.some((x) => /Method|Preparación/i.test(x)) };
     });
     note(modal.mise && modal.ingredients && modal.method, 'modal-content: mise/ingredients/method all present', JSON.stringify(modal));
     // close via the × button

@@ -1,0 +1,170 @@
+{
+  "results": [
+    {
+      "ok": true,
+      "label": "1a-html-lang-es-PE",
+      "detail": "es-PE"
+    },
+    {
+      "ok": true,
+      "label": "1b-i18n-default",
+      "detail": "es-PE"
+    },
+    {
+      "ok": true,
+      "label": "1c-planner-title-es-PE",
+      "detail": "Planificador (versión de desarrollo)"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#dashboard",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#calendar",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#week/1",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#recipes",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#shopping/1",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#compliance",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#nutrition",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#knowledge",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#shopengine",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#planner",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#cookmode",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#flavoratlas",
+      "detail": "hidden"
+    },
+    {
+      "ok": false,
+      "label": "2-nav-#weighin",
+      "detail": "hidden"
+    },
+    {
+      "ok": true,
+      "label": "3-modal-cards",
+      "detail": "count=29"
+    },
+    {
+      "ok": true,
+      "label": "3-modal-mise",
+      "detail": "Mise en place,Ingredientes,Preparación,Por qué funciona,Emplatado / maridaje,Revisión de cumplimiento"
+    },
+    {
+      "ok": true,
+      "label": "3-modal-ingredientes",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "3-modal-preparacion",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "3-modal-closes",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "4-deficit-1200-no-ack",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "4-deficit-1200-ack-built",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "4-week-entries",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "5-adequacy-rows",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "6-cook-micros",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "6-cook-docx-es-PE-steps",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "7-weighin-mounted",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "7-weighin-es-PE-button",
+      "detail": ""
+    },
+    {
+      "ok": false,
+      "label": "8-flavor-ranking-cards",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "9-privacy-report.md",
+      "detail": "status=404"
+    },
+    {
+      "ok": true,
+      "label": "9-privacy-food_delivery_orders",
+      "detail": "status=404"
+    },
+    {
+      "ok": true,
+      "label": "10-no-page-errors",
+      "detail": "0"
+    }
+  ],
+  "hardFail": true
+}
