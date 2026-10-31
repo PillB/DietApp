@@ -1,0 +1,22 @@
+{
+ "rebind_de": true,
+ "rebind_zh-Hans": true,
+ "rebind_ja": true,
+ "rebind_hi": true,
+ "rebind_es-PE": true,
+ "dates": {
+  "sameDay": 7,
+  "endBeforeStart": false,
+  "saneRange": 7
+ },
+ "repeatX1": true,
+ "repeatX0": true,
+ "csv": true,
+ "printBtn": true,
+ "nPortion": {
+  "0": "",
+  "1": "Agregado. Cantidades de compras actualizadas.",
+  "24": "Agregado. Cantidades de compras actualizadas.",
+  "25": ""
+ }
+}

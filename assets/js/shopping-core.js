@@ -162,6 +162,11 @@
   function buildShoppingList({ recipes, planEntries, from, to, pantry, optionalChoices, packages, quarantine }) {
     const warnings = [];
     const errors = [];
+    // LEDGER-D48: inverted range is a caller error — refuse, never silently empty
+    if (typeof from === 'string' && typeof to === 'string' && from > to) {
+      errors.push({ code: 'inverted_range' });
+      return { lines: [], warnings, errors, refused: true };
+    }
     validateEntries(planEntries, errors);
     if (errors.length) return { lines: [], warnings, errors, refused: true };
 

@@ -73,7 +73,7 @@
       <h2 class="text-xl font-bold text-amber-200">${tC("cookmode.title")}</h2>
       <p class="text-sm text-stone-300">${tC("cookmode.subtitle")}</p>
       <div class="flex flex-wrap items-end gap-3 mt-2">
-        <label class="text-sm">Recipe <select id="cook-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
+        <label class="text-sm">${tC("cookmode.recipeLabel")} <select id="cook-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
         <label class="text-sm">${tC("cookmode.cookedOn")} <input id="cook-date" type="date" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></label>
         <button id="cook-leftovers" class="rounded border border-amber-300 px-3 py-1 text-amber-200 focus:outline-none focus:ring-2">${tC("cookmode.leftoverStatus")}</button>
       </div>

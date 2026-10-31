@@ -85,7 +85,11 @@
   function buildStaticSkeleton(section) {
     if (section.dataset.built === '1') return;
     section.dataset.built = '1';
-    const t = (k) => (root.I18N ? root.I18N.t(k) : null);
+    const t = (k, map) => {
+      let s = root.I18N ? root.I18N.t(k) : null;
+      if (s && map) for (const [key, v] of Object.entries(map)) s = s.replaceAll(`{${key}}`, v);
+      return s;
+    };
     section.innerHTML = `
       <h2 id="shopengine-h2" class="text-xl font-bold text-amber-200">${t('shopping.title')}</h2>
       <p class="text-sm text-stone-300">${t('shopping.note')}</p>
@@ -165,11 +169,11 @@
       const res = c.ST.addPlanEntry(model.state, entry);
       const status = section.querySelector('#engine-status');
       if (!res.ok) {
-        status.textContent = `Refused: ${res.errors.map((e) => e.code).join(', ')}`;
+        status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${res.errors.map((e) => e.code).join(', ')}`;
         section.querySelector('#engine-groups').innerHTML = '';
         return;
       }
-      status.textContent = `Added ${entry.recipeId} × ${entry.portions} on ${entry.localDate}`;
+      status.textContent = t('shopping.added', { r: entry.recipeId, p: entry.portions, d: entry.localDate });
       c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });
       if (root.PlannerUI && root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
@@ -177,7 +181,17 @@
     section.querySelector('#engine-copy').addEventListener('click', () => copyCsv(model, section));
     section.querySelector('#engine-print').addEventListener('click', () => root.print());
     for (const input of ['#engine-from', '#engine-to']) {
-      section.querySelector(input).addEventListener('change', () => render(c, model, section, { silent: true }));
+      section.querySelector(input).addEventListener('change', () => {
+        const f = section.querySelector('#engine-from').value;
+        const t2 = section.querySelector('#engine-to').value;
+        const status = section.querySelector('#engine-status');
+        if (f && t2 && f > t2) {
+          status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${root.I18N ? root.I18N.t('shopping.rangeInvalid') : 'end date must be on or after start date'}`;
+          section.querySelector('#engine-groups').innerHTML = '';
+          return;
+        }
+        render(c, model, section, { silent: true });
+      });
     }
   }
 
