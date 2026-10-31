@@ -55,7 +55,9 @@ async function main() {
   await note(inv.selects.length >= 4, `1-selects: ${inv.selects.length}`, JSON.stringify(inv.selects));
   await note(inv.links.length >= 4, `1-links: ${inv.links.length}`, JSON.stringify(inv.links.slice(0, 4)));
 
-  // --- 2. Recipe selection permutations
+  // --- 2. Recipe selection permutations (37a8aa8: cookmode is a routed view)
+  await page.evaluate(() => { location.hash = '#cookmode'; });
+  await page.waitForSelector('#cook-recipe:visible', { timeout: 15000 }).catch(() => {});
   for (const recipeOpt of ['nikkei-salmon-bowl', 'pescado_ajonjoli_diet']) {
     await page.selectOption('#cook-recipe', recipeOpt);
     await page.waitForTimeout(200);
@@ -64,6 +66,9 @@ async function main() {
   }
 
   // --- 3. Week-direct builder boundary test (aggressive below 1500 kcal without ack)
+  // 37a8aa8: planner is a routed view
+  await page.evaluate(() => { location.hash = '#planner'; });
+  await page.waitForSelector('#deficit-build-btn:visible', { timeout: 15000 }).catch(() => {});
   await page.selectOption('#deficit-target', '1200');
   const doesAck = await page.isChecked('#deficit-ack'); // unchecked default
   if (!doesAck) {
@@ -90,7 +95,9 @@ async function main() {
     await note(true, `4-sub-floor-1100: UI refuses or stays (cannot go below published 1200 floor via UI)`, (await page.locator('#planner-status').textContent()).slice(0, 80));
   } catch { /* target select may not have 1100 option — that's the desired UX */ await note(true, `4-sub-floor-1100: option absent (UI-sided gate)`, 'the select does not contain 1100 — the UI itself enforces the floor'); }
 
-  // --- 5. Recipe add + shopping sync
+  // --- 5. Recipe add + shopping sync (routed view)
+  await page.evaluate(() => { location.hash = '#shopengine'; });
+  await page.waitForSelector('#engine-recipe:visible', { timeout: 15000 }).catch(() => {});
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
   await page.fill('#engine-date', '2026-11-05');
   await page.fill('#engine-portions', '2');
@@ -110,7 +117,9 @@ async function main() {
   });
   await note(csvOk, `7-copy-csv-button-exercised: no crash`, '');
 
-  // --- 8. i18n permutation: all six locales cycle without error
+  // --- 8. i18n permutation: all six locales cycle without error (planner routed)
+  await page.evaluate(() => { location.hash = '#planner'; });
+  await page.waitForSelector('#planner-lang:visible', { timeout: 15000 }).catch(() => {});
   for (const locale of ['es-PE', 'zh-Hans', 'hi', 'de', 'ja', 'en']) {
     await page.selectOption('#planner-lang', locale);
     await page.waitForTimeout(100);

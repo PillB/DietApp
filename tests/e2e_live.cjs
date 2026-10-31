@@ -75,6 +75,9 @@ async function mobileOverflow(browser) {
 
 async function addRecipePlanCook(browser) {
   const { page } = await loadAndBoot(browser, { width: 1280, height: 900 });
+  // 37a8aa8 routed the engine panels: route to the view before interacting
+  await page.evaluate(() => { location.hash = '#shopengine'; });
+  await page.waitForSelector('#engine-from:visible', { timeout: 15000 }).catch(() => {});
   // shopping: add nikkei recipe
   await page.fill('#engine-from', '2026-11-01');
   await page.fill('#engine-to', '2026-11-30');
@@ -85,16 +88,22 @@ async function addRecipePlanCook(browser) {
   await page.waitForTimeout(300);
   const shopLines = await page.locator('#engine-groups li').count();
   pass('live_shopping_lines', shopLines > 0, `lines=${shopLines}`);
-  // planner: entry appears
+  // planner: entry appears (planner is a ROUTED view post-37a8aa8)
+  await page.evaluate(() => { location.hash = '#planner'; });
+  await page.waitForSelector('#planner-entries li:visible', { timeout: 15000 }).catch(() => {});
   const plannerRows = await page.locator('#planner-entries li').count();
   pass('live_planner_entries', plannerRows >= 1, `rows=${plannerRows}`);
-  // cook: recipe + nutrition card
+  // cook: recipe + nutrition card (routed view)
+  await page.evaluate(() => { location.hash = '#cookmode'; });
+  await page.waitForSelector('#cook-recipe:visible', { timeout: 15000 }).catch(() => {});
   await page.selectOption('#cook-recipe', 'pescado_ajonjoli_diet');
   await page.waitForTimeout(200);
   const nut = await page.locator('#cook-nutrition').textContent();
   // default language is es-PE (owner directive): the Spanish label is the expected live text
   pass('live_nutrition_card', /por porc|computed-pending-weighin/i.test(nut), nut.trim().slice(0, 100));
-  // i18n switcher
+  // i18n switcher (planner is routed — return to it)
+  await page.evaluate(() => { location.hash = '#planner'; });
+  await page.waitForSelector('#planner-lang:visible', { timeout: 15000 }).catch(() => {});
   await page.selectOption('#planner-lang', 'es-PE');
   await page.waitForTimeout(200);
   const headerEs = await page.locator('#planner-h2', { hasText: 'Planificador' }).count();

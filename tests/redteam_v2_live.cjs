@@ -113,6 +113,9 @@ async function recipeModalWalk(browser) {
 /** Step-level ingredient consumption, live: docx recipes' diagrams must cover every token. */
 async function diagramLedgerLive(browser) {
   const { page } = await freshPage(browser, { width: 1280, height: 900 });
+  // 37a8aa8: cookmode is a routed view — route before interacting
+  await page.evaluate(() => { location.hash = '#cookmode'; });
+  await page.waitForSelector('#cook-recipe:visible', { timeout: 15000 }).catch(() => {});
   for (const rid of ['pescado_ajonjoli_diet', 'galletas_avena_diet', 'muesli_frutado_diet', 'budin_platano_diet']) {
     await page.selectOption('#cook-recipe', rid);
     await page.waitForTimeout(250);
