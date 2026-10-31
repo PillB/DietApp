@@ -59,6 +59,7 @@
           ['shopengine','Shopping Engine (v4)','🧾','#shopengine'],
           ['planner','Planner (v4)','🗓','#planner'],
           ['cookmode','Cook Mode (v4)','🔥','#cookmode'],
+          ['flavoratlas','Flavor Atlas (v4)','🗺','#flavoratlas'],
           ['compliance','DGA Review','✅','#compliance'],
           ['nutrition','Nutrition & Portions','⚖️','#nutrition'],
           ['knowledge','Taste DNA','🧬','#knowledge']
@@ -417,6 +418,11 @@
           <p>Nutrition values in the seven measured variants are <strong>illustrative calculations using generic food composition references</strong>; brands and preparation affect them substantially.</p>
         </section>
       </section>
+
+      <section id="shopengine" class="max-w-full mt-8"></section>
+      <section id="planner" class="max-w-full mt-8"></section>
+      <section id="cookmode" class="max-w-full mt-8"></section>
+      <section id="flavoratlas" class="max-w-full mt-8"></section>
     </main>
   </div>
 
@@ -478,10 +484,6 @@
     </div>
   </div>
 
-  <section id="shopengine" class="max-w-full"></section>
-  <section id="planner" class="max-w-full"></section>
-  <section id="cookmode" class="max-w-full"></section>
-
   <script defer src="assets/js/nutrition-data.js"></script>
   <script defer src="assets/js/nutrition-core.js"></script>
   <script defer src="assets/js/nutrition-ui.js"></script>
@@ -498,20 +500,26 @@
   <script defer src="assets/js/planner-ui.js"></script>
   <script defer src="assets/js/cooking-core.js"></script>
   <script defer src="assets/js/cook-mode-ui.js"></script>
+  <script defer src="assets/js/flavor-core.js"></script>
+  <script defer src="assets/js/flavor-graph.js"></script>
+  <script defer src="assets/js/flavor-ui.js"></script>
   <script>
     // catalog preload for the shopping engine (structure-only fixture), then boot
     (function () {
       function boot() {
-        if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI)) { console.error('engine UI deps missing'); return; }
+        if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) { console.error('engine UI deps missing'); return; }
         try {
           const shopping = window.ShoppingUI.init({});
           window.PlannerUI.init({ model: shopping.model });
           window.CookModeUI.init({ model: shopping.model });
+          fetch('data/fixtures/flavor-atlas-demo.json').then((r) => r.ok ? r.json() : null)
+            .then((demo) => { window.FLAVOR_ATLAS_DEMO = demo; window.FlavorUI.init({}); })
+            .catch(() => window.FlavorUI.init({}));
         } catch (e) { console.error('engine init failed:', e); }
       }
       fetch('data/fixtures/lima-stores-v1.json')
         .then((r) => r.json())
-        .then((j) => { window.LIMA_STORES_FIXTURE = j.products; boot(); })
+        .then((storeFixture) => { window.LIMA_STORES_FIXTURE = storeFixture.products; boot(); })
         .catch(() => boot());
     })();
   </script>

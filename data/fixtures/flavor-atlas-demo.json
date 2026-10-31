@@ -1,0 +1,33 @@
+{
+  "schema": "flavor-atlas/v1",
+  "generated_at": "2026-10-31T00:00:00+00:00",
+  "aggregate_only": true,
+  "policy": "SYNTHETIC DEMO — no personal data. Numbers invented for UI evaluation only.",
+  "items": 24,
+  "category_counts": {
+    "Sushi / Nikkei / japonesa": 10,
+    "Pasta / italiana": 6,
+    "Desayuno / huevos": 3,
+    "Supermercado / despensa comestible": 2,
+    "Bebida": 3
+  },
+  "month_counts": { "2026-01": 8, "2026-02": 8, "2026-03": 8 },
+  "service_counts": { "Rappi": 24 },
+  "description_confidence_counts": { "Media": 18, "Alta": 6 },
+  "supported_item_counts": {
+    "Maki Acevichado": 10,
+    "Spaghetti Cacio e Pepe": 6,
+    "Huevos Benedictinos": 3,
+    "Arroz integral demo pack": 2
+  },
+  "supported_item_categories": {
+    "Maki Acevichado": { "Sushi / Nikkei / japonesa": 10 },
+    "Spaghetti Cacio e Pepe": { "Pasta / italiana": 6 },
+    "Huevos Benedictinos": { "Desayuno / huevos": 3 },
+    "Arroz integral demo pack": { "Supermercado / despensa comestible": 2 }
+  },
+  "supported_item_costs_soles": null,
+  "suppressed_item_total": 3,
+  "suppressed_item_bucket_count": 2,
+  "min_support": 3
+}

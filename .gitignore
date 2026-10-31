@@ -1,12 +1,9 @@
 # PRIVATE SOURCE DATA — never publish, commit, or ship to Pages (AGENTS.md §safety 1)
 data/private/
 context/private/
-context/*.json
-context/2026-05-01-2026-10-26-flavor-profile-analysis/
-context/generated/
-# Unreviewed user context drop (contains order-derived analysis; audit at P0.2 before reconsidering)
-Context information/
-
+# 2026-10-31 OWNER DECREE: context/ and "Context information/" contents (incl. the
+# flavor atlas and analysis bundle) are NO LONGER private — publishable at owner
+# discretion. data/private/ (owner originals) REMAINS private. See SOURCE_INVENTORY.md.
 # Secrets / environment
 .env
 .env.*

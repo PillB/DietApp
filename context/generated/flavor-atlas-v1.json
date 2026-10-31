@@ -1,0 +1,446 @@
+{
+ "schema": "flavor-atlas/v1",
+ "generated_at": "2026-10-30T23:59:38.285274+00:00",
+ "aggregate_only": true,
+ "policy": "AGGREGATES ONLY: no identifiers, no raw rows, no item strings below support floor. Derived from the private workbook; NOT publishable per AGENTS.md without owner approval.",
+ "items": 1340,
+ "category_counts": {
+  "Supermercado / despensa comestible": 252,
+  "Postre / snack dulce": 179,
+  "Bebida": 150,
+  "Hamburguesa / fast food": 123,
+  "Pollo / comida rápida": 94,
+  "Sándwich / panadería salada": 88,
+  "Desayuno / huevos": 86,
+  "Sushi / Nikkei / japonesa": 65,
+  "Asiática / fusión": 60,
+  "Pasta / italiana": 47,
+  "Mexicana / Tex-Mex": 42,
+  "Panadería / empanada": 30,
+  "Desayuno saludable / yogurt / avena": 27,
+  "Carne / pescado / mariscos": 21,
+  "Ensalada / bowl / crudo": 16,
+  "Bebida alcohólica": 16,
+  "Pizza": 15,
+  "Otro alimento / bebida": 11,
+  "Acompañamiento / piqueo": 10,
+  "Supermercado / panadería / lácteo": 8
+ },
+ "month_counts": {
+  "2020-11": 8,
+  "2020-12": 41,
+  "2021-01": 36,
+  "2021-02": 55,
+  "2021-03": 33,
+  "2021-04": 55,
+  "2021-05": 42,
+  "2021-06": 34,
+  "2021-07": 74,
+  "2021-08": 79,
+  "2021-09": 81,
+  "2021-10": 68,
+  "2021-11": 68,
+  "2021-12": 60,
+  "2022-01": 51,
+  "2022-02": 31,
+  "2022-03": 54,
+  "2022-04": 41,
+  "2022-05": 58,
+  "2022-06": 41,
+  "2022-07": 95,
+  "2022-08": 60,
+  "2022-09": 37,
+  "2022-10": 13,
+  "2022-11": 26,
+  "2022-12": 36,
+  "2023-01": 20,
+  "2023-02": 32,
+  "2023-03": 11
+ },
+ "service_counts": {
+  "Rappi": 1340
+ },
+ "description_confidence_counts": {
+  "Media": 1224,
+  "Alta": 116
+ },
+ "supported_item_counts": {
+  "Empanada de Alcachofa": 27,
+  "Inca Kola Gaseosa Sin Azúcar": 27,
+  "Huevos Benedictinos": 23,
+  "Croissant de Jamón y Queso": 14,
+  "Combo Cangre Burger Bowl &amp; Bebida": 12,
+  "Chocolate Caliente": 11,
+  "10 McNuggets": 11,
+  "Crispy Chicken Tacos": 11,
+  "Huevos Limadictinos": 10,
+  "Pan con Huevo": 10,
+  "Takoyaki": 10,
+  "Popster Cheddar": 9,
+  "Combo 1/4 de Pollo": 9,
+  "Parfait de Brownie": 8,
+  "Toblerone de Leche": 8,
+  "Spaghetti Cacio e Pepe": 8,
+  "10 Mcnuggets Clasicos": 7,
+  "Burrito Supreme": 7,
+  "Triple Hamburguesa Con Queso": 7,
+  "Sbelt Leche Descremada Uht": 7,
+  "Caja de Galletas": 7,
+  "Wong Chocolate Ritter Sport Leche Con Abellanas Enteras": 7,
+  "Pomo de Galletas": 7,
+  "Chin Toi": 7,
+  "Chocolate Ferrero Rocher Trio 37.5 G": 7,
+  "Maki Acevichado": 6,
+  "Xio Lon Pao": 6,
+  "Milka Chocolate Cows pots": 6,
+  "Sándwich Virginia": 6,
+  "Benedictinos con Bondiola": 6,
+  "Algarrobina Latte": 6,
+  "Croissant de Queso": 5,
+  "Helado Pistacho 1/2 l": 5,
+  "Desayuno Fit": 5,
+  "Milka Chocolate con Leche": 5,
+  "Cangre Burger Bowl": 5,
+  "Desayuno Huachano": 5,
+  "4 Pack Juicy Lucy Burgers": 5,
+  "Sándwich Panino Vesubio": 5,
+  "Promo Mcnuggetear X 6": 5,
+  "Pan Au Chocalat": 5,
+  "Nigiri Wagyu": 5,
+  "Salchipapa de Pollo": 4,
+  "Menchi Katsu": 4,
+  "Cookiss": 4,
+  "1/4 de Pollo Pechuga": 4,
+  "Casa Europa Morcilla Cocktail": 4,
+  "Inca Kola Sin Azúcar Gaseosa sin Calorías": 4,
+  "1/4 Pollo": 4,
+  "Juicy Lucy Burger": 4,
+  "Pizza Diavola": 4,
+  "Combo 1/2 Pollo": 4,
+  "Bon Bon Chocolate Conejito Bob Leche": 4,
+  "Gloria Yogurt Battimix Vainilla Con Arroz Achocolatado": 4,
+  "Mcnuggetear X 10": 4,
+  "3 Quesos": 4,
+  "Chocapic Cereal": 4,
+  "Roll de Jamón y Queso": 4,
+  "Combo Cheese": 4,
+  "Pizza la Cafona": 3,
+  "Mozzarella Sticks": 3,
+  "Tiradito Fusión": 3,
+  "Café Liofilizado Chocolate": 3,
+  "Mcargentina Triple": 3,
+  "Acevichado": 3,
+  "Tequeños": 3,
+  "Gloria Yogurt Battimix Vainilla Con Bolitas de Chocolate": 3,
+  "Gnocchi Al Perlage Di Tartufo": 3,
+  "Promoción": 3,
+  "Ten Ren Milk Tea Jumbo": 3,
+  "Tequeños de Queso": 3,
+  "Naked Brulee de Hierba Luisa": 3,
+  "Lindt Bombones Lindor Milk": 3,
+  "Chía Pudding": 3,
+  "Hokkaido Milk Tea": 3,
+  "Stash Té Negro Chai Spice x 20 Unidades": 3,
+  "Croque Madame": 3,
+  "Cangre": 3,
+  "10 Mcnuggets": 3,
+  "Guacamole": 3,
+  "Volcán de Chocolate": 3,
+  "Dúo Desayuno": 3,
+  "Taro Latte Jumbo": 3,
+  "Harina Molitalia Selecta 1Kg": 3,
+  "Cupbap Bulgogi": 3,
+  "Gloria Leche Chocolatada": 3,
+  "Gnocchi a los 4 Quesos": 3,
+  "Ferrero Rocher Rocher X3 Unidades": 3,
+  "Hot Dog": 3,
+  "Croissant de Fudge Casero": 3,
+  "Hokkaido Green Tea": 3,
+  "Yogurt Battimix Vainilla Con Arroz Achocolatado": 3,
+  "Pizza Margherita": 3
+ },
+ "supported_item_categories": {
+  "Empanada de Alcachofa": {
+   "Panadería / empanada": 27
+  },
+  "Inca Kola Gaseosa Sin Azúcar": {
+   "Bebida": 27
+  },
+  "Huevos Benedictinos": {
+   "Desayuno / huevos": 23
+  },
+  "Croissant de Jamón y Queso": {
+   "Sándwich / panadería salada": 14
+  },
+  "Combo Cangre Burger Bowl &amp; Bebida": {
+   "Hamburguesa / fast food": 12
+  },
+  "Chocolate Caliente": {
+   "Bebida": 11
+  },
+  "10 McNuggets": {
+   "Pollo / comida rápida": 11
+  },
+  "Crispy Chicken Tacos": {
+   "Mexicana / Tex-Mex": 11
+  },
+  "Huevos Limadictinos": {
+   "Desayuno / huevos": 10
+  },
+  "Pan con Huevo": {
+   "Desayuno / huevos": 10
+  },
+  "Takoyaki": {
+   "Sushi / Nikkei / japonesa": 10
+  },
+  "Popster Cheddar": {
+   "Hamburguesa / fast food": 9
+  },
+  "Combo 1/4 de Pollo": {
+   "Pollo / comida rápida": 9
+  },
+  "Parfait de Brownie": {
+   "Desayuno saludable / yogurt / avena": 8
+  },
+  "Toblerone de Leche": {
+   "Bebida alcohólica": 8
+  },
+  "Spaghetti Cacio e Pepe": {
+   "Pasta / italiana": 8
+  },
+  "10 Mcnuggets Clasicos": {
+   "Pollo / comida rápida": 7
+  },
+  "Burrito Supreme": {
+   "Mexicana / Tex-Mex": 7
+  },
+  "Triple Hamburguesa Con Queso": {
+   "Hamburguesa / fast food": 7
+  },
+  "Sbelt Leche Descremada Uht": {
+   "Supermercado / despensa comestible": 7
+  },
+  "Caja de Galletas": {
+   "Postre / snack dulce": 7
+  },
+  "Wong Chocolate Ritter Sport Leche Con Abellanas Enteras": {
+   "Postre / snack dulce": 7
+  },
+  "Pomo de Galletas": {
+   "Postre / snack dulce": 7
+  },
+  "Chin Toi": {
+   "Asiática / fusión": 7
+  },
+  "Chocolate Ferrero Rocher Trio 37.5 G": {
+   "Postre / snack dulce": 7
+  },
+  "Maki Acevichado": {
+   "Sushi / Nikkei / japonesa": 6
+  },
+  "Xio Lon Pao": {
+   "Sushi / Nikkei / japonesa": 6
+  },
+  "Milka Chocolate Cows pots": {
+   "Postre / snack dulce": 6
+  },
+  "Sándwich Virginia": {
+   "Sándwich / panadería salada": 6
+  },
+  "Benedictinos con Bondiola": {
+   "Desayuno / huevos": 6
+  },
+  "Algarrobina Latte": {
+   "Bebida": 6
+  },
+  "Croissant de Queso": {
+   "Sándwich / panadería salada": 5
+  },
+  "Helado Pistacho 1/2 l": {
+   "Postre / snack dulce": 5
+  },
+  "Desayuno Fit": {
+   "Desayuno / huevos": 5
+  },
+  "Milka Chocolate con Leche": {
+   "Postre / snack dulce": 5
+  },
+  "Cangre Burger Bowl": {
+   "Hamburguesa / fast food": 5
+  },
+  "Desayuno Huachano": {
+   "Desayuno / huevos": 5
+  },
+  "4 Pack Juicy Lucy Burgers": {
+   "Hamburguesa / fast food": 5
+  },
+  "Sándwich Panino Vesubio": {
+   "Sándwich / panadería salada": 5
+  },
+  "Promo Mcnuggetear X 6": {
+   "Pollo / comida rápida": 5
+  },
+  "Pan Au Chocalat": {
+   "Supermercado / despensa comestible": 5
+  },
+  "Nigiri Wagyu": {
+   "Sushi / Nikkei / japonesa": 5
+  },
+  "Salchipapa de Pollo": {
+   "Hamburguesa / fast food": 4
+  },
+  "Menchi Katsu": {
+   "Asiática / fusión": 4
+  },
+  "Cookiss": {
+   "Postre / snack dulce": 4
+  },
+  "1/4 de Pollo Pechuga": {
+   "Pollo / comida rápida": 4
+  },
+  "Casa Europa Morcilla Cocktail": {
+   "Supermercado / despensa comestible": 4
+  },
+  "Inca Kola Sin Azúcar Gaseosa sin Calorías": {
+   "Bebida": 4
+  },
+  "1/4 Pollo": {
+   "Pollo / comida rápida": 4
+  },
+  "Juicy Lucy Burger": {
+   "Hamburguesa / fast food": 4
+  },
+  "Pizza Diavola": {
+   "Pizza": 4
+  },
+  "Combo 1/2 Pollo": {
+   "Pollo / comida rápida": 4
+  },
+  "Bon Bon Chocolate Conejito Bob Leche": {
+   "Postre / snack dulce": 4
+  },
+  "Gloria Yogurt Battimix Vainilla Con Arroz Achocolatado": {
+   "Desayuno saludable / yogurt / avena": 4
+  },
+  "Mcnuggetear X 10": {
+   "Pollo / comida rápida": 4
+  },
+  "3 Quesos": {
+   "Supermercado / despensa comestible": 4
+  },
+  "Chocapic Cereal": {
+   "Supermercado / despensa comestible": 4
+  },
+  "Roll de Jamón y Queso": {
+   "Sándwich / panadería salada": 4
+  },
+  "Combo Cheese": {
+   "Hamburguesa / fast food": 4
+  },
+  "Pizza la Cafona": {
+   "Pizza": 3
+  },
+  "Mozzarella Sticks": {
+   "Supermercado / despensa comestible": 3
+  },
+  "Tiradito Fusión": {
+   "Sushi / Nikkei / japonesa": 3
+  },
+  "Café Liofilizado Chocolate": {
+   "Bebida": 3
+  },
+  "Mcargentina Triple": {
+   "Hamburguesa / fast food": 3
+  },
+  "Acevichado": {
+   "Sushi / Nikkei / japonesa": 3
+  },
+  "Tequeños": {
+   "Supermercado / despensa comestible": 3
+  },
+  "Gloria Yogurt Battimix Vainilla Con Bolitas de Chocolate": {
+   "Desayuno saludable / yogurt / avena": 3
+  },
+  "Gnocchi Al Perlage Di Tartufo": {
+   "Pasta / italiana": 3
+  },
+  "Promoción": {
+   "Hamburguesa / fast food": 3
+  },
+  "Ten Ren Milk Tea Jumbo": {
+   "Bebida": 3
+  },
+  "Tequeños de Queso": {
+   "Supermercado / despensa comestible": 3
+  },
+  "Naked Brulee de Hierba Luisa": {
+   "Postre / snack dulce": 3
+  },
+  "Lindt Bombones Lindor Milk": {
+   "Postre / snack dulce": 3
+  },
+  "Chía Pudding": {
+   "Desayuno saludable / yogurt / avena": 3
+  },
+  "Hokkaido Milk Tea": {
+   "Bebida": 3
+  },
+  "Stash Té Negro Chai Spice x 20 Unidades": {
+   "Bebida": 3
+  },
+  "Croque Madame": {
+   "Desayuno / huevos": 3
+  },
+  "Cangre": {
+   "Otro alimento / bebida": 3
+  },
+  "10 Mcnuggets": {
+   "Pollo / comida rápida": 3
+  },
+  "Guacamole": {
+   "Mexicana / Tex-Mex": 3
+  },
+  "Volcán de Chocolate": {
+   "Postre / snack dulce": 3
+  },
+  "Dúo Desayuno": {
+   "Desayuno / huevos": 3
+  },
+  "Taro Latte Jumbo": {
+   "Bebida": 3
+  },
+  "Harina Molitalia Selecta 1Kg": {
+   "Supermercado / despensa comestible": 3
+  },
+  "Cupbap Bulgogi": {
+   "Asiática / fusión": 3
+  },
+  "Gloria Leche Chocolatada": {
+   "Bebida": 3
+  },
+  "Gnocchi a los 4 Quesos": {
+   "Pasta / italiana": 3
+  },
+  "Ferrero Rocher Rocher X3 Unidades": {
+   "Postre / snack dulce": 3
+  },
+  "Hot Dog": {
+   "Hamburguesa / fast food": 3
+  },
+  "Croissant de Fudge Casero": {
+   "Sándwich / panadería salada": 3
+  },
+  "Hokkaido Green Tea": {
+   "Bebida": 3
+  },
+  "Yogurt Battimix Vainilla Con Arroz Achocolatado": {
+   "Desayuno saludable / yogurt / avena": 3
+  },
+  "Pizza Margherita": {
+   "Pizza": 3
+  }
+ },
+ "suppressed_item_total": 808,
+ "suppressed_item_bucket_count": 677,
+ "min_support": 3
+}

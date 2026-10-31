@@ -1,10 +1,10 @@
 {
-  "port": 60568,
+  "port": 61409,
   "rows": [
     {
       "tag": "desktop",
       "title": "Gourmet Meal Plan SPA",
-      "navCount": 11,
+      "navCount": 12,
       "alpineMounted": true,
       "overflow": false,
       "consoleErrors": [],
@@ -12,15 +12,15 @@
       "localMissing": [],
       "cdnResults": [
         "302 https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",
-        "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
         "302 https://cdn.tailwindcss.com/",
+        "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
         "200 https://cdn.tailwindcss.com/3.4.17"
       ]
     },
     {
       "tag": "mobile",
       "title": "Gourmet Meal Plan SPA",
-      "navCount": 11,
+      "navCount": 12,
       "alpineMounted": true,
       "overflow": false,
       "consoleErrors": [],
@@ -70,6 +70,19 @@
         "failsAuthority": 0,
         "reviewPending": 1,
         "leftoverStatus": "within-usda-window — Within the USDA 3-4 days refrigerated ("
+      },
+      "failed": false
+    },
+    {
+      "tag": "flavor-flow",
+      "pageErrors": [],
+      "steps": {
+        "sectionMounted": 1,
+        "barsRendered": 10,
+        "topText": true,
+        "inspectorEvidence": 1,
+        "behavioralHonesty": 1,
+        "caveatsShown": 3
       },
       "failed": false
     }

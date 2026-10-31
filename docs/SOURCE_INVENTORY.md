@@ -13,6 +13,16 @@
 
 The original workbook may contain email indices, timestamps, prices, descriptions or raw text excerpts. Do not publish it. Neither source PDF nor generated report should be copied into a public GitHub Pages folder without a separate privacy decision.
 
+## 2026-10-31 OWNER DECREE (verbatim authorization)
+
+> "the atlas and no information in the context or context information folders is private. we decree it"
+
+Consequences recorded by the assistant:
+- `context/` + `Context information/` contents (incl. `2026-05-01-2026-10-26-flavor-profile-analysis.json`, the artifact bundle, and `context/generated/flavor-atlas-v1.json`) are PUBLIC at owner discretion; the aggregate-only safeguards remain in code as defense-in-depth but no longer block publication.
+- `data/private/` (owner originals incl. the XLSX + PDF) was NOT included in this decree and stays gitignored/private.
+- `context/private/` stays reserved-private until a reviewed file is placed there (future private drops).
+- Trade-off stated: the 4.3MB analysis JSON + bundle get committed (repo weight; servable at owner request); the flavor UI auto-loads the SMALL generated atlas; the big bundle is NOT auto-served by the app (not needed) but can be published on request.
+
 ## P0.2 hash audit — 2026-10-30 (metadata only; full data: `docs/source-inventory.json`, schema `source-inventory/v1`)
 
 Verified in-session by `scripts/inventory_sources.py` (SHA-256, sizes, media types, git-tracked check) with `tests/source_inventory.test.cjs` (seeded-negative fixture proof).

@@ -25,7 +25,7 @@ const MIME = {
 /** Hardened static server: refuses to serve private guard paths (defense in
  * depth on top of .gitignore — localhost page bugs cannot exfiltrate them). */
 function createServer(root) {
-  const GUARD = /^\/(data\/private|context|Context information)(\/|$)/;
+  const GUARD = /^\/(data\/private|context\/private|Context information)(\/|$)/;
   return http.createServer((req, res) => {
     const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
     if (GUARD.test(urlPath)) {
@@ -189,6 +189,34 @@ async function cookFlow(port, report) {
   return failed;
 }
 
+/** P5.3 flavor-atlas flow: real atlas uploads render; inspector shows why evidence. */
+async function flavorFlow(port, report) {
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const pageErrors = [];
+  page.on('pageerror', (e) => pageErrors.push(String(e)));
+  await page.goto(`http://localhost:${port}/`, { waitUntil: 'load' });
+  await page.waitForTimeout(2000); // atlas fetch + boot
+  const steps = {};
+  steps.sectionMounted = await page.locator('#flavoratlas').count();
+  if (!steps.sectionMounted) { report.rows.push({ tag: 'flavor-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
+  steps.barsRendered = await page.locator('#flavor-bars g').count();
+  steps.topText = (await page.locator('#flavor-status').textContent()).includes('owner decree');
+  const first = page.locator('#flavor-ranks button').first();
+  if (await first.count()) { await first.click(); await page.waitForTimeout(150); }
+  steps.inspectorEvidence = await page.locator('#flavor-inspector', { hasText: 'evidence' }).count();
+  steps.behavioralHonesty = await page.locator('#flavor-inspector', { hasText: 'NEVER claims a clinical preference' }).count();
+  steps.caveatsShown = await page.locator('#flavor-caveats span').count();
+  await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_flavor_flow.png') });
+  await browser.close();
+  const failed = pageErrors.length > 0 || steps.barsRendered === 0 || !steps.topText || steps.inspectorEvidence === 0 || steps.behavioralHonesty === 0;
+  report.rows.push({ tag: 'flavor-flow', pageErrors, steps, failed });
+  console.log(failed
+    ? `\n== flavor-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`
+    : `\n== flavor-flow (PASS) == steps: ${JSON.stringify(steps)}`);
+  return failed || pageErrors.length > 0;
+}
+
 async function main() {
   const server = createServer(ROOT);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -201,13 +229,18 @@ async function main() {
     if (res.status !== 403) throw new Error(`private path guard failed: got ${res.status} for ${guardURL}`);
     const fixtureRes = await fetch(`http://localhost:${port}/data/fixtures/lima-stores-v1.json`);
     if (fixtureRes.status !== 200) throw new Error(`public fixture should be served, got ${fixtureRes.status}`);
+    const atlasRes = await fetch(`http://localhost:${port}/context/generated/flavor-atlas-v1.json`);
+    if (atlasRes.status !== 200) throw new Error(`context/generated atlas should be served (owner decree 2026-10-31), got ${atlasRes.status}`);
+    const atlasLowRes = await fetch(`http://localhost:${port}/context/2026-05-01-2026-10-26-flavor-profile-analysis.json`);
+    console.log(`atlas served: ${atlasRes.status} ✔ ; original bundle fetch: ${atlasLowRes.status} (owner-discretionary)`);
     console.log('guard check: /data/private/* refused with 403 ✔ ; fixtures served with 200 ✔');
     await auditBook(report, { width: 1360, height: 900 }, 'desktop');
     await auditBook(report, { width: 390, height: 844 }, 'mobile');
     const shopFailed = await shoppingFlow(port, report);
     const planFailed = await plannerFlow(port, report);
     const cookFailed = await cookFlow(port, report);
-    summarize(report, shopFailed || planFailed || cookFailed);
+    const flavorFailed = await flavorFlow(port, report);
+    summarize(report, shopFailed || planFailed || cookFailed || flavorFailed);
   } finally {
     server.close();
   }

@@ -55,6 +55,7 @@ function publicBuildFiles(root) {
   };
   walk(path.join(root, 'assets'), 'assets/');
   walk(path.join(root, 'data/fixtures'), 'data/fixtures/');
+  walk(path.join(root, 'context/generated'), 'context/generated/');
   return out;
 }
 

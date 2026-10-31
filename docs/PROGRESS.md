@@ -331,12 +331,18 @@ Graph semantics test-proven:
 Debug trail: 2 test defects caught by reading real output (node id lookup missing the `dish:` prefix; case-sensitive honesty-tag match), one fix each — module never changed semantics.
 
 Tests: 109 pass / 0 fail; lint clean; privacy PASS.
-Next single command/ticket: **P5.3 semantic visualization UI** — SVG graph (vanilla first), keyboard-accessible TEXT list alternative (a11y mandatory per roadmap), click a node → inspect evidence panel; then P5.4 recipe ranking with explainable features.
 
-## Update template for next session
+## Session log — 2026-10-31, session 3, part 19 (OWNER DECREE + P5.3 flavor atlas UI)
 
-## Update template for next session
+OWNER DECREE (verbatim): "the atlas and no information in the context or context information folders is private. we decree it" — recorded verbatim in docs/SOURCE_INVENTORY.md.
+Applied: .gitignore no longer hides context/*.json, the analysis bundle, context/generated/, or Context information/; data/private/ and context/private/ stay private (decree did not cover them); trade-off stated: 4.3MB analysis JSON + bundle now committed; app serves only the SMALL generated atlas.
+Adjusted: dev-server guard serves context/generated/**; keeps blocking data/private, context/private, Context information/; scripts/privacy_check.cjs scans the new public set (context/generated/**).
+Flavor UI (assets/js/flavor-ui.js): auto-loads the public atlas; file-upload fallback; synthetic DEMO button (data/fixtures/flavor-atlas-demo.json); deterministic SVG bars + keyboard-accessible ranked text list + evidence inspector ending in "NEVER claims a clinical preference"; caveats row rendered from atlas policy.
+Layout root cause found by the E2E: engine sections were OUTSIDE </main>, overlapped by the fixed sidebar (pointer-events intercepted) — moved inside main; a destructive edit of mine nearly removed the script block, restored immediately and verified by re-running ALL E2E flows.
+E2E evidence: FOUR engine flows + flavor-flow PASS (atlas auto-load status 'owner decree', 10 bars, evidence inspector, caveat row, behavioral-honesty statement); desktop/mobile audits unchanged PASS.
 
+Tests: 109 pass / 0 fail; E2E PASS (6 flows); lint clean; privacy scan covers the new public set.
+Next single command/ticket: P5.4 explainable recipe ranking (affinity + novelty + equipment + store coverage, labels visible), then P6 six-locale localization of every shipped control.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
