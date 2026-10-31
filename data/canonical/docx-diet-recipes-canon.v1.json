@@ -1,1082 +1,1256 @@
 {
- "schema": "canonical-docx-diet-recipes/v1",
- "validationStatus": "reviewPending",
- "needsKitchenValidation": true,
- "weightBasisNote": "DOCX gives household measures only (cucharada/taza/unidad). Grams below are kitchen-standard estimates (Peru market: huevo ~55 g total, clara ~33 g; cucharada hojuelas ~8 g; taza yogurt 0% 245 g; unidad plátano bizcochito ~90 g; taza fruta picada ~140 g; ajonjolí cucharadita ~3 g). Marked needsKitchenValidation — the P4.4 weigh-in worksheet must confirm EVERY quantity before averaging or nutrition curves ship from these.",
- "identityNote": "Third-party attribution withheld (owner rule: no names/phones in code/artifacts).",
- "ingredients": [
-  {
-   "id": "clara_huevo",
-   "name": {
-    "en": "egg white"
-   },
-   "nameProvisional": true,
-   "family": "proteins",
-   "dimension": "count",
-   "purchaseUnit": "count",
-   "aliases": [
-    "clara"
-   ],
-   "foodCompositionRef": "egg",
-   "allergenCodes": [
-    "egg"
-   ]
-  },
-  {
-   "id": "avena_hojuelas",
-   "name": {
-    "en": "rolled oats"
-   },
-   "nameProvisional": true,
-   "family": "grains",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "avena hojuelas",
-    "copos de avena"
-   ],
-   "foodCompositionRef": "rolled_oats_dry",
-   "allergenCodes": [
-    "gluten"
-   ]
-  },
-  {
-   "id": "yogurt_griego_0",
-   "name": {
-    "en": "greek yogurt 0%"
-   },
-   "nameProvisional": true,
-   "family": "dairy",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "yogur griego",
-    "yogurt estilo islandés"
-   ],
-   "foodCompositionRef": "greek_yogurt",
-   "allergenCodes": [
-    "dairy"
-   ]
-  },
-  {
-   "id": "platano_bizcochito",
-   "name": {
-    "en": "plantain ( Peruvian variety 'ñoque'/bisquitero)"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "count",
-   "purchaseUnit": "count",
-   "aliases": [
-    "plátano bizcochito",
-    "plátano isleño"
-   ],
-   "foodCompositionRef": "beans_cooked",
-   "allergenCodes": []
-  },
-  {
-   "id": "quinua_graneada",
-   "name": {
-    "en": "quinoa grain (dry)"
-   },
-   "nameProvisional": true,
-   "family": "grains",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "quinua graneada",
-    "quinua"
-   ],
-   "foodCompositionRef": "quinoa_dry",
-   "allergenCodes": []
-  },
-  {
-   "id": "filete_pescado_blanco",
-   "name": {
-    "en": "white fish fillet (peru style: merluza/lisa/native)"
-   },
-   "nameProvisional": true,
-   "family": "proteins",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "filete de pescado",
-    "trucha",
-    "merluza"
-   ],
-   "foodCompositionRef": "fish",
-   "allergenCodes": [
-    "fish"
-   ]
-  },
-  {
-   "id": "ajonjoli_tostado",
-   "name": {
-    "en": "toasted sesame"
-   },
-   "nameProvisional": true,
-   "family": "condiments",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "ajonjolí blanco",
-    "ajonjolí negro",
-    "sésamo"
-   ],
-   "foodCompositionRef": "sesame",
-   "allergenCodes": [
-    "sesame"
-   ]
-  },
-  {
-   "id": "lechuga_picada",
-   "name": {
-    "en": "shredded lettuce"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "lechuga"
-   ],
-   "foodCompositionRef": "greens",
-   "allergenCodes": []
-  },
-  {
-   "id": "zanahoria_rallada",
-   "name": {
-    "en": "grated carrot"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "zanahoria"
-   ],
-   "foodCompositionRef": "carrot",
-   "allergenCodes": []
-  },
-  {
-   "id": "tomate_cherry",
-   "name": {
-    "en": "cherry tomatoes"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "count",
-   "purchaseUnit": "count",
-   "aliases": [
-    "tomatitos"
-   ],
-   "foodCompositionRef": "tomato",
-   "allergenCodes": []
-  },
-  {
-   "id": "cebolla_blanca_pluma",
-   "name": {
-    "en": "white onion, feather cut"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "cebolla a la pluma"
-   ],
-   "foodCompositionRef": "onion",
-   "allergenCodes": []
-  },
-  {
-   "id": "fruta_picada_estado",
-   "name": {
-    "en": "fresh fruit, chopped (papaya/apple/pear/pineapple/watermelon)"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "fruta fresca"
-   ],
-   "foodCompositionRef": "berries",
-   "allergenCodes": []
-  },
-  {
-   "id": "canela_polvo",
-   "name": {
-    "en": "ground cinnamon"
-   },
-   "nameProvisional": true,
-   "family": "condiments",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "canela"
-   ],
-   "foodCompositionRef": "herbs",
-   "allergenCodes": []
-  },
-  {
-   "id": "queso_fresco_light",
-   "name": {
-    "en": "queso fresco light"
-   },
-   "nameProvisional": true,
-   "family": "dairy",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "queso fresco light"
-   ],
-   "foodCompositionRef": "feta",
-   "allergenCodes": [
-    "dairy"
-   ]
-  },
-  {
-   "id": "granadilla",
-   "name": {
-    "en": "passion fruit (granadilla)"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "count",
-   "purchaseUnit": "count",
-   "aliases": [
-    "granadilla"
-   ],
-   "foodCompositionRef": "berries",
-   "allergenCodes": []
-  },
-  {
-   "id": "yogurt_estilo_island",
-   "name": {
-    "en": "island-style yogurt (skyr-style)"
-   },
-   "nameProvisional": true,
-   "family": "dairy",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "SKYR Plusa"
-   ],
-   "foodCompositionRef": "greek_yogurt",
-   "allergenCodes": [
-    "dairy"
-   ]
-  },
-  {
-   "id": "platanito_bizcochito_dce",
-   "name": {
-    "en": "plantain 'bizcochito' (toasted/dry cookie-style)"
-   },
-   "nameProvisional": true,
-   "family": "vegetables",
-   "dimension": "count",
-   "purchaseUnit": "count",
-   "aliases": [
-    "bizcochito"
-   ],
-   "foodCompositionRef": "beans_cooked",
-   "allergenCodes": []
-  },
-  {
-   "id": "vinagre_liquido",
-   "name": {
-    "en": "vinegar"
-   },
-   "nameProvisional": true,
-   "family": "condiments",
-   "dimension": "ml",
-   "purchaseUnit": "ml",
-   "aliases": [
-    "vinagre blanco"
-   ],
-   "foodCompositionRef": "vinegar",
-   "allergenCodes": []
-  },
-  {
-   "id": "aceite_oliva",
-   "name": {
-    "en": "olive oil"
-   },
-   "nameProvisional": true,
-   "family": "condiments",
-   "dimension": "ml",
-   "purchaseUnit": "ml",
-   "aliases": [
-    "aceite"
-   ],
-   "foodCompositionRef": "olive_oil",
-   "allergenCodes": []
-  },
-  {
-   "id": "sal_finara",
-   "name": {
-    "en": "fine salt"
-   },
-   "nameProvisional": true,
-   "family": "condiments",
-   "dimension": "g",
-   "purchaseUnit": "g",
-   "aliases": [
-    "sal"
-   ],
-   "foodCompositionRef": null,
-   "allergenCodes": []
-  }
- ],
- "recipes": [
-  {
-   "meta": {
-    "id": "galletas_avena_diet",
-    "version": 1,
-    "recipeKind": "meal",
-    "validationStatus": "reviewPending",
-    "originalSource": "owner-docx-loader/private",
-    "baseServings": 1,
-    "yieldCookedG": null,
-    "equipment": [
-     "sartén antiadherente|skillet"
-    ],
-    "times": {
-     "activeMin": 5,
-     "passiveMin": 3,
-     "pressureMin": null,
-     "releaseMin": null
-    },
-    "nutrition": {
-     "perServing": null,
-     "sourceIds": [
-      "owner-docx"
-     ],
-     "status": "not-assessed"
-    },
-    "flavorTags": [],
-    "dietNote": "breakfast or snack; mirrors reference Muesli style"
-   },
-   "mise_en_place": [
+  "schema": "canonical-docx-diet-recipes/v1",
+  "validationStatus": "reviewPending",
+  "needsKitchenValidation": true,
+  "weightBasisNote": "DOCX gives household measures only (cucharada/taza/unidad). Grams below are kitchen-standard estimates (Peru market: huevo ~55 g total, clara ~33 g; cucharada hojuelas ~8 g; taza yogurt 0% 245 g; unidad plátano bizcochito ~90 g; taza fruta picada ~140 g; ajonjolí cucharadita ~3 g). Marked needsKitchenValidation — the P4.4 weigh-in worksheet must confirm EVERY quantity before averaging or nutrition curves ship from these.",
+  "identityNote": "Third-party attribution withheld (owner rule: no names/phones in code/artifacts).",
+  "ingredients": [
     {
-     "station": "Station A - dry mix",
-     "lines": [
-      "Weigh 8 g hojuelas de avena (1 cucharada) and 2 g canela; set a plate for plating aside",
-      "Wash your hands; slice 1/2 plátano bizcochito (≈45 g) into 5 mm thick coins"
-     ],
-     "esPE": [
-      "Pese 8 g de hojuelas de avena (1 cucharada) y 2 g de canela; deje un plato a un lado",
-      "Lávese las manos y rebane 1/2 plátano bizcochito (≈45 g) en rodajas de 5 mm"
-     ]
-    }
-   ],
-   "ingredients": [
-    {
-     "ingredientId": "clara_huevo",
-     "quantity": "1",
-     "unit": "count",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "avena_hojuelas",
-     "quantity": "8",
-     "unit": "g",
-     "basis": "dry",
-     "optional": false
-    },
-    {
-     "ingredientId": "yogurt_griego_0",
-     "quantity": "60",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "platano_bizcochito",
-     "quantity": "0.5",
-     "unit": "count",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "canela_polvo",
-     "quantity": "2",
-     "unit": "g",
-     "basis": "dry",
-     "optional": true
-    }
-   ],
-   "steps": [
-    {
-     "id": "s1",
-     "order": 1,
-     "station": "Station A",
-     "text": {
-      "en": "Whisk the 1 egg white loose; stir in 8 g oats until it forms a paste."
-     },
-     "ingredients": [
-      "clara_huevo",
-      "avena_hojuelas"
-     ],
-     "timeMin": 2,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Batir 1 clara y añadir 8 g de hojuelas hasta tener una pasta espesa."
-    },
-    {
-     "id": "s2",
-     "order": 2,
-     "station": "Station A",
-     "text": {
-      "en": "Heat a dry non-stick skillet over minimum heat; pour the paste and press into a round cookie shape."
-     },
-     "ingredients": [],
-     "timeMin": 1,
-     "targetTempC": null,
-     "checkpoint": "sensory-bubbles",
-     "hazardNotes": [],
-     "esPE": "Calentar una sartén antiadherente sin aceite a fuego mínimo; verter la pasta y comprimir en forma redonda."
-    },
-    {
-     "id": "s3",
-     "order": 3,
-     "station": "Station A",
-     "text": {
-      "en": "Flip with a spatula once bubbles rise and the underside is golden (2-3 min per side). Plate warm."
-     },
-     "ingredients": [],
-     "timeMin": 3,
-     "targetTempC": null,
-     "checkpoint": "sensory-golden",
-     "hazardNotes": [],
-     "esPE": "Voltear con espátula cuando suban burbujas y esté dorada la base (2-3 min por lado). Servir caliente."
-    },
-    {
-     "id": "s4",
-     "order": 4,
-     "station": "Station A",
-     "text": {
-      "en": "Serve with 60 g yogurt 0% + chopped banana coins + cinnamon."
-     },
-     "ingredients": [
-      "yogurt_griego_0",
-      "platano_bizcochito",
-      "canela_polvo"
-     ],
-     "timeMin": 1,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Servir con 60 g yogurt 0% y rodajas de plátano y canela."
-    }
-   ],
-   "diagram": {
-    "style": "cooking-for-engineers-binary",
-    "columns": [
-     "Station A - pan/stove",
-     "Station B - plating"
-    ],
-    "rows": [
-     {
-      "stationIdx": 0,
-      "label": "Whisk + oats paste",
-      "tokens": [
-       "clara_huevo",
-       "avena_hojuelas"
+      "id": "clara_huevo",
+      "name": {
+        "en": "egg white"
+      },
+      "nameProvisional": true,
+      "family": "proteins",
+      "dimension": "count",
+      "purchaseUnit": "count",
+      "aliases": [
+        "clara"
       ],
-      "timeMin": 2,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Dry fry, flip on bubbles",
-      "tokens": [
-       ""
-      ],
-      "timeMin": 3,
-      "tempC": "mínimo"
-     },
-     {
-      "stationIdx": 1,
-      "label": "Plate with yogurt+banana+canela",
-      "tokens": [
-       "yogurt_griego_0",
-       "platano_bizcochito",
-       "canela_polvo"
-      ],
-      "timeMin": 1,
-      "tempC": null
-     }
-    ]
-   },
-   "allergens": [
-    "egg",
-    "dairy"
-   ],
-   "dietaryContext": "breakfast or snack"
-  },
-  {
-   "meta": {
-    "id": "pescado_ajonjoli_diet",
-    "version": 1,
-    "recipeKind": "meal",
-    "validationStatus": "reviewPending",
-    "originalSource": "owner-docx-loader/private",
-    "baseServings": 1,
-    "yieldCookedG": null,
-    "equipment": [
-     "sartén antiadherente|skillet"
-    ],
-    "times": {
-     "activeMin": 35,
-     "passiveMin": 10,
-     "pressureMin": null,
-     "releaseMin": null
-    },
-    "nutrition": {
-     "perServing": null,
-     "sourceIds": [
-      "owner-docx"
-     ],
-     "status": "not-assessed"
-    },
-    "flavorTags": []
-   },
-   "mise_en_place": [
-    {
-     "station": "Station A - fish prep",
-     "lines": [
-      "Pat the 120 g fillet dry; cut in 2 thick steaks if whole; set on a dry plate",
-      "Whisk 2 egg whites loose in a bowl; spread 24 g toasted sesame on a flat plate",
-      "Mise station: wash + drain lettuce (30 g), grate carrot (40 g), halve 4 cherry tomatoes, slice 15 g onion in pluma",
-      "Have squeezed 30 ml lime ready, toss salad with 5 ml olive oil + vinegar to taste"
-     ],
-     "esPE": [
-      "Seque el filete de 120 g con papel; córtelo en dos si viene entero; colóquelo en un plato",
-      "Bata 2 claras y esparza 24 g de ajonjolí tostado en un plato tendido",
-      "Lave y escurre la lechuga (30 g), ralle 40 g de zanahoria, parta 4 tomates cherry y corte 15 g de cebolla a la pluma",
-      "Tenga listo 30 ml de limón; aliñe la ensalada con 5 ml de aceite de oliva y vinagre al gusto"
-     ]
+      "foodCompositionRef": "egg",
+      "allergenCodes": [
+        "egg"
+      ]
     },
     {
-     "station": "Station B - plating",
-     "lines": [
-      "Warm plates ready; a separate fork/spoon avoids raw-fish contact with salad",
-      "Have lime half squeezed: 30 ml already pressed per mise"
-     ],
-     "esPE": [
-      "Platos calientes listos; cubiertos separados evita contacto del pescado crudo con la ensalada",
-      "Tenga 30 ml de limón ya exprimidos de la mise en place"
-     ]
+      "id": "avena_hojuelas",
+      "name": {
+        "en": "rolled oats"
+      },
+      "nameProvisional": true,
+      "family": "grains",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "avena hojuelas",
+        "copos de avena"
+      ],
+      "foodCompositionRef": "rolled_oats_dry",
+      "allergenCodes": [
+        "gluten"
+      ]
+    },
+    {
+      "id": "yogurt_griego_0",
+      "name": {
+        "en": "greek yogurt 0%"
+      },
+      "nameProvisional": true,
+      "family": "dairy",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "yogur griego",
+        "yogurt estilo islandés"
+      ],
+      "foodCompositionRef": "greek_yogurt",
+      "allergenCodes": [
+        "dairy"
+      ]
+    },
+    {
+      "id": "platano_bizcochito",
+      "name": {
+        "en": "plantain ( Peruvian variety 'ñoque'/bisquitero)"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "count",
+      "purchaseUnit": "count",
+      "aliases": [
+        "plátano bizcochito",
+        "plátano isleño"
+      ],
+      "foodCompositionRef": null,
+      "allergenCodes": [],
+      "compositionStatus": "unmatched_variety_requires_reference",
+      "compositionNote": "Do not substitute beans or another banana variety; pending verified food-specific composition and edible-yield basis."
+    },
+    {
+      "id": "quinua_graneada",
+      "name": {
+        "en": "quinoa grain (dry)"
+      },
+      "nameProvisional": true,
+      "family": "grains",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "quinua graneada",
+        "quinua"
+      ],
+      "foodCompositionRef": "quinoa_dry",
+      "allergenCodes": []
+    },
+    {
+      "id": "filete_pescado_blanco",
+      "name": {
+        "en": "white fish fillet (peru style: merluza/lisa/native)"
+      },
+      "nameProvisional": true,
+      "family": "proteins",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "filete de pescado",
+        "trucha",
+        "merluza"
+      ],
+      "foodCompositionRef": "fish",
+      "allergenCodes": [
+        "fish"
+      ]
+    },
+    {
+      "id": "ajonjoli_tostado",
+      "name": {
+        "en": "toasted sesame"
+      },
+      "nameProvisional": true,
+      "family": "condiments",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "ajonjolí blanco",
+        "ajonjolí negro",
+        "sésamo"
+      ],
+      "foodCompositionRef": "sesame",
+      "allergenCodes": [
+        "sesame"
+      ]
+    },
+    {
+      "id": "lechuga_picada",
+      "name": {
+        "en": "shredded lettuce"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "lechuga"
+      ],
+      "foodCompositionRef": "greens",
+      "allergenCodes": []
+    },
+    {
+      "id": "zanahoria_rallada",
+      "name": {
+        "en": "grated carrot"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "zanahoria"
+      ],
+      "foodCompositionRef": "carrot",
+      "allergenCodes": []
+    },
+    {
+      "id": "tomate_cherry",
+      "name": {
+        "en": "cherry tomatoes"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "count",
+      "purchaseUnit": "count",
+      "aliases": [
+        "tomatitos"
+      ],
+      "foodCompositionRef": "tomato",
+      "allergenCodes": []
+    },
+    {
+      "id": "cebolla_blanca_pluma",
+      "name": {
+        "en": "white onion, feather cut"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "cebolla a la pluma"
+      ],
+      "foodCompositionRef": "onion",
+      "allergenCodes": []
+    },
+    {
+      "id": "fruta_picada_estado",
+      "name": {
+        "en": "fresh fruit, chopped (papaya/apple/pear/pineapple/watermelon)"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "fruta fresca"
+      ],
+      "foodCompositionRef": "berries",
+      "allergenCodes": []
+    },
+    {
+      "id": "canela_polvo",
+      "name": {
+        "en": "ground cinnamon"
+      },
+      "nameProvisional": true,
+      "family": "condiments",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "canela"
+      ],
+      "foodCompositionRef": "herbs",
+      "allergenCodes": []
+    },
+    {
+      "id": "queso_fresco_light",
+      "name": {
+        "en": "queso fresco light"
+      },
+      "nameProvisional": true,
+      "family": "dairy",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "queso fresco light"
+      ],
+      "foodCompositionRef": "feta",
+      "allergenCodes": [
+        "dairy"
+      ]
+    },
+    {
+      "id": "granadilla",
+      "name": {
+        "en": "passion fruit (granadilla)"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "count",
+      "purchaseUnit": "count",
+      "aliases": [
+        "granadilla"
+      ],
+      "foodCompositionRef": "berries",
+      "allergenCodes": []
+    },
+    {
+      "id": "yogurt_estilo_island",
+      "name": {
+        "en": "island-style yogurt (skyr-style)"
+      },
+      "nameProvisional": true,
+      "family": "dairy",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "SKYR Plusa"
+      ],
+      "foodCompositionRef": "greek_yogurt",
+      "allergenCodes": [
+        "dairy"
+      ]
+    },
+    {
+      "id": "platanito_bizcochito_dce",
+      "name": {
+        "en": "plantain 'bizcochito' (toasted/dry cookie-style)"
+      },
+      "nameProvisional": true,
+      "family": "vegetables",
+      "dimension": "count",
+      "purchaseUnit": "count",
+      "aliases": [
+        "bizcochito"
+      ],
+      "foodCompositionRef": "beans_cooked",
+      "allergenCodes": []
+    },
+    {
+      "id": "vinagre_liquido",
+      "name": {
+        "en": "vinegar"
+      },
+      "nameProvisional": true,
+      "family": "condiments",
+      "dimension": "ml",
+      "purchaseUnit": "ml",
+      "aliases": [
+        "vinagre blanco"
+      ],
+      "foodCompositionRef": "vinegar",
+      "allergenCodes": []
+    },
+    {
+      "id": "aceite_oliva",
+      "name": {
+        "en": "olive oil"
+      },
+      "nameProvisional": true,
+      "family": "condiments",
+      "dimension": "ml",
+      "purchaseUnit": "ml",
+      "aliases": [
+        "aceite"
+      ],
+      "foodCompositionRef": "olive_oil",
+      "allergenCodes": []
+    },
+    {
+      "id": "sal_finara",
+      "name": {
+        "en": "fine salt"
+      },
+      "nameProvisional": true,
+      "family": "condiments",
+      "dimension": "g",
+      "purchaseUnit": "g",
+      "aliases": [
+        "sal"
+      ],
+      "foodCompositionRef": null,
+      "allergenCodes": []
     }
-   ],
-   "ingredients": [
+  ],
+  "recipes": [
     {
-     "ingredientId": "filete_pescado_blanco",
-     "quantity": "120",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
+      "meta": {
+        "id": "galletas_avena_diet",
+        "version": 1,
+        "recipeKind": "meal",
+        "validationStatus": "reviewPending",
+        "originalSource": "owner-docx-loader/private",
+        "baseServings": 1,
+        "yieldCookedG": null,
+        "equipment": [
+          "sartén antiadherente|skillet"
+        ],
+        "times": {
+          "activeMin": 5,
+          "passiveMin": 3,
+          "pressureMin": null,
+          "releaseMin": null
+        },
+        "nutrition": {
+          "perServing": null,
+          "sourceIds": [
+            "owner-docx"
+          ],
+          "status": "not-assessed"
+        },
+        "flavorTags": [],
+        "dietNote": "breakfast or snack; mirrors reference Muesli style"
+      },
+      "mise_en_place": [
+        {
+          "station": "Station A - dry mix",
+          "lines": [
+            "Weigh 8 g hojuelas de avena (1 cucharada) and 2 g canela; set a plate for plating aside",
+            "Wash your hands; slice 1/2 plátano bizcochito (≈45 g) into 5 mm thick coins"
+          ],
+          "esPE": [
+            "Pese 8 g de hojuelas de avena (1 cucharada) y 2 g de canela; deje un plato a un lado",
+            "Lávese las manos y rebane 1/2 plátano bizcochito (≈45 g) en rodajas de 5 mm"
+          ]
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "clara_huevo",
+          "quantity": "1",
+          "unit": "count",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "avena_hojuelas",
+          "quantity": "8",
+          "unit": "g",
+          "basis": "dry",
+          "optional": false
+        },
+        {
+          "ingredientId": "yogurt_griego_0",
+          "quantity": "60",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "platano_bizcochito",
+          "quantity": "0.5",
+          "unit": "count",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "canela_polvo",
+          "quantity": "2",
+          "unit": "g",
+          "basis": "dry",
+          "optional": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "order": 1,
+          "station": "Station A",
+          "text": {
+            "en": "Whisk the 1 egg white loose; stir in 8 g oats until it forms a paste."
+          },
+          "ingredients": [
+            "clara_huevo",
+            "avena_hojuelas"
+          ],
+          "timeMin": 2,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Batir 1 clara y añadir 8 g de hojuelas hasta tener una pasta espesa.",
+          "ingredientUses": [
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "1",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "avena_hojuelas",
+              "quantity": "8",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s2",
+          "order": 2,
+          "station": "Station A",
+          "text": {
+            "en": "Heat a dry non-stick skillet over minimum heat; pour the paste and press into a round cookie shape."
+          },
+          "ingredients": [],
+          "timeMin": 1,
+          "targetTempC": null,
+          "checkpoint": "sensory-bubbles",
+          "hazardNotes": [],
+          "esPE": "Calentar una sartén antiadherente sin aceite a fuego mínimo; verter la pasta y comprimir en forma redonda.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s3",
+          "order": 3,
+          "station": "Station A",
+          "text": {
+            "en": "Flip with a spatula once bubbles rise and the underside is golden (2-3 min per side). Plate warm."
+          },
+          "ingredients": [],
+          "timeMin": 3,
+          "targetTempC": null,
+          "checkpoint": "sensory-golden",
+          "hazardNotes": [],
+          "esPE": "Voltear con espátula cuando suban burbujas y esté dorada la base (2-3 min por lado). Servir caliente.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s4",
+          "order": 4,
+          "station": "Station A",
+          "text": {
+            "en": "Serve with 60 g yogurt 0% + chopped banana coins + cinnamon."
+          },
+          "ingredients": [
+            "yogurt_griego_0",
+            "platano_bizcochito",
+            "canela_polvo"
+          ],
+          "timeMin": 1,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Servir con 60 g yogurt 0% y rodajas de plátano y canela.",
+          "ingredientUses": [
+            {
+              "ingredientId": "yogurt_griego_0",
+              "quantity": "60",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "platano_bizcochito",
+              "quantity": "0.5",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "canela_polvo",
+              "quantity": "2",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        }
+      ],
+      "diagram": {
+        "style": "cooking-for-engineers-binary",
+        "columns": [
+          "Station A - pan/stove",
+          "Station B - plating"
+        ],
+        "rows": [
+          {
+            "stationIdx": 0,
+            "label": "Whisk + oats paste",
+            "tokens": [
+              "clara_huevo",
+              "avena_hojuelas"
+            ],
+            "timeMin": 2,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Dry fry, flip on bubbles",
+            "tokens": [
+              ""
+            ],
+            "timeMin": 3,
+            "tempC": "mínimo"
+          },
+          {
+            "stationIdx": 1,
+            "label": "Plate with yogurt+banana+canela",
+            "tokens": [
+              "yogurt_griego_0",
+              "platano_bizcochito",
+              "canela_polvo"
+            ],
+            "timeMin": 1,
+            "tempC": null
+          }
+        ]
+      },
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "dietaryContext": "breakfast or snack"
     },
     {
-     "ingredientId": "clara_huevo",
-     "quantity": "2",
-     "unit": "count",
-     "basis": "raw",
-     "optional": false
+      "meta": {
+        "id": "pescado_ajonjoli_diet",
+        "version": 1,
+        "recipeKind": "meal",
+        "validationStatus": "reviewPending",
+        "originalSource": "owner-docx-loader/private",
+        "baseServings": 1,
+        "yieldCookedG": null,
+        "equipment": [
+          "sartén antiadherente|skillet"
+        ],
+        "times": {
+          "activeMin": 35,
+          "passiveMin": 10,
+          "pressureMin": null,
+          "releaseMin": null
+        },
+        "nutrition": {
+          "perServing": null,
+          "sourceIds": [
+            "owner-docx"
+          ],
+          "status": "not-assessed"
+        },
+        "flavorTags": []
+      },
+      "mise_en_place": [
+        {
+          "station": "Station A - fish prep",
+          "lines": [
+            "Pat the 120 g fillet dry; cut in 2 thick steaks if whole; set on a dry plate",
+            "Whisk 2 egg whites loose in a bowl; spread 24 g toasted sesame on a flat plate",
+            "Mise station: wash + drain lettuce (30 g), grate carrot (40 g), halve 4 cherry tomatoes, slice 15 g onion in pluma",
+            "Have squeezed 30 ml lime ready, toss salad with 5 ml olive oil + vinegar to taste"
+          ],
+          "esPE": [
+            "Seque el filete de 120 g con papel; córtelo en dos si viene entero; colóquelo en un plato",
+            "Bata 2 claras y esparza 24 g de ajonjolí tostado en un plato tendido",
+            "Lave y escurre la lechuga (30 g), ralle 40 g de zanahoria, parta 4 tomates cherry y corte 15 g de cebolla a la pluma",
+            "Tenga listo 30 ml de limón; aliñe la ensalada con 5 ml de aceite de oliva y vinagre al gusto"
+          ]
+        },
+        {
+          "station": "Station B - plating",
+          "lines": [
+            "Warm plates ready; a separate fork/spoon avoids raw-fish contact with salad",
+            "Have lime half squeezed: 30 ml already pressed per mise"
+          ],
+          "esPE": [
+            "Platos calientes listos; cubiertos separados evita contacto del pescado crudo con la ensalada",
+            "Tenga 30 ml de limón ya exprimidos de la mise en place"
+          ]
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "filete_pescado_blanco",
+          "quantity": "120",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "clara_huevo",
+          "quantity": "2",
+          "unit": "count",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "ajonjoli_tostado",
+          "quantity": "24",
+          "unit": "g",
+          "basis": "dry",
+          "optional": false
+        },
+        {
+          "ingredientId": "lechuga_picada",
+          "quantity": "30",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "zanahoria_rallada",
+          "quantity": "40",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "tomate_cherry",
+          "quantity": "60",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "cebolla_blanca_pluma",
+          "quantity": "15",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "aceite_oliva",
+          "quantity": "5",
+          "unit": "ml",
+          "basis": "raw",
+          "optional": true
+        },
+        {
+          "ingredientId": "vinagre_liquido",
+          "quantity": "5",
+          "unit": "ml",
+          "basis": "raw",
+          "optional": true
+        }
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "order": 1,
+          "station": "Station A",
+          "text": {
+            "en": "Dip the fish in egg whites; press each side into the toasted sesame plate to coat."
+          },
+          "ingredients": [
+            "filete_pescado_blanco",
+            "clara_huevo",
+            "ajonjoli_tostado"
+          ],
+          "timeMin": 3,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Pase el pescado por las claras y por el plato tendido con ajonjolí, cubriendo los lados.",
+          "ingredientUses": [
+            {
+              "ingredientId": "filete_pescado_blanco",
+              "quantity": "120",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "2",
+              "unit": "count",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "ajonjoli_tostado",
+              "quantity": "24",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s2",
+          "order": 2,
+          "station": "Station A",
+          "text": {
+            "en": "Cook COVERED on minimum heat, do NOT add oil; 12 min on side 1, flip, 10 min more, until flaky. The fish must reach 63 °C internally (fish doc: conservatively 63 °C per the published chart)."
+          },
+          "ingredients": [],
+          "timeMin": 22,
+          "targetTempC": 63,
+          "targetRestMin": 0,
+          "checkpoint": "thermometer",
+          "hazardNotes": [
+            "raw fish — cross-contamination with salad to be kept separated till plating"
+          ],
+          "esPE": "Cocer TAPADO a fuego mínimo SIN aceite; 12 min por un lado, voltear 10 min más, hasta deshacerse en escamas. El pescado debe llegar a 63 °C interna (pauta publicada).",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed",
+          "processRefs": [
+            "filete_pescado_blanco"
+          ]
+        },
+        {
+          "id": "s3",
+          "order": 3,
+          "station": "Station B",
+          "text": {
+            "en": "Plate the sesame crust fish warm; finish the salad: lettuce/carrot/cherry tomatoes/onion, sprinkle the ajonjolí remnant on the salad; dress with lime + oil + vinegar."
+          },
+          "ingredients": [
+            "lechuga_picada",
+            "zanahoria_rallada",
+            "tomate_cherry",
+            "cebolla_blanca_pluma",
+            "aceite_oliva",
+            "vinagre_liquido"
+          ],
+          "timeMin": 5,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Servir el pescado caliente y terminar la ensalada; añada el ajonjolí restante a la ensalada; aliñar con limón, aceite y vinagre.",
+          "ingredientUses": [
+            {
+              "ingredientId": "lechuga_picada",
+              "quantity": "30",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "zanahoria_rallada",
+              "quantity": "40",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "tomate_cherry",
+              "quantity": "60",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "cebolla_blanca_pluma",
+              "quantity": "15",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "aceite_oliva",
+              "quantity": "5",
+              "unit": "ml",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "vinagre_liquido",
+              "quantity": "5",
+              "unit": "ml",
+              "basis": "raw"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        }
+      ],
+      "diagram": {
+        "style": "cooking-for-engineers-binary",
+        "columns": [
+          "Station A - pan covered",
+          "Station B - plating"
+        ],
+        "rows": [
+          {
+            "stationIdx": 0,
+            "label": "Egg white → sesame crust",
+            "tokens": [
+              "filete_pescado_blanco",
+              "clara_huevo",
+              "ajonjoli_tostado"
+            ],
+            "timeMin": 3,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Covered, low heat; flip once",
+            "tokens": [
+              ""
+            ],
+            "timeMin": 22,
+            "tempC": 63
+          },
+          {
+            "stationIdx": 1,
+            "label": "Salad + sesame + lime dressing",
+            "tokens": [
+              "lechuga_picada",
+              "zanahoria_rallada",
+              "tomate_cherry",
+              "cebolla_blanca_pluma",
+              "aceite_oliva",
+              "vinagre_liquido"
+            ],
+            "timeMin": 5,
+            "tempC": null
+          }
+        ]
+      },
+      "allergens": [
+        "fish",
+        "sesame"
+      ],
+      "dietaryContext": "lunch/dinner protein anchor; mirrors owner reference recipe"
     },
     {
-     "ingredientId": "ajonjoli_tostado",
-     "quantity": "24",
-     "unit": "g",
-     "basis": "dry",
-     "optional": false
+      "meta": {
+        "id": "muesli_frutado_diet",
+        "version": 1,
+        "recipeKind": "meal",
+        "validationStatus": "reviewPending",
+        "originalSource": "owner-docx-loader/private",
+        "baseServings": 1,
+        "yieldCookedG": null,
+        "equipment": [
+          "bowl|bowl"
+        ],
+        "times": {
+          "activeMin": 5,
+          "passiveMin": 480,
+          "pressureMin": null,
+          "releaseMin": null
+        },
+        "nutrition": {
+          "perServing": null,
+          "sourceIds": [
+            "owner-docx"
+          ],
+          "status": "not-assessed"
+        },
+        "flavorTags": []
+      },
+      "mise_en_place": [
+        {
+          "station": "Station A - overnight soak",
+          "lines": [
+            "Night before: weigh 30 g oats into the bowl; pour just-boiled water to cover by 1 cm; cover with a small plate",
+            "Morning add-ons mise: 1 cucharadita cinnamon (2 g), 3 g sesame toasted, wash/chop 140 g fruit"
+          ],
+          "esPE": [
+            "La noche anterior: pese 30 g de hojuelas; cubra con agua hervida fría 1 cm por encima; tape",
+            "Por la mañana ya listos: 1 cucharadita de canela (2 g), 3 g de ajonjolí tostado, y 140 g de fruta picada"
+          ]
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "avena_hojuelas",
+          "quantity": "30",
+          "unit": "g",
+          "basis": "dry",
+          "optional": false
+        },
+        {
+          "ingredientId": "yogurt_estilo_island",
+          "quantity": "245",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "canela_polvo",
+          "quantity": "2",
+          "unit": "g",
+          "basis": "dry",
+          "optional": true
+        },
+        {
+          "ingredientId": "fruta_picada_estado",
+          "quantity": "140",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "ajonjoli_tostado",
+          "quantity": "6",
+          "unit": "g",
+          "basis": "dry",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "order": 1,
+          "station": "Station A",
+          "text": {
+            "en": "NIGHT BEFORE: soak 30 g oats in warm just-boiled water (cold tap), covered — 4-8 h."
+          },
+          "ingredients": [
+            "avena_hojuelas"
+          ],
+          "timeMin": 480,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [
+            "food safety: refrigerate during soak if your kitchen is warm (Do NOT leave outside overnight in >20 °C rooms)"
+          ],
+          "esPE": "NOCHE ANTERIOR: remojar 30 g de hojuelas en agua hervida FRÍA cubiertas, 4-8 h.",
+          "ingredientUses": [
+            {
+              "ingredientId": "avena_hojuelas",
+              "quantity": "30",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s2",
+          "order": 2,
+          "station": "Station A",
+          "text": {
+            "en": "MORNING: drain extra water if any; fold in 245 g island-style yogurt with cinnamon."
+          },
+          "ingredients": [
+            "yogurt_estilo_island",
+            "canela_polvo"
+          ],
+          "timeMin": 2,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "MAÑANA: escurra el excedente; mezclar con 245 g yogurt estilo islandés y canela.",
+          "ingredientUses": [
+            {
+              "ingredientId": "yogurt_estilo_island",
+              "quantity": "245",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "canela_polvo",
+              "quantity": "2",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s3",
+          "order": 3,
+          "station": "Station A",
+          "text": {
+            "en": "Fold in the 140 g chopped fruit; finish with 6 g toasted sesame."
+          },
+          "ingredients": [
+            "fruta_picada_estado",
+            "ajonjoli_tostado"
+          ],
+          "timeMin": 3,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Agregar 140 g de fruta picada; terminar con 6 g de ajonjolí tostado.",
+          "ingredientUses": [
+            {
+              "ingredientId": "fruta_picada_estado",
+              "quantity": "140",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "ajonjoli_tostado",
+              "quantity": "6",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        }
+      ],
+      "diagram": {
+        "style": "cooking-for-engineers-binary",
+        "columns": [
+          "Station A - bowl (night+morning)"
+        ],
+        "rows": [
+          {
+            "stationIdx": 0,
+            "label": "Night soak (cold)",
+            "tokens": [
+              "avena_hojuelas"
+            ],
+            "timeMin": 480,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Fold yogurt + cinnamon",
+            "tokens": [
+              "yogurt_estilo_island",
+              "canela_polvo"
+            ],
+            "timeMin": 2,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Fold fruit + sesame",
+            "tokens": [
+              "fruta_picada_estado",
+              "ajonjoli_tostado"
+            ],
+            "timeMin": 3,
+            "tempC": null
+          }
+        ]
+      },
+      "allergens": [
+        "dairy",
+        "sesame"
+      ],
+      "dietaryContext": "breakfast"
     },
     {
-     "ingredientId": "lechuga_picada",
-     "quantity": "30",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "zanahoria_rallada",
-     "quantity": "40",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "tomate_cherry",
-     "quantity": "60",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "cebolla_blanca_pluma",
-     "quantity": "15",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "aceite_oliva",
-     "quantity": "5",
-     "unit": "ml",
-     "basis": "raw",
-     "optional": true
-    },
-    {
-     "ingredientId": "vinagre_liquido",
-     "quantity": "5",
-     "unit": "ml",
-     "basis": "raw",
-     "optional": true
+      "meta": {
+        "id": "budin_platano_diet",
+        "version": 1,
+        "recipeKind": "meal",
+        "validationStatus": "reviewPending",
+        "originalSource": "owner-docx-loader/private",
+        "baseServings": 4,
+        "yieldCookedG": null,
+        "equipment": [
+          "microondas|microwave",
+          "pirex|baking-dish"
+        ],
+        "times": {
+          "activeMin": 5,
+          "passiveMin": 8,
+          "pressureMin": null,
+          "releaseMin": null
+        },
+        "nutrition": {
+          "perServing": null,
+          "sourceIds": [
+            "owner-docx"
+          ],
+          "status": "not-assessed"
+        },
+        "flavorTags": []
+      },
+      "mise_en_place": [
+        {
+          "station": "Station A - mash assembly",
+          "lines": [
+            "Mash 4 frozen-thawed bizcochito plantains (~360 g) in the microwavable dish with a fork",
+            "Cook 60 g quinoa separately (20 g dry + 40 ml water per 10 cup) until popped; fluff",
+            "Have 2 whole eggs (~110 g) beaten"
+          ],
+          "esPE": [
+            "Triture 4 plátanos bizcochitos (~360 g) en la bandeja con un tenedor",
+            "Cocer 60 g de quinua aparte hasta que reviente; esponjar",
+            "Batir 2 huevos (~110 g)"
+          ]
+        }
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "platano_bizcochito",
+          "quantity": "360",
+          "unit": "g",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "clara_huevo",
+          "quantity": "2",
+          "unit": "count",
+          "basis": "raw",
+          "optional": false
+        },
+        {
+          "ingredientId": "quinua_graneada",
+          "quantity": "20",
+          "unit": "g",
+          "basis": "dry",
+          "optional": false
+        }
+      ],
+      "steps": [
+        {
+          "id": "s1",
+          "order": 1,
+          "station": "Station A",
+          "text": {
+            "en": "Mash the plantains with the 2 beaten eggs until smooth batter-like."
+          },
+          "ingredients": [
+            "platano_bizcochito",
+            "clara_huevo"
+          ],
+          "timeMin": 3,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [
+            "raw egg — cook the bake fully before serving"
+          ],
+          "esPE": "Triture los plátanos con 2 huevos batidos hasta tener una mezcla suave.",
+          "ingredientUses": [
+            {
+              "ingredientId": "platano_bizcochito",
+              "quantity": "360",
+              "unit": "g",
+              "basis": "raw"
+            },
+            {
+              "ingredientId": "clara_huevo",
+              "quantity": "2",
+              "unit": "count",
+              "basis": "raw"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s2",
+          "order": 2,
+          "station": "Station A",
+          "text": {
+            "en": "Fold in 20 g dry whole quinoa; spread evenly in the dish (it hydrates and pops in the microwave)."
+          },
+          "ingredients": [
+            "quinua_graneada"
+          ],
+          "timeMin": 2,
+          "targetTempC": null,
+          "checkpoint": null,
+          "hazardNotes": [],
+          "esPE": "Incorporar 20 g de quinua graneada; emparejar en el recipiente (hidrata y revienta en el microondas).",
+          "ingredientUses": [
+            {
+              "ingredientId": "quinua_graneada",
+              "quantity": "20",
+              "unit": "g",
+              "basis": "dry"
+            }
+          ],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        },
+        {
+          "id": "s3",
+          "order": 3,
+          "station": "Station A",
+          "text": {
+            "en": "Microwave 8 min at FULL power until set and springy; rest 5 min; slice into 4."
+          },
+          "ingredients": [],
+          "timeMin": 13,
+          "targetTempC": null,
+          "checkpoint": "sensory-springy",
+          "hazardNotes": [
+            "hot dish — plate carefully"
+          ],
+          "esPE": "Microondas 8 min a POTENCIA MÁXIMA hasta cuajar y rebotar; reposar 5 min; cortar en 4.",
+          "ingredientUses": [],
+          "ingredientUseStatus": "planned_manifest_allocation_not_physically_weighed"
+        }
+      ],
+      "diagram": {
+        "style": "cooking-for-engineers-binary",
+        "columns": [
+          "Station A - microwave bake"
+        ],
+        "rows": [
+          {
+            "stationIdx": 0,
+            "label": "Mash plantains + beaten eggs",
+            "tokens": [
+              "platano_bizcochito",
+              "clara_huevo"
+            ],
+            "timeMin": 3,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Fold quinoa; spread",
+            "tokens": [
+              "quinua_graneada"
+            ],
+            "timeMin": 2,
+            "tempC": null
+          },
+          {
+            "stationIdx": 0,
+            "label": "Microwave full 8 min; rest",
+            "tokens": [
+              ""
+            ],
+            "timeMin": 13,
+            "tempC": null
+          }
+        ]
+      },
+      "allergens": [
+        "egg"
+      ],
+      "dietaryContext": "snack/shared dessert (portion ×4); sugar-free by design"
     }
-   ],
-   "steps": [
-    {
-     "id": "s1",
-     "order": 1,
-     "station": "Station A",
-     "text": {
-      "en": "Dip the fish in egg whites; press each side into the toasted sesame plate to coat."
-     },
-     "ingredients": [
-      "filete_pescado_blanco",
-      "clara_huevo",
-      "ajonjoli_tostado"
-     ],
-     "timeMin": 3,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Pase el pescado por las claras y por el plato tendido con ajonjolí, cubriendo los lados."
-    },
-    {
-     "id": "s2",
-     "order": 2,
-     "station": "Station A",
-     "text": {
-      "en": "Cook COVERED on minimum heat, do NOT add oil; 12 min on side 1, flip, 10 min more, until flaky. The fish must reach 63 °C internally (fish doc: conservatively 63 °C per the published chart)."
-     },
-     "ingredients": [],
-     "timeMin": 22,
-     "targetTempC": 63,
-     "targetRestMin": 0,
-     "checkpoint": "thermometer",
-     "hazardNotes": [
-      "raw fish — cross-contamination with salad to be kept separated till plating"
-     ],
-     "esPE": "Cocer TAPADO a fuego mínimo SIN aceite; 12 min por un lado, voltear 10 min más, hasta deshacerse en escamas. El pescado debe llegar a 63 °C interna (pauta publicada)."
-    },
-    {
-     "id": "s3",
-     "order": 3,
-     "station": "Station B",
-     "text": {
-      "en": "Plate the sesame crust fish warm; finish the salad: lettuce/carrot/cherry tomatoes/onion, sprinkle the ajonjolí remnant on the salad; dress with lime + oil + vinegar."
-     },
-     "ingredients": [
-      "lechuga_picada",
-      "zanahoria_rallada",
-      "tomate_cherry",
-      "cebolla_blanca_pluma",
-      "aceite_oliva",
-      "vinagre_liquido"
-     ],
-     "timeMin": 5,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Servir el pescado caliente y terminar la ensalada; añada el ajonjolí restante a la ensalada; aliñar con limón, aceite y vinagre."
-    }
-   ],
-   "diagram": {
-    "style": "cooking-for-engineers-binary",
-    "columns": [
-     "Station A - pan covered",
-     "Station B - plating"
-    ],
-    "rows": [
-     {
-      "stationIdx": 0,
-      "label": "Egg white → sesame crust",
-      "tokens": [
-       "filete_pescado_blanco",
-       "clara_huevo",
-       "ajonjoli_tostado"
-      ],
-      "timeMin": 3,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Covered, low heat; flip once",
-      "tokens": [
-       ""
-      ],
-      "timeMin": 22,
-      "tempC": 63
-     },
-     {
-      "stationIdx": 1,
-      "label": "Salad + sesame + lime dressing",
-      "tokens": [
-       "lechuga_picada",
-       "zanahoria_rallada",
-       "tomate_cherry",
-       "cebolla_blanca_pluma",
-       "aceite_oliva",
-       "vinagre_liquido"
-      ],
-      "timeMin": 5,
-      "tempC": null
-     }
-    ]
-   },
-   "allergens": [
-    "fish",
-    "sesame"
-   ],
-   "dietaryContext": "lunch/dinner protein anchor; mirrors owner reference recipe"
-  },
-  {
-   "meta": {
-    "id": "muesli_frutado_diet",
-    "version": 1,
-    "recipeKind": "meal",
-    "validationStatus": "reviewPending",
-    "originalSource": "owner-docx-loader/private",
-    "baseServings": 1,
-    "yieldCookedG": null,
-    "equipment": [
-     "bowl|bowl"
-    ],
-    "times": {
-     "activeMin": 5,
-     "passiveMin": 480,
-     "pressureMin": null,
-     "releaseMin": null
-    },
-    "nutrition": {
-     "perServing": null,
-     "sourceIds": [
-      "owner-docx"
-     ],
-     "status": "not-assessed"
-    },
-    "flavorTags": []
-   },
-   "mise_en_place": [
-    {
-     "station": "Station A - overnight soak",
-     "lines": [
-      "Night before: weigh 30 g oats into the bowl; pour just-boiled water to cover by 1 cm; cover with a small plate",
-      "Morning add-ons mise: 1 cucharadita cinnamon (2 g), 3 g sesame toasted, wash/chop 140 g fruit"
-     ],
-     "esPE": [
-      "La noche anterior: pese 30 g de hojuelas; cubra con agua hervida fría 1 cm por encima; tape",
-      "Por la mañana ya listos: 1 cucharadita de canela (2 g), 3 g de ajonjolí tostado, y 140 g de fruta picada"
-     ]
-    }
-   ],
-   "ingredients": [
-    {
-     "ingredientId": "avena_hojuelas",
-     "quantity": "30",
-     "unit": "g",
-     "basis": "dry",
-     "optional": false
-    },
-    {
-     "ingredientId": "yogurt_estilo_island",
-     "quantity": "245",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "canela_polvo",
-     "quantity": "2",
-     "unit": "g",
-     "basis": "dry",
-     "optional": true
-    },
-    {
-     "ingredientId": "fruta_picada_estado",
-     "quantity": "140",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "ajonjoli_tostado",
-     "quantity": "6",
-     "unit": "g",
-     "basis": "dry",
-     "optional": false
-    }
-   ],
-   "steps": [
-    {
-     "id": "s1",
-     "order": 1,
-     "station": "Station A",
-     "text": {
-      "en": "NIGHT BEFORE: soak 30 g oats in warm just-boiled water (cold tap), covered — 4-8 h."
-     },
-     "ingredients": [
-      "avena_hojuelas"
-     ],
-     "timeMin": 480,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [
-      "food safety: refrigerate during soak if your kitchen is warm (Do NOT leave outside overnight in >20 °C rooms)"
-     ],
-     "esPE": "NOCHE ANTERIOR: remojar 30 g de hojuelas en agua hervida FRÍA cubiertas, 4-8 h."
-    },
-    {
-     "id": "s2",
-     "order": 2,
-     "station": "Station A",
-     "text": {
-      "en": "MORNING: drain extra water if any; fold in 245 g island-style yogurt with cinnamon."
-     },
-     "ingredients": [
-      "yogurt_estilo_island",
-      "canela_polvo"
-     ],
-     "timeMin": 2,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "MAÑANA: escurra el excedente; mezclar con 245 g yogurt estilo islandés y canela."
-    },
-    {
-     "id": "s3",
-     "order": 3,
-     "station": "Station A",
-     "text": {
-      "en": "Fold in the 140 g chopped fruit; finish with 6 g toasted sesame."
-     },
-     "ingredients": [
-      "fruta_picada_estado",
-      "ajonjoli_tostado"
-     ],
-     "timeMin": 3,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Agregar 140 g de fruta picada; terminar con 6 g de ajonjolí tostado."
-    }
-   ],
-   "diagram": {
-    "style": "cooking-for-engineers-binary",
-    "columns": [
-     "Station A - bowl (night+morning)"
-    ],
-    "rows": [
-     {
-      "stationIdx": 0,
-      "label": "Night soak (cold)",
-      "tokens": [
-       "avena_hojuelas"
-      ],
-      "timeMin": 480,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Fold yogurt + cinnamon",
-      "tokens": [
-       "yogurt_estilo_island",
-       "canela_polvo"
-      ],
-      "timeMin": 2,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Fold fruit + sesame",
-      "tokens": [
-       "fruta_picada_estado",
-       "ajonjoli_tostado"
-      ],
-      "timeMin": 3,
-      "tempC": null
-     }
-    ]
-   },
-   "allergens": [
-    "dairy",
-    "sesame"
-   ],
-   "dietaryContext": "breakfast"
-  },
-  {
-   "meta": {
-    "id": "budin_platano_diet",
-    "version": 1,
-    "recipeKind": "meal",
-    "validationStatus": "reviewPending",
-    "originalSource": "owner-docx-loader/private",
-    "baseServings": 4,
-    "yieldCookedG": null,
-    "equipment": [
-     "microondas|microwave",
-     "pirex|baking-dish"
-    ],
-    "times": {
-     "activeMin": 5,
-     "passiveMin": 8,
-     "pressureMin": null,
-     "releaseMin": null
-    },
-    "nutrition": {
-     "perServing": null,
-     "sourceIds": [
-      "owner-docx"
-     ],
-     "status": "not-assessed"
-    },
-    "flavorTags": []
-   },
-   "mise_en_place": [
-    {
-     "station": "Station A - mash assembly",
-     "lines": [
-      "Mash 4 frozen-thawed bizcochito plantains (~360 g) in the microwavable dish with a fork",
-      "Cook 60 g quinoa separately (20 g dry + 40 ml water per 10 cup) until popped; fluff",
-      "Have 2 whole eggs (~110 g) beaten"
-     ],
-     "esPE": [
-      "Triture 4 plátanos bizcochitos (~360 g) en la bandeja con un tenedor",
-      "Cocer 60 g de quinua aparte hasta que reviente; esponjar",
-      "Batir 2 huevos (~110 g)"
-     ]
-    }
-   ],
-   "ingredients": [
-    {
-     "ingredientId": "platano_bizcochito",
-     "quantity": "360",
-     "unit": "g",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "clara_huevo",
-     "quantity": "2",
-     "unit": "count",
-     "basis": "raw",
-     "optional": false
-    },
-    {
-     "ingredientId": "quinua_graneada",
-     "quantity": "20",
-     "unit": "g",
-     "basis": "dry",
-     "optional": false
-    }
-   ],
-   "steps": [
-    {
-     "id": "s1",
-     "order": 1,
-     "station": "Station A",
-     "text": {
-      "en": "Mash the plantains with the 2 beaten eggs until smooth batter-like."
-     },
-     "ingredients": [
-      "platano_bizcochito",
-      "clara_huevo"
-     ],
-     "timeMin": 3,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [
-      "raw egg — cook the bake fully before serving"
-     ],
-     "esPE": "Triture los plátanos con 2 huevos batidos hasta tener una mezcla suave."
-    },
-    {
-     "id": "s2",
-     "order": 2,
-     "station": "Station A",
-     "text": {
-      "en": "Fold in 20 g dry whole quinoa; spread evenly in the dish (it hydrates and pops in the microwave)."
-     },
-     "ingredients": [
-      "quinua_graneada"
-     ],
-     "timeMin": 2,
-     "targetTempC": null,
-     "checkpoint": null,
-     "hazardNotes": [],
-     "esPE": "Incorporar 20 g de quinua graneada; emparejar en el recipiente (hidrata y revienta en el microondas)."
-    },
-    {
-     "id": "s3",
-     "order": 3,
-     "station": "Station A",
-     "text": {
-      "en": "Microwave 8 min at FULL power until set and springy; rest 5 min; slice into 4."
-     },
-     "ingredients": [],
-     "timeMin": 13,
-     "targetTempC": null,
-     "checkpoint": "sensory-springy",
-     "hazardNotes": [
-      "hot dish — plate carefully"
-     ],
-     "esPE": "Microondas 8 min a POTENCIA MÁXIMA hasta cuajar y rebotar; reposar 5 min; cortar en 4."
-    }
-   ],
-   "diagram": {
-    "style": "cooking-for-engineers-binary",
-    "columns": [
-     "Station A - microwave bake"
-    ],
-    "rows": [
-     {
-      "stationIdx": 0,
-      "label": "Mash plantains + beaten eggs",
-      "tokens": [
-       "platano_bizcochito",
-       "clara_huevo"
-      ],
-      "timeMin": 3,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Fold quinoa; spread",
-      "tokens": [
-       "quinua_graneada"
-      ],
-      "timeMin": 2,
-      "tempC": null
-     },
-     {
-      "stationIdx": 0,
-      "label": "Microwave full 8 min; rest",
-      "tokens": [
-       ""
-      ],
-      "timeMin": 13,
-      "tempC": null
-     }
-    ]
-   },
-   "allergens": [
-    "egg"
-   ],
-   "dietaryContext": "snack/shared dessert (portion ×4); sugar-free by design"
-  }
- ]
+  ],
+  "ingredientAllocationProvenance": "Each ingredient is allocated in full at the first step referencing it, as a proposed mise-en-place transfer. This is NOT a measured step-by-step kitchen consumption or a validated yield. Any later reuse/process is tracked separately in processRefs.",
+  "ingredientAllocationValidationStatus": "planned-unverified-awaiting-kitchen-cookthrough"
 }
