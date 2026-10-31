@@ -603,6 +603,20 @@ Tests: 142 pass / 0 fail; lint clean; staging QA PASS; live E2E + red-team PASS;
 
 Next single command/ticket: owner weighs the docx recipes with the P4.4 worksheet to promote `computed-pending-weighin` to `assessed`; batch-4 TPCA curation; the depot-gate checklist narrow unserved `pendingRows`.
 
+## Session log — 2026-10-31, session 3, part 40 (es-PE DEFAULT LANGUAGE — owner directive enforced)
+
+Owner standing directive: the content is Peruvian Spanish FIRST. Applied:
+1. `assets/js/i18n.js`: `language = 'es-PE'` default (was 'en').
+2. `index.html`: `<html lang="es-PE">` (screen-reader + SEO correctness).
+3. `tests/i18n.test.cjs`: fresh-context test pins the default (delete require cache, assert getLanguage() === 'es-PE').
+4. Verified LIVE at the deployed URL after Pages rebuild (~75 s): htmlLang='es-PE', planner='Planificador (versión de desarrollo)', shop='Lista de compras — motor canónico (versión de desarrollo)', cook='Modo de cocción (versión de desarrollo)', i18nLang='es-PE' — the FIRST-LOAD experience is Spanish, no click needed.
+5. English remains one click away via the language selector; dictionary completeness test (every key × 6 locales) still passes.
+
+Commit dc17a91 pushed; Pages rebuilt (last-modified updated).
+
+Tests: 154 pass / 0 fail.
+Next single command/ticket: es-PE-first for the legacy v3 Alpine chrome (nav labels, static section headings) — the 4 engine panels are done; the v3 sections (dashboard/calendar/week/day/recipes/shopping/knowledge/compliance/nutrition) still render EN-first per their original markup; the locale plan from docs/UX_DESIGN_SYSTEM.md applies.
+
 ## Update template for next session
 
 ## Update template for next session
