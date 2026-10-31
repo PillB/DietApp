@@ -1,0 +1,5 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_NOTE": "Project-level default. Must match the verified Go catalog (opencode models, 2026-10-30). The global ~/.config/opencode/opencode.json sets the same model for every other project; this file only affirms the override precedence explicitly.",
+  "model": "opencode-go/glm-5.3-flash"
+}

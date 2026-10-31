@@ -1,0 +1,32 @@
+{
+  "policyVersion": "gourmet-kitchen-1.1.0",
+  "generatedAt": "2026-10-30T23:52:33Z",
+  "composition": "This project composes with the GLOBAL policy at ~/.config/opencode/model-routing/policy.json, which owns model ordering and selection logic. This file contains ONLY project deltas.",
+  "primaryModel": "opencode-go/glm-5.3-flash",
+  "projectPrivacyGates": {
+    "privateSources": [
+      "data/private/",
+      "context/private/",
+      "food_delivery_orders_extracted(2).xlsx",
+      "dariush-mozaffarian-the-2025-2030-dietary-guidelines.pdf"
+    ],
+    "rule": "Private purchase history and the JAMA PDF must only be processed by models with privacy.trainsOnRequests=false AND retentionDays=0 in the GLOBAL policy models map (currently: glm-5.3-flash, glm-5.3, kimi-k2.7-code, glm-5.3-flash-free, deepseek-v4.1-flash-free, qwen3.8-flash, minimax-m3.1-flash, mimo-v2.6-flash). Beam Free (30-day retention) and all feedback-collecting free models are PROHIBITED for these files.",
+    "shippingRule": "Anything routed into index.html / meal-plan-data.json / nutrition-reviewed.json or shipped assets is PUBLIC. Treat it as publication."
+  },
+  "projectFallbackAdjustments": {
+    "recommendedReviewerModel": "opencode-go/kimi-k2.7-code",
+    "architectureEscalation": "opencode-go/glm-5.3",
+    "excludedEscalations": ["opencode-go/kimi-k3", "opencode-go/kimi-k3.1-pro (unless user-approved)"]
+  },
+  "verification": {
+    "catalogCommand": "opencode models",
+    "globalRouterTests": "node --test ~/.config/opencode/model-routing/tests/router.test.mjs",
+    "projectRoutingTests": "node --test tests/model-routing.test.mjs"
+  },
+  "sources": [
+    "https://opencode.ai/v2/docs/console/go/ (2026-10-30)",
+    "https://opencode.ai/v2/docs/console/models/ (2026-10-30)",
+    "opencode models (2026-10-30, this machine)",
+    "docs/MODEL_RESEARCH.md (2026-10-30 prior memo)"
+  ]
+}

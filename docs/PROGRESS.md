@@ -294,7 +294,31 @@ Debug trail: 2 test-prose defects (missing degree-symbol case, badge casing) + a
 Trade-off stated: extraction regex deliberately REQUIRES the degree symbol; '100 F'-style loose prose stays claim-free (fewer salvage-claims, more honesty); classification lives at ingredient-id level with an inference flag, to be replaced by reviewer-supplied foodType at P4.3 completion.
 
 Tests: 98 pass / 0 fail; E2E PASS (5 flows); lint clean; privacy PASS.
-Next single command/ticket: P4.4 test-cook worksheet (weigh+yield/tasting fields per recipe -> 'needs kitchen validation' + Evidence kitchen_experiment), which NEEDS owner data; or P5 flavor atlas core while awaiting input. Decision deferred to next session start (paused-state friendly).
+Next single command/ticket: done this pass (P5.1 — part 17).
+
+## Session log — 2026-10-30, session 2, part 17 (P5.1 flavor atlas — owner granted private-row reading)
+
+Owner explicitly granted reading PERSONAL rows in `context/` + `Context information/` bundles; privacy publication rules unchanged (aggregates only, nothing without approval).
+
+Context refresh (evidence, not memory): the bundle is a ChatGPT conversation export (826 mapping nodes: 17 user / 537 assistant / 271 tool). Recovered facts from it: the earlier agent's original aggregate stats (categories, `flavorStats` keywords) came from THIS workbook; its `Top categories` tool output matches today's atlas extraction exactly (Supermercado 252 / Postre 179 / Bebida 150 / Hamburguesa 123 / Pollo 94 / Sándwich 88…) — independent reproduction of an earlier claim, now from canonical data. Discovered workbook sheet inventory + 18 columns (incl. `inferred_category`, `description_confidence`: Media 1224 / Alta 116) and 1340 rows — matching the AGENTS claim of 1,340 rows.
+
+Files: `scripts/flavor_extract.py` (new, stdlib only; reads data/private XLSX → `context/generated/flavor-atlas-v1.json` AGGREGATES ONLY), `.gitignore` adds `context/generated/`, `assets/js/flavor-core.js` (new pure engine), `tests/flavor_core.test.cjs` (5 tests). Atlas stats: 1340 items, 20 categories, month range 2020-11→2023-03 (29 months, all Rappi), 93 items over support floor 3, 677 uniques suppressed (808 rows — rare personal patterns leak-proofed), pair totals self-checked (`--selfcheck` recomputation asserts totals + floor + pair sums).
+
+Engine rules test-proven (synthetic fixture, NOT the private file):
+- Purchase-noise split with explicit reasons: grocery/pantry (`Supermercado / despensa comestible`), beverages (`Bebida`, alcoholic), uncategorized — excluded from TASTE ranking because they are purchases, not dish preferences; drinks never surface even when individually supported.
+- Support floor enforced by the engine too (default from atlas `min_support`, raise-able; `strict` option test shows nothing below survives).
+- HTML-entity normalization from workbook escape artifacts (`&amp;`).
+- `dishPool = items − noiseRows − suppressedRows` (fixture was repaired once after evidence showed my first fixture arithmetic was incoherent — the ENGINE was correct, the fixture wrong).
+- Caveats surfaced upward: aggregate-only derivative, frequency-is-BEHAVIOR-not-clinical, dominant description-confidence label displayed with its share (owner can see how much rests on Media-quality machine text).
+- Schema guard rejects unknown atlas versions (no tolerant parsing).
+
+Root-cause trail: 4 real fixes — tuple-vs-int iteration (`most_common()` destructure), dead loop code self-caught on write, fixture arithmetic inconsistency, test/impl caveat-object mismatch; plus the deprecated `datetime.utcnow()` replaced. All are the weird quirks expected from a fresh extractor.
+Model routing block added to AGENTS.md (falls in line with the global user-wide rules effective this session; discipline: CC-12 ceiling noted for new/changed functions and applied to `flavor-core.js` helpers).
+
+Tests: 103 pass / 0 fail; lint clean; privacy scan PASS (public build set unchanged).
+Next single command/ticket: **P5.2 semantic graph core** (Cuisine/Ingredient/Texture/Taste/Technique/Dish nodes + weighted inferred edges with WHY provenance + uncertainty, fed by atlas aggregates AND the recovered assistant classification commentary labeled as prior-agent commentary, not evidence), then P5.3 UI visualization; P4.4 worksheet remains pending owner data.
+
+## Update template for next session
 
 
 ## Update template for next session
