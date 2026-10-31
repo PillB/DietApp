@@ -1,0 +1,51 @@
+{
+  "schema": "step-translations-espe/v1",
+  "status": "draft-machine-assisted-needs-native-review",
+  "policy": "PROSE-STEP TRANSLATIONS for the 7 weighed recipes. The docx recipes carry AUTHORED es-PE (they need no entry here). Every translated line renders with the '(es-PE borrador)' tag — per handover §9, safety-critical directions are NOT presented as reviewed until a native reviewer signs off. Temperatures are preserved verbatim from the source (the safety gate checks the EN text).",
+  "translations": {
+    "nikkei-salmon-bowl": [
+      "Cocer 220 g de arroz integral SECO con agua; enfriar pronto si se sirve más tarde.",
+      "Sellar u hornear el salmón hasta 63 °C internos (pauta conservadora de inocuidad); reposar brevemente.",
+      "Cocer las vainitas de soya al vapor. Rebanar pepino y zanahoria justo antes de armar.",
+      "Batir sillao, jugo de limón y aceite de oliva. Repartir arroz, salmón y edamame en 4 tazones.",
+      "Agregar palta, verduras crudas, ajonjolí y el aderezo al servir; mantener las verduras crujientes separadas para meal prep."
+    ],
+    "chifa-lomo-quinoa": [
+      "Enjuagar la quinua y cocer tapada hasta que esté suave, unos 15 minutos; esponjar.",
+      "Calentar un wok muy caliente; sellar la carne en 2 tandas para evitar que se hierva.",
+      "Cocer cebollas, pimientos y brócoli hasta dorar-tierno, luego añadir tomate el último minuto.",
+      "Mezclar rápido con sillao, vinagre, ajo y la carne; servir sobre la quinua."
+    ],
+    "aji-chicken-tacos": [
+      "Rebanar el pollo parejo, sazonar con ají amarillo y ajo; sellar en aceite de oliva hasta al menos 74 °C internos.",
+      "Licuar yogurt, limón y palta para la crema ají-verde.",
+      "Rayar el repollo y cortar la cebolla roja en pluma justo antes de comer.",
+      "Calentar las tortillas una por una hasta que estén flexibles; armar con pollo, curtido y crema."
+    ],
+    "artichoke-cacio-pepe": [
+      "Cocer la pasta al dente, reservando 250 ml del agua de cocción con almidón.",
+      "Dorar los hongos en aceite de oliva, luego añadir alcachofas y ajo.",
+      "Marchitar la espinaca aparte para conservar el color vivo y evitar el exceso de agua.",
+      "Fuera del fuego, emulsionar el queso rallado fino con un poco de agua de cocción caliente y mezclar con la pasta.",
+      "Servir con las verduras y pimienta negra recién molida."
+    ],
+    "shakshuka-potato-pita": [
+      "Hornear los cubos de papa a 210 °C hasta dorar, unos 25 minutos.",
+      "Ablandar cebollas y pimientos en aceite de oliva; añadir tomate y hervir 12 minutos hasta espesar.",
+      "Incorporar la espinaca a la salsa, hacer 8 huecos, añadir los huevos y tapar hasta el punto seguro que prefiera el comensal.",
+      "Terminar con feta; servir con las papas y pan pita caliente."
+    ],
+    "birria-beans-rice": [
+      "Tostar y remojar los chiles secos; licuar con ajo, tomate, cebolla y caldo.",
+      "Sellar la carne en la Instant Pot en Sauté, en tandas. Añadir la salsa licuada y cocer a presión ALTA ~50 minutos, luego liberación natural de al menos 15 minutos; revise ternura y líquido según su modelo.",
+      "Cocer el arroz integral aparte y plegar los frejoles negros cocidos en el consomé caliente de birria.",
+      "Deshebrar la carne y servir sobre el arroz con repollo en pluma y limón fresco."
+    ],
+    "lucuma-cacao-parfait": [
+      "Tostar la avena suavemente en un sartén seco hasta que aromatice; enfriar.",
+      "Batir el yogurt con pulpa de lúcuma sin azúcar y cocoa.",
+      "Acaparar yogurt, avena, berries frescos y pistachos en 4 vasos.",
+      "Rallar chocolate amargo por encima al servir. Verifique el azúcar añadido del paquete antes de declarar ≤10 g por porción."
+    ]
+  }
+}

@@ -24,13 +24,20 @@ async function sweep(browser, width) {
   page.on('pageerror', (e) => errs.push(String(e).slice(0, 80)));
   await page.goto(LIVE, { waitUntil: 'load' });
   await page.waitForTimeout(2200);
-  const result = await page.evaluate(() => {
-    const visible = (el) => {
+  // the scan body is a string-embedded function (page.evaluate arrow CC was over the ceiling);
+  // same logic, same hit-test semantics
+  const result = await page.evaluate(new Function('return (function(){' + scanBody() + '})()'));
+  await ctx.close();
+  return { width, ...result, pageErrors: errs };
+}
+
+function scanBody() {
+  return `function visible(el) {
       const st = getComputedStyle(el);
       if (st.display === 'none' || st.visibility === 'hidden' || st.opacity === '0') return false;
       const r = el.getBoundingClientRect();
       return r.width > 0 && r.height > 0;
-    };
+    }
     const els = [...document.querySelectorAll('button:not([disabled]), a[href], input:not([type=hidden]), select')].filter(visible);
     const blocked = [];
     const offscreen = [];
@@ -40,21 +47,18 @@ async function sweep(browser, width) {
       const cx = r.left + r.width / 2;
       const cy = r.top + r.height / 2;
       if (cx > window.innerWidth || cx < 0) { offscreen.push({ tag: el.tagName, id: el.id || '', text: (el.textContent || '').trim().slice(0, 24) }); continue; }
-      // hit-test the center
       const at = document.elementFromPoint(cx, cy);
       if (at && at !== el && !el.contains(at) && !at.contains(el)) {
         blocked.push({
-          target: `${el.tagName}${el.id ? '#' + el.id : ''}`,
+          target: el.tagName + (el.id ? '#' + el.id : ''),
           text: (el.textContent || '').trim().slice(0, 24),
-          coveredBy: `${at.tagName}${at.id ? '#' + at.id : ''}`,
+          coveredBy: at.tagName + (at.id ? '#' + at.id : ''),
         });
       }
       if (el.tagName === 'BUTTON' && r.height < 24) tiny.push({ id: el.id || '', text: (el.textContent || '').trim().slice(0, 20), h: Math.round(r.height) });
     }
     return { total: els.length, blocked, offscreen, tiny };
-  });
-  await ctx.close();
-  return { width, ...result, pageErrors: errs };
+  `;
 }
 
 async function main() {
