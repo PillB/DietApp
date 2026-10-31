@@ -805,6 +805,13 @@ Programmatic EN sweep (Playwright TreeWalker over 7 views + EN-function-word heu
 Verified LIVE at f189cdc: all chrome es-PE (incl. '1500 kcal (moderado)', 'Sexo (para RDA de Fe/Zn)', nutrition h2 via data-nt), week view fully es. Gates: 173/173 · e2e · staging · live · redteam ×2 · geometry · audit 33 — ALL PASS.
 
 Next single command/ticket: the remaining EN is (a) legacy method/recipe data (LEDGER-6 — needs native review) and (b) compliance/knowledge/atlas narrative data blocks — a candidate follow-up round translating those data narratives draft-tagged.
+## Session log - 2026-10-31, session 3, part 61 (data-layer narratives es-PE, D45)
+
+Round 2 of the Spanish sweep: translated the compliance view (audit summary/status, 5 majorCorrections, all 8 dietGuidelineRules labels+texts), the knowledge map (34 descriptions + 7 section titles via a kmTitleEs static map in app.js + descriptionEs per item), nutrition chrome (overline, NIH planner link, 'Estado receta por receta', 'Revisado' fallback). All draft-tagged '[es-PE borrador]' pending native review. Authored into meal-plan-data.json then npm run sync (the drift-closer made data.js exact). Live-verified at 0ac3ede with probes; one Alpine scope bug (data.kmTitleEs -> kmTitleEs) caught by probe and fixed.
+
+Gates: 173/173 · e2e · staging · live · redteam2 27/27 · geometry · audit 33 — ALL PASS.
+
+Next single command/ticket: per-recipe compliance.status value strings ('Editorial revision only…') still EN in the 29 cards — a final data-value translation pass or an es-status map; plus owner cadence items.
 
 ## Update template for next session
 
