@@ -117,6 +117,7 @@ function mealPlanApp() {
       'How This Will Guide the Month': 'Cómo guiará este el mes',
     },
     view: 'dashboard',
+    mobileNavOpen: false,
     selectedWeek: 1,
     selectedDayIndex: 0,
     selectedRecipe: null,
