@@ -35,7 +35,7 @@ test('every ledger item names a falsifiable proof, and the proof exists in the n
   for (const item of items) {
     assert.ok(item.proofTestFile, `${item.id} missing 'falsifiable proof: file :: test' pattern`);
     const src = testSourceFile(item.proofTestFile);
-    if (item.proofTestFile.startsWith('npx')) continue;
+    if (src === null && /^(npx|npm run)/.test(item.proofTestFile)) continue;
     assert.ok(src !== null, `${item.id} proof file missing: ${item.proofTestFile}`);
     assert.ok(src.includes(item.proofTestName), `${item.id} named test not found in ${item.proofTestFile}: '${item.proofTestName}'`);
   }
