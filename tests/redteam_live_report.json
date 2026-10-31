@@ -2,28 +2,28 @@
   "findings": [
     {
       "ok": true,
-      "label": "1-buttons: 185 buttons found",
+      "label": "1-buttons: 187 buttons found",
       "detail": "[{\"id\":\"\",\"text\":\"Export JSON\",\"disabled\":false},{\"id\":\"\",\"text\":\"Print view\",\"disabled\":false},{\"id\":\"\",\"text\":\"☕ Break"
     },
     {
       "ok": true,
-      "label": "1-selects: 10",
+      "label": "1-selects: 12",
       "detail": "[{\"id\":\"n-language\",\"optionCount\":2},{\"id\":\"n-physiology\",\"optionCount\":3},{\"id\":\"n-activity\",\"optionCount\":4},{\"id\":\"n-"
     },
     {
       "ok": true,
-      "label": "1-links: 64",
-      "detail": "[{\"href\":\"#dashboard\",\"text\":\"🍽️\\n        \\n          Gourmet\"},{\"href\":\"#dashboard\",\"text\":\"✦\\n            Overview\"},"
+      "label": "1-links: 65",
+      "detail": "[{\"href\":\"#dashboard\",\"text\":\"🍽️\\n        \\n          Mes Gou\"},{\"href\":\"#dashboard\",\"text\":\"✦\\n            Vista gener"
     },
     {
       "ok": true,
       "label": "2-cook-recipe-nikkei-salmon-bowl: nutrition card shown",
-      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        402 kcal · 9.2 g protein · 3.6 g fib"
+      "detail": "\n      \n        Por porción (cálculo estimado — pendiente de pesa en cocina):\n        693.2 kcal · 3"
     },
     {
       "ok": true,
       "label": "2-cook-recipe-pescado_ajonjoli_diet: nutrition card shown",
-      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        307.9 kcal · 31.2 g protein · 7.2 g "
+      "detail": "\n      \n        Por porción (cálculo estimado — pendiente de pesa en cocina):\n        307.9 kcal · 3"
     },
     {
       "ok": true,
@@ -33,12 +33,12 @@
     {
       "ok": true,
       "label": "3-aggressive-1200-with-ack: built successfully",
-      "detail": "Week built for 1200 kcal (aggressive): 14"
+      "detail": "Semana construida para 1200 kcal (aggressive): 14"
     },
     {
       "ok": true,
       "label": "3-week-entries: 14 entries on screen",
-      "detail": "Week built for 1200 kcal (aggressive): 14"
+      "detail": "Semana construida para 1200 kcal (aggressive): 14"
     },
     {
       "ok": true,
@@ -67,7 +67,7 @@
     },
     {
       "ok": true,
-      "label": "9-keyboard-reach: 137 focusable elements visible in the DOM",
+      "label": "9-keyboard-reach: 153 focusable elements visible in the DOM",
       "detail": ""
     },
     {

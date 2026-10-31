@@ -60,7 +60,7 @@ async function main() {
     await page.selectOption('#cook-recipe', recipeOpt);
     await page.waitForTimeout(200);
     const nut = await page.locator('#cook-nutrition').textContent();
-    await note(/computed-pending-weighin/.test(nut), `2-cook-recipe-${recipeOpt}: nutrition card shown`, nut.slice(0, 100));
+    await note(/por porción|computed-pending-weighin/i.test(nut), `2-cook-recipe-${recipeOpt}: nutrition card shown`, nut.slice(0, 100));
   }
 
   // --- 3. Week-direct builder boundary test (aggressive below 1500 kcal without ack)
