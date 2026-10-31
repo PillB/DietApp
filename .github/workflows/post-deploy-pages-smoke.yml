@@ -1,0 +1,41 @@
+name: Post-deploy Pages Chrome and asset parity
+on:
+  workflow_run:
+    workflows:
+      - pages build and deployment
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-live:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact deployment source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Match live Page assets byte for byte against deployed commit
+        run: node tests/deployed_asset_parity.cjs
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Walk actual live Pages at es-PE mobile and desktop
+        run: node tests/live_pages_walkthrough.cjs
+      - name: Archive all fresh live interaction screenshots and parity logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-pages-exact-sha-evidence
+          if-no-files-found: warn
+          path: |
+            tests/deployed_asset_parity_report.json
+            tests/live_pages_independent_report.json
+            tests/screenshots/live-pages-independent/
