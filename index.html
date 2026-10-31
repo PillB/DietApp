@@ -50,7 +50,7 @@
         </div>
       </a>
 
-      <button type="button" class="lg:hidden rounded-xl border border-amber-300/40 px-4 py-3 text-left font-semibold text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300" id="mobile-nav-toggle" aria-controls="primary-nav" :aria-expanded="String(mobileNavOpen)" @click="mobileNavOpen = !mobileNavOpen"><span x-text="mobileNavOpen ? 'Cerrar menú' : 'Abrir menú'"></span></button>
+      <button type="button" class="lg:hidden rounded-xl border border-amber-300/40 px-4 py-3 text-left font-semibold text-amber-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-300" id="mobile-nav-toggle" aria-controls="primary-nav" :aria-expanded="String(mobileNavOpen)" @click="mobileNavOpen = !mobileNavOpen"><span x-text="window.I18N ? window.I18N.t(mobileNavOpen ? 'nav.mobileClose' : 'nav.mobileOpen') : (mobileNavOpen ? 'Cerrar menú' : 'Abrir menú')"></span></button>
       <nav id="primary-nav" class="gap-2 text-sm" :class="mobileNavOpen ? 'grid' : 'hidden lg:grid'">
         <template x-for="item in [
           ['dashboard','nav.overview','✦','#dashboard'],
