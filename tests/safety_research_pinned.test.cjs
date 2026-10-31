@@ -18,7 +18,6 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
 const COOK = require('../assets/js/cooking-core.js');
-const IM = require('../assets/js/import-weighed.js');
 global.window = {};
 require('../assets/js/nutrition-data.js');
 const ND = window.GOURMET_NUTRITION_DATA;
