@@ -69,8 +69,18 @@ function drawRecipe(){const recipe=ND.curatedRecipes.find(r=>r.id===$('n-recipe'
 function drawLegacy(){
  const list=ND.legacyRecipeAudits;
  const flags=list.filter(x=>x.issues.some(i=>i.startsWith('Added sugar'))).length;
- $('n-legacy-summary').textContent=`${list.length} existing recipe records: 0 complete nutrient verifications. ${flags} desserts/sweet preparations require especially careful added-sugar calculation. Diet-guideline ingredient revisions are not a nutrient analysis.`;
- $('n-legacy-audit').innerHTML=list.map(r=>`<details><summary>${safe(r.name)} — ${safe(r.servings||'servings unspecified')}</summary><ul>${r.issues.map(x=>`<li>${safe(x)}</li>`).join('')}</ul></details>`).join('');
+// LEDGER-D49: legacy audit issue stems rendered es-PE (draft-tagged); EN keeps authority under the notice rule
+const STEMS_ES = {
+ 'Energy density/saturated fat:': 'Densidad energética/grasa saturada: cuantificar la grasa de cocción y los pesos de porción. [es-PE borrador]',
+ 'Exact nutrients unverified:': 'Nutrientes exactos sin verificar: la fuente no tiene un cálculo nutricional por ingrediente pesado. [es-PE borrador]',
+ 'Sodium:': 'Sodio: cuantificar condimentos de marca + queso, no solo la sal de mesa. [es-PE borrador]',
+ 'Starch portions:': 'Partes de almidón: la fuente especifica medidas secas/crudas variables; convertir a porciones servidas. [es-PE borrador]',
+ 'Added sugar:': 'Azúcar añadida: calcular el azúcar por porción servida, incluidos chocolate/condimentos; ≤10 g/comida no puede certificarse desde el texto. [es-PE borrador]',
+ 'Meal composition:': 'Composición de la comida: agregar verduras/fruta en otra parte de la comida cuando sea necesario. [es-PE borrador]',
+};
+const esIssue = (i) => { const stem = STEMS_ES[i.slice(0, i.indexOf(':') + 1)]; return stem || i; };
+ $('n-legacy-summary').textContent=`${list.length} registros de recetas existentes: 0 verificaciones nutricionales completas. ${flags} postres/preparaciones dulces requieren un cálculo de azúcar añadida especialmente cuidadoso. Las revisiones de ingredientes por pautas dietéticas no son un análisis nutricional. [es-PE borrador]`;
+ $('n-legacy-audit').innerHTML=list.map(r=>`<details><summary>${safe(lang==='es'?(r.nameEs||r.name):r.name)} — ${safe(r.servings||'porciones sin especificar')}</summary><ul>${r.issues.map(x=>`<li>${safe(esIssue(x))}</li>`).join('')}</ul></details>`).join('');
 }
 function copyList(){const start=$('n-range-start').value,end=$('n-range-end').value;
  let report;try{report=core.aggregate(schedule,ND.curatedRecipes,start,end);}catch(e){$('n-notice').textContent=fallback(e);return;}
