@@ -4,7 +4,7 @@
   "sweeps": [
     {
       "width": 320,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -12,7 +12,7 @@
     },
     {
       "width": 375,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -20,7 +20,7 @@
     },
     {
       "width": 390,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -28,7 +28,7 @@
     },
     {
       "width": 768,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -36,7 +36,7 @@
     },
     {
       "width": 1024,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -44,7 +44,7 @@
     },
     {
       "width": 1366,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],
@@ -52,7 +52,7 @@
     },
     {
       "width": 1440,
-      "total": 109,
+      "total": 123,
       "blocked": [],
       "offscreen": [],
       "tiny": [],

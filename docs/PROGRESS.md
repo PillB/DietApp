@@ -736,7 +736,17 @@ Debug trail: an early probe showed an empty block (timing race with the atlas fe
 
 Tests: 169 pass / 0 fail; all layers PASS; pushed 49448cb + this commit.
 Next single command/ticket: all dev-work ledger items are CLOSED. The remaining OPEN items are owner-action (LEDGER-2 weigh-in, brand labels, store verification, dedup). The app is functionally complete, Spanish-first, live, and fully audited.
+## Session log - 2026-10-31, session 3, part 53 (comprehensive live audit 33/33 PASS)
 
+New: tests/comprehensive_live.cjs (npm run audit) - the DEEPEST single-run audit: 33 checks covering (1) es-PE defaults (html lang + i18n + planner title), (2) ALL 13 nav views (8 legacy Alpine + 5 engine panels), (3) recipe modal: 29 cards, es-PE headings (Mise en place/Ingredientes/Preparacion/Por que funciona/Emplatado/Revision), close, (4) deficit builder: 1200-no-ack refusal + 1200-ack-built + 14 entries, (5) adequacy panel 8+ rows, (6) cook micros + docx es-PE steps, (7) weigh-in 'Registrar pesa', (8) flavor ranking cards, (9) privacy 404s at the live URL (report.md + workbook), (10) 0 page errors.
+
+Root causes fixed en route:
+1. Node/browser boundary in the audit script (document not defined in Node scope).
+2. The ranking's lexicon FETCH-RACE: FLAVOR_LEXICON is fetched async in boot2 but FlavorUI.init's atlas fetch completes FIRST -> rankRecipes received undefined -> 'bad_lexicon_schema'. Fixed by wrapping lex = lexicon || fallback at rankRecipes top and passing it through safeGraph + validateRankingInputs consistently (flavor-graph's own check now sees the wrapped object).
+
+Full re-verification after push: npm test 169/169, e2e 6 flows PASS, staging PASS, live PASS, redteam2 27/27, geometry PASS - ALL GREEN at the deployed URL.
+
+Remaining: owner-action items only (weigh-in, brand labels, store walk, dedup).
 ## Update template for next session
 
 ## Update template for next session
