@@ -18,6 +18,7 @@
     'weighin.title': { 'en': 'Weigh-in worksheet', 'es-PE': 'Hoja de pesa en cocina', 'zh-Hans': '厨房称重工作表', 'hi': 'किचन वेइ-इन वर्कशीट', 'de': 'Küchen-Wägeblatt', 'ja': 'キッチン計量ワークシート' },
     'weighin.note': { 'en': 'Weigh each ingredient during your cook; the per-serving macros promote to weighed status. Kitchen half only — the dual review is separate.', 'es-PE': 'Pesa cada ingrediente durante la cocción; los macros por porción ascienden a estado pesado. Solo la mitad de cocina — la doble revisión es aparte.', 'zh-Hans': '烹饪时称量每种食材；每份宏量升级为已称重状态。仅厨房部分——双重审核另计。', 'hi': 'पकाते समय हर सामग्री तौलें; प्रति सर्विंग मैक्रो तौला हुआ रैंक तक उन्नत होते हैं। केवल किचन आधा — दोहरी समीक्षा अलग है।', 'de': 'Wäge jede Zutat beim Kochen; die Portions-Makros steigen zum gewogenen Status auf. Nur die Küchenhälfte — das Doppel-Review ist separat.', 'ja': '調理中に各食材を計量。1人分のマクロが計量済みステータスへ昇格。キッチン半分のみ—デュアルレビューは別。' },
     'weighin.submit': { 'en': 'Record weigh-in', 'es-PE': 'Registrar pesa', 'zh-Hans': '记录称重', 'hi': 'वेइ-इन दर्ज करें', 'de': 'Wägung speichern', 'ja': '計量を記録' },
+    'weighin.recipeLabel': { 'en': 'Recipe', 'es-PE': 'Receta', 'zh-Hans': '食谱', 'hi': 'व्यंजन', 'de': 'Rezept', 'ja': 'レシピ' },
 
     'nav.overview': { 'en': 'Overview', 'es-PE': 'Vista general', 'zh-Hans': '概览', 'hi': 'अवलोकन', 'de': 'Übersicht', 'ja': '概要' },
     'nav.calendar': { 'en': 'Calendar', 'es-PE': 'Calendario', 'zh-Hans': '日历', 'hi': 'कैलेंडर', 'de': 'Kalender', 'ja': 'カレンダー' },

@@ -40,7 +40,7 @@
       <h2 id="weighin-h2" class="text-xl font-bold text-amber-200">${root.I18N ? root.I18N.t('weighin.title') : 'Weigh-in worksheet'}</h2>
       <p class="text-sm text-stone-300">${root.I18N ? root.I18N.t('weighin.note') : 'Weigh each ingredient on a scale during your cook; the per-serving macros promote to weighed status. Kitchen half only — the dual review is separate.'}</p>
       <div class="flex flex-wrap items-end gap-3 mt-2">
-        <label class="text-sm">Recipe
+        <label class="text-sm">${root.I18N ? root.I18N.t('weighin.recipeLabel') : 'Recipe'}
           <select id="weighin-recipe" class="bg-stone-800 border border-stone-600 rounded px-2 py-1"></select></label>
         <label class="text-sm">Rendimiento (g cocido)
           <input id="weighin-yield" type="number" min="1" placeholder="g" class="bg-stone-800 border border-stone-600 rounded px-2 py-1 w-24"></label>

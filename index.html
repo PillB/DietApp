@@ -360,65 +360,65 @@
         <p class="n-caution" data-nt="warning">Estimates only — not verified nutritional labels. Original recipes are not nutritionally certified.</p>
         <div class="n-columns">
           <section class="n-panel">
-            <h3>01 · Evidence-based starting point</h3>
-            <p>All inputs are optional, blank by default and held only in this browser form. This Mifflin–St Jeor estimate is <strong>not a medical recommendation</strong> and not equivalent to the NIH dynamic Body Weight Planner.</p>
+            <h3>01 · Punto de partida basado en evidencia</h3>
+            <p>Todas las entradas son opcionales, quedan en blanco por defecto y se alojan solo en este formulario del navegador. Esta estimación Mifflin–St Jeor <strong>no es una recomendación médica</strong> y no equivale al Planificador de Peso Corporal dinámico del NIH. [es-PE borrador]</p>
             <form id="n-energy-form" class="n-form">
-              <label>Adult age (years) <input type="number" id="n-age" min="18" max="100" required placeholder="Age"></label>
-              <label>Current mass (kg) <input type="number" id="n-weight" min="30" max="350" step="0.1" required placeholder="kg"></label>
-              <label>Height (cm) <input type="number" id="n-height" min="120" max="230" step="0.1" required placeholder="cm"></label>
-              <label>Physiology equation constant
-                <select id="n-physiology" required><option value="">Select</option><option value="female">Female (-161)</option><option value="male">Male (+5)</option></select>
+              <label>Edad adulta (años) <input type="number" id="n-age" min="18" max="100" required placeholder="Age"></label>
+              <label>Masa actual (kg) <input type="number" id="n-weight" min="30" max="350" step="0.1" required placeholder="kg"></label>
+              <label>Estatura (cm) <input type="number" id="n-height" min="120" max="230" step="0.1" required placeholder="cm"></label>
+              <label>Constante de ecuación fisiológica
+                <select id="n-physiology" required><option value="">Elegir</option><option value="female">Femenino (-161)</option><option value="male">Masculino (+5)</option></select>
               </label>
-              <label>Activity multiplier
-                <select id="n-activity"><option value="1.2">Mostly seated (1.20)</option><option value="1.375" selected>Light activity (1.375)</option><option value="1.55">Moderately active (1.55)</option><option value="1.725">Very active (1.725)</option></select>
+              <label>Multiplicador de actividad
+                <select id="n-activity"><option value="1.2">Mayormente sentado (1.20)</option><option value="1.375" selected>Actividad ligera (1.375)</option><option value="1.55">Actividad moderada (1.55)</option><option value="1.725">Muy activo (1.725)</option></select>
               </label>
-              <label>Illustrative energy deficit (kcal/day)
-                <select id="n-deficit"><option value="300">300</option><option value="400" selected>400</option><option value="500">500</option><option value="600">600 (aggressive)</option><option value="750">750 (aggressive — clinician review flag fires)</option></select>
+              <label>Déficit energético ilustrativo (kcal/día)
+                <select id="n-deficit"><option value="300">300</option><option value="400" selected>400</option><option value="500">500</option><option value="600">600 (agresivo)</option><option value="750">750 (agresivo — saltará la marca de revisión clínica)</option></select>
               </label>
-              <label>Protein calculation reference mass (kg, optional) <input type="number" id="n-reference-weight" min="30" max="300" step="0.1" placeholder="Current mass if blank"></label>
-              <button class="n-primary" type="submit">Estimate energy & protein</button>
+              <label>Masa de referencia para el cálculo de proteína (kg, opcional) <input type="number" id="n-reference-weight" min="30" max="300" step="0.1" placeholder="Current mass if blank"></label>
+              <button class="n-primary" type="submit">Estimar energía y proteína</button>
             </form>
-            <div id="n-energy-result" aria-live="polite" class="n-result"><p>Enter current measurements to display a tentative range. Nothing is prefilled from old measurements.</p></div>
+            <div id="n-energy-result" aria-live="polite" class="n-result"><p>Ingresa las medidas actuales para mostrar un rango tentativo. Nada se prellena de mediciones antiguas. [es-PE borrador]</p></div>
           </section>
           <section class="n-panel">
-            <h3>02 · Build balanced gourmet plates</h3>
-            <div class="n-plate" role="img" aria-label="Plate heuristic: about half colorful vegetables and fruit, a quarter protein, a quarter whole grains or starchy vegetables, plus measured fats and sauces">
-              <div class="n-plate-veg">Vegetables & fruit<br><strong>~½ plate</strong></div><div class="n-plate-protein">Protein<br><strong>~¼</strong></div><div class="n-plate-starch">Whole grains / potato<br><strong>~¼</strong></div>
+            <h3>02 · Construir platos gourmet balanceados</h3>
+            <div class="n-plate" role="img" aria-label="Heurística del plato: cerca de la mitad de verduras y fruta de color, un cuarto de proteína, un cuarto de granos integrales o verduras con almidón, más grasas y salsas porcionadas">
+              <div class="n-plate-veg">Verduras y fruta<br><strong>~½ plato</strong></div><div class="n-plate-protein">Proteína<br><strong>~¼</strong></div><div class="n-plate-starch">Granos integrales / papa<br><strong>~¼</strong></div>
             </div>
-            <p>Use this as a <strong>composition heuristic</strong>, not a rule that all foods occupy equal caloric shares. Count olive oil, cheese, creamy sauces, beverages and desserts too. Never remove carbohydrates automatically.</p>
-            <ul class="n-bullets"><li>WHO: at least 400 g fruits and vegetables per day, and dietary fiber at least 25 g/day.</li><li>PDF: prioritizes varied protein, whole grains and minimally processed food; <strong>10 g added sugar per meal</strong> is described, not proven for every menu here.</li><li>Strength training during energy loss helps preserve lean mass. Rate and calorie need vary across individuals.</li><li>For kidney disease, pregnancy, diabetes medications or eating-disorder history, involve a clinician.</li></ul>
+            <p>Úsalo como <strong>heurística de composición</strong>, no como regla de que todos los alimentos ocupen partes calóricas iguales. Cuenta también el aceite de oliva, el queso, las salsas cremosas, las bebidas y los postres. Nunca quites carbohidratos automáticamente. [es-PE borrador]</p>
+            <ul class="n-bullets"><li>OMS: al menos 400 g de frutas y verduras al día, y fibra alimentaria de al menos 25 g/día. [es-PE borrador]</li><li>PDF: prioriza proteína variada, granos integrales y comida mínimamente procesada; <strong>10 g de azúcar añadida por comida</strong> se describe, no se demuestra para cada menú aquí. [es-PE borrador]</li><li>El entrenamiento de fuerza durante la pérdida de energía ayuda a preservar la masa magra. El ritmo y la necesidad calórica varían entre personas. [es-PE borrador]</li><li>En enfermedad renal, embarazo, medicamentos para diabetes o historial de trastorno alimentario, involucra a un clínico. [es-PE borrador]</li></ul>
           </section>
         </div>
         <section class="n-panel">
-          <h3>03 · Schedule measured recipes & repeat weeks</h3>
+          <h3>03 · Programar recetas pesadas y repetir semanas</h3>
           <p data-nt="planning">Upcoming-week sample schedule</p>
           <form id="n-assign-form" class="n-form n-meal-form">
             <label data-nt="recipe">Recipe</label><select id="n-recipe" required aria-label="Select measured recipe"></select>
             <label data-nt="date">Date</label><input id="n-date" type="date" required>
-            <label data-nt="meal">Meal</label><select id="n-meal"><option>Breakfast</option><option>Lunch</option><option selected>Dinner</option><option>Snack</option></select>
+            <label data-nt="meal">Comida</label><select id="n-meal"><option value="Breakfast">Desayuno</option><option value="Lunch">Almuerzo</option><option value="Dinner" selected>Cena</option><option value="Snack">Picoteo</option></select>
             <label data-nt="portions">Individual portions</label><input id="n-portions" type="number" min="1" max="24" value="1" required>
             <label class="n-check"><input id="n-repeat" type="checkbox"><span data-nt="repeat">Repeat weekly for 4 weeks</span></label>
             <button class="n-primary" type="submit" data-nt="add">Add to plan</button>
           </form>
           <div id="n-recipe-preview" class="n-recipe-preview"></div>
-          <div class="n-range"><label>From <input type="date" id="n-range-start"></label><label>Through <input type="date" id="n-range-end"></label><button id="n-reset" class="n-secondary" type="button">Clear example schedule</button></div>
+          <div class="n-range"><label>Desde <input type="date" id="n-range-start"></label><label>Hasta <input type="date" id="n-range-end"></label><button id="n-reset" class="n-secondary" type="button">Borrar calendario de ejemplo</button></div>
           <p id="n-notice" role="status" aria-live="polite" class="n-caution"></p>
           <ul id="n-schedule-list" class="n-events"></ul>
         </section>
         <section class="n-panel n-print-list">
           <div class="n-shopping-head"><div><h3 data-nt="shopping">Compra agregada</h3><p id="n-coverage" aria-live="polite"></p></div><div class="n-actions"><button id="n-copy" type="button" class="n-secondary">Copiar lista</button><button id="n-print" type="button" class="n-secondary">Imprimir</button></div></div>
           <div id="n-shopping-list" class="n-shopping-list"></div>
-          <p class="n-caution">Quantities add only matching ingredient IDs and units from measured recipe variants; household packing formats, trimming losses and optional garnishes need a final shopper review. Raw and dry weights are explicit.</p>
+          <p class="n-caution">Las cantidades suman solo IDs de ingrediente y unidades coincidentes de variantes pesadas; los formatos de empaquetado doméstico, mermas de recorte y guarniciones opcionales necesitan una revisión final del comprador. Los pesos crudos y secos son explícitos. [es-PE borrador]</p>
         </section>
         <section class="n-panel">
-          <h3>04 · Audit of the original 29 recipes</h3>
+          <h3>04 · Auditoría de las 29 recetas originales</h3>
           <p id="n-legacy-summary"></p>
           <div id="n-legacy-audit" class="n-audit-list"></div>
         </section>
         <section class="n-panel">
-          <h3>05 · Documentation and evidence</h3>
-          <p>See <a href="NUTRITION_RESEARCH.md" target="_blank" rel="noopener noreferrer">NUTRITION_RESEARCH.md</a> for assumptions, dietary PDF interpretation, uncertainty, original research, audit, and prioritised next steps.</p>
-          <p>Nutrition values in the seven measured variants are <strong>illustrative calculations using generic food composition references</strong>; brands and preparation affect them substantially.</p>
+          <h3>05 · Documentación y evidencia</h3>
+          <p>Ve <a href="NUTRITION_RESEARCH.md" target="_blank" rel="noopener noreferrer">NUTRITION_RESEARCH.md</a> para supuestos, interpretación del PDF de pautas, incertidumbre, investigación original, auditoría y próximos pasos priorizados. [es-PE borrador]</p>
+          <p>Los valores nutricionales en las siete variantes pesadas son <strong>cálculos ilustrativos con referencias genéricas de composición de alimentos</strong>; las marcas y la preparación los afectan sustancialmente. [es-PE borrador]</p>
         </section>
       </section>
 
