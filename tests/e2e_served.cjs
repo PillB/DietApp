@@ -238,10 +238,16 @@ async function cookFlow(port, report) {
   steps.diagramStations = await page.locator('#cook-diagram thead th').count();
   steps.diagramFishTokens = await page.locator('#cook-diagram', { hasText: 'filete_pescado_blanco' }).count();
   steps.docxCoveredGate = await page.locator('#cook-steps', { hasText: '63°C' }).count();
+  // P-Diet computed per-serving nutrition card (computed-pending-weighin)
+  const fishNutrition = await page.locator('#cook-nutrition').textContent();
+  steps.nutritionCard = fishNutrition.includes('computed-pending-weighin');
+  steps.nutritionKcal = /Per serving \(computed-pending-weighin\):\s*[\d.]+ kcal/.test(fishNutrition);
+  steps.nutritionMacroHonesty = fishNutrition.includes('NOT a weighed kitchen yield');
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_cook_flow.png') });
   await browser.close();
   const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0
-    || steps.docxDiagram === 0 || steps.diagramStations < 3 || steps.diagramFishTokens === 0 || steps.docxCoveredGate === 0;
+    || steps.docxDiagram === 0 || steps.diagramStations < 3 || steps.diagramFishTokens === 0 || steps.docxCoveredGate === 0
+    || !steps.nutritionCard || !steps.nutritionKcal || !steps.nutritionMacroHonesty;
   report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed });
   console.log(failed
     ? `\n== cook-flow (FAIL) == steps: ${JSON.stringify(steps)} errors: ${JSON.stringify(pageErrors)}`

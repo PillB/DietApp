@@ -494,6 +494,15 @@ Debug trail: (1) numeric() in tests/composition_audit.test.cjs STRIPPED_MINUS fo
 Tests: 142 pass / 0 fail; lint clean.
 Next single command/ticket: batch-3 crawl for the remaining ~20 rows, then computed-perServing WIRING into the recipes and served Nutrition panel (falsifiable E2E: 'computed-pending-weighin' displays on recipe cards, perServing macros appear when all uses have a composed row; NS rows show the 'macros pendiente' tag).
 
+## Session log — 2026-10-31, session 3, part 32 (computed perServing served)
+
+Files: assets/js/cook-mode-ui.js (new #cook-nutrition card: renders DietNutritionCore.computedPerServing with 'computed-pending-weighin' status, kcal/protein/fiber, '±N.row(s) without composition — macros pendiente' warning when the composition row is missing, and the honesty footer 'NOT a weighed kitchen yield; P4.4 worksheet required to promote to assessed'), assets/js/diet-nutrition-core.js (script added to index), index.html (boot prefetches data/reference/food-composition-tpca.v1.json into window.__pgkComposition alongside the canonical file), tests/e2e_served.cjs cook-flow extended.
+
+E2E cook-flow PASS (extended): the docx pescado_ajonjoli_diet card displays the computed per-serving kcal/protein/fiber card with the honest status + composition-missing-row counter + NOT-a-weighed-yield disclaimer; all prior assertions unchanged PASS; 0 page errors.
+
+Tests: 142 pass / 0 fail; E2E PASS (6 flows); lint clean after one no-self-assign cleanup.
+Next single command/ticket: batch-3 crawl (remaining ~20 rows so that every recipe use in the 7 weighed + 4 docx recipes is composed), then the computed-perServing macro panel on the SHOPPING side too (wheel-reinforcing the 'cautious' display), then the Pages deploy gate checklist.
+
 ## Update template for next session
 
 ## Update template for next session

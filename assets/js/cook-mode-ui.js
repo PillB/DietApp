@@ -76,6 +76,7 @@
       <div id="cook-badge" class="mt-2 text-sm"></div>
       <div id="cook-diagram" class="mt-3"></div>
       <ol id="cook-steps" class="mt-3 space-y-2"></ol>
+      <div id="cook-nutrition" class="mt-3"></div>
       <div id="cook-leftover-result" class="mt-3 text-xs text-stone-300"></div>
       <div id="cook-review-status" class="mt-3 text-xs"></div>
     `;
@@ -121,7 +122,28 @@
     section.querySelector('#cook-review-status').innerHTML = review.readyForPublication
       ? '<span class="text-emerald-300">dual review complete</span>'
       : `<span class="text-red-300">not ready for publication: pending dual review (${review.missing.filter((m) => m.field === 'approval').length} approvals, ${review.missing.filter((m) => m.field !== 'approval').length} fields)</span>`;
+    renderNutritionCard(section, recipe);
     renderLeftovers(section);
+  }
+
+  /** Computed-pending-weighin per-serving macros; honest zero-field when compositions missing */
+  function renderNutritionCard(section, recipe) {
+    const host = section.querySelector('#cook-nutrition');
+    if (!host) return;
+    const NUTRITION = root.DietNutritionCore;
+    if (!NUTRITION) { host.innerHTML = '<p class="text-xs text-stone-500">(composition engine not loaded)</p>'; return; }
+    const comp = {};
+    for (const u of recipe.ingredients) {
+      if (root.__pgkComposition && root.__pgkComposition[u.ingredientId]) comp[u.ingredientId] = root.__pgkComposition[u.ingredientId];
+    }
+    const per = NUTRITION.computedPerServing(recipe, comp);
+    host.innerHTML = `
+      <div class="rounded border border-stone-700 px-3 py-2 text-sm">
+        <span class="text-amber-300">Per serving (computed-pending-weighin):</span>
+        <span class="text-stone-200">${per.kcal == null ? '—' : per.kcal + ' kcal'} · ${per.proteinG == null ? '—' : per.proteinG + ' g protein'} · ${per.fiberG == null ? '—' : per.fiberG + ' g fiber'}</span>
+        ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ingredient row(s) without composition — macros pendiente</span>` : '<span class="ml-2 text-emerald-300/80">all uses composed ✓</span>'}
+        <span class="block text-xs text-stone-500">TPCA-sourced computed estimate; NOT a weighed kitchen yield; P4.4 worksheet required to promote to 'assessed'.</span>
+      </div>`;
   }
 
   /** Cooking-for-Engineers style diagram: stations across columns, ordered
