@@ -34,8 +34,10 @@ function rowValues(code) {
 test('every curated composition row exists in the official TPCA crawl by code (NS rows exempt by design)', () => {
   for (const [canon, spec] of Object.entries(composed.rows)) {
     if (spec.code == null) {
-      // NS entry: must carry an explicit NS/owner-label note, never a silent guess
-      assert.ok(spec.note && /NS|owner|estimate/i.test(spec.note), `${canon}: null code requires an NS/owner-label note`);
+      // NS entry: must carry an explicit NS/owner-label note, never a silent guess.
+      // OR a documented alternate source (e.g. USDA FDC for foods TPCA doesn't cover).
+      const altSource = spec.source && /^usda-fdc\/\d+$/.test(spec.source);
+      assert.ok(altSource || (spec.note && /NS|owner|estimate/i.test(spec.note)), `${canon}: null code requires an NS note or a usda-fdc source`);
       continue;
     }
     assert.ok(findCrawlRow(spec.code), `${canon}: TPCA code ${spec.code} not in crawl`);
@@ -44,7 +46,7 @@ test('every curated composition row exists in the official TPCA crawl by code (N
 
 test('curated kcal/protein/fat/carb match the crawl row exactly (no typed-from-memory numbers)', () => {
   for (const [canon, spec] of Object.entries(composed.rows)) {
-    if (spec.code == null) continue; // NS entries: no crawl row by design (governed by the NS test above)
+    if (spec.code == null) continue; // NS/USDA rows: no TPCA crawl row by design (governed by the NS/source test above)
     const vals = rowValues(spec.code);
     assert.ok(vals, `${canon} no crawl row`);
     assert.strictEqual(Math.abs((vals.kcal || 0) - (spec.per100g.kcal || 0)) < 0.01, true, `${canon} kcal ${vals.kcal} ≠ ${spec.per100g.kcal}`);

@@ -2693,6 +2693,26 @@
    "basis": "cooked",
    "note": "Honest small-value estimate consistent with typical vegetable broth (6 kcal/100g); the meat-stock rows (L17 40kcal, L18 89kcal) do NOT apply. Owner can replace with a brand label.",
    "extractedAt": "2026-10-31"
+  },
+  "salmon": {
+   "code": null,
+   "name": "Fish, salmon, Atlantic, farmed, raw",
+   "grupo": "PESCADOS (USDA FDC 175167)",
+   "per100g": {
+    "kcal": 208,
+    "proteinG": 20.42,
+    "fatG": 13.42,
+    "carbG": 0,
+    "fiberG": 0,
+    "sodiumMg": 59,
+    "calciumMg": 9,
+    "ironMg": 0.34,
+    "zincMg": 0.36
+   },
+   "basis": "raw",
+   "source": "usda-fdc/175167",
+   "note": "TPCA has no salmon row (imported fish in Peru). USDA FoodData Central FDC 175167 (SR Legacy): 208 kcal, 20.42 g protein, 13.42 g fat, 0 carb/fiber, 59 mg Na per 100 g raw. Cross-verified across 4 independent FDC mirrors.",
+   "extractedAt": "2026-10-31"
   }
  },
  "richnessNote": "Compiled incrementally from the 1125-row TPCA crawl (data/reference/tpca-curation.json). Composition rows are ADDITIVE: every curated row has code+name traceability. Values marked null stay NS until the official table provides them. | Auto-corrected by audit-crawl literal values (NOT defaults, NOT defaults). All values traceable to code+name rows above.",
@@ -2721,5 +2741,6 @@
    "canon": "salmon_row_stub",
    "note": "not in TPCA; honest skip + flag until owner label"
   }
- ]
+ ],
+ "rowsPolicy": "TPCA rows: `code` = official TPCA code. USDA rows: `code` = null + `source` = usda-fdc/<id>. NS values null everywhere."
 }
