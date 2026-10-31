@@ -514,6 +514,13 @@ Salt-water fish (salmon), corn tortilla, composite plantain/fruits, vegetable st
 Tests: 142 pass / 0 fail; E2E PASS (6 flows); lint clean.
 Next single command/ticket: production staging + serve honest display of the deficit plan's computed perServing in the planner, then the Pages deploy-gate pass (requires owner URL/consent).
 
+## Session log — 2026-10-31, session 3, part 34 (deficit week perServing + deploy gate)
+
+Files: assets/js/planner-ui.js (deficit-week explanations now display the per-pick computed kcal/protein/fiber with the 'computed-pending-weighin' tag when all ingredient uses are composed; missing rows list by name when not; composition-negative lines clear), docs/DEPLOY_CHECKLIST.md (NEW: the full Pages publish checklist with 4 gates — owner URL/consent, artifact readiness all green, post-push plans, post-deploy mobile verification).
+
+E2E planner-flow PASS (extended card: the pick explanation now shows macros alongside the factual ranking — honest labels intact); unit tests 142 pass / 0 fail; lint clean.
+Next single command/ticket: owner action — supply the GitHub repo URL + authorization statement; then the deployment steps in docs/DEPLOY_CHECKLIST.md gates 3-4 can execute. Also the facet the pending LEDGER-2 weigh-in worksheet and the batch-4 composition rows (if owner expands beyond docx TPCA lane) can run in parallel while we wait for consent.
+
 ## Update template for next session
 
 ## Update template for next session
