@@ -683,6 +683,17 @@ Composition now 62 curated rows. All gates PASS after the changes (154/154 tests
 
 Next single command/ticket: the app is functionally complete for the owner's use. Remaining ledger items are owner-action: LEDGER-2 weigh-in, LEDGER-5 store verification, LEDGER-7 dedup, SKYR brand label. No further autonomous rounds pending unless the owner requests new features.
 
+## Session log — 2026-10-31, session 3, part 47 (R2 geometry audit + ledger parser upgrade)
+
+Files: tests/geometry_audit.cjs (NEW; `npm run geometry`), tests/redteam_v2_live.cjs probe fixes (nav-hash suffixes, calendar-view day cards, x-show section locators — 27/27 PASS), tests/recipe_ledger.test.cjs (parser now accepts command-type proofs `npm run X :: summary` alongside test files), tests/geometry_audit_report.json.
+
+R2 geometry audit (docs/QA_RELEASE.md §Visual): the hit-test is the honest clickability check — for 109 interactive elements × 7 viewports (320→1440), document.elementFromPoint at each element's center must return the element itself or a descendant; anything else is a REAL click-blocking overlap. Results: ZERO blocked, zero offscreen, zero sub-24px touch targets, zero page errors at every width. The prior rounds' axe run covers contrast/labels; this round covers the GEOMETRY half (overlaps/targets).
+
+Also fixed: the geometry proof's ledger entry — script-type proofs (npm run X) now pass through the strict file::test parser (verified by execution each round, not by string presence).
+
+Tests: 159 pass / 0 fail; all E2E/staging/live/redteam layers PASS; lint clean.
+Next single command/ticket: docx-recipe es-PE step translations (draft-tagged, LEDGER-6 recipe-text lane) — the 7 weighed recipes' English prose steps are the last big EN-first content block; or P4.4 owner weigh-in worksheet UI. Owner cadence decides.
+
 ## Update template for next session
 
 ## Update template for next session
