@@ -141,6 +141,16 @@
 
   function bind(c, model, section) {
     const form = section.querySelector('#engine-plan-form');
+    // HTML5 validation blocks submit silently; surface WHY inline (a11y + UX)
+    form.addEventListener('invalid', (ev) => {
+      const target = ev.target;
+      const status = section.querySelector('#engine-status');
+      if (target.validity && target.validity.rangeUnderflow) {
+        status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${root.I18N ? root.I18N.t('shopping.portions') : 'portions'} ${target.value} < 1`;
+      } else if (target.validity && target.validity.valueMissing) {
+        status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${t('shopping.date')}`;
+      }
+    }, true); // capture: invalid doesn't bubble
     form.addEventListener('submit', (ev) => {
       ev.preventDefault();
       const entry = {
