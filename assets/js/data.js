@@ -171,7 +171,7 @@ window.MEAL_PLAN_DATA = {
     {
       "week": 1,
       "title": "Week 1 - Peruvian-Nikkei & Seafood Fusion",
-      "theme": "Introduce the month with dishes that celebrate Peru’s Nikkei heritage and the user’s love of eggs, artichokes and seafood. Expect bright citrus and ají sauces balancing creamy elements.",
+      "theme": "Introduce the month with dishes that celebrate Peru’s Nikkei heritage and the user’s love of eggs, artichokes and seafood. Expect bright citrus and ají sauces balancing creamy elements.", "themeEs": "Presenta el mes con platos que celebran la herencia Nikkei de Perú y el amor del comensal por los huevos, alcachofas y mariscos. Espera cítricos brillantes y salsas de ají que equilibran los elementos cremosos.",
       "highlights": [
         "Fresh fish (salmon, tuna, cod) and shellfish (prawns) for ceviche-like and sautéed dishes.",
         "Whole-grain English muffins, quinoa and brown rice to replace white breads and refined grains.",
@@ -182,7 +182,7 @@ window.MEAL_PLAN_DATA = {
     {
       "week": 2,
       "title": "Week 2 - Italian & Mediterranean Comfort",
-      "theme": "Honour Italian classics-pasta, pizza, risotto-reimagined with whole grains and Peruvian accents. Rich cheeses and sauces pair with roasted vegetables and seafood.",
+      "theme": "Honour Italian classics-pasta, pizza, risotto-reimagined with whole grains and Peruvian accents. Rich cheeses and sauces pair with roasted vegetables and seafood.", "themeEs": "Honra los clásicos italianos —pasta, pizza, risotto— reimaginados con granos integrales y productos peruanos.",
       "highlights": [
         "Brown rice risotto, whole-grain gnocchi and pizza dough highlight fibre-rich grains.",
         "Parmesan, pecorino and mozzarella used judiciously to add umami without overwhelming.",
@@ -193,7 +193,7 @@ window.MEAL_PLAN_DATA = {
     {
       "week": 3,
       "title": "Week 3 - Mexican & Asian Street Food Remix",
-      "theme": "A playful mash-up of Mexican street dishes and East Asian favourites, featuring tacos, ramen and mapo tofu. Spices, fermented flavours and pickles keep dishes lively.",
+      "theme": "A playful mash-up of Mexican street dishes and East Asian favourites, featuring tacos, ramen and mapo tofu. Spices, fermented flavours and pickles keep dishes lively.", "themeEs": "Una mezcla juguetona de platos callejeros mexicanos y favoritos del este de Asia, con proteínas magras y verduras crujientes.",
       "highlights": [
         "Whole-grain tortillas, brown rice and quinoa support tacos and bowls.",
         "Homemade salsas (salsa roja, chipotle crema), miso glazes and birria broth provide depth.",
@@ -204,7 +204,7 @@ window.MEAL_PLAN_DATA = {
     {
       "week": 4,
       "title": "Week 4 - Elevated American Classics",
-      "theme": "Finish with comfort foods elevated through technique-sous-vide short ribs, gourmet burgers and refined fried chicken. Sweet dishes showcase balanced indulgence.",
+      "theme": "Finish with comfort foods elevated through technique-sous-vide short ribs, gourmet burgers and refined fried chicken. Sweet dishes showcase balanced indulgence.", "themeEs": "Cierra con comida reconfortante elevada por técnica —costillas sous-vide, postres gourmet— sin azúcares añadidos.",
       "highlights": [
         "Whole-grain bagels and sourdough for breakfast; almond-flour breading for fried chicken; farro and purple potatoes for starch.",
         "Focus on searing and sous-vide for perfect textures and controlled fat content.",
