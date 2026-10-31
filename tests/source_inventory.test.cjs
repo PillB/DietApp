@@ -13,28 +13,38 @@ const crypto = require('node:crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 
-function verifyInventory(root) {
+function verifyInventory(root, { allowAbsentUntrackedOriginals = false } = {}) {
   const inventoryPath = path.join(root, 'docs/source-inventory.json');
   const doc = JSON.parse(fs.readFileSync(inventoryPath, 'utf8'));
   assert.strictEqual(doc.schema, 'source-inventory/v1', 'inventory schema version must be v1');
   const problems = [];
+  const skipped = [];
   for (const e of doc.entries) {
     assert.match(e.sha256, /^[0-9a-f]{64}$/, `hash format invalid for ${e.path}`);
     const abs = path.join(root, e.path);
+    if (e.gitTracked) problems.push(`private artifact is git-tracked (must never happen): ${e.path}`);
     if (!fs.existsSync(abs)) {
-      problems.push(`listed artifact is missing on disk: ${e.path}`);
+      const isOriginal = ['data/private/', 'context/', 'Context information/'].some(prefix => e.path.startsWith(prefix));
+      if (allowAbsentUntrackedOriginals && isOriginal && !e.gitTracked) {
+        skipped.push({ path: e.path, reason: 'gitignored original absent from CI checkout; hash NOT reverified' });
+      } else problems.push(`listed artifact is missing on disk: ${e.path}`);
       continue;
     }
-    if (e.gitTracked) problems.push(`private artifact is git-tracked (must never happen): ${e.path}`);
     const actual = crypto.createHash('sha256').update(fs.readFileSync(abs)).digest('hex');
     if (actual !== e.sha256) problems.push(`sha256 drift for ${e.path}: inventory ${e.sha256.slice(0, 12)} != actual ${actual.slice(0, 12)}`);
   }
-  return { doc, problems };
+  return { doc, problems, skipped };
 }
 
-test('real repo inventory: schema valid, no tracked private artifacts, no hash drift', () => {
-  const { problems } = verifyInventory(ROOT);
+test('real repo inventory: validate available artifacts; account explicitly for absent gitignored originals on CI', () => {
+  const { problems, skipped } = verifyInventory(ROOT, { allowAbsentUntrackedOriginals: process.env.CI === 'true' });
   assert.deepStrictEqual(problems, []);
+  if (process.env.CI === 'true') {
+    assert.ok(skipped.every(x => x.reason.includes('NOT reverified')));
+    console.log('CI source inventory: ' + skipped.length + ' untracked source hashes NOT verified (files unavailable)');
+  } else {
+    assert.deepStrictEqual(skipped, [], 'local source inventory must verify every present input');
+  }
 });
 
 function makeFixtureRoot(doc) {
