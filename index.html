@@ -222,7 +222,7 @@
                 <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.servings ? `${recipe.servings} servings` : 'reference' "></span>
                 <span class="rounded-full bg-white/10 px-3 py-1" x-text="recipe.totalTime || 'timing in source'"></span>
                 <span class="rounded-full bg-amber-300/15 px-3 py-1 text-amber-200" x-text="`${recipeSectionCount(recipe)} parsed fields`"></span>
-                <span class="rounded-full bg-emerald-300/15 px-3 py-1 text-emerald-200" x-text="recipe.compliance?.status || 'Reviewed'"></span>
+                <span class="rounded-full bg-emerald-300/15 px-3 py-1 text-emerald-200" x-text="recipe.compliance?.statusEs || recipe.compliance?.status || 'Revisado'"></span>
               </div>
             </button>
           </template>
@@ -316,7 +316,7 @@
               <button @click="selectedRecipe = recipe" class="rounded-2xl bg-stone-950/40 p-4 text-left hover:bg-stone-950/70">
                 <p class="text-xs uppercase tracking-[0.18em] text-amber-300/70" x-text="recipe.compliance?.statusEs || recipe.compliance?.status || 'Revisado'"></p>
                 <h4 class="mt-1 font-display text-xl text-amber-50" x-text="recipe.name"></h4>
-                <p class="mt-2 text-xs leading-5 text-stone-400" x-text="(recipe.compliance?.revisionNotes || ['No revisions required.'])[0]"></p>
+                <p class="mt-2 text-xs leading-5 text-stone-400" x-text="((recipe.compliance?.revisionNotesEs || recipe.compliance?.revisionNotes) || ['Sin revisiones requeridas.'])[0]"></p>
               </button>
             </template>
           </div>
@@ -475,9 +475,9 @@
         </section>
         <section class="rounded-[1.5rem] bg-emerald-300/10 p-5 lg:col-span-2">
           <h3 class="font-display text-2xl text-amber-100">Revisión de cumplimiento</h3>
-          <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.compliance?.auditSummary || 'Reviewed against the dietary guideline rule set.'"></p>
+          <p class="mt-3 text-sm leading-7 text-stone-200" x-text="selectedRecipe?.compliance?.auditSummaryEs || selectedRecipe?.compliance?.auditSummary || 'Revisada contra el conjunto de reglas de pautas dietéticas.'"></p>
           <ul class="mt-3 space-y-2 text-sm leading-6 text-stone-300">
-            <template x-for="note in selectedRecipe?.compliance?.revisionNotes || []" :key="note"><li>✓ <span x-text="note"></span></li></template>
+            <template x-for="note in selectedRecipe?.compliance?.revisionNotesEs || selectedRecipe?.compliance?.revisionNotes || []" :key="note"><li>✓ <span x-text="note"></span></li></template>
           </ul>
         </section>
         <details class="recipe-prose rounded-[1.5rem] bg-stone-950/50 p-5 lg:col-span-2">

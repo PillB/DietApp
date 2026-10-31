@@ -553,7 +553,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se reemplazó la trucha ahumada por trucha fresca asada para reducir el sodio y evitar la ambigüedad de alimentos curados/ahumados ultraprocesados. [es-PE borrador]",
+     "Se redujo el azúcar de los muffines de 10 g a 6 g por mousse de masa. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -602,7 +607,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El sake es opcional y el fondo/vinagre sin alcohol es el defecto. [es-PE borrador]",
+     "Se redujo la intensidad de sodio cambiando a tamari bajo en sodio y menos salsa de pescado. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -650,7 +660,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El líquido de desglase por defecto cambió de vino a verjus; el vino queda opcional. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -700,7 +714,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se redujo el sodio de las salsas de soya/ostra. [es-PE borrador]",
+     "Se especificó res magra y salsa de ostra libre de aditivos o de champiñones. [es-PE borrador]",
+     "El endulzante se mantuvo en 4 g en total. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -752,7 +772,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se redujo el azúcar añadida de >50 g por porción a alrededor de 9 g por porción. [es-PE borrador]",
+     "El método de cocción por defecto es horneado/air-fryer con freidura en sartén solo ocasional. [es-PE borrador]",
+     "El mezcal por defecto se reemplazó por café espresso. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -802,7 +828,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -850,7 +880,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se redujo la miel a 24 g en total y se retiró el azúcar de coco. [es-PE borrador]",
+     "Se especificó chocolate negro 85%. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -899,7 +934,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -946,7 +985,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El condimento emulsionado comercial se reemplazó por yogur más aioli casero de aceite de oliva. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -996,7 +1039,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El azúcar añadida de la salsa de tomate se reemplazó por zanahoria rallada, con 2 g de miel solo si es necesario. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1043,7 +1090,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se redujo el endulzante añadido a 6 g en total o se reemplazó por pera rallada. [es-PE borrador]",
+     "La salsa de soya pasó a ser baja en sodio. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1093,7 +1145,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El azúcar añadida total se redujo a 40 g para 4 porciones. [es-PE borrador]",
+     "El Marsala es opcional y el extracto de almendra es el defecto. [es-PE borrador]",
+     "Se especificó cacao sin azúcar y chocolate 85%. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1139,7 +1197,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1185,7 +1247,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se redujo la miel y el mirin se reemplazó por vinagre de arroz. [es-PE borrador]",
+     "La salsa de soya pasó a ser baja en sodio. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1229,7 +1296,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "La salsa de soya pasó a ser baja en sodio y el endulzante añadido se mantuvo mínimo. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1273,7 +1344,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1318,7 +1393,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1365,7 +1444,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El salmón curado comercial se reemplazó por salmón fresco asado lento. [es-PE borrador]",
+     "La miel de maíz (malt syrup) se redujo a 6 g y el endulzante del pepinillo a 4 g. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1415,7 +1499,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El azúcar del curado se redujo de 10 g a 4 g en total. [es-PE borrador]",
+     "El glaseado cambió a reducción de granada sin azúcar. [es-PE borrador]",
+     "Marcada como carne roja ocasional y porcionada. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1462,7 +1552,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1506,7 +1600,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1554,7 +1652,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Los condimentos embotellados dulce/salados se reemplazaron por glaseado casero y aioli de yuzu y yogur. [es-PE borrador]",
+     "La salsa de soya pasó a ser baja en sodio. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1599,7 +1702,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1645,7 +1752,12 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "La carne de fiambre curada se reemplazó por pavo o lomo de cerdo asados en casa. [es-PE borrador]",
+     "Se redujo el azúcar de la masa y el endulzante del glaseado para mantener el azúcar añadida bajo 10 g por porción. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1694,7 +1806,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Las galletas saladas de paquete se reemplazaron por avena en hojuelas o papa cocida. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1742,7 +1858,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se retiró totalmente la carne procesada de fiambre. [es-PE borrador]",
+     "La miel de rocoto se redujo a 24 g en total. [es-PE borrador]",
+     "El picante Diavola se mantiene vía champiñones, ají y rocoto. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1786,7 +1908,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "Se agregaron metadatos de cumplimiento DGA y notas de ejecución conscientes del sodio/aditivos donde corresponde. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1835,7 +1961,13 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "El azúcar añadida se redujo a unos 6.25 g por porción. [es-PE borrador]",
+     "El espresso es el aromatizante por defecto y el whiskey es opcional. [es-PE borrador]",
+     "Se especificó chocolate negro 85%. [es-PE borrador]"
+    ]
    }
   },
   {
@@ -1888,7 +2020,11 @@ window.MEAL_PLAN_DATA = {
     "auditSummary": "Reviewed against the embedded DGA rule set. Recipe keeps its original flavor-map role while using whole/minimally processed ingredients, whole grains where applicable, controlled added sugar, protein diversity, and low-additive technique choices.",
     "ingredientReviewStatus": "Compliant after revision",
     "nutrientVerified": false,
-    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use."
+    "nutrientReviewNote": "No validated calories/protein/fat/carb/fiber/sodium/added sugar per serving. Re-weigh ingredients and cross-check labels before clinical use.",
+    "statusEs": "Revisión editorial; nutrientes sin verificar [es-PE borrador]",
+    "revisionNotesEs": [
+     "La nota de la base se actualizó para reflejar menos jarabe de malta y servicio con salmón fresco. [es-PE borrador]"
+    ]
    }
   }
  ],
