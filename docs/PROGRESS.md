@@ -395,9 +395,21 @@ E2E cook-flow PASS (extended): docx recipe `pescado_ajonjoli_diet` selectable (�
 data/canonical/docx-diet-recipes-canon.v1.json is now a SERVED asset (public; validated by red-team 5 lenses; owner-decree style exclusion not needed — not private).
 
 Tests: 131 pass / 0 fail; lint clean; E2E PASS (6 flows).
-## Update template for next session
 
-## Update template for next session
+## Session log — 2026-10-31, session 3, part 24 (deficit-week assembler + schema v0.4 bilingual slots)
+
+Files: assets/js/deficit-planner.js (new pure pipeline: DietCore gates -> 7-day Monday-anchored grid via CalendarCore.weekOf, slot-candidate PICKS from FlavorRanking top-1 per slot with visible labeled features, portions from caller defaults, NO auto-scaled invention), tests/deficit_planner.test.cjs (3 tests), test list updated.
+
+Test-proven facts:
+- DietCore gates fire BEFORE any entry is constructed (below_floor; unacknowledged_aggressive). 1200-floor and the 1500 anchor verified.
+- Entries are schema-valid PlanEntries (7 x slots). Slot-key issue root-caused: schema v0.3 only accepted EN lane names while the app/owner use es-PE slots -> schema v0.4 accepts BOTH sets bilingual ('breakfast'/'desayuno', etc.). P6 translation for DISPLAY names remains a locale concern, not a schema constraint.
+- Slots with NO candidates produce warnings ('no candidate - leave EMPTY rather than invent a meal'); no fake zero rows.
+- Every pick carries its labeled features (affinity reasons) and the 'Why this rank' explanation; nutrition-pending warning (LEDGER-3 presence) is attached to every assembly output.
+
+Debug trail: 3 real fixes - (1) week anchoring: nextMonday jumps a full week when given a Monday; the planner anchors via weekOf(start)[0]; (2) schema slot-enum collision (English-only) documented + uplifted; (3) test defects: warning object vs string regex, missing startFromIso, atomicity asserted as throw.
+
+Tests: 134 pass / 0 fail; lint clean.
+Next single command/ticket: serve the deficit-week assembler in the planner UI (target kcal presets + acknowledgment checkbox -> real week view), the final P2/Diet UI; then P6 localization pass.
 
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
