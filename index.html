@@ -61,6 +61,7 @@
           ['planner','nav.planner','🗓','#planner'],
           ['cookmode','nav.cook','🔥','#cookmode'],
           ['flavoratlas','nav.flavor','🗺','#flavoratlas'],
+          ['weighin','weighin.title','⚖','#weighin'],
           ['compliance','nav.compliance','✅','#compliance'],
           ['nutrition','nav.nutrition','⚖️','#nutrition'],
           ['knowledge','nav.knowledge','🧬','#knowledge']
@@ -424,6 +425,7 @@
       <section id="planner" class="max-w-full mt-8"></section>
       <section id="cookmode" class="max-w-full mt-8"></section>
       <section id="flavoratlas" class="max-w-full mt-8"></section>
+      <section id="weighin" class="max-w-full mt-8"></section>
     </main>
   </div>
 
@@ -504,6 +506,8 @@
   <script defer src="assets/js/i18n.js"></script>
   <script defer src="assets/js/cooking-core.js"></script>
   <script defer src="assets/js/cook-mode-ui.js"></script>
+  <script defer src="assets/js/weighin-core.js"></script>
+  <script defer src="assets/js/weighin-ui.js"></script>
   <script defer src="assets/js/diet-nutrition-core.js"></script>
   <script defer src="assets/js/adequacy-core.js"></script>
   <script defer src="assets/js/composition-bridge.js"></script>
@@ -545,6 +549,7 @@
           const shopping = window.ShoppingUI.init({});
           window.PlannerUI.init({ model: shopping.model });
           window.CookModeUI.init({ model: shopping.model });
+          window.WeighInUI.init({ model: shopping.model });
           window.FlavorUI.init({});
           fetch('data/fixtures/ingredient-bridge-v1.json').then((r) => r.ok ? r.json() : null)
             .then((bridge) => { window.INGREDIENT_CATEGORY_BRIDGE = bridge ? bridge.bridge : {}; })
