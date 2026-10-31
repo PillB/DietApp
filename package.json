@@ -16,7 +16,8 @@
     "redteam2": "node tests/redteam_v2_live.cjs",
     "geometry": "node tests/geometry_audit.cjs",
     "audit": "node tests/comprehensive_live.cjs",
-    "r3": "bash tests/release_regression.sh"
+    "r3": "bash tests/release_regression.sh",
+    "sync": "node scripts/sync_data_js.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
