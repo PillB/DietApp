@@ -1,0 +1,62 @@
+{
+  "live": "https://pillb.github.io/DietApp/",
+  "hardFail": false,
+  "sweeps": [
+    {
+      "width": 320,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 375,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 768,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 1024,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 1366,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    },
+    {
+      "width": 1440,
+      "total": 109,
+      "blocked": [],
+      "offscreen": [],
+      "tiny": [],
+      "pageErrors": []
+    }
+  ]
+}

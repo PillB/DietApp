@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "privacy": "node scripts/privacy_check.cjs",
     "check": "npm run lint && npm run test && npm run privacy && python3 scripts/check_handover.py",
-    "redteam2": "node tests/redteam_v2_live.cjs"
+    "redteam2": "node tests/redteam_v2_live.cjs",
+    "geometry": "node tests/geometry_audit.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
