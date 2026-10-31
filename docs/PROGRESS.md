@@ -762,6 +762,19 @@ This closes the LAST i18n surface: every recipe now displays either an es-PE nam
 
 Tests: 169 pass / 0 fail; e2e PASS; pushed 7b0866e.
 Next single command/ticket: owner-action items only (LEDGER-2 weigh-in, brand labels, store walk, dedup). The application is complete and fully live.
+## Session log - 2026-10-31, session 3, part 56 (final validation round complete)
+
+Everything pushed, built, and verified at the latest commit (d8890f9):
+- npm run audit: COMPREHENSIVE LIVE AUDIT: ALL PASS (33 checks) at the deployed URL
+- npm run redteam: 0 findings of 16 | redteam2: 27/27 clean
+- npm run geometry: PASS (763 hit-tests) | staging: PASS | live E2E: PASS
+- npm test: 169/169 | eslint clean
+- 13 live es-PE screenshots committed (full page, all 5 panels, cookmode-docx with CFE diagram + micros, planner-week with deficit entries + explanations, adequacy table, mobile 390px, dashboard, recipes-EN-notice)
+- LEDGER D1-D38 all closed with named proofs; the R3 consolidated regression (npm run r3) runs all 11 layers: 0 failed layers
+
+Root causes fixed this round: (1) engine-panel element screenshots timed out (Alpine x-show collapsed height) -> switched to boundingBox+clip method; (2) D38's proof format was bash-style, normalized to npm-run style for the strict parser.
+
+The deployed site at https://pillb.github.io/DietApp/ is COMPLETE: Spanish-first, diet-gated, safety-verified, explainable, 6-locale, offline-capable, privacy-walled - with every claim falsifiable by the 11-layer test stack. Remaining ledger OPEN items are owner-action only (weigh-in, brand labels, store walk, dedup).
 
 ## Update template for next session
 
