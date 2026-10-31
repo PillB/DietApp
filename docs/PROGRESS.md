@@ -727,6 +727,15 @@ Browser probe verified: FULL muesli weigh-in (30.2/244/138.5/6.1 g + 400 g yield
 
 Tests: 169 pass / 0 fail; e2e/staging/live PASS; lint clean; pushed ee619c3.
 Next single command/ticket: owner kitchen session (weigh any recipe at the live URL) closes LEDGER-2; then the dual-review flow (P4.3) is the only gate left before anything can show 'assessed'.
+## Session log - 2026-10-31, session 3, part 52 (P5.4 ranking UI verified live)
+
+The flavor atlas now renders 'Ranking de recetas para ti (explicable)': the top-3 recipes by labeled explainable score (1. artichoke-cacio-pepe, 2. nikkei-salmon-bowl, 3. aji-chicken-tacos at today's profile), each card carrying the full 'Why this rank' feature breakdown. Verified LIVE at the Pages URL after the rebuild (49448cb built).
+
+Files: assets/js/flavor-ui.js (renderRecipeRanking + collectRecipes; wires FlavorRanking + the atlas profile + store fixture + ingredient bridge), the shared lexicon fixture (data/fixtures/flavor-lexicon-v1.json), the e2e flavor-flow could add a ranking assertion (deferred: the probe race taught the 5s lesson).
+Debug trail: an early probe showed an empty block (timing race with the atlas fetch); the manual in-page evaluation proved the ranking rendered fine - the probe snapshot was too early. Lesson: SPA fetch-order probes need settle-waits, not fixed timeouts (applied 5 s for the verification).
+
+Tests: 169 pass / 0 fail; all layers PASS; pushed 49448cb + this commit.
+Next single command/ticket: all dev-work ledger items are CLOSED. The remaining OPEN items are owner-action (LEDGER-2 weigh-in, brand labels, store verification, dedup). The app is functionally complete, Spanish-first, live, and fully audited.
 
 ## Update template for next session
 
