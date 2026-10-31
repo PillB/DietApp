@@ -36,6 +36,19 @@
     const section = dom.getElementById('shopengine');
     if (!section) return { mounted: false, model: null };
     const model = hydrate(c, fed);
+    if (root.DOCX_DIET_RECIPES) {
+      model.docxRecipes = root.DOCX_DIET_RECIPES.recipes.map((r) => ({
+        ...r.meta,
+        equipment: (r.meta.equipment || []).map((e) => String(e).split('|')[0]),
+        ingredients: r.ingredients,
+        steps: r.steps,
+        flavorTags: r.meta.flavorTags || [],
+        diagram: r.diagram,
+        mise_en_place: r.mise_en_place,
+        allergens: r.allergens,
+        sourceFamily: 'owner-docx',
+      }));
+    }
     buildStaticSkeleton(section);
     bind(c, model, section);
     render(c, model, section, { silent: false });
@@ -191,7 +204,8 @@
     if (root.I18N) console.log('[render] lang=' + root.I18N.getLanguage() + ' model-recipes=' + (model.recipes || []).length + ' sel-len=' + (form.querySelector('#engine-recipe') && form.querySelector('#engine-recipe').options && form.querySelector('#engine-recipe').options.length));
     if (form.dataset.recipesReady !== '1') {
       const select = form.querySelector('#engine-recipe');
-      select.innerHTML = model.recipes.map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}</option>`).join('');
+      const allRecipes = [...(model.recipes || []), ...(model.docxRecipes || [])];
+      select.innerHTML = allRecipes.map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}${r.sourceFamily === 'owner-docx' ? ' ⭐' : ''}</option>`).join('');
       form.dataset.recipesReady = '1';
     }
     dateDefaults(c, section);
