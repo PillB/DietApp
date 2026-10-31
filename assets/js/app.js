@@ -117,6 +117,7 @@ function mealPlanApp() {
       'How This Will Guide the Month': 'Cómo guiará este el mes',
     },
     view: 'dashboard',
+    mobileNavOpen: false,
     selectedWeek: 1,
     selectedDayIndex: 0,
     selectedRecipe: null,
@@ -144,7 +145,7 @@ function mealPlanApp() {
       this.loadChecks();
       this.ensureRecipeIndex();
       this.readRoute();
-      window.addEventListener('hashchange', () => this.readRoute());
+      window.addEventListener('hashchange', () => { this.mobileNavOpen = false; this.readRoute(); });
     },
 
     /**
@@ -189,7 +190,7 @@ function mealPlanApp() {
       const raw = (window.location.hash || '#dashboard').replace(/^#/, '');
       const parts = raw.split('/').filter(Boolean);
       const page = parts[0] || 'dashboard';
-      if (['dashboard', 'calendar', 'recipes', 'knowledge', 'compliance', 'nutrition'].includes(page)) {
+      if (['dashboard', 'calendar', 'recipes', 'knowledge', 'compliance', 'nutrition', 'shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(page)) {
         this.view = page;
       } else if (page === 'week') {
         this.view = 'week';
