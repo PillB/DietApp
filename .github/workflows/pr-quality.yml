@@ -1,0 +1,71 @@
+name: PR quality and independent browser evidence
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Audit source-vs-served recipe data
+        run: node scripts/sync_data_js.cjs --check
+      - name: JavaScript lint and complexity budget
+        run: npm run lint
+      - name: Corpus, food science, math and i18n tests
+        run: npm test
+      - name: Privacy scan
+        run: npm run privacy
+      - name: Handover integrity
+        run: python3 scripts/check_handover.py
+      - name: Set up real Chromium
+        run: npx playwright install --with-deps chromium
+      - name: 26 direct route states, shopping and cook controls
+        run: npm run candidate:routes
+      - name: Real local served app integration
+        run: npm run e2e
+      - name: Responsive and a11y staging
+        run: npm run staging
+      - name: Save screenshots, text controls and test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-candidate-evidence
+          if-no-files-found: warn
+          path: |
+            tests/candidate_route_audit_report.json
+            tests/screenshots/candidate-20261031/
+            tests/e2e_*.png
+            tests/e2e_served_report.json
+            tests/staging_qa_report.json
+  live-current-main:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Capture currently published Pages (not candidate; only baseline)
+        continue-on-error: true
+        run: npm run live:walkthrough
+      - name: Save actual live screenshots and failed checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-live-pages-evidence
+          if-no-files-found: warn
+          path: |
+            tests/live_pages_independent_report.json
+            tests/screenshots/live-pages-independent/
