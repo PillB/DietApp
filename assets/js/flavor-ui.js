@@ -86,6 +86,7 @@
       <div id="flavor-caveats" class="mt-2 text-xs text-stone-400"></div>
       <ol id="flavor-ranks" class="mt-3 space-y-1" tabindex="0"></ol>
       <div id="flavor-inspector" class="mt-3 rounded border border-stone-700 p-3 text-sm text-stone-300" aria-live="polite"></div>
+      <div id="flavor-ranking" class="mt-4"></div>
     `;
   }
 
@@ -94,6 +95,47 @@
     renderBars(section, profile.items);
     renderList(section, profile);
     renderCaveats(section, profile);
+    renderRecipeRanking(section, profile);
+  }
+
+  /** P5.4 UI — explainable per-recipe ranking (top 3), features labeled. */
+  function renderRecipeRanking(section, profile) {
+    const host = section.querySelector('#flavor-ranking');
+    if (!host) return;
+    const RANK = root.FlavorRanking;
+    const recipes = collectRecipes();
+    if (!RANK || !recipes.length) { host.innerHTML = '<p class="text-xs text-stone-500">(motor de ranking no cargado)</p>'; return; }
+    try {
+      const ranked = RANK.rankRecipes({
+        recipes, profile,
+        lexicon: root.FLAVOR_LEXICON,
+        storeCatalog: root.LIMA_STORES_FIXTURE || [],
+        householdEquipment: ['skillet', 'oven', 'microondas', 'wok'],
+        ingredientCategories: root.INGREDIENT_CATEGORY_BRIDGE || {},
+      });
+      const top = ranked.slice(0, 3);
+      host.innerHTML = '<h3 class="text-sm font-bold text-amber-300 mt-2">Ranking de recetas para ti (explicable)</h3>'
+        + top.map((r, i) => `<div class="rounded border border-stone-700 p-2 mt-1 text-xs">
+            <strong class="text-amber-200">${i + 1}. ${escapeHtml(r.recipeId)}</strong> — score ${r.score}
+            <div class="text-stone-400 mt-1">${escapeHtml(r.explanation)}</div>
+          </div>`).join('');
+    } catch (e) {
+      host.innerHTML = `<p class="text-xs text-orange-300">ranking no disponible: ${escapeHtml(String(e.code || e.message))}</p>`;
+    }
+  }
+
+  function collectRecipes() {
+    const weighedSrc = root.GOURMET_NUTRITION_DATA;
+    const out = [];
+    if (weighedSrc && root.ImportWeighed) {
+      try { out.push(...root.ImportWeighed.importWeighed(weighedSrc.curatedRecipes).recipes); } catch (e) {}
+    }
+    if (root.DOCX_DIET_RECIPES) {
+      for (const r of root.DOCX_DIET_RECIPES.recipes) {
+        out.push({ ...r.meta, equipment: (r.meta.equipment || []).map((e) => String(e).split('|')[0]), ingredients: r.ingredients, steps: r.steps, flavorTags: [], sourceFamily: 'owner-docx' });
+      }
+    }
+    return out;
   }
 function renderBars(section, items) {
     const svg = section.querySelector('#flavor-bars');
