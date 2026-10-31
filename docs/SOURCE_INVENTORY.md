@@ -42,3 +42,6 @@ Key audit findings (root causes/problems identified):
 3. `context/…/artifacts/generated/NUTRITION_RESEARCH_2026.md` is byte-identical to the *tracked public* repo root `NUTRITION_RESEARCH.md` (`6f722d40e79f…`) — the content is already public in the repo and scans clean (no emails/private paths/mobile numbers) via the P0.1 scanner, so it may remain tracked, but its status stays flagged as generated nutrition research NOT independently verified.
 4. The drop reveals the true v3 SPA source: `artifacts/derived/website_prototype.zip` (`08cea0efa09f…`) — P0.3 baseline should confirm whether the repo's index.html/assets match that prototype or supersede it.
 5. "Later generated report" hypothesis confirmed: `data/private/report.md` ≡ drop's `artifacts/derived/report.md` — one derived artifact, three copies.
+
+| TPCA composition DB (official) | `tablasperuanas.ins.gob.pe` INS food DB (1125 foods; 14 groups; per-100g kcal/kJ/protein/fat/carb/fiber/micronutrients; also cooked preparation DB per INEI) | PUBLIC OFFICIAL (Instituto Nacional de Salud) | 11a ed. 2023 (Reyes-García et al.); v2023 rows visible
+| TPCA composition PDF (official) | `repositorio.ins.gob.pe` tpca-2025-2.pdf (5.3 MB) — 11va ed. versión digital 2023 | PUBLIC OFFICIAL | handle 20.500.14196/1773
