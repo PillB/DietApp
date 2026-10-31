@@ -1,5 +1,5 @@
 {
-  "port": 58358,
+  "port": 58876,
   "rows": [
     {
       "tag": "desktop",
@@ -83,6 +83,8 @@
         "diagramStations": 3,
         "diagramFishTokens": 1,
         "docxCoveredGate": 1,
+        "weighedEsPe": 1,
+        "weighedBorradorTag": 1,
         "nutritionCard": true,
         "nutritionKcal": true,
         "nutritionMacroHonesty": true

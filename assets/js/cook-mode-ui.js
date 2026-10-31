@@ -111,9 +111,17 @@
       void proteinIds;
       const miseLine = recipe.mise_en_place && recipe.mise_en_place.some((m) => (s.station || '').startsWith(m.station.split(' - ')[0]))
         ? '' : '<span class="ml-2 text-red-300 translate-y-0.5">(no mise line!)</span>';
+      const esLine = s.esPE
+        ? { text: s.esPE, tag: '' } // authored es-PE (docx recipes)
+        : ((root.__pgkStepTranslations || {})[recipe.id] || [])[i]
+          ? { text: root.__pgkStepTranslations[recipe.id][i], tag: ' (es-PE borrador)' }
+          : null;
+      const esHtml = esLine
+        ? `<span class="block mt-1 text-emerald-200/80 text-xs">ES-PE: ${escapeHtml(esLine.text)}${escapeHtml(esLine.tag)}</span>`
+        : '<span class="block mt-1 text-red-300/70 text-xs">ES-PE: (missing)</span>';
       return `<li class="rounded border border-stone-700 px-3 py-2">
         <span class="text-stone-200">Step ${i + 1}${s.station ? ` (${escapeHtml(s.station)})` : ''}:</span> <span class="text-stone-300">${escapeHtml(s.text.en)}</span>
-        <span class="block mt-1 text-emerald-200/80 text-xs">ES-PE: ${escapeHtml(s.esPE || '(missing)')}</span>
+        ${esHtml}
         ${verdictHtml}${miseLine}
       </li>`;
     }).join('');

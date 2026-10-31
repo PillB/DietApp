@@ -518,9 +518,11 @@
         Promise.all([
           fetch('data/canonical/docx-diet-recipes-canon.v1.json').then((r) => r.ok ? r.json() : null),
           fetch('data/reference/food-composition-tpca.v1.json').then((r) => r.ok ? r.json() : null),
-        ]).then(([canon, comp]) => {
+          fetch('data/reference/step-translations-espe.v1.json').then((r) => r.ok ? r.json() : null),
+        ]).then(([canon, comp, steps]) => {
           window.DOCX_DIET_RECIPES = canon;
           window.__pgkComposition = comp ? comp.rows : {};
+          window.__pgkStepTranslations = steps ? steps.translations : {};
           boot2();
         }).catch(() => boot2());
       }

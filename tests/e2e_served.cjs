@@ -239,6 +239,11 @@ async function cookFlow(port, report) {
   steps.diagramStations = await page.locator('#cook-diagram thead th').count();
   steps.diagramFishTokens = await page.locator('#cook-diagram', { hasText: 'filete_pescado_blanco' }).count();
   steps.docxCoveredGate = await page.locator('#cook-steps', { hasText: '63°C' }).count();
+  // weighed-7 recipes show es-PE draft lines with the borrador tag
+  await page.selectOption('#cook-recipe', 'nikkei-salmon-bowl');
+  await page.waitForTimeout(300);
+  steps.weighedEsPe = await page.locator('#cook-steps', { hasText: 'Cocer 220 g de arroz integral' }).count();
+  steps.weighedBorradorTag = await page.locator('#cook-steps', { hasText: '(es-PE borrador)' }).count();
   // P-Diet computed per-serving nutrition card (computed-pending-weighin)
   const fishNutrition = await page.locator('#cook-nutrition').textContent();
   // es-PE default: the card renders the Spanish label ('Por porción (cálculo estimado...)')
@@ -249,6 +254,7 @@ async function cookFlow(port, report) {
   await browser.close();
   const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0
     || steps.docxDiagram === 0 || steps.diagramStations < 3 || steps.diagramFishTokens === 0 || steps.docxCoveredGate === 0
+    || steps.weighedEsPe === 0 || steps.weighedBorradorTag === 0
     || !steps.nutritionCard || !steps.nutritionKcal || !steps.nutritionMacroHonesty;
   report.rows.push({ tag: 'cook-flow', pageErrors, steps, failed });
   console.log(failed
