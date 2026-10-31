@@ -1,0 +1,94 @@
+{
+  "results": [
+    {
+      "ok": true,
+      "label": "PII [Pablo]: clean"
+    },
+    {
+      "ok": true,
+      "label": "PII [Illescas]: clean"
+    },
+    {
+      "ok": true,
+      "label": "PII [Nathaly]: clean"
+    },
+    {
+      "ok": true,
+      "label": "PII [Aguilar]: clean"
+    },
+    {
+      "ok": true,
+      "label": "PII [CNP 3906]: clean"
+    },
+    {
+      "ok": true,
+      "label": "PII [pabloillescas]: clean"
+    },
+    {
+      "ok": true,
+      "label": "flavor_bars: 10"
+    },
+    {
+      "ok": true,
+      "label": "step_1 esPE: true",
+      "detail": "\n        Step 1 (Station A): Dip the fish in egg whites; press each si"
+    },
+    {
+      "ok": true,
+      "label": "step_2 esPE: true",
+      "detail": "\n        Step 2 (Station A): Cook COVERED on minimum heat, do NOT add "
+    },
+    {
+      "ok": true,
+      "label": "step_3 esPE: true",
+      "detail": "\n        Step 3 (Station B): Plate the sesame crust fish warm; finish "
+    },
+    {
+      "ok": true,
+      "label": "cook_steps_count: 3"
+    },
+    {
+      "ok": true,
+      "label": "nutrition label present",
+      "detail": "Per serving (computed-pending-weighin):\n        307.9 kcal · 31.2 g pr"
+    },
+    {
+      "ok": true,
+      "label": "nutrition kcal=307.9"
+    },
+    {
+      "ok": true,
+      "label": "sw_registered: 1"
+    },
+    {
+      "ok": true,
+      "label": "i18n_valid (missing=[])"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/canonical/docx-diet-recipes-canon.v1.json -> 200"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/reference/food-composition-tpca.v1.json -> 200"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/fixtures/lima-stores-v1.json -> 200"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/fixtures/ingredient-bridge-v1.json -> 200"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/fixtures/flavor-lexicon-v1.json -> 200"
+    },
+    {
+      "ok": true,
+      "label": "subfile_200: data/reference/tpca-curation.json -> 200"
+    }
+  ],
+  "failures": [],
+  "timestamp": "2026-10-31T06:07:24.468Z"
+}
