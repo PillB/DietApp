@@ -719,6 +719,14 @@ Consistent-interface lesson: the success path returned NO 'missing' field while 
 
 Tests: 169 pass / 0 fail; e2e/staging/live PASS (verified in the prior round); lint clean.
 Next single command/ticket: serve the weigh-in worksheet UI (section + per-ingredient actual-grams inputs prefilled from the recipe + yield + submit into StorageCore state), then the owner's kitchen session closes LEDGER-2.
+## Session log - 2026-10-31, session 3, part 51 (weigh-in worksheet UI served)
+
+Files: assets/js/weighin-ui.js (NEW vanilla-DOM UMD: recipe select, per-ingredient actual-grams inputs prefilled from planned grams, yield input, submit -> WeighInCore.evaluateWeighIn -> state.kitchenWeighIns persisted via StorageCore), index.html (section #weighin + nav 'weighin.title' + 2 scripts + boot), assets/js/i18n.js (weighin.title/note/submit in 6 locales), tests/e2e_weighin.png (probe screenshot).
+
+Browser probe verified: FULL muesli weigh-in (30.2/244/138.5/6.1 g + 400 g yield) -> promoted 'varianza 0.5% - weighed-pending-review'; survives page RELOAD (persisted); partial inputs refused honestly ('incomplete-weighin: faltan ajonjoli_tostado'). The owner's real kitchen session can now close LEDGER-2 by weighing ONE recipe at the live URL.
+
+Tests: 169 pass / 0 fail; e2e/staging/live PASS; lint clean; pushed ee619c3.
+Next single command/ticket: owner kitchen session (weigh any recipe at the live URL) closes LEDGER-2; then the dual-review flow (P4.3) is the only gate left before anything can show 'assessed'.
 
 ## Update template for next session
 
