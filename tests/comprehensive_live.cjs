@@ -40,7 +40,7 @@ async function main() {
     const link = page.locator(`nav a[href="${hash}"]`);
     if (!(await link.count())) { check(false, `2-nav-${hash}`, 'absent'); continue; }
     await link.click();
-    const viewName = hash.replace(/^#/, '').replace(/\\/\\d+$/, '');
+    const viewName = hash.slice(1).split('/')[0];
     const target = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(viewName)
       ? page.locator('#' + viewName)
       : page.locator(`section[x-show="view === '${viewName}'"]`);
