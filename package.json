@@ -8,6 +8,7 @@
     "test": "node --test tests/nutrition-core.test.cjs tests/privacy.test.cjs tests/source_inventory.test.cjs tests/data_contract.test.cjs tests/import_weighed.test.cjs tests/quantity.test.cjs tests/calendar.test.cjs tests/shopping.test.cjs tests/storage.test.cjs tests/store_matches.test.cjs tests/shopper_view.test.cjs tests/planner_core.test.cjs tests/cooking.test.cjs tests/cook_mode.test.cjs tests/flavor_core.test.cjs tests/flavor_graph.test.cjs tests/diet_core.test.cjs tests/flavor_ranking.test.cjs tests/recipe_redteam.test.cjs tests/recipe_ledger.test.cjs tests/deficit_planner.test.cjs tests/i18n.test.cjs tests/composition_audit.test.cjs",
     "e2e": "node tests/e2e_served.cjs",
     "staging": "node tests/staging_qa.cjs",
+    "live": "node tests/e2e_live.cjs",
     "lint": "eslint .",
     "privacy": "node scripts/privacy_check.cjs",
     "check": "npm run lint && npm run test && npm run privacy && python3 scripts/check_handover.py"

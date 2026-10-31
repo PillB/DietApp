@@ -1,0 +1,98 @@
+{
+  "url": "https://pillb.github.io/DietApp/",
+  "timestamp": "2026-10-31T05:37:52.016Z",
+  "hardFail": false,
+  "failures": [],
+  "rows": [
+    {
+      "label": "live_assets_200",
+      "ok": true,
+      "detail": "{\"data/canonical/docx-diet-recipes-canon.v1.json\":200,\"data/reference/food-composition-tpca.v1.json\":200,\"data/fixtures/lima-stores-v1.json\":200,\"assets/css/tailwind.css\":200,\"assets/js/app.js\":200,\"assets/js/cook-mode-ui.js\":200}"
+    },
+    {
+      "label": "section_shopengine",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "label": "section_planner",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "label": "section_cookmode",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "label": "section_flavoratlas",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "label": "page_title",
+      "ok": true,
+      "detail": "Gourmet Meal Plan SPA"
+    },
+    {
+      "label": "no_page_errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "label": "engine_all4_mounted",
+      "ok": true,
+      "detail": "{\"shopping\":true,\"planner\":true,\"cook\":true,\"flavor\":true}"
+    },
+    {
+      "label": "engine_no_errors",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "label": "mobile_no_hoverflow_320",
+      "ok": true,
+      "detail": "scrollWidth=320"
+    },
+    {
+      "label": "mobile_no_hoverflow_390",
+      "ok": true,
+      "detail": "scrollWidth=390"
+    },
+    {
+      "label": "live_shopping_lines",
+      "ok": true,
+      "detail": "lines=10"
+    },
+    {
+      "label": "live_planner_entries",
+      "ok": true,
+      "detail": "rows=1"
+    },
+    {
+      "label": "live_nutrition_card",
+      "ok": true,
+      "detail": "Per serving (computed-pending-weighin):\n        0 kcal · 0 g protein · 0 g fiber\n        ⚠ 9 ingredi"
+    },
+    {
+      "label": "live_lang_espe",
+      "ok": true,
+      "detail": "found=1"
+    },
+    {
+      "label": "sw_registered",
+      "ok": true,
+      "detail": "{\"count\":1,\"scope\":\"https://pillb.github.io/DietApp/\"}"
+    },
+    {
+      "label": "sw_scope_correct",
+      "ok": true,
+      "detail": "https://pillb.github.io/DietApp/"
+    },
+    {
+      "label": "sw_offline_title",
+      "ok": true,
+      "detail": "title=Gourmet Meal Plan SPA"
+    }
+  ]
+}
