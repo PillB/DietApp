@@ -24,7 +24,7 @@ function verifyInventory(root, { allowAbsentUntrackedOriginals = false } = {}) {
     const abs = path.join(root, e.path);
     if (e.gitTracked) problems.push(`private artifact is git-tracked (must never happen): ${e.path}`);
     if (!fs.existsSync(abs)) {
-      const isOriginal = /^(data\\/private\\/|context\\/|Context information\\/)/.test(e.path);
+      const isOriginal = ['data/private/', 'context/', 'Context information/'].some(prefix => e.path.startsWith(prefix));
       if (allowAbsentUntrackedOriginals && isOriginal && !e.gitTracked) {
         skipped.push({ path: e.path, reason: 'gitignored original absent from CI checkout; hash NOT reverified' });
       } else problems.push(`listed artifact is missing on disk: ${e.path}`);
