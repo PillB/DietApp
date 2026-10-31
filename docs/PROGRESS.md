@@ -363,6 +363,19 @@ Debug trail: 4 decorator failures were my first-pass threshold semantics vs the 
 Tests: 115 pass / 0 fail; lint clean.
 Next single command/ticket: menu/recipe uplift pipeline — (1) canonicalize the 4 docx recipes with weighed canonical quantities + needs-kitchen-validation, (2) expose mealTargets presets in the served Nutrition panel with the acknowledgment checkbox, (3) iterate proteins/fiber per recipe against flavor-atlas top nodes (keepers: ajonjolí/palta/limón/chile crafting from Peru shelves). P4.4 worksheet supplies the weigh-in evidence lane.
 
+Next single command/ticket: done this pass (P5.4 — part 21 below).
+
+## Session log — 2026-10-31, session 3, part 21 (P5.4 explainable ranking)
+
+Files: `assets/js/flavor-ranking.js` (new pure), `data/fixtures/flavor-lexicon-v1.json` (new shared lexicon fixture), `tests/flavor_ranking.test.cjs` (5 tests), test list update.
+
+Feature labels test-pinned visible per recipe: affinity (behavioral-count: recipe ingredient categories ↔ ordered categories via a CURATED bridge map — explicitly labeled 'inferred mapping'); flavorFit (curated-lexicon-inferred); storeCoverage (fixture presence with 'not checked' honesty); equipment (household inventory, missing pieces surfaced in the explanation); novelty (inverse-overlap). Contributions '(value ×weight)' in the explanation text; weights sum to 1 enforced; unknown feature or malformed weights refuse; deterministic order.
+Debug trail: ONE deep root cause fruitfully caught — `Object.keys(countsByCategory)` on a **Map returns []** (used several times in the file) → affinity always zero. Full-stack diagnosis: gold-rate CLI probes → instrumented compiled module run → direct in-source logging → identified Map misuse. Fixed via `countsByCategory.keys()`; the same bug pattern did NOT exist elsewhere (flavor-core used `Object.entries` which is correct for objects).
+Trade-off stated: the ingredient→category bridge is a curated fixture in the test; a real shipped bridge for the 41 canonical ingredients is the next data task (the bridge REQUIRES the honest 'curated, inferred' disclosure because past-order names rarely equal recipe ingredient names).
+
+Tests: 120 pass / 0 fail; lint clean; privacy PASS.
+Next single command/ticket: recipe design overhaul starts: (1) online research ATK/BA/fundamental mise-en-place + staging best practices; (2) red-team harness `tests/recipe_redteam.test.cjs` (5 lenses: ingredient integrity, mise/station order, safety/temp gates, unit-quantity exactness, Cooking-for-Engineers diagram integrity); (3) canonicalize the 4 owner docx recipes into RecipeVersions w/ es-PE mise steps — all marked needs-kitchen-validation pending owner weigh-in.
+
 ## Update template for next session
 Time (Lima): …  Model: …  Commit before/after: …
 Task, assumptions and AC: …  Files written: …
