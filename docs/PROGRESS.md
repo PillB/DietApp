@@ -538,6 +538,20 @@ NOT pushed: the private lane (data/private/, context/private/) remains LOCAL ONL
 
 Next single command/ticket: owner choice — enable GitHub Pages (Settings → Pages → Deploy from branch → main / root) for the deployed URL https://pillb.github.io/DietApp/, or keep staging QA run against a local URL and wait for the Pages toggle. Also batch-4 composition rows continue the LEDGER-3 close-out.
 
+## Session log — 2026-10-31, session 3, part 36 (PUBLISHED — https://pillb.github.io/DietApp/)
+
+Owner authorized Pages ("also publish to pages"). Actions:
+1. Repo pillb/DietApp was PRIVATE → flipped PUBLIC via `gh api -X PATCH repos/... -f private=false` (repo-only, not the org).
+2. Pages enabled via `gh api -X POST repos/.../pages` with source=main/`/` (deploy from branch).
+3. Build succeeded (status: built within ~60 seconds), live URL verified HTTP 200: https://pillb.github.io/DietApp/
+4. All 6 e2e flows + staging QA re-run against localhost: PASS unchanged (the deployed URL uses the same relative paths).
+5. Content checks: storage-core.js and food-composition JSON served at the subpath correctly; `data/private/report.md` correctly 404s (returns the GitHub 404 HTML page, not the file — gitignored lane does NOT ship to Pages).
+6. Service worker updated: cache name bumped to v4-20261031; every engine module added to APP_SHELL including data/canonical + data/reference composition JSON; fetch handler evicts+re-caches dynamic files (composition refreshable without stale shells). Pages HTTPS-scope will register the SW correctly at /DietApp/ subpath scope.
+
+Print a RELEASE_REPORT with the SHA + URL. No commit needed — remote contains everything at 1bd2f38.
+
+Next single command/ticket: the owner starts using it. Per deploy checklist the P4.4 weigh-in and remaining TPCA batch-3 rows proceed at owner cadence.
+
 ## Update template for next session
 
 ## Update template for next session
