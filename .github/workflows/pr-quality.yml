@@ -43,6 +43,11 @@ jobs:
           if-no-files-found: warn
           path: |
             tests/screenshots/
+            tests/e2e_served_*.png
+            tests/e2e_shopping_flow.png
+            tests/e2e_planner_flow.png
+            tests/e2e_cook_flow.png
+            tests/e2e_flavor_flow.png
             tests/e2e_served_report.json
             tests/staging_qa_report.json
 
