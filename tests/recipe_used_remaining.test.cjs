@@ -146,6 +146,41 @@ test('(B) used/remaining ledger: every step g/ml claim is backed by the declared
   assert.ok(audited.recipes === ND.curatedRecipes.length && audited.claimsChecked > 0, 'audit actually ran');
 });
 
+test('(A2) same identity for the 4 docx canonical recipes (count/g/ml domains, batch-linked)', () => {
+  const docx = require('../data/canonical/docx-diet-recipes-canon.v1.json');
+  const imp = docx.recipes.map((r) => ({
+    ...(r.meta),
+    ingredients: r.ingredients,
+  }));
+  for (const rec of imp) {
+    const entry = {
+      id: 'e1', localDate: '2027-03-02', slot: 'dinner', recipeId: rec.id,
+      version: rec.version, portions: rec.baseServings, repeatRuleId: null, pantryOverride: null,
+    };
+    const out = SHOP.buildShoppingList({
+      recipes: [{ ...rec, ingredients: rec.ingredients }], planEntries: [entry],
+      from: '2027-03-02', to: '2027-03-02',
+    });
+    assert.ok(!out.refused, `${rec.id} refused: ${JSON.stringify(out.errors)}`);
+    const want = new Map();
+    for (const ing of rec.ingredients) {
+      // optional ingredients default-excluded in the engine (optional_excluded warning)
+      if (ing.optional) continue;
+      want.set(ing.ingredientId, (want.get(ing.ingredientId) || 0) + Number(ing.quantity || 0));
+    }
+    const got = new Map();
+    for (const line of out.lines) {
+      if (!want.has(line.ingredientId)) continue;
+      const n = line.netRequired ? (line.netRequired.num / line.netRequired.den) : NaN;
+      got.set(line.ingredientId, (got.get(line.ingredientId) || 0) + n);
+    }
+    for (const [id, expected] of want) {
+      assert.ok(got.has(id), `${rec.id}/${id}: shopping MISSED a docx ingredient`);
+      assert.strictEqual(got.get(id), expected, `${rec.id}/${id}: shopping=${got.get(id)} vs declared=${expected}`);
+    }
+  }
+});
+
 test('seeded-negative: a corrupted step claim overdrafts and flips the ledger RED', () => {
   const fakeTotals = new Map([['salmon', 560]]);
   const overdraft = 900 > fakeTotals.get('salmon');
