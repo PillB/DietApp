@@ -617,6 +617,20 @@ Commit dc17a91 pushed; Pages rebuilt (last-modified updated).
 Tests: 154 pass / 0 fail.
 Next single command/ticket: es-PE-first for the legacy v3 Alpine chrome (nav labels, static section headings) — the 4 engine panels are done; the v3 sections (dashboard/calendar/week/day/recipes/shopping/knowledge/compliance/nutrition) still render EN-first per their original markup; the locale plan from docs/UX_DESIGN_SYSTEM.md applies.
 
+## Session log — 2026-10-31, session 3, part 41 (DATA BUG fixed + composition now 60/60 + es-PE default live)
+
+CRITICAL DATA BUG found by a semantic audit (beyond the code-existence check):
+- beef_sirloin was mapped to F24 = Pato (DUCK!) and beef_chuck to F28 = Pollo hígado (CHICKEN LIVER!) — codes that EXIST in the crawl but are the WRONG FOOD. The code-existence audit missed this class; fixed with remaps to the correct rows: beef_sirloin → F92 'Res, cuadril, churrasco' (133 kcal, 22.0 prot — churrasco IS the Peru sirloin term), beef_chuck → F35 'Res, carne pulpa de' (105 kcal, 21.3 prot — stew/chuck pulp).
+- corn_tortilla → A197 (wheat tortilla; TPCA lacks nixtamal corn — noted for label lane), platano_bizcochito → C73 Plátano manzano (closest eating-banana variety), vegetable_stock → water-equivalent 6 kcal estimate flagged for owner label.
+- Composition now 60/60 canonical ids (remaining NS only for composite fruta_picada_estado and the SKYR brand label lane).
+- Lesson encoded: an audit that checks code EXISTENCE but not code SEMANTICS lets wrong-food rows through. New rule: remaps must cite the Peru market term (churrasco=bind) — the note field now carries the reasoning.
+
+ES-PE DEFAULT LIVE (owner directive): i18n default + html lang='es-PE'; verified live after Pages rebuild — first-load shows 'Planificador (versión de desarrollo)' etc. without any click; fresh-context test pins the default.
+Live e2e updated: the nutrition-card assertion accepts the Spanish label ('Por porción (cálculo estimado — pendiente de pesa en cocina)') since the default language is now es-PE.
+
+Tests: 154 pass / 0 fail; e2e/live PASS; lint clean.
+Next single command/ticket: batch-3b for the last NS composite (fruta per-fruit actual rows chosen by owner) + the SKYR/queso label lane (owner uploads); P4.4 weigh-in worksheet remains the assessed-promotion gate.
+
 ## Update template for next session
 
 ## Update template for next session
