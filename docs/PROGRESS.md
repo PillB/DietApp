@@ -781,6 +781,16 @@ Files: tests/calendar_fuzz.test.cjs (4 property tests: datesInRange 100 random s
 
 Tests: 173 pass / 0 fail; e2e PASS; pushed 8d89608.
 Next single command/ticket: the R1 pyramid is now FULLY covered (unit + property for quantity, shopping, calendar). The remaining fuzz targets are the shopping aggregation with random plan permutations - a natural P7-R1 extension if the owner wants deeper fuzz; otherwise owner-action items remain the only open ledger work.
+## Session log - 2026-10-31, session 3, part 58 (week themes live + served-data root cause)
+
+ROOT CAUSE (the served-vs-source split strikes again): the dashboard themes render from data.js (the BROWSER-EMBEDDED copy), NOT from meal-plan-data.json. My themeEs went into the JSON only, so the browser never saw it - the dashboard kept showing English themes even after the Pages rebuild. Fixed by patching data.js directly (regex-inject themeEs after each week's theme field; eval-verified parse + 4 weeks carry the es-PE text).
+
+VERIFIED LIVE at Pages: the dashboard now shows 'Presenta el mes con platos que celebran la herencia Nikkei...', 'Honra los clasicos italianos...', 'Una mezcla juguetona...', 'Cierra con comida reconfortante...' - all 4 themes Spanish. Screenshot: tests/screenshots/live-es-themes-espe.png.
+
+Lesson recorded: in a zero-build static app, ANY data change must touch the SERVED file (data.js), not just the source JSON. The served-copy drift is a recurring bug class (the composition had the same issue) - a build script syncing json->data.js would close this class; logged as a candidate P7 hardening item.
+
+Tests: 173 pass / 0 fail; e2e PASS; pushed 40c4c0a.
+Next single command/ticket: a sync script (json -> data.js) to close the served-copy drift class permanently, or the owner cadence items.
 
 ## Update template for next session
 
