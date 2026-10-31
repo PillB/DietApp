@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "ok": true,
+      "label": "recipes in dropdown: 11",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "composition rows: 57",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "all 11 recipes have nutrition card",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "sum kcal across all recipes: 4772",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "es-PE: all 4 panel titles rendered non-empty",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "zh-Hans: all 4 panel titles rendered non-empty",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "hi: all 4 panel titles rendered non-empty",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "de: all 4 panel titles rendered non-empty",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "ja: all 4 panel titles rendered non-empty",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "total summed compositions: 4772 kcal (deficit realistic)",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "planner entries after all builder cycles: 1",
+      "detail": ""
+    },
+    {
+      "ok": true,
+      "label": "0 console errors across all interactions",
+      "detail": ""
+    }
+  ],
+  "failures": [],
+  "timestamp": "2026-10-31T06:15:58.789Z"
+}

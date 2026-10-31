@@ -188,7 +188,8 @@
 
   function render(c, model, section, opts) {
     const form = section.querySelector('#engine-plan-form');
-    if (!form.dataset.recipesReady) {
+    if (root.I18N) console.log('[render] lang=' + root.I18N.getLanguage() + ' model-recipes=' + (model.recipes || []).length + ' sel-len=' + (form.querySelector('#engine-recipe') && form.querySelector('#engine-recipe').options && form.querySelector('#engine-recipe').options.length));
+    if (form.dataset.recipesReady !== '1') {
       const select = form.querySelector('#engine-recipe');
       select.innerHTML = model.recipes.map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.id)}</option>`).join('');
       form.dataset.recipesReady = '1';

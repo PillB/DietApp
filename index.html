@@ -522,6 +522,19 @@
           boot2();
         }).catch(() => boot2());
       }
+      // Register late-bind hook for panels whose I18N subscription missed the initial loop
+      function registerI18nRebind() {
+        if (window.ShoppingUI && window.CookModeUI && window.FlavorUI && window.PlannerUI) {
+          window.__pgkI18nRebind = () => {
+            // rtl panels re-render via their own stored model captured at init
+            try { window.ShoppingUI & window.__pgkRefreshShopping && window.__pgkRefreshShopping(); } catch (e) {}
+            try { window.PlannerUI && window.__pgkRefreshPlanner && window.__pgkRefreshPlanner(); } catch (e) {}
+          };
+        } else {
+          setTimeout(registerI18nRebind, 100);
+        }
+      }
+      registerI18nRebind();
       function boot2() {
         if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) { console.error('engine UI deps missing'); return; }
         try {

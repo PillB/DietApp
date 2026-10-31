@@ -3,7 +3,6 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 const LIVE = 'https://pillb.github.io/DietApp/';
-const ROOT = path.resolve(__dirname, '..');
 const results = [];
 
 async function main() {

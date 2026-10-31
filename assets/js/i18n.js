@@ -63,7 +63,8 @@
     if (!LOCALES.includes(locale)) return { ok: false, error: 'unknown_locale' };
     language = locale;
     for (const cb of listeners) cb(locale);
-    return { ok: true, language };
+    for (const cb of listeners) cb(locale);
+    if (typeof window !== "undefined" && typeof window.__pgkI18nRebind === "function") window.__pgkI18nRebind(locale);
   }
   function getLanguage() { return language; }
   function onChange(cb) { listeners.push(cb); }
