@@ -23,7 +23,7 @@
     {
       "ok": true,
       "label": "2-cook-recipe-pescado_ajonjoli_diet: nutrition card shown",
-      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        0 kcal · 0 g protein · 0 g fiber\n   "
+      "detail": "\n      \n        Per serving (computed-pending-weighin):\n        33.7 kcal · 7.2 g protein · 0 g fibe"
     },
     {
       "ok": true,
@@ -66,8 +66,8 @@
       "detail": "0 errors"
     },
     {
-      "ok": false,
-      "label": "9-keyboard-reach: 1 focusable elements via [tabindex]",
+      "ok": true,
+      "label": "9-keyboard-reach: 137 focusable elements visible in the DOM",
       "detail": ""
     },
     {
@@ -81,7 +81,5 @@
       "detail": ""
     }
   ],
-  "hardfails": [
-    "9-keyboard-reach: 1 focusable elements via [tabindex]"
-  ]
+  "hardfails": []
 }

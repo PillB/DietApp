@@ -1,6 +1,6 @@
 {
   "url": "https://pillb.github.io/DietApp/",
-  "timestamp": "2026-10-31T05:37:52.016Z",
+  "timestamp": "2026-10-31T05:55:37.615Z",
   "hardFail": false,
   "failures": [],
   "rows": [
@@ -72,7 +72,7 @@
     {
       "label": "live_nutrition_card",
       "ok": true,
-      "detail": "Per serving (computed-pending-weighin):\n        0 kcal · 0 g protein · 0 g fiber\n        ⚠ 9 ingredi"
+      "detail": "Per serving (computed-pending-weighin):\n        33.7 kcal · 7.2 g protein · 0 g fiber\n        ⚠ 8 in"
     },
     {
       "label": "live_lang_espe",
