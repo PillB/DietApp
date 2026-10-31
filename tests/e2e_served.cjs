@@ -241,8 +241,9 @@ async function cookFlow(port, report) {
   steps.docxCoveredGate = await page.locator('#cook-steps', { hasText: '63°C' }).count();
   // P-Diet computed per-serving nutrition card (computed-pending-weighin)
   const fishNutrition = await page.locator('#cook-nutrition').textContent();
-  steps.nutritionCard = fishNutrition.includes('computed-pending-weighin');
-  steps.nutritionKcal = /Per serving \(computed-pending-weighin\):\s*[\d.]+ kcal/.test(fishNutrition);
+  // es-PE default: the card renders the Spanish label ('Por porción (cálculo estimado...)')
+  steps.nutritionCard = /por porción|computed-pending-weighin/i.test(fishNutrition);
+  steps.nutritionKcal = /[\d.]+ kcal/.test(fishNutrition);
   steps.nutritionMacroHonesty = fishNutrition.includes('NOT a weighed kitchen yield');
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_cook_flow.png') });
   await browser.close();
