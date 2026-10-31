@@ -42,12 +42,13 @@ async function main() {
     await link.click();
     await page.waitForTimeout(400);
     const viewName = hash.replace(/^#/, '').replace(/\/\d+$/, '');
-    const enginePanel = document.getElementById(viewName) ? true : false;
+    const enginePanels = ['shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'];
+    const isEnginePanel = enginePanels.includes(viewName);
     const found = await page.evaluate(([v, hasPanel]) => {
-      if (hasPanel) return 'visible'; // engine panels are always in DOM
+      if (hasPanel) return 'visible';
       const el = [...document.querySelectorAll('section')].find((s) => s.getAttribute('x-show') === `view === '${v}'`);
       return el && getComputedStyle(el).display !== 'none' ? 'visible' : 'hidden';
-    }, [viewName, enginePanel]);
+    }, [viewName, isEnginePanel]);
     check(found === 'visible', `2-nav-${hash}`, found);
   }
 

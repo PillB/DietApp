@@ -44,9 +44,9 @@
 
   /** Graph build is strict; missing observed-category context (planner boot with no atlas
    * loaded yet) degrades to 0 fit labeling instead of refusing the whole rank. */
-  function safeGraph(profile, lexicon) {
+  function safeGraph(profile, lex) {
     try {
-      return buildGraphRef().buildGraph({ dishPool: profile.dishPool, items: profile.items, excluded: profile.excluded, monthsSeries: profile.monthsSeries || {}, confidenceProfile: profile.confidenceProfile || {}, caveats: profile.caveats || [] }, lexicon);
+      return buildGraphRef().buildGraph({ dishPool: profile.dishPool, items: profile.items, excluded: profile.excluded, monthsSeries: profile.monthsSeries || {}, confidenceProfile: profile.confidenceProfile || {}, caveats: profile.caveats || [] }, lex);
     } catch (e) {
       if (e.code !== 'unknown_category') throw e;
       return null;
@@ -54,9 +54,11 @@
   }
 
   function rankRecipes({ recipes, profile, lexicon, storeCatalog, householdEquipment, featureWeights, features, ingredientCategories }) {
+    const lex = lexicon || { schema: 'flavor-lexicon/v1', sourceNote: 'empty (fetch-race)', entries: [] };
+    if (lex.schema !== 'flavor-lexicon/v1') throw Object.assign(new Error('lexicon must be flavor-lexicon/v1'), { code: 'bad_lexicon_schema' });
     const weights = featureWeights || DEFAULT_FEATURES;
-    validateRankingInputs({ weights, ids: Object.keys(weights), lexicon, features });
-    const graph = safeGraph(profile, lexicon);
+    validateRankingInputs({ weights, ids: Object.keys(weights), lexicon: lex, features });
+    const graph = safeGraph(profile, lex);
     const countsByCategory = new Map(profile.items.flatMap((x) => x.topCategories).map((c) => [c.id, c.count]));
     const tasteByCuisine = graph ? tasteIndex(graph) : new Map();
     const catalogIds = new Set((storeCatalog || []).filter((r) => r.ingredientId).map((r) => r.ingredientId));

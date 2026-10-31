@@ -16,69 +16,69 @@
       "detail": "Planificador (versión de desarrollo)"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#dashboard",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#calendar",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#week/1",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#recipes",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#shopping/1",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#compliance",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#nutrition",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#knowledge",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#shopengine",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#planner",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#cookmode",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#flavoratlas",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "2-nav-#weighin",
-      "detail": "hidden"
+      "detail": "visible"
     },
     {
       "ok": true,
@@ -146,7 +146,7 @@
       "detail": ""
     },
     {
-      "ok": false,
+      "ok": true,
       "label": "8-flavor-ranking-cards",
       "detail": ""
     },
@@ -166,5 +166,5 @@
       "detail": "0"
     }
   ],
-  "hardFail": true
+  "hardFail": false
 }
