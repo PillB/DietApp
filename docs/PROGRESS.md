@@ -703,6 +703,15 @@ Notable honesty point found while translating: birria-beans-rice's prose explici
 Tests: 163 pass / 0 fail; e2e/staging/live PASS; pushed ba38747.
 Next single command/ticket: wire the es-PE draft steps into the cook-mode UI rendering (currently the card shows ES-PE only for docx recipes; the weighed-7 now have draft lines to show with the borrador tag), then the owner cadence items.
 
+## Session log — 2026-10-31, session 3, part 49 (LEDGER-6 CLOSED — full app es-PE-first)
+
+Files: index.html (translations prefetched at boot alongside canonical+composition), assets/js/cook-mode-ui.js (step line resolves authored esPE (docx) OR the draft translation (weighed-7) with the '(es-PE borrador)' tag; missing translations render red '(missing)'), tests/e2e_served.cjs (cook-flow asserts 'Cocer 220 g de arroz integral' + the borrador tag render), docs/ISSUES_LEDGER.md (D25).
+
+The app is now FULLY Peruvian-Spanish-first: every visible surface — nav, headings, buttons, engine panels, recipe steps (authored + draft-tagged), ingredient names, micros — is es-PE at first load, with the 6-locale switcher for the engine chrome. The only English remaining is deliberately labeled draft content or the source-language EN recipe text that's displayed WITH its es-PE parallel line.
+
+Tests: 163 pass / 0 fail; all E2E/staging/live PASS; pushed 98457ac.
+Remaining ledger OPEN items are ALL owner-action: LEDGER-2 (weigh-in), LEDGER-1c/3 residue (SKYR + queso brand labels; composite fruit default already papaya), LEDGER-5 (store verification), LEDGER-7 (dedup decision).
+
 ## Update template for next session
 
 ## Update template for next session
