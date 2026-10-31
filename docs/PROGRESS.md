@@ -463,6 +463,16 @@ Staging QA `npm run staging` PASS: 7 viewports 0 overflow; axe 0 blocking violat
 Tests: 139 pass / 0 fail; npm run staging PASS; e2e 6 flows PASS; lint clean.
 Next single command/ticket: (1) TPCA composition-table hunt (LEDGER-3) — search or dataset decision; (2) deploy-gate checklist for Pages (needs owner URL/consent).
 
+## Session log — 2026-10-31, session 3, part 29 (TPCA composition sourcing breakthrough)
+
+websearch was retried for the TPCA dataset and SUCCEEDED (LEDGER-1c partial): the OFFICIAL TPCA web DB (tablasperuanas.ins.gob.pe, 1125 foods; per-100g kcal/protein/fat/carb/fiber/micros incl. sodium, vitamin A/B/C/folate + cooked preparation rows like 'Pollo al sillao con arroz' pp. 143 kcal/100 g) and the TPCA PDF 11ª ed. 2023 INS (5.3 MB, handle 20.500.14196/1773) are now recorded in data/reference/tpca-source-v1.md + docs/SOURCE_INVENTORY.md.
+
+Files: data/reference/tpca-source-v1.md (NEW: source manifest + extraction plan + quoted sample rows; NS '-1' rows honesty caveat), docs/ISSUES_LEDGER.md (LEDGER-1c → partial; LEDGER-3 now cites the logged source and stays OPEN until curated rows + perServing wiring land).
+Trade-off stated: brand products in the docx (SKYR, Queso Fresh Light) are only wire-able from the OWNER's label data later (nutrition facts panels), not from TPCA (which lists generic foods) — a lane that needs an owner label upload ordering.
+Tests: 139 pass / 0 fail; lint unchanged.
+
+Next single command/ticket: extraction round — pull the 11 TPCA list pages (100 each) via the fetcher, match our ~60 canonical es-PE names through FoodNamesEsPe synonyms, curate a per-100g JSON (NS→null), then wire perServing in recipes + panel (LEDGER-3 close-out), with the recipe macro table also surfacing in the served panel per E2E.
+
 ## Update template for next session
 
 ## Update template for next session
