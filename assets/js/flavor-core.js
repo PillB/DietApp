@@ -76,8 +76,8 @@
       monthsSeries: atlas.month_counts,
       confidenceProfile: confidenceProfileOf(atlas),
       caveats: [
-        { code: 'aggregate_only', text: 'Built from an AGGREGATE-ONLY derivative of the private workbook; no identifiers or rows ship.' },
-        { code: 'frequency_is_behavior', text: 'Frequency is BEHAVIORAL evidence, not a clinical preference measurement; proper assertions need reviewer confirmation.' },
+        { code: 'aggregate_only', text: 'Construido a partir de un derivado SOLO-AGREGADO del libro privado; no se envían identificadores ni filas. [es-PE borrador]' },
+        { code: 'frequency_is_behavior', text: 'La frecuencia es EVIDENCIA COMPORTAMENTAL, no una medición de preferencia clínica; las afirmaciones correctas necesitan confirmación del revisor. [es-PE borrador]' },
         { code: 'description_confidence', text: `Item descriptions are largely machine-inferred (dominant label: ${confidenceProfileOf(atlas).dominant.label}, ${(100 * confidenceProfileOf(atlas).dominant.share).toFixed(0)}% of rows) — treat item-level claims cautiously.` },
       ],
     };

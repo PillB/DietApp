@@ -249,7 +249,7 @@ async function cookFlow(port, report) {
   // es-PE default: the card renders the Spanish label ('Por porción (cálculo estimado...)')
   steps.nutritionCard = /por porción|computed-pending-weighin/i.test(fishNutrition);
   steps.nutritionKcal = /[\d.]+ kcal/.test(fishNutrition);
-  steps.nutritionMacroHonesty = fishNutrition.includes('NOT a weighed kitchen yield');
+  steps.nutritionMacroHonesty = fishNutrition.includes('NO es rendimiento de cocina pesado');
   await page.screenshot({ path: path.join(ROOT, 'tests', 'e2e_cook_flow.png') });
   await browser.close();
   const failed = pageErrors.length > 0 || steps.stepCards < 3 || steps.sixtyThreeClaim === 0 || steps.reviewPending === 0
@@ -275,7 +275,7 @@ async function flavorFlow(port, report) {
   steps.sectionMounted = await page.locator('#flavoratlas').count();
   if (!steps.sectionMounted) { report.rows.push({ tag: 'flavor-flow', pageErrors, steps, failed: true }); await browser.close(); return true; }
   steps.barsRendered = await page.locator('#flavor-bars g').count();
-  steps.topText = (await page.locator('#flavor-status').textContent()).includes('owner decree');
+  steps.topText = (await page.locator('#flavor-status').textContent()).includes('decreto del dueño');
   const first = page.locator('#flavor-ranks button').first();
   if (await first.count()) { await first.click(); await page.waitForTimeout(150); }
   steps.inspectorEvidence = await page.locator('#flavor-inspector', { hasText: 'evidence' }).count();

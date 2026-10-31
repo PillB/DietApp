@@ -41,7 +41,7 @@
     }).then((atlas) => {
       const profile = root.FlavorCore.buildTasteProfile(atlas, {});
       renderProfile(section, profile);
-      section.querySelector('#flavor-status').textContent = `Atlas loaded (public per 2026-10-31 owner decree) — ${profile.items.length} ranked items from ${atlas.items} aggregated rows`;
+      section.querySelector('#flavor-status').textContent = `Atlas cargado (público por decreto del dueño 2026-10-31) — ${profile.items.length} ítems rankeados de ${atlas.items} filas agregadas`;
     }).catch((err) => {
       section.querySelector('#flavor-status').textContent = `Atlas not loaded (${String(err.message || err)}) — use the file upload or DEMO data below.`;
     });
@@ -75,7 +75,7 @@
     const tF = (key) => (root.I18N ? root.I18N.t(key) : key);
     section.innerHTML = `
       <h2 id="flavoratlas-h2" class="text-xl font-bold text-amber-200">${tF("flavor.title")}</h2>
-      <p class="text-sm text-stone-300">Frequency counts from the order workbook — displayed as behavioral aggregates with their caveats. Upload the atlas JSON locally (it never leaves this browser).</p>
+      <p class="text-sm text-stone-300">Cuentas de frecuencia del libro de pedidos — mostradas como agregados comportamentales con sus advertencias. Sube el atlas JSON localmente (nunca sale de este navegador). [es-PE borrador]</p>
       <div class="flex flex-wrap items-end gap-3 mt-2">
         <label class="text-sm">Atlas JSON
           <input id="flavor-file" type="file" accept=".json,application/json" class="text-xs border border-stone-600 rounded px-2 py-1"></label>

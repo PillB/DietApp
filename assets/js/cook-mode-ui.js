@@ -13,7 +13,11 @@
 })(typeof window !== 'undefined' ? window : globalThis, function (root) {
   'use strict';
 
-  function tC(key) { return root.I18N ? root.I18N.t(key) : key; }
+  function tC(key, map) {
+    let s = root.I18N ? root.I18N.t(key) : key;
+    if (map) for (const [k, v] of Object.entries(map)) s = s.replaceAll(`{${k}}`, v);
+    return s;
+  }
 
   function init(opts) {
     const dom = opts.dom || document;
@@ -164,10 +168,10 @@
     host.innerHTML = `
       <div class="rounded border border-stone-700 px-3 py-2 text-sm">
         <span class="text-amber-300">${tC('nutrition.perServing')}</span>
-        <span class="text-stone-200">${per.kcal == null ? '—' : per.kcal + ' kcal'} · ${per.proteinG == null ? '—' : per.proteinG + ' g protein'} · ${per.fiberG == null ? '—' : per.fiberG + ' g fiber'}</span>
-        ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ${tC("nutrition.missingRows")} — macros pendiente</span>` : '<span class="ml-2 text-emerald-300/80">all uses composed ✓</span>'}
-        ${pendingNames.length ? `<span class="ml-2 text-stone-400 text-xs">missing: ${pendingNames.map((p) => escapeHtml(p)).join(', ')}</span>` : ''}
-        <span class="block text-xs text-stone-500">TPCA-sourced computed estimate; NOT a weighed kitchen yield; P4.4 worksheet required to promote to 'assessed'.</span>
+        <span class="text-stone-200">${per.kcal == null ? '—' : per.kcal + ' kcal'} · ${per.proteinG == null ? '—' : per.proteinG + ' ' + tC('nutrition.proteinG')} · ${per.fiberG == null ? '—' : per.fiberG + ' ' + tC('nutrition.fiberG')}</span>
+        ${per.missingRows > 0 ? `<span class="ml-2 text-orange-300">⚠ ${per.missingRows} ${tC("nutrition.missingRows")} — macros pendiente</span>` : `<span class="ml-2 text-emerald-300/80">${tC('nutrition.allComposed')}</span>`}
+        ${pendingNames.length ? `<span class="ml-2 text-stone-400 text-xs">${tC('nutrition.missing', { list: pendingNames.map((p) => escapeHtml(p)).join(', ') })}</span>` : ''}
+        <span class="block text-xs text-stone-500">${tC('nutrition.tpcaNote')}</span>
         ${microsLine(per)}
       </div>`;
   }
@@ -177,10 +181,10 @@
    * screen-reader-native (caption + th scope). */
   function renderDiagram(section, recipe) {
     const host = section.querySelector('#cook-diagram');
-    if (!recipe.diagram) { host.innerHTML = '<p class="text-xs text-stone-500">(no diagram data for this recipe yet)</p>'; return; }
+    if (!recipe.diagram) { host.innerHTML = `<p class="text-xs text-stone-500">${tC('cook.noDiagram')}</p>`; return; }
     const d = recipe.diagram;
-    const head = `<caption class="text-left text-xs text-stone-400 px-2 pt-2">Diagram — ${escapeHtml(d.style)}; ingredient flow left-to-right per station</caption>
-      <thead><tr><th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">Operation ↑ / Station →</th>${d.columns.map((c) => `<th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">${escapeHtml(c)}</th>`).join('')}</tr></thead>`;
+    const head = `<caption class="text-left text-xs text-stone-400 px-2 pt-2">${tC('cook.diagramCaption', { style: escapeHtml(d.style) })}</caption>
+      <thead><tr><th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">${tC('cook.stationAxis')}</th>${d.columns.map((c) => `<th scope="col" class="px-2 py-1 text-left text-xs text-amber-300/80">${escapeHtml(c)}</th>`).join('')}</tr></thead>`;
     const body = d.rows.map((row) => {
       const cells = d.columns.map((_, idx) => idx === row.stationIdx
         ? `<td class="px-2 py-1 align-top text-xs text-stone-200">${row.tokens.filter(Boolean).map(escapeHtml).join(' + ')}<span class="block text-stone-400">${row.timeMin ? `${row.timeMin} min` : ''}${row.tempC != null ? ` · ${escapeHtml(String(row.tempC))}°C` : ''}</span></td>`

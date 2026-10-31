@@ -27,7 +27,7 @@ test('week assembles 7 × slot entries (schema-valid plan entries) with ranked p
   for (const e of out.entries) assert.deepStrictEqual(S.validatePlanEntry(e).errors, []);
   const fishPick = out.picks.find((p) => p.slot === 'almuerzo');
   assert.ok(fishPick.features.some((f) => f.id === 'affinity' && f.reason.length > 10), JSON.stringify(fishPick));
-  assert.ok(fishPick.explanation.includes('Why this rank'), JSON.stringify(fishPick));
+  assert.ok(fishPick.explanation.includes('Por qué este puesto'), JSON.stringify(fishPick));
   const cenaPick = out.picks.find((p) => p.slot === 'cena');
   assert.strictEqual(cenaPick.recipeId, 'tofu-bowl', 'no-candidate slot empty; cena has only tofu offered');
   assert.ok(out.warnings.some((w) => /nutrition-pending/.test(w.code)), JSON.stringify(out.warnings));

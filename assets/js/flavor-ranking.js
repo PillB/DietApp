@@ -165,7 +165,7 @@
     const parts = [];
     for (const f of feats) parts.push(`${f.id} ${f.value} (w${f.weight}) — ${f.reason}`);
     if (equip.value < 1) parts.push('equipment missing, plan purchases/borrowing BEFORE cooking');
-    return `Why this rank for ${recipeId}: ${parts.join(' | ')}`;
+    return `Por qué este puesto para ${recipeId}: ${parts.join(' | ')}`;
   }
 
   return { rankRecipes, DEFAULT_FEATURES };

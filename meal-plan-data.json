@@ -18,145 +18,172 @@
    {
     "label": "Peruvian/Nikkei",
     "description": "Frequent orders of artichoke empanadas, quinua bowls, Inca-inspired drinks, maki acevichado and takoyaki show a love of Peru’s Nikkei fusion and seafood-driven dishes.",
-    "descriptionEs": "Pedidos frecuentes de empanadas de alcachofa, bowls de quinua, bebidas de inspiración inca, maki acevichado y takoyaki muestran amor por la fusión Nikkei peruana y los platos de mariscos. [es-PE borrador]"
+    "descriptionEs": "Pedidos frecuentes de empanadas de alcachofa, bowls de quinua, bebidas de inspiración inca, maki acevichado y takoyaki muestran amor por la fusión Nikkei peruana y los platos de mariscos. [es-PE borrador]",
+    "labelEs": "Peruano/Nikkei [es-PE borrador]"
    },
    {
     "label": "Japanese & Pan-Asian",
     "description": "Takoyaki, nigiri, dumplings (xiao long bao), bulgogi cupbap and Korean-influenced combos indicate comfort with Japanese, Chinese and Korean flavors.",
-    "descriptionEs": "Takoyaki, nigiri, dumplings (xiao long bao), bulgogi cupbap y combinaciones de influencia coreana indican familiaridad con sabores japoneses, chinos y coreanos. [es-PE borrador]"
+    "descriptionEs": "Takoyaki, nigiri, dumplings (xiao long bao), bulgogi cupbap y combinaciones de influencia coreana indican familiaridad con sabores japoneses, chinos y coreanos. [es-PE borrador]",
+    "labelEs": "Japonés y panasiático [es-PE borrador]"
    },
    {
     "label": "Italian & Mediterranean",
     "description": "Multiple orders of spaghetti cacio e pepe, gnocchi, pizza diavola/margherita and croissant sandwiches highlight Italian classics and rich dairy.",
-    "descriptionEs": "Múltiples pedidos de spaghetti cacio e pepe, gnocchi, pizza diavola/margherita y sándwiches de croissant destacan los clásicos italianos y los lácteos generosos. [es-PE borrador]"
+    "descriptionEs": "Múltiples pedidos de spaghetti cacio e pepe, gnocchi, pizza diavola/margherita y sándwiches de croissant destacan los clásicos italianos y los lácteos generosos. [es-PE borrador]",
+    "labelEs": "Italiano y mediterráneo [es-PE borrador]"
    },
    {
     "label": "Mexican/Tex-Mex",
     "description": "Crispy chicken tacos, burritos and guacamole show an affinity for bold Tex-Mex flavors and corn-based dishes.",
-    "descriptionEs": "Tacos de pollo crocantes, burritos y guacamole muestran afinidad por los sabores Tex-Mex audaces y los platos a base de maíz. [es-PE borrador]"
+    "descriptionEs": "Tacos de pollo crocantes, burritos y guacamole muestran afinidad por los sabores Tex-Mex audaces y los platos a base de maíz. [es-PE borrador]",
+    "labelEs": "Mexicano/Tex-Mex [es-PE borrador]"
    },
    {
     "label": "American comfort/fast food",
     "description": "Burgers, chicken nuggets, breakfast sandwiches and fries reflect indulgent American comfort food.",
-    "descriptionEs": "Hamburguesas, nuggets de pollo, sándwiches de desayuno y papas fritas reflejan la comida reconfortante americana indulgente. [es-PE borrador]"
+    "descriptionEs": "Hamburguesas, nuggets de pollo, sándwiches de desayuno y papas fritas reflejan la comida reconfortante americana indulgente. [es-PE borrador]",
+    "labelEs": "Confort americano/comida rápida [es-PE borrador]"
    },
    {
     "label": "Peruvian street food & bakery",
     "description": "Pan con huevo, croissant de cured deli meat y queso, alfajor-style cookies and morcilla cocktail reveal a fondness for street-style snacks and bakery items.",
-    "descriptionEs": "Pan con huevo, croissant de embutido curado y queso, galletas estilo alfajor y cóctel de morcilla revelan gusto por los snacks de calle y los artículos de panadería. [es-PE borrador]"
+    "descriptionEs": "Pan con huevo, croissant de embutido curado y queso, galletas estilo alfajor y cóctel de morcilla revelan gusto por los snacks de calle y los artículos de panadería. [es-PE borrador]",
+    "labelEs": "Comida de calle y panadería peruana [es-PE borrador]"
    }
   ],
   "Dominant Flavor Profiles": [
    {
     "label": "Umami-rich",
     "description": "Frequent cheese (pecorino, parmesan, cheddar), meats (beef, chicken, seafood), soy-based sauces and miso highlight a crave for deep savoury notes.",
-    "descriptionEs": "Quesos frecuentes (pecorino, parmesano, cheddar), carnes (res, pollo, mariscos), salsas de soya y miso destacan el antojo de notas umami profundas. [es-PE borrador]"
+    "descriptionEs": "Quesos frecuentes (pecorino, parmesano, cheddar), carnes (res, pollo, mariscos), salsas de soya y miso destacan el antojo de notas umami profundas. [es-PE borrador]",
+    "labelEs": "Rico en umami [es-PE borrador]"
    },
    {
     "label": "Mild-moderate heat",
     "description": "Orders like pizza Inferno, burritos and acevichado rolls suggest appreciation for controlled chile heat (ají amarillo, rocoto, guajillo, chipotle).",
-    "descriptionEs": "Pedidos como pizza Inferno, burritos y rollos acevichado sugieren apreciación del picante de ají controlado (ají amarillo, rocoto, guajillo, chipotle). [es-PE borrador]"
+    "descriptionEs": "Pedidos como pizza Inferno, burritos y rollos acevichado sugieren apreciación del picante de ají controlado (ají amarillo, rocoto, guajillo, chipotle). [es-PE borrador]",
+    "labelEs": "Picante leve-moderado [es-PE borrador]"
    },
    {
     "label": "Creamy & rich",
     "description": "Hollandaise, cheese sauces, hot chocolate and yoghurt parfaits point to a taste for creamy textures and dairy richness.",
-    "descriptionEs": "Hollandaise, salsas de queso, chocolate caliente y parfaits de yogur apuntan a gusto por texturas cremosas y riqueza láctea. [es-PE borrador]"
+    "descriptionEs": "Hollandaise, salsas de queso, chocolate caliente y parfaits de yogur apuntan a gusto por texturas cremosas y riqueza láctea. [es-PE borrador]",
+    "labelEs": "Cremoso e intenso [es-PE borrador]"
    },
    {
     "label": "Crispy & crunchy",
     "description": "Takoyaki, chicken nuggets, fried tacos, empanadas, croissants and cookies show a strong preference for crunchy, crackly textures.",
-    "descriptionEs": "Takoyaki, nuggets de pollo, tacos fritos, empanadas, croissants y galletas muestran una fuerte preferencia por texturas crocantes y quebradizas. [es-PE borrador]"
+    "descriptionEs": "Takoyaki, nuggets de pollo, tacos fritos, empanadas, croissants y galletas muestran una fuerte preferencia por texturas crocantes y quebradizas. [es-PE borrador]",
+    "labelEs": "Crujiente y quebradizo [es-PE borrador]"
    },
    {
     "label": "Sweet & chocolate-forward",
     "description": "Regular chocolate bars, cookies and milkshakes indicate a sweet tooth for deep cocoa flavours rather than light fruit desserts.",
-    "descriptionEs": "Barras de chocolate regulares, galletas y malteadas indican un paladar dulce que prefiere el cacao profundo antes que los postres ligeros de fruta. [es-PE borrador]"
+    "descriptionEs": "Barras de chocolate regulares, galletas y malteadas indican un paladar dulce que prefiere el cacao profundo antes que los postres ligeros de fruta. [es-PE borrador]",
+    "labelEs": "Dulce y con mucho chocolate [es-PE borrador]"
    },
    {
     "label": "Balanced acidity",
     "description": "Items like coleslaw, acevichado (ceviche-style), and Mexican salsas reveal comfort with bright citrus and vinegar notes to cut richness.",
-    "descriptionEs": "Ítems como coleslaw, acevichado (al estilo ceviche) y salsas mexicanas revelan comodidad con notas brillantes de cítrico y vinagre que cortan la riqueza. [es-PE borrador]"
+    "descriptionEs": "Ítems como coleslaw, acevichado (al estilo ceviche) y salsas mexicanas revelan comodidad con notas brillantes de cítrico y vinagre que cortan la riqueza. [es-PE borrador]",
+    "labelEs": "Acidez equilibrada [es-PE borrador]"
    }
   ],
   "Textures": [
    {
     "label": "Crunchy/fried",
     "description": "Breaded chicken, takoyaki, crispy tacos, croissants, empanadas and churros demonstrate enjoyment of audible crunch.",
-    "descriptionEs": "Pollo empanizado, takoyaki, tacos crocantes, croissants, empanadas y churros demuestran disfrutar del crunch audible. [es-PE borrador]"
+    "descriptionEs": "Pollo empanizado, takoyaki, tacos crocantes, croissants, empanadas y churros demuestran disfrutar del crunch audible. [es-PE borrador]",
+    "labelEs": "Crujiente/frito [es-PE borrador]"
    },
    {
     "label": "Tender & chewy",
     "description": "Pasta, gnocchi, dumplings and sushi highlight a love of tender or gently chewy textures.",
-    "descriptionEs": "Pasta, gnocchi, dumplings y sushi destacan el amor por texturas tiernas o suavemente masticables. [es-PE borrador]"
+    "descriptionEs": "Pasta, gnocchi, dumplings y sushi destacan el amor por texturas tiernas o suavemente masticables. [es-PE borrador]",
+    "labelEs": "Tierno y masticable [es-PE borrador]"
    },
    {
     "label": "Creamy & saucy",
     "description": "Hollandaise, cheese sauces, yoghurt, puddings and parfaits showcase creamy elements.",
-    "descriptionEs": "Hollandaise, salsas de queso, yogur, budines y parfaits exhiben elementos cremosos. [es-PE borrador]"
+    "descriptionEs": "Hollandaise, salsas de queso, yogur, budines y parfaits exhiben elementos cremosos. [es-PE borrador]",
+    "labelEs": "Cremoso y en salsa [es-PE borrador]"
    },
    {
     "label": "Layered/stacked",
     "description": "Burgers, burritos and sushi rolls suggest appreciation for layered constructions and bowls.",
-    "descriptionEs": "Hamburguesas, burritos y rollos de sushi sugieren apreciación por capas y construcciones en bowl. [es-PE borrador]"
+    "descriptionEs": "Hamburguesas, burritos y rollos de sushi sugieren apreciación por capas y construcciones en bowl. [es-PE borrador]",
+    "labelEs": "En capas/apilado [es-PE borrador]"
    }
   ],
   "Key Ingredients & Spices": [
    {
     "label": "Proteins",
     "description": "Eggs (poached/fried/scrambled), poultry (chicken, turkey), seafood (salmon, tuna, octopus), beef (burgers, lomo saltado), occasional pork/cured deli meat.",
-    "descriptionEs": "Huevos (pochados/fritos/revueltos), aves (pollo, pavo), mariscos (salmón, atún, pulpo), res (hamburguesas, lomo saltado), y cerdo o embutidos curados ocasionales. [es-PE borrador]"
+    "descriptionEs": "Huevos (pochados/fritos/revueltos), aves (pollo, pavo), mariscos (salmón, atún, pulpo), res (hamburguesas, lomo saltado), y cerdo o embutidos curados ocasionales. [es-PE borrador]",
+    "labelEs": "Proteínas [es-PE borrador]"
    },
    {
     "label": "Cheese & dairy",
     "description": "Pecorino, parmesan, mozzarella, cheddar, queso fresco, yoghurt; preference for rich, full-fat flavours.",
-    "descriptionEs": "Pecorino, parmesano, mozzarella, cheddar, queso fresco, yogur; preferencia por sabores lácteos ricos y enteros. [es-PE borrador]"
+    "descriptionEs": "Pecorino, parmesano, mozzarella, cheddar, queso fresco, yogur; preferencia por sabores lácteos ricos y enteros. [es-PE borrador]",
+    "labelEs": "Quesos y lácteos [es-PE borrador]"
    },
    {
     "label": "Vegetables & herbs",
     "description": "Artichokes, avocados, onions, cabbage, mushrooms, spinach, aji amarillo, rocoto, cilantro, basil, oregano.",
-    "descriptionEs": "Alcachofas, palta, cebolla, col, champiñones, espinaca, ají amarillo, rocoto, culantro, albahaca, orégano. [es-PE borrador]"
+    "descriptionEs": "Alcachofas, palta, cebolla, col, champiñones, espinaca, ají amarillo, rocoto, culantro, albahaca, orégano. [es-PE borrador]",
+    "labelEs": "Verduras y hierbas [es-PE borrador]"
    },
    {
     "label": "Grains & starches",
     "description": "Bread (brioche, croissant), pasta, gnocchi, tortillas, rice, quinoa, oats; many refined in orders but to be shifted to whole-grain forms in the plan.",
-    "descriptionEs": "Pan (brioche, croissant), pasta, gnocchi, tortillas, arroz, quinua, avena; muchos refinados en los pedidos pero por cambiar a formas integrales en el plan. [es-PE borrador]"
+    "descriptionEs": "Pan (brioche, croissant), pasta, gnocchi, tortillas, arroz, quinua, avena; muchos refinados en los pedidos pero por cambiar a formas integrales en el plan. [es-PE borrador]",
+    "labelEs": "Granos y almidones [es-PE borrador]"
    },
    {
     "label": "Spices & aromatics",
     "description": "Black pepper, garlic, ginger, cumin, sesame, soy, miso, chili powders (guajillo, chipotle), ají peppers; sweet spices like cinnamon and clove (chicha morada).",
-    "descriptionEs": "Pimienta negra, ajo, kion, comino, ajonjolí, soya, miso, ajíes en polvo (guajillo, chipotle), ajíes frescos; especias dulces como canela y clavo (chicha morada). [es-PE borrador]"
+    "descriptionEs": "Pimienta negra, ajo, kion, comino, ajonjolí, soya, miso, ajíes en polvo (guajillo, chipotle), ajíes frescos; especias dulces como canela y clavo (chicha morada). [es-PE borrador]",
+    "labelEs": "Especias y aromáticos [es-PE borrador]"
    }
   ],
   "Preferred Techniques": [
    {
     "label": "Frying & crisping",
     "description": "Deep-frying or pan-frying (nuggets, tacos, takoyaki) to achieve crunchy exteriors.",
-    "descriptionEs": "Freidura profunda o al sartén (nuggets, tacos, takoyaki) para lograr exteriores crocantes. [es-PE borrador]"
+    "descriptionEs": "Freidura profunda o al sartén (nuggets, tacos, takoyaki) para lograr exteriores crocantes. [es-PE borrador]",
+    "labelEs": "Freidura y crocantizado [es-PE borrador]"
    },
    {
     "label": "Baking & pastry",
     "description": "Croissants, empanadas and pizza highlight a love of baking and laminated doughs.",
-    "descriptionEs": "Croissants, empanadas y pizza destacan el amor por la panadería y masas hojaldradas. [es-PE borrador]"
+    "descriptionEs": "Croissants, empanadas y pizza destacan el amor por la panadería y masas hojaldradas. [es-PE borrador]",
+    "labelEs": "Horneado y repostería [es-PE borrador]"
    },
    {
     "label": "Poaching & slow cooking",
     "description": "Poached eggs (Benedict), ramen broths and braised meats show comfort with slow, moist techniques.",
-    "descriptionEs": "Huevos pochados (Benedict), caldos de ramen y carnes brazeadas muestran comodidad con técnicas lentas y húmedas. [es-PE borrador]"
+    "descriptionEs": "Huevos pochados (Benedict), caldos de ramen y carnes brazeadas muestran comodidad con técnicas lentas y húmedas. [es-PE borrador]",
+    "labelEs": "Pochado y cocción lenta [es-PE borrador]"
    },
    {
     "label": "Stir-frying & sautéing",
     "description": "Lomo saltado and noodle dishes require quick, high-heat stir-frying.",
-    "descriptionEs": "El lomo saltado y los fideos requieren salteado rápido a fuego alto. [es-PE borrador]"
+    "descriptionEs": "El lomo saltado y los fideos requieren salteado rápido a fuego alto. [es-PE borrador]",
+    "labelEs": "Salteado al wok [es-PE borrador]"
    },
    {
     "label": "Grilling & searing",
     "description": "Burgers, chicken and seafood often involve searing or grilling to develop Maillard flavour.",
-    "descriptionEs": "Hamburguesas, pollo y mariscos suelen sellarse o parrillarse para desarrollar sabor Maillard. [es-PE borrador]"
+    "descriptionEs": "Hamburguesas, pollo y mariscos suelen sellarse o parrillarse para desarrollar sabor Maillard. [es-PE borrador]",
+    "labelEs": "Parrilla y sellado [es-PE borrador]"
    },
    {
     "label": "Layering & rolling",
     "description": "Burritos, sushi, dumplings and burgers show a penchant for layered preparations.",
-    "descriptionEs": "Burritos, sushi, dumplings y hamburguesas muestran inclinación por preparaciones en capas. [es-PE borrador]"
+    "descriptionEs": "Burritos, sushi, dumplings y hamburguesas muestran inclinación por preparaciones en capas. [es-PE borrador]",
+    "labelEs": "Capas y enrollado [es-PE borrador]"
    }
   ],
   "Overall Taste DNA": [
@@ -170,32 +197,38 @@
    {
     "label": "Elevate familiar favourites",
     "description": "Classic orders like Eggs Benedict, tacos, gnocchi and burgers will be reimagined with whole-grain foundations, artisanal sauces and higher-quality proteins.",
-    "descriptionEs": "Los pedidos clásicos como Eggs Benedict, tacos, gnocchi y hamburguesas se reimaginarán con bases integrales, salsas artesanales y proteínas de mayor calidad. [es-PE borrador]"
+    "descriptionEs": "Los pedidos clásicos como Eggs Benedict, tacos, gnocchi y hamburguesas se reimaginarán con bases integrales, salsas artesanales y proteínas de mayor calidad. [es-PE borrador]",
+    "labelEs": "Elevar los favoritos familiares [es-PE borrador]"
    },
    {
     "label": "Honour cultural fusions",
     "description": "Dishes will fuse Peruvian, Nikkei, Italian, Mexican and American inspirations, reflecting the user’s diverse ordering history.",
-    "descriptionEs": "Los platos fusionarán inspiraciones peruanas, nikkei, italianas, mexicanas y americanas, reflejando el diverso historial de pedidos del comensal. [es-PE borrador]"
+    "descriptionEs": "Los platos fusionarán inspiraciones peruanas, nikkei, italianas, mexicanas y americanas, reflejando el diverso historial de pedidos del comensal. [es-PE borrador]",
+    "labelEs": "Honrar las fusiones culturales [es-PE borrador]"
    },
    {
     "label": "Amplify textures",
     "description": "Recipes will feature intentional contrasts-crispy toppings on creamy bases, tender meats with crunchy sides-to satisfy the user’s love of texture.",
-    "descriptionEs": "Las recetas presentarán contrastes intencionales —cubiertas crocantes sobre bases cremosas, carnes tiernas con guarniciones crujientes— para satisfacer el amor por la textura. [es-PE borrador]"
+    "descriptionEs": "Las recetas presentarán contrastes intencionales —cubiertas crocantes sobre bases cremosas, carnes tiernas con guarniciones crujientes— para satisfacer el amor por la textura. [es-PE borrador]",
+    "labelEs": "Amplificar texturas [es-PE borrador]"
    },
    {
     "label": "Prioritise whole foods",
     "description": "Refined ingredients will be swapped for fibre-rich whole grains, fresh produce and homemade sauces to align with the dietary guidelines while preserving indulgence.",
-    "descriptionEs": "Los ingredientes refinados se cambiarán por granos integrales ricos en fibra, produce fresca y salsas caseras para alinear con las guías sin perder la indulgencia. [es-PE borrador]"
+    "descriptionEs": "Los ingredientes refinados se cambiarán por granos integrales ricos en fibra, produce fresca y salsas caseras para alinear con las guías sin perder la indulgencia. [es-PE borrador]",
+    "labelEs": "Priorizar alimentos enteros [es-PE borrador]"
    },
    {
     "label": "Balance richness with acidity and spice",
     "description": "Each menu will pair creamy or fatty elements with acidic or spicy components (citrus, ají, pickled vegetables) to keep palates refreshed.",
-    "descriptionEs": "Cada menú emparejará elementos cremosos o grasos con componentes ácidos o picantes (cítricos, ají, verduras encurtidas) para mantener el paladar renovado. [es-PE borrador]"
+    "descriptionEs": "Cada menú emparejará elementos cremosos o grasos con componentes ácidos o picantes (cítricos, ají, verduras encurtidas) para mantener el paladar renovado. [es-PE borrador]",
+    "labelEs": "Equilibrar la riqueza con acidez y picante [es-PE borrador]"
    },
    {
     "label": "Include protein variety",
     "description": "Meals will incorporate eggs, seafood, poultry, legumes and limited red meat, providing the recommended protein while avoiding processed meats.",
-    "descriptionEs": "Las comidas incorporarán huevos, mariscos, aves, legumbres y carne roja limitada, entregando la proteína recomendada sin carnes procesadas. [es-PE borrador]"
+    "descriptionEs": "Las comidas incorporarán huevos, mariscos, aves, legumbres y carne roja limitada, entregando la proteína recomendada sin carnes procesadas. [es-PE borrador]",
+    "labelEs": "Incluir variedad de proteínas [es-PE borrador]"
    }
   ]
  },

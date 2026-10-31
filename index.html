@@ -335,7 +335,7 @@
               <div class="mt-4 space-y-3">
                 <template x-for="item in items" :key="item.label + item.description">
                   <p class="text-sm leading-7 text-stone-300">
-                    <template x-if="item.label"><strong class="text-amber-200" x-text="item.label + ': '"></strong></template>
+                    <template x-if="item.label"><strong class="text-amber-200" x-text="(item.labelEs || item.label) + ': '"></strong></template>
                     <span x-text="item.descriptionEs || item.description"></span>
                   </p>
                 </template>

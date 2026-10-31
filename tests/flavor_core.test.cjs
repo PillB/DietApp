@@ -55,7 +55,7 @@ test('share integrity: sums stay within the dish pool and category linkage is pr
   const item = p.items.find((x) => x.name === 'Maki Acevichado');
   assert.deepStrictEqual(item.topCategories, [{ id: 'Sushi / Nikkei / japonesa', count: 5 }]);
   assert.ok(p.monthsSeries['2022-01'] === 20, 'month series passes through untouched');
-  assert.ok(p.caveats.some((c) => /aggregate[- ]only/i.test(c.text)), `atlas policy caveat is shown to UI: ${JSON.stringify(p.caveats.map((c) => c.text))}`);
+  assert.ok(p.caveats.some((c) => /aggregate[- ]only|solo-agregado/i.test(c.text) || c.code === 'aggregate_only'), `atlas policy caveat is shown to UI: ${JSON.stringify(p.caveats.map((c) => c.text))}`);
   assert.ok(p.caveats.some((c) => /description/i.test(c.text)), 'confidence caveats surface (Media-dominance acknowledged)');
 });
 
