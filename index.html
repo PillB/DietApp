@@ -331,7 +331,7 @@
         <div class="grid gap-5 lg:grid-cols-2">
           <template x-for="(items, sectionName) in data.knowledgeMap" :key="sectionName">
             <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
-              <h3 class="font-display text-2xl text-amber-50" x-text="data.kmTitleEs ? data.kmTitleEs[sectionName] || sectionName : sectionName"></h3>
+              <h3 class="font-display text-2xl text-amber-50" x-text="kmTitleEs[sectionName] || sectionName"></h3>
               <div class="mt-4 space-y-3">
                 <template x-for="item in items" :key="item.label + item.description">
                   <p class="text-sm leading-7 text-stone-300">
