@@ -20,11 +20,11 @@ async function checkFile(file){
 }
 async function main(){
  const audit={base:BASE,checkoutSha:SHA,attempts:[],verified:false,at:new Date().toISOString()};
- for(let n=0;n<5;n++){
+ for(let n=0;n<20;n++){
   const rows=await Promise.all(ASSETS.map(async x=>{try{return await checkFile(x)}catch(e){return {file:x,ok:false,error:String(e)}}}));
   audit.attempts.push({attempt:n+1,rows});
   if(rows.every(x=>x.ok)){audit.verified=true;break}
-  if(n<4)await sleep(5000);
+  if(n<19)await sleep(6000);
  }
  fs.writeFileSync(path.join(ROOT,'tests/deployed_asset_parity_report.json'),JSON.stringify(audit,null,2));
  console.log(JSON.stringify({sha:SHA,verified:audit.verified,files:ASSETS.length,attempts:audit.attempts.length,last:audit.attempts.at(-1).rows},null,2));
