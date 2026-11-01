@@ -545,8 +545,16 @@
         }
       }
       registerI18nRebind();
-      function boot2() {
-        if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) { console.error('engine UI deps missing'); return; }
+      function boot2(attempt) {
+        // LEDGER-D56 root cause: deferred UI scripts can lag the first fixture fetch
+        // (slow mobile networks / CI runners) — boot2 used to bail PERMANENTLY on
+        // 'engine UI deps missing', leaving the panels unmounted. Bounded retry now.
+        attempt = attempt || 0;
+        if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) {
+          if (attempt < 80) return void setTimeout(() => { boot2(attempt + 1); }, 125);
+          console.error('engine UI deps missing after ~10s retry window');
+          return;
+        }
         try {
           const shopping = window.ShoppingUI.init({});
           window.PlannerUI.init({ model: shopping.model });
