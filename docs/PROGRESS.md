@@ -819,12 +819,14 @@ Round 3 of the Spanish sweep: cook-mode card statuses + diagram captions via 8 n
 Gates: 173/173 · e2e · staging · live · redteam x2 · geometry · audit 33 — ALL PASS.
 
 Next single command/ticket: the ONLY remaining EN is the legacy 29-recipe corpus (names/methods/steps/shopping items) under the '(EN — sin traducción)' notice — LEDGER-6 native-review class, owner decision required. All dev-side chrome/status/narrative text is now es-PE draft.
+## Session log - 2026-11-01, part 63 (W5b PR-1/PR-2 shipped; boot2 race fix; CI taxonomy)
+
+W5b PR-1 (D58): assets/js/step-text.js adapter + tests/step_alignment.test.cjs (5 tests, alignment invariant + seeded-negative). W5b PR-2 (D59): cook-mode renderSteps + nutrition preview on the adapter; hardening chain caught by e2e cook-flow + live probes: (1) family detection keyed to originalSource/sourceFamily (imported rich struct mis-detection), (2) offline file:// fetch-failure no longer degrades EN line to undefined, (3) REAL locus fix — docx canon authors es at s.esPE (step level), NOT text.esPE; the old '(missing)' ES-PE rendering for docx steps was a false annotation; es-locus regression guard added to step_alignment tests. r3 lint caught 4 violations in PR-2 (CC 21 > 15 etc.) — refactored to leaf helpers (detectRichFamily/detectFlatFamily), unused vars dropped.
+
+CI: full taxonomy delivered (D57) — 8 failures -> 3 root-cause classes (routed-view walkers; boot2 permanent-bail race + CDN staleness (D56 fix: indexed retry); PR-quality intermediate), all resolved; 7+ consecutive green main runs; weekly r3 proven inside CI.
+
+Next single command/ticket: W5b PR-3 (legacy-29 translation) owner-gated; audit branch merge decision (W4) owner-gated.
 
 ## Update template for next session
 
 ## Update template for next session
-Time (Lima): ... Model: ... Commit before/after: ...
-Task, assumptions and AC: ... Files written: ...
-Tests command/output: ... Negative findings: ...
-Usage/quota/error: ... Blockers: ...
-Next single command/ticket: ...
