@@ -50,13 +50,17 @@ test('adapter: curated-7 family detects + emits the canonical shape with draft e
 
 test('adapter: docx-4 family passes through the rich struct with authored-es status', () => {
   for (const r of docx.recipes) {
-    const steps = StepText.stepTextsOf(r, { translations });
+    // production shape: shopping-ui init maps {...meta, steps, sourceFamily:'owner-docx'}
+    const asModel = { ...r.meta, steps: r.steps, sourceFamily: 'owner-docx' };
+    const steps = StepText.stepTextsOf(asModel, { translations });
     assert.strictEqual(steps.length, r.steps.length, r.meta.id);
     for (const [i, s] of steps.entries()) {
       assert.strictEqual(s.text.en, r.steps[i].text.en, `${r.meta.id}#${i}`);
       assert.strictEqual(s.id, r.steps[i].id);
-      const hasEs = Boolean(s.text.esPE);
-      if (hasEs) assert.strictEqual(s.text.esStatus, 'authored-es');
+      // the docx canon authors es at the STEP level (s.esPE), not inside text:{}
+      assert.ok(r.steps[i].esPE, `${r.meta.id}#${i}: canon must carry authored es (locus regression guard)`);
+      assert.strictEqual(s.text.esStatus, 'authored-es');
+      assert.strictEqual(s.text.esPE, r.steps[i].esPE);
     }
   }
 });

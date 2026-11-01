@@ -24,13 +24,43 @@
     return step && typeof step === 'object' && step.text && typeof step.text === 'object' && typeof step.text.en === 'string';
   }
 
-  /** Family detection: docx (rich struct), curated (imported weighed), legacy (prose blocks). */
-  function detectFamily(recipe) {
-    if (Array.isArray(recipe.steps) && recipe.steps.length && isDocxStep(recipe.steps[0])) return 'docx';
-    if (recipe.sourceFamily === 'owner-docx') return 'docx';
+  /** Family detection:
+   *  - rich struct steps → 'docx' when owner-provenance or authored-es present;
+   *    imported-curated rich steps → 'curated' keyed by the served id (es present
+   *    online, degrades to `none` offline);
+   *  - flat-string steps with a served reference → 'curated';
+   *  - otherwise legacy prose. */
+  function detectFamily(recipe, deps) {
+    const steps = recipe.steps || [];
+    const isRich = Boolean(steps.length) && isDocxStep(steps[0]);
+    const src = recipe.originalSource || recipe.sourceFamily || '';
+    if (isRich && (/owner-docx/.test(src) || recipe.sourceFamily === 'owner-docx')) return 'docx';
+    if (isRich && steps.some((s) => s.text.esPE)) return 'docx';
+    if (isRich) return 'curated';
+    const translations = (deps && deps.translations) || {};
+    if (steps.length && typeof steps[0] === 'string' && Array.isArray(translations[recipe.id])) return 'curated';
     if (recipe.sourceFamily === 'weighed-curated' || recipe.es) return 'curated';
-    if (Array.isArray(recipe.method) || recipe.steps && recipe.steps.every((s) => typeof s === 'string')) return 'legacy';
+    if (Array.isArray(recipe.method) || (steps.length && steps.every((s) => typeof s === 'string'))) return 'legacy';
     return 'legacy';
+  }
+
+  /** rich steps (docx authored, or imported-curated), es from tx when served. */
+  function fromRich(recipe, txList) {
+    return (recipe.steps || []).map((s, i) => {
+      // authored es-PE lives at s.esPE (docx canon); some variants may nest it in text
+      const authoredEs = Boolean(s.esPE || s.text.esPE);
+      const esPE = authoredEs ? (s.esPE || s.text.esPE) : ((txList && txList[i]) || '');
+      return {
+        id: s.id || `s${i + 1}`,
+        order: s.order || i + 1,
+        station: s.station || '',
+        text: { en: s.text.en, esPE, esStatus: authoredEs ? 'authored-es' : (esPE ? 'draft' : 'none') },
+        ingredients: s.ingredients || [],
+        timeMin: s.timeMin ?? null,
+        targetTempC: s.targetTempC ?? null,
+        checkpoint: s.checkpoint ?? null,
+      };
+    });
   }
 
   /** curated-7: EN flat steps + parallel translations (may be absent at runtime). */
@@ -77,9 +107,14 @@
   }
 
   function stepTextsOf(recipe, deps) {
-    const family = detectFamily(recipe);
-    if (family === 'docx') return fromDocx(recipe);
-    if (family === 'curated') return fromCurated(recipe, deps || { translations: (root.__pgkStepTranslations || {}) });
+    const family = detectFamily(recipe, deps);
+    const txList = ((deps && deps.translations) || {})[recipe.id] || [];
+    if (family === 'docx') return fromRich(recipe, null); // authored es from the struct
+    if (family === 'curated') {
+      const steps = recipe.steps;
+      if (steps.length && isDocxStep(steps[0])) return fromRich(recipe, txList);
+      return fromCurated(recipe, { translations: { [recipe.id]: txList } });
+    }
     return fromLegacy(recipe);
   }
 

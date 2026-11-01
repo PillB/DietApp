@@ -101,6 +101,8 @@
     const stepsEl = section.querySelector('#cook-steps');
     const claims = COOK.extractHeatClaims(recipe.steps.map((s) => s.text.en));
     const proteinIds = ids.filter((x) => ['salmon', 'chicken_breast', 'beef_sirloin', 'beef_chuck'].includes(x));
+    // W5b PR-2: adapter is the single read-path — compute once per recipe
+    const canonSteps = root.StepText ? root.StepText.stepTextsOf(recipe, { translations: root.__pgkStepTranslations || {} }) : [];
     stepsEl.innerHTML = recipe.steps.map((s, i) => {
       const claim = claims[i];
       let verdictHtml = '<span class="text-stone-400">no heat gate (no temperature claim; no protein)</span>';
@@ -115,13 +117,11 @@
       void proteinIds;
       const miseLine = recipe.mise_en_place && recipe.mise_en_place.some((m) => (s.station || '').startsWith(m.station.split(' - ')[0]))
         ? '' : '<span class="ml-2 text-red-300 translate-y-0.5">(no mise line!)</span>';
-      const esLine = s.esPE
-        ? { text: s.esPE, tag: '' } // authored es-PE (docx recipes)
-        : ((root.__pgkStepTranslations || {})[recipe.id] || [])[i]
-          ? { text: root.__pgkStepTranslations[recipe.id][i], tag: ' (es-PE borrador)' }
-          : null;
-      const esHtml = esLine
-        ? `<span class="block mt-1 text-emerald-200/80 text-xs">ES-PE: ${escapeHtml(esLine.text)}${escapeHtml(esLine.tag)}</span>`
+      // adapter is the single read-path (esStatus policy decided at render)
+      const es = canonSteps[i] ? canonSteps[i].text : { esPE: '', esStatus: 'none' };
+      const tag = es.esStatus === 'draft' ? ' (es-PE borrador)' : '';
+      const esHtml = es.esPE
+        ? `<span class="block mt-1 text-emerald-200/80 text-xs">ES-PE: ${escapeHtml(es.esPE)}${escapeHtml(tag)}</span>`
         : '<span class="block mt-1 text-red-300/70 text-xs">ES-PE: (missing)</span>';
       return `<li class="rounded border border-stone-700 px-3 py-2">
         <span class="text-stone-200">Step ${i + 1}${s.station ? ` (${escapeHtml(s.station)})` : ''}:</span> <span class="text-stone-300">${escapeHtml(s.text.en)}</span>
