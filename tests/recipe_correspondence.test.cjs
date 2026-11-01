@@ -15,6 +15,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
 const Q = require('../assets/js/quantity.js');
+const STEPS = require('../assets/js/step-consumption-core.js');
 const importer = require('../assets/js/import-weighed.js');
 const N = require('../assets/js/diet-nutrition-core.js');
 
@@ -56,7 +57,7 @@ function recipeLedger(recipe) {
   return rows;
 }
 
-test('7 weighed recipes: every ingredient referenced in ≥1 step OR explicitly optional+garnish (no silent ghost rows)', () => {
+test('7 weighed recipes: declared ingredient quantities have plausible positive bounds (NOT a step-balance audit)', () => {
   for (const r of imported.recipes) {
     const ledger = recipeLedger(r);
     // weighed recipes come from a different pipeline (prose steps list no ingredient refs)
@@ -65,8 +66,11 @@ test('7 weighed recipes: every ingredient referenced in ≥1 step OR explicitly 
   }
 });
 
-test('4 docx recipes: every ingredient appears in ≥1 step and gram balance never goes negative', () => {
+test('4 docx recipes: explicit planned step allocations conserve ingredient quantities (NOT actual kitchen measurements)', () => {
   for (const r of canon.recipes) {
+    const planned = STEPS.auditRecipe(r);
+    assert.equal(planned.ok, true, `${r.meta.id}: ${JSON.stringify(planned.errors)}`);
+    assert.equal(planned.status, 'planned-allocation-only-not-kitchen-verified');
     const ledger = recipeLedger(r);
     for (const row of ledger) {
       if (row.declaredG === null) continue; // NS ingredients skip the balance check
@@ -107,11 +111,10 @@ test('E2E math cross-check: shopping aggregation matches the sum of recipe ingre
   assert.ok(Q.eq(oats.needed, Q.parseExact('90')), `expected 90 g (30 × 3), got ${oats.neededString || Q.toNumber(oats.needed)}`);
 });
 
-test('seeded negative: a recipe that CONSUMES MORE than declared (negative balance) is caught', () => {
+test('seeded negative: a step requesting more than its ingredient manifest is refused', () => {
   const bad = JSON.parse(JSON.stringify(canon.recipes[0]));
-  bad.ingredients[1].quantity = '4'; // 4 g oats declared, but the recipe consumes the FULL portion per step-model
-  const ledger = recipeLedger(bad);
-  // the ledger's invariant: leftover is never negative because consumption = min(declared, used)
-  assert.ok(ledger.every((x) => x.leftOverG === null || x.leftOverG >= 0), 'ledger must stay non-negative');
-  assert.strictEqual(ledger[1].declaredG, 4, 'the tampered 4 g row carries its new declared value');
+  bad.ingredients[1].quantity = '4'; // first step still allocates 8 g oats
+  const outcome = STEPS.auditRecipe(bad);
+  assert.equal(outcome.ok, false, 'independently coded step use must exceed the changed declaration');
+  assert.ok(outcome.errors.some(e => e.code === 'overconsumption'), JSON.stringify(outcome.errors));
 });

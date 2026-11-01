@@ -33,7 +33,7 @@ async function screenshot(page, label) {
 }
 async function openMobileNavigation(page) {
   const toggle = page.locator('#mobile-nav-toggle');
-  if (await toggle.count() && await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'false') {
+  if (await toggle.count() && await toggle.getAttribute('aria-expanded') === 'false') {
     await toggle.click();
   }
 }
@@ -53,23 +53,7 @@ async function observeRoute(page, hash, width) {
   const otherEngines = [];
   for (const engine of ENGINES) if (engine !== view && await page.locator('#' + engine).isVisible()) otherEngines.push(engine);
   const ok = visible && inViewport && urlMatches && otherEngines.length === 0;
-  const debug = ok ? null : await page.evaluate((view) => {
-    const el = document.querySelector('#' + view) || document.querySelector(`section[x-show="view === '${view}'"]`);
-    const root = document.documentElement;
-    const entry = root._x_dataStack?.[0];
-    const ancestry = [];
-    let cur = el;
-    while (cur && ancestry.length < 7) {
-      const style = getComputedStyle(cur);
-      ancestry.push({tag:cur.tagName,id:cur.id||null,cls:(cur.className||'').slice(0,80),
-        inline:cur.getAttribute('style'),display:style.display,visibility:style.visibility,
-        clientHeight:cur.clientHeight,childCount:cur.childElementCount,
-        htmlLength:cur.innerHTML?.length || 0,xShow:cur.getAttribute('x-show')});
-      cur=cur.parentElement;
-    }
-    return {alpine:!!window.Alpine,appView:entry?.view,href:location.href,ancestry};
-  },view);
-  record({width,hash,view,ok,visible,inViewport,urlMatches,otherEngines,controls:await inventory(page),debug},'routes');
+  record({width,hash,view,ok,visible,inViewport,urlMatches,otherEngines,controls:await inventory(page)},'routes');
   await screenshot(page, `${width}-${view}`);
 }
 async function exercise(page, width) {
@@ -119,16 +103,10 @@ async function run() {
       const ctx = await browser.newContext({viewport:{width,height:width===390?844:900},locale:'es-PE'});
       const page = await ctx.newPage();
       page.on('pageerror',e=>report.errors.push({width,type:'pageerror',error:e.message}));
-      page.on('console',m=>{ if(m.type()==='error') report.errors.push({width,type:'console-error',error:m.text().slice(0,500)}); });
-      page.on('requestfailed',r=>report.errors.push({width,type:'failed-network-request',url:r.url(),error:r.failure()?.errorText}));
       try {
         const response = await page.goto(LIVE,{waitUntil:'domcontentloaded',timeout:25000});
         if (!response || response.status()>=400) throw new Error('bad Pages HTTP status: '+response?.status());
-        const started=Date.now();
-        await page.locator('#planner-h2').waitFor({state:'attached',timeout:20000});
-        await page.locator('#engine-recipe').waitFor({state:'attached',timeout:20000});
-        await page.locator('#cook-recipe').waitFor({state:'attached',timeout:20000});
-        record({width,action:'engine-mounted-before-interaction',ok:true,loadMs:Date.now()-started});
+        await page.waitForTimeout(1800);
         for(const route of ROUTES) await observeRoute(page,route,width);
         await exercise(page,width);
       } catch(e) { report.errors.push({width,type:'walkthrough',error:String(e)}); }

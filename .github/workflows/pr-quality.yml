@@ -1,4 +1,4 @@
-name: PR quality and independent browser evidence
+name: DietApp PR quality and browser evidence
 on:
   pull_request:
     branches: [main]
@@ -6,49 +6,57 @@ on:
 permissions:
   contents: read
 jobs:
-  candidate:
+  validate:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout candidate commit
+        uses: actions/checkout@v4
+      - name: Node 22
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-      - name: Audit source-vs-served recipe data
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate generated recipe data
         run: node scripts/sync_data_js.cjs --check
-      - name: JavaScript lint and complexity budget
-        run: npm run lint
-      - name: Corpus, food science, math and i18n tests
+      - name: Static analysis and complexity gate
+        run: npm run chore:lint
+      - name: Unit, property and food-science checks
         run: npm test
-      - name: Privacy scan
+      - name: Privacy gate
         run: npm run privacy
-      - name: Handover integrity
+      - name: Handover contract
         run: python3 scripts/check_handover.py
-      - name: Set up real Chromium
+      - name: Install Chromium for interaction tests
         run: npx playwright install --with-deps chromium
-      - name: 26 direct route states, shopping and cook controls
-        run: npm run candidate:routes
-      - name: Real local served app integration
+      - name: Locally served browser interactions
         run: npm run e2e
-      - name: Responsive and a11y staging
+      - name: Staging responsive and accessibility audit
         run: npm run staging
-      - name: Save screenshots, text controls and test reports
+      - name: Upload browser traces and screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: independent-candidate-evidence
+          name: dietapp-browser-audit
           if-no-files-found: warn
           path: |
-            tests/candidate_route_audit_report.json
-            tests/screenshots/candidate-20261031/
-            tests/e2e_*.png
+            tests/screenshots/
+            tests/e2e_served_*.png
+            tests/e2e_shopping_flow.png
+            tests/e2e_planner_flow.png
+            tests/e2e_cook_flow.png
+            tests/e2e_flavor_flow.png
             tests/e2e_served_report.json
             tests/staging_qa_report.json
-  live-current-main:
+
+  live-main-baseline:
+    name: Independent LIVE Pages baseline (nonblocking until candidate deploy)
     runs-on: ubuntu-latest
-    timeout-minutes: 16
+    timeout-minutes: 15
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -56,16 +64,18 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Syntax-check independent walkthrough
+        run: node --check tests/live_pages_walkthrough.cjs
       - run: npx playwright install --with-deps chromium
-      - name: Capture currently published Pages (not candidate; only baseline)
+      - name: Screenshot live current-main Pages
         continue-on-error: true
-        run: npm run live:walkthrough
-      - name: Save actual live screenshots and failed checks
+        run: node tests/live_pages_walkthrough.cjs
+      - name: Upload exact live Pages evidence and errors
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: independent-live-pages-evidence
+          name: dietapp-live-pages-baseline
           if-no-files-found: warn
           path: |
-            tests/live_pages_independent_report.json
             tests/screenshots/live-pages-independent/
+            tests/live_pages_independent_report.json

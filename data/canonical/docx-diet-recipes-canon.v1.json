@@ -74,7 +74,7 @@
       "foodCompositionRef": null,
       "allergenCodes": [],
       "compositionStatus": "unmatched_variety_requires_reference",
-      "compositionNote": "Do not substitute beans for this plantain variety. Await food-composition source and edible-yield / product label evidence."
+      "compositionNote": "Do not substitute beans or another banana variety; pending verified food-specific composition and edible-yield basis."
     },
     {
       "id": "quinua_graneada",
@@ -1251,6 +1251,6 @@
       "dietaryContext": "snack/shared dessert (portion ×4); sugar-free by design"
     }
   ],
-  "ingredientAllocationProvenance": "Each ingredient is allocated at the first referencing step. Process steps may reuse prepared material without a second ingredient debit. Not a physical cook-through or measured yield.",
+  "ingredientAllocationProvenance": "Each ingredient is allocated in full at the first step referencing it, as a proposed mise-en-place transfer. This is NOT a measured step-by-step kitchen consumption or a validated yield. Any later reuse/process is tracked separately in processRefs.",
   "ingredientAllocationValidationStatus": "planned-unverified-awaiting-kitchen-cookthrough"
 }
