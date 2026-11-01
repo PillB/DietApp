@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Install Chromium (browser-backed r3 layers)
+        run: npx playwright install --with-deps chromium
       - name: Run the consolidated regression stack (lint, tests, e2e, staging, live, audit, redteam, geometry)
         run: npm run r3 2>&1 | tee /tmp/r3_result.txt
       - name: Archive r3 layer logs
