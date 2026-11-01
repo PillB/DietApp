@@ -41,6 +41,11 @@ function normalizeText(value) {
     .trim();
 }
 
+// LEDGER-D54 — single route source of truth (37a8aa8 routed the engine panels).
+// The nav array, the section x-show bindings, and this.whitelist all key off these names.
+// 'week' / 'day' / 'shopping' carry sub-path parameters (:week#/:day#) handled in readRoute.
+const VIEW_ROUTES = ['dashboard', 'calendar', 'week', 'day', 'recipes', 'shopping', 'compliance', 'nutrition', 'knowledge', 'shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'];
+
 /**
  * Function preamble: slugify(value)
  * --------------------------------------------------------------------------
@@ -190,7 +195,7 @@ function mealPlanApp() {
       const raw = (window.location.hash || '#dashboard').replace(/^#/, '');
       const parts = raw.split('/').filter(Boolean);
       const page = parts[0] || 'dashboard';
-      if (['dashboard', 'calendar', 'recipes', 'knowledge', 'compliance', 'nutrition', 'shopengine', 'planner', 'cookmode', 'flavoratlas', 'weighin'].includes(page)) {
+      if (VIEW_ROUTES.includes(page)) {
         this.view = page;
       } else if (page === 'week') {
         this.view = 'week';
