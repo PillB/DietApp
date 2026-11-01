@@ -1,5 +1,5 @@
 {
-  "port": 62423,
+  "port": 63291,
   "rows": [
     {
       "tag": "desktop",
@@ -28,8 +28,8 @@
       "localMissing": [],
       "cdnResults": [
         "302 https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",
-        "302 https://cdn.tailwindcss.com/",
         "200 https://unpkg.com/alpinejs@3.17.5/dist/cdn.min.js",
+        "302 https://cdn.tailwindcss.com/",
         "200 https://cdn.tailwindcss.com/3.4.17"
       ]
     },

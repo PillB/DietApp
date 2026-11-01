@@ -17,26 +17,31 @@
   const api = factory(root);
   if (typeof module === 'object' && module.exports) module.exports = api;
   root.StepText = api;
-})(typeof window !== 'undefined' ? window : globalThis, function (root) {
+})(typeof window !== 'undefined' ? window : globalThis, function () {
   'use strict';
 
   function isDocxStep(step) {
     return step && typeof step === 'object' && step.text && typeof step.text === 'object' && typeof step.text.en === 'string';
   }
 
-  /** Family detection:
-   *  - rich struct steps → 'docx' when owner-provenance or authored-es present;
-   *    imported-curated rich steps → 'curated' keyed by the served id (es present
-   *    online, degrades to `none` offline);
-   *  - flat-string steps with a served reference → 'curated';
-   *  - otherwise legacy prose. */
   function detectFamily(recipe, deps) {
     const steps = recipe.steps || [];
     const isRich = Boolean(steps.length) && isDocxStep(steps[0]);
+    if (isRich) return detectRichFamily(recipe);
+    return detectFlatFamily(recipe, deps);
+  }
+
+  /** rich steps: owner provenance or authored es ⇒ docx; otherwise imported-curated. */
+  function detectRichFamily(recipe) {
     const src = recipe.originalSource || recipe.sourceFamily || '';
-    if (isRich && (/owner-docx/.test(src) || recipe.sourceFamily === 'owner-docx')) return 'docx';
-    if (isRich && steps.some((s) => s.text.esPE)) return 'docx';
-    if (isRich) return 'curated';
+    if (/owner-docx/.test(src) || recipe.sourceFamily === 'owner-docx') return 'docx';
+    const hasAuthoredEs = (recipe.steps || []).some((s) => s.esPE || (s.text && s.text.esPE));
+    return hasAuthoredEs ? 'docx' : 'curated';
+  }
+
+  /** flat steps: served es reference ⇒ curated; method[] prose ⇒ legacy. */
+  function detectFlatFamily(recipe, deps) {
+    const steps = recipe.steps || [];
     const translations = (deps && deps.translations) || {};
     if (steps.length && typeof steps[0] === 'string' && Array.isArray(translations[recipe.id])) return 'curated';
     if (recipe.sourceFamily === 'weighed-curated' || recipe.es) return 'curated';
@@ -74,24 +79,6 @@
         esPE: tx[i] || '',
         esStatus: tx[i] ? 'draft' : 'none',
       },
-    }));
-  }
-
-  /** docx-4: richest corpus — pass-through into the canonical shape. */
-  function fromDocx(recipe) {
-    return (recipe.steps || []).map((s, i) => ({
-      id: s.id || `s${i + 1}`,
-      order: s.order || i + 1,
-      station: s.station || '',
-      text: {
-        en: s.text.en,
-        esPE: s.text.esPE || '',
-        esStatus: s.text.esPE ? 'authored-es' : 'none',
-      },
-      ingredients: s.ingredients || [],
-      timeMin: s.timeMin ?? null,
-      targetTempC: s.targetTempC ?? null,
-      checkpoint: s.checkpoint ?? null,
     }));
   }
 
