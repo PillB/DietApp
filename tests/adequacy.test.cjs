@@ -49,10 +49,13 @@ test('seeded negative: an empty week is flagged inadequate (never rubber-stamped
   assert.strictEqual(byId.vitaminA.status, 'inadequate-no-data');
 });
 
-test('seeded negative: female iron RDA is the science-correct 18 mg (band switches by sex)', () => {
+test('seeded negative: female iron RDA is the science-correct 18 mg/day (126 mg/week × 7, band switches by sex)', () => {
   const nikkei = imported.find((r) => r.id === 'nikkei-salmon-bowl');
   const weekF = A.adequacyWeek([{ recipe: nikkei, portionsPerDay: 2, days: 7 }], comp, { sex: 'female' });
   const byIdF = Object.fromEntries(weekF.nutrients.map((n) => [n.id, n]));
-  assert.strictEqual(byIdF.iron.rdaTarget, 18, 'female iron RDA is 18 mg');
+  // LEDGER-D60: the engine targets a WEEK (rda × 7); the stale assertion demanded the
+  // daily value — the engine and D60's report; corrected to the weekly target.
+  assert.strictEqual(byIdF.iron.rdaTarget, 18 * 7, 'female iron WEEKLY RDA is 18 mg/day × 7 = 126 mg');
+  assert.strictEqual(A.rda.ironMg.female, 18, 'daily RDA constant unchanged');
   assert.strictEqual(byIdF.iron.status === 'adequate' || byIdF.iron.status === 'below-rda', true);
 });
