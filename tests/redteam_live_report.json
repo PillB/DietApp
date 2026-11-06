@@ -48,7 +48,7 @@
     {
       "ok": true,
       "label": "5-shopping-per-serving: nikkei ×2 gives 10 ingredient lines",
-      "detail": "TCA composition shows missing rows too"
+      "detail": "0 lines = entry fell outside the displayed range; check engine-from/to span the entry date"
     },
     {
       "ok": true,

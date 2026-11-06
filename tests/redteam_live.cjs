@@ -98,13 +98,16 @@ async function main() {
   // --- 5. Recipe add + shopping sync (routed view)
   await page.evaluate(() => { location.hash = '#shopengine'; });
   await page.waitForSelector('#engine-recipe:visible', { timeout: 15000 }).catch(() => {});
+  await page.fill('#engine-from', '2026-11-01');
+  await page.fill('#engine-to', '2026-11-30');
+  await page.waitForTimeout(150);
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
   await page.fill('#engine-date', '2026-11-05');
   await page.fill('#engine-portions', '2');
   await page.click('#engine-plan-form button[type=submit]');
-  await page.waitForTimeout(200);
+  await page.waitForTimeout(300);
   const lines = await page.locator('#engine-groups li').count();
-  await note(lines > 0, `5-shopping-per-serving: nikkei ×2 gives ${lines} ingredient lines`, `TCA composition shows missing rows too`);
+  await note(lines > 0, `5-shopping-per-serving: nikkei ×2 gives ${lines} ingredient lines`, `0 lines = entry fell outside the displayed range; check engine-from/to span the entry date`);
 
   // --- 6. Print won't crash
   const printOk = await page.evaluate(() => { try { window.print(); return true; } catch (e) { return false; } });
