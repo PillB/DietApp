@@ -19,15 +19,25 @@ async function checkFile(file){
   return {file,ok:sha(expected)===sha(got),status:response.status,expectedHash:sha(expected),servedHash:sha(got),expectedBytes:expected.length,servedBytes:got.length};
 }
 async function main(){
- const audit={base:BASE,checkoutSha:SHA,attempts:[],verified:false,at:new Date().toISOString()};
- for(let n=0;n<20;n++){
+ // D48 hardening: a GitHub Pages deploy can lag ~4+ min and gets CANCELLED when a newer
+ // push lands (superseding runs in the pages concurrency group); 20×6 s (~2 min) was
+ // insufficient — raise the budget to 45×10 s (~7.5 min) AND explicitly request a Pages
+ // rebuild when the served content still hasn't converged by attempt 10.
+ const audit={base:BASE,checkoutSha:SHA,attempts:[],verified:false,at:new Date().toISOString(),rebuildRequested:0};
+ for(let n=0;n<45;n++){
   const rows=await Promise.all(ASSETS.map(async x=>{try{return await checkFile(x)}catch(e){return {file:x,ok:false,error:String(e)}}}));
   audit.attempts.push({attempt:n+1,rows});
   if(rows.every(x=>x.ok)){audit.verified=true;break}
-  if(n<19)await sleep(6000);
+  if(n===10 && (process.env.GH_TOKEN || process.env.GITHUB_TOKEN)){
+   try{
+    execFileSync('gh',['api','-X','POST','repos/'+(process.env.GITHUB_REPOSITORY||'PillB/DietApp')+'/pages/builds'],{stdio:'ignore',env:process.env});
+    audit.rebuildRequested=audit.rebuildRequested+1;
+   }catch(e){/* no token or rate limit — keep polling */}
+  }
+  if(n<44)await sleep(10000);
  }
  fs.writeFileSync(path.join(ROOT,'tests/deployed_asset_parity_report.json'),JSON.stringify(audit,null,2));
- console.log(JSON.stringify({sha:SHA,verified:audit.verified,files:ASSETS.length,attempts:audit.attempts.length,last:audit.attempts.at(-1).rows},null,2));
+ console.log(JSON.stringify({sha:SHA,verified:audit.verified,rebuildRequested:audit.rebuildRequested,files:ASSETS.length,attempts:audit.attempts.length,last:audit.attempts.at(-1).rows},null,2));
  if(!audit.verified)process.exitCode=1;
 }
 main().catch(e=>{console.error(e);process.exitCode=1});

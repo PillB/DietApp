@@ -1,0 +1,30 @@
+# GitHub Pages configuration — LEDGER-D63
+# Root cause: pages deploy CDN `syncing_files` hung >10 min on every deploy since
+# 2026-11-06 04:52 (actions/deploy-pages timeout → artifact canceled → "Page build
+# failed", duration 0). The repo's tracked surface grew to ~108 MB, of which the
+# app shell needs only a few MB; 46 MB of committed test PNGs + 22 MB of the
+# (public) context/ + Context information/ trees + agent docs all ride along.
+# Excluding everything the SPA does not serve shrinks the deployment artifact so
+# the CDN sync completes within the actions timeout.
+
+exclude:
+  - tests
+  - scripts
+  - docs
+  - context
+  - "Context information"
+  - .github
+  - node_modules
+  - config
+  - backup-2026-10-30
+  - data/private
+  - AGENT.md
+  - AGENTS.md
+  - CLAUDE.md
+  - OPEN_CODE_HANDOVER.md
+  - README_OPEN_CODE.md
+  - eslint.config.mjs
+  - opencode.json
+  - opencode.json.example
+  - package.json
+  - package-lock.json
