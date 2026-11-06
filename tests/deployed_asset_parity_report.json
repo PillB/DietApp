@@ -1,0 +1,68 @@
+{
+  "base": "https://pillb.github.io/DietApp/",
+  "checkoutSha": "83ae2df7c103561a2d2d2671ceeaaf9e63768540",
+  "attempts": [
+    {
+      "attempt": 1,
+      "rows": [
+        {
+          "file": "index.html",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "de03c381d74e657369c9122ef91c82d1f5a2b8b41d366f537e28ce254fcd2558",
+          "servedHash": "de03c381d74e657369c9122ef91c82d1f5a2b8b41d366f537e28ce254fcd2558",
+          "expectedBytes": 44614,
+          "servedBytes": 44614
+        },
+        {
+          "file": "assets/js/app.js",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "fe353d29e1a05c260d27c05743dae9581d4daa37944c6e96d8a0747d2af085d4",
+          "servedHash": "fe353d29e1a05c260d27c05743dae9581d4daa37944c6e96d8a0747d2af085d4",
+          "expectedBytes": 20687,
+          "servedBytes": 20687
+        },
+        {
+          "file": "assets/js/i18n.js",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "052a74593607c0eabe432e9f73d652592e3a9a982ba68bb8c459ff988ef69ed9",
+          "servedHash": "052a74593607c0eabe432e9f73d652592e3a9a982ba68bb8c459ff988ef69ed9",
+          "expectedBytes": 37179,
+          "servedBytes": 37179
+        },
+        {
+          "file": "assets/js/shopping-ui.js",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "c8199efd57818be33871ec12da3a34125810ad029cceedffd7ea40821f2393e1",
+          "servedHash": "c8199efd57818be33871ec12da3a34125810ad029cceedffd7ea40821f2393e1",
+          "expectedBytes": 18467,
+          "servedBytes": 18467
+        },
+        {
+          "file": "assets/js/data.js",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "fc7c2f6d703b00dda0b2b720a476aabb58fc8831765ddc93319d2a350c05c1a4",
+          "servedHash": "fc7c2f6d703b00dda0b2b720a476aabb58fc8831765ddc93319d2a350c05c1a4",
+          "expectedBytes": 233503,
+          "servedBytes": 233503
+        },
+        {
+          "file": "data/canonical/docx-diet-recipes-canon.v1.json",
+          "ok": true,
+          "status": 200,
+          "expectedHash": "bdc8f45ebc6d4491c340ef5b2d429ec4b932061294f33e0f32dae2c4e4325d5a",
+          "servedHash": "bdc8f45ebc6d4491c340ef5b2d429ec4b932061294f33e0f32dae2c4e4325d5a",
+          "expectedBytes": 36026,
+          "servedBytes": 36026
+        }
+      ]
+    }
+  ],
+  "verified": true,
+  "at": "2026-11-06T17:18:38.124Z",
+  "rebuildRequested": 0
+}

@@ -98,9 +98,12 @@ async function recipeModalWalk(browser) {
       return { mise: h.some((x) => /Mise|Preparación/i.test(x)), ingredients: h.some((x) => /Ingredients|Ingredientes/i.test(x)), method: h.some((x) => /Method|Preparación/i.test(x)) };
     });
     note(modal.mise && modal.ingredients && modal.method, 'modal-content: mise/ingredients/method all present', JSON.stringify(modal));
-    // close via the × button
+    // close via the × button (race-proof: wait for the x-transition to finish instead of a fixed 300 ms)
     await page.click('button[aria-label="Close recipe"]');
-    await page.waitForTimeout(300);
+    await page.waitForFunction(() => {
+      const overlay = [...document.querySelectorAll('div')].find((d) => d.getAttribute && d.getAttribute('x-show') === 'selectedRecipe');
+      return !overlay || getComputedStyle(overlay).display === 'none';
+    }, { timeout: 5000 }).catch(() => {});
     const closed = await page.evaluate(() => {
       const overlay = [...document.querySelectorAll('div')].find((d) => d.getAttribute && d.getAttribute('x-show') === 'selectedRecipe');
       return overlay ? getComputedStyle(overlay).display === 'none' : true;
