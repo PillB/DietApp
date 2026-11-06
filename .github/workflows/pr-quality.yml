@@ -30,6 +30,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: 26 direct route states, shopping and cook controls
         run: npm run candidate:routes
+      - name: Engine boot loading and missing-dependency recovery
+        run: npm run boot:regression
       - name: Real local served app integration
         run: npm run e2e
       - name: Responsive and a11y staging

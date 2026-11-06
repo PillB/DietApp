@@ -1,19 +1,477 @@
 {
-  "schema": "lima-stores/v1",
+  "schema": "lima-stores/v1.1",
   "purpose": "Catalog STRUCTURE fixture for canonical ingredients. No titles, prices, SKUs, URLs or observation times exist yet: all null by construction. availability 'notChecked' everywhere. hypothesisPack rows are explicitly non-provenance aids (see notes) and must never feed purchase math.",
   "noteForVerification": "Each row, when an agent/owner actually checks a real listing, gains: verbatim listingTitle, productUrl, packageQty/packageUnit, pricePEN, observationTime (America/Lima exact), locale (store+district), availability becoming a claiming state.",
   "products": [
-    { "id": "sp-wong-brown-rice-dry", "retailer": "Wong", "ingredientId": "brown_rice_dry", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "1000", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-plazavea-brown-rice-dry", "retailer": "Plaza Vea", "ingredientId": "brown_rice_dry", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "1000", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-metro-brown-rice-dry", "retailer": "Metro", "ingredientId": "brown_rice_dry", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "1000", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-wong-quinoa-dry", "retailer": "Wong", "ingredientId": "quinoa_dry", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "500", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-plazavea-quinoa-dry", "retailer": "Plaza Vea", "ingredientId": "quinoa_dry", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "500", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-wong-soy-sauce", "retailer": "Wong", "ingredientId": "soy_sauce", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "150", "unit": "ml" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance", "liquid-composition-label-dependent"] },
-    { "id": "sp-wong-parmesan", "retailer": "Wong", "ingredientId": "parmesan", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "100", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance", "allergen-dairy"] },
-    { "id": "sp-metro-corn-tortilla", "retailer": "Metro", "ingredientId": "corn_tortilla", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "12", "unit": "count" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-wong-salmon", "retailer": "Wong", "ingredientId": "salmon", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "500", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance", "perishable-check-actual-cut"] },
-    { "id": "sp-wong-mushroom", "retailer": "Wong", "ingredientId": "mushroom", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "250", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-plazavea-mushroom", "retailer": "Plaza Vea", "ingredientId": "mushroom", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "250", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] },
-    { "id": "sp-metro-cocoa", "retailer": "Metro", "ingredientId": "cocoa", "listingTitle": null, "packageQty": null, "packageUnit": null, "hypothesisPack": { "quantity": "250", "unit": "g" }, "pricePEN": null, "productUrl": null, "sku": null, "observationTime": null, "locale": null, "availability": "notChecked", "notes": ["fixture-typical-pack-hypothesis-not-provenance"] }
+    {
+      "id": "sp-wong-brown-rice-dry",
+      "retailer": "Wong",
+      "ingredientId": "brown_rice_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-plazavea-brown-rice-dry",
+      "retailer": "Plaza Vea",
+      "ingredientId": "brown_rice_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-metro-brown-rice-dry",
+      "retailer": "Metro",
+      "ingredientId": "brown_rice_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-wong-quinoa-dry",
+      "retailer": "Wong",
+      "ingredientId": "quinoa_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-plazavea-quinoa-dry",
+      "retailer": "Plaza Vea",
+      "ingredientId": "quinoa_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-wong-soy-sauce",
+      "retailer": "Wong",
+      "ingredientId": "soy_sauce",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "150",
+        "unit": "ml"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance",
+        "liquid-composition-label-dependent"
+      ]
+    },
+    {
+      "id": "sp-wong-parmesan",
+      "retailer": "Wong",
+      "ingredientId": "parmesan",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "100",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance",
+        "allergen-dairy"
+      ]
+    },
+    {
+      "id": "sp-metro-corn-tortilla",
+      "retailer": "Metro",
+      "ingredientId": "corn_tortilla",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "12",
+        "unit": "count"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-wong-salmon",
+      "retailer": "Wong",
+      "ingredientId": "salmon",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance",
+        "perishable-check-actual-cut"
+      ]
+    },
+    {
+      "id": "sp-wong-mushroom",
+      "retailer": "Wong",
+      "ingredientId": "mushroom",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "250",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-plazavea-mushroom",
+      "retailer": "Plaza Vea",
+      "ingredientId": "mushroom",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "250",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-metro-cocoa",
+      "retailer": "Metro",
+      "ingredientId": "cocoa",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "250",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-tottus-salmon",
+      "retailer": "Tottus",
+      "ingredientId": "salmon",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-tottus-brown-rice-dry",
+      "retailer": "Tottus",
+      "ingredientId": "brown_rice_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-tottus-quinoa-dry",
+      "retailer": "Tottus",
+      "ingredientId": "quinoa_dry",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-vivanda-salmon",
+      "retailer": "Vivanda",
+      "ingredientId": "salmon",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-vivanda-greek-yogurt",
+      "retailer": "Vivanda",
+      "ingredientId": "greek_yogurt",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-vivanda-avocado",
+      "retailer": "Vivanda",
+      "ingredientId": "avocado",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-metro-avocado",
+      "retailer": "Metro",
+      "ingredientId": "avocado",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "500",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    },
+    {
+      "id": "sp-plaza-vea-greek-yogurt",
+      "retailer": "Plaza Vea",
+      "ingredientId": "greek_yogurt",
+      "listingTitle": null,
+      "packageQty": null,
+      "packageUnit": null,
+      "hypothesisPack": {
+        "quantity": "1000",
+        "unit": "g"
+      },
+      "pricePEN": null,
+      "productUrl": null,
+      "sku": null,
+      "observationTime": null,
+      "locale": null,
+      "availability": "notChecked",
+      "notes": [
+        "fixture-typical-pack-hypothesis-not-provenance"
+      ]
+    }
+  ],
+  "retailerCatalogReferences": [
+    {
+      "retailer": "Wong",
+      "catalogUrl": "https://www.wong.pe",
+      "observationTime": null,
+      "notes": [
+        "retailer-level catalog landing page recorded 2026-11-01 from public search; NOT a product listing; product rows still require owner walk or explicit future catalog integration",
+        "search source: peru-retail ecommerce share study (Plaza Vea 43% visits, Wong 27%, Tottus 26%, Vivanda 4%)"
+      ]
+    },
+    {
+      "retailer": "Plaza Vea",
+      "catalogUrl": "https://www.plazavea.com.pe",
+      "observationTime": null,
+      "notes": [
+        "retailer-level catalog landing page recorded 2026-11-01 from public search; NOT a product listing; product rows still require owner walk or explicit future catalog integration",
+        "search source: peru-retail ecommerce share study (Plaza Vea 43% visits, Wong 27%, Tottus 26%, Vivanda 4%)"
+      ]
+    },
+    {
+      "retailer": "Metro",
+      "catalogUrl": "https://www.metro.pe",
+      "observationTime": null,
+      "notes": [
+        "retailer-level catalog landing page recorded 2026-11-01 from public search; NOT a product listing; product rows still require owner walk or explicit future catalog integration",
+        "search source: peru-retail ecommerce share study (Plaza Vea 43% visits, Wong 27%, Tottus 26%, Vivanda 4%)"
+      ]
+    },
+    {
+      "retailer": "Tottus",
+      "catalogUrl": "https://www.tottus.com.pe",
+      "observationTime": null,
+      "notes": [
+        "retailer-level catalog landing page recorded 2026-11-01 from public search; NOT a product listing; product rows still require owner walk or explicit future catalog integration",
+        "search source: peru-retail ecommerce share study (Plaza Vea 43% visits, Wong 27%, Tottus 26%, Vivanda 4%)"
+      ]
+    },
+    {
+      "retailer": "Vivanda",
+      "catalogUrl": "https://www.vivanda.com.pe",
+      "observationTime": null,
+      "notes": [
+        "retailer-level catalog landing page recorded 2026-11-01 from public search; NOT a product listing; product rows still require owner walk or explicit future catalog integration",
+        "search source: peru-retail ecommerce share study (Plaza Vea 43% visits, Wong 27%, Tottus 26%, Vivanda 4%)"
+      ]
+    }
   ]
 }

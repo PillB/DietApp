@@ -172,6 +172,15 @@
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   }
 
+  function ensureDisplayRangeIncludes(section, date) {
+    const fromInput = section.querySelector('#engine-from');
+    const toInput = section.querySelector('#engine-to');
+    const from = fromInput.value || date;
+    const to = toInput.value || date;
+    fromInput.value = from < date ? from : date;
+    toInput.value = to > date ? to : date;
+  }
+
   function bind(c, model, section) {
     const t = (k, map) => {
       let s = root.I18N ? root.I18N.t(k) : null;
@@ -207,6 +216,7 @@
         section.querySelector('#engine-groups').innerHTML = '';
         return;
       }
+      ensureDisplayRangeIncludes(section, entry.localDate);
       status.textContent = t('shopping.added', { r: entry.recipeId, p: entry.portions, d: entry.localDate });
       c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });

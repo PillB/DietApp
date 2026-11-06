@@ -14,7 +14,7 @@
     engine, so they must be stashed on first response to make offline mode work
     after a first visit.
 */
-const CACHE_NAME = 'dietapp-v4-20261031';
+const CACHE_NAME = 'dietapp-v5-20261106';
 const APP_SHELL = [
   './',
   './index.html',
@@ -42,6 +42,9 @@ const APP_SHELL = [
   './assets/js/shopping-ui.js',
   './assets/js/planner-core.js',
   './assets/js/planner-ui.js',
+  './assets/js/weighin-core.js',
+  './assets/js/weighin-ui.js',
+  './assets/js/step-text.js',
   './assets/js/diet-core.js',
   './assets/js/deficit-planner.js',
   './assets/js/i18n.js',
@@ -52,6 +55,8 @@ const APP_SHELL = [
   './assets/js/flavor-ranking.js',
   './assets/js/flavor-ui.js',
   './assets/js/diet-nutrition-core.js',
+  './assets/js/adequacy-core.js',
+  './assets/js/composition-bridge.js',
   './assets/icons/calendar.svg',
   './assets/icons/chef-hat.svg',
   './assets/icons/knowledge.svg',

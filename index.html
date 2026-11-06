@@ -83,6 +83,10 @@
     </aside>
 
     <main class="lg:ml-80 flex-1 p-4 sm:p-6 lg:p-10">
+      <div id="engine-boot-status" class="no-print mb-6 rounded-3xl border border-amber-300/30 bg-stone-950/60 p-4 text-sm text-amber-100" role="status" aria-live="polite" style="display:none">
+        <p id="engine-boot-message" class="font-semibold">Preparando paneles — cargando módulos y datos.</p>
+        <button id="engine-boot-retry" type="button" style="display:none" class="mt-3 rounded-xl bg-amber-400 px-4 py-2 font-bold text-stone-950">Reintentar carga</button>
+      </div>
       <header class="no-print mb-8 flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p class="text-xs uppercase tracking-[0.28em] text-amber-300/70">Cocina digital</p>
@@ -521,6 +525,35 @@
   <script>
     // catalog preload for the shopping engine (structure-only fixture), then boot
     (function () {
+      function bootStatusEl() {
+        return {
+          box: document.getElementById('engine-boot-status'),
+          message: document.getElementById('engine-boot-message'),
+          retry: document.getElementById('engine-boot-retry'),
+        };
+      }
+      function localized(key, fallback) {
+        return window.I18N && window.I18N.t ? window.I18N.t(key) : fallback;
+      }
+      function showBootStatus(state) {
+        const { box, message, retry } = bootStatusEl();
+        if (!box || !message) return;
+        box.style.display = '';
+        message.textContent = state === 'failed'
+          ? localized('engine.boot.failed', 'No se pudieron cargar los paneles. Revisa tu conexión y vuelve a intentarlo.')
+          : localized('engine.boot.loading', 'Preparando paneles — cargando módulos y datos.');
+        if (retry) {
+          retry.textContent = localized('engine.boot.retry', 'Reintentar carga');
+          retry.style.display = state === 'failed' ? '' : 'none';
+        }
+      }
+      function hideBootStatus() {
+        const { box } = bootStatusEl();
+        if (box) box.style.display = 'none';
+      }
+      const retryButton = bootStatusEl().retry;
+      if (retryButton) retryButton.addEventListener('click', () => window.location.reload());
+      showBootStatus('loading');
       function boot() {
         Promise.all([
           fetch('data/canonical/docx-diet-recipes-canon.v1.json').then((r) => r.ok ? r.json() : null),
@@ -554,6 +587,7 @@
         if (!(window.ShoppingUI && window.ShoppingUI.init && window.PlannerUI && window.CookModeUI && window.FlavorUI)) {
           if (attempt < 80) return void setTimeout(() => { boot2(attempt + 1); }, 125);
           console.error('engine UI deps missing after ~10s retry window');
+          showBootStatus('failed');
           return;
         }
         try {
@@ -562,13 +596,14 @@
           window.CookModeUI.init({ model: shopping.model });
           window.WeighInUI.init({ model: shopping.model });
           window.FlavorUI.init({});
+          hideBootStatus();
           fetch('data/fixtures/ingredient-bridge-v1.json').then((r) => r.ok ? r.json() : null)
             .then((bridge) => { window.INGREDIENT_CATEGORY_BRIDGE = bridge ? bridge.bridge : {}; })
             .catch(() => { window.INGREDIENT_CATEGORY_BRIDGE = {}; });
           fetch('data/fixtures/flavor-lexicon-v1.json').then((r) => r.ok ? r.json() : null)
             .then((lex) => { window.FLAVOR_LEXICON = lex; })
             .catch(() => { window.FLAVOR_LEXICON = null; });
-        } catch (e) { console.error('engine init failed:', e); }
+        } catch (e) { console.error('engine init failed:', e); showBootStatus('failed'); }
       }
       fetch('data/fixtures/lima-stores-v1.json')
         .then((r) => r.json())

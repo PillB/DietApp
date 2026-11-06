@@ -5,7 +5,7 @@ set -u
 cd "$(dirname "$0")/.."
 echo "=== R3 RELEASE REGRESSION — $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
 FAIL=0
-for layer in test lint privacy check e2e staging live redteam redteam2 geometry audit; do
+for layer in test lint privacy check e2e staging live redteam redteam2 geometry audit boot:regression; do
   echo "--- npm run $layer"
   if npm run -s $layer > /tmp/r3_$layer.log 2>&1; then
     echo "PASS: $layer"

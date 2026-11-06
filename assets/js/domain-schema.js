@@ -23,7 +23,7 @@
   const ALL_UNITS = DIMENSION_UNITS.count.concat(DIMENSION_UNITS.g, DIMENSION_UNITS.ml);
   const SLOTS = ['breakfast', 'lunch', 'dinner', 'snack', 'desayuno', 'almuerzo', 'cena', 'refrigerio', '11am']; // v0.4: bilingual keys (es-PE retained alongside legacy EN)
   const BASIS = ['raw', 'dry', 'cooked'];
-  const RETAILERS = ['Wong', 'Plaza Vea', 'Metro', 'Mercado', 'Puntomercado'];
+  const RETAILERS = ['Wong', 'Plaza Vea', 'Metro', 'Mercado', 'Puntomercado', 'Tottus', 'Vivanda'];
   const AVAILABILITY = ['notChecked', 'unverified', 'listedWithoutLocation', 'listedForLocation', 'outOfStockAtTime', 'unavailable', 'unknown', 'confirmedAtCheckout', 'observed', 'verified'];
   // states that constitute an actual observation/claim and therefore REQUIRE exact provenance
   const CLAIMING_AVAILABILITY = ['listedForLocation', 'outOfStockAtTime', 'unavailable', 'confirmedAtCheckout', 'observed', 'verified'];

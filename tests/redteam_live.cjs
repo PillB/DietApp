@@ -98,11 +98,16 @@ async function main() {
   // --- 5. Recipe add + shopping sync (routed view)
   await page.evaluate(() => { location.hash = '#shopengine'; });
   await page.waitForSelector('#engine-recipe:visible', { timeout: 15000 }).catch(() => {});
-  await page.fill('#engine-from', '2026-11-01');
-  await page.fill('#engine-to', '2026-11-30');
+  const dateAt = (offsetDays) => {
+    const d = new Date();
+    d.setDate(d.getDate() + offsetDays);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  };
+  await page.fill('#engine-from', dateAt(0));
+  await page.fill('#engine-to', dateAt(30));
   await page.waitForTimeout(150);
   await page.selectOption('#engine-recipe', 'nikkei-salmon-bowl');
-  await page.fill('#engine-date', '2026-11-05');
+  await page.fill('#engine-date', dateAt(5));
   await page.fill('#engine-portions', '2');
   await page.click('#engine-plan-form button[type=submit]');
   await page.waitForTimeout(300);
