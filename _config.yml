@@ -6,13 +6,18 @@
 # (public) context/ + Context information/ trees + agent docs all ride along.
 # Excluding everything the SPA does not serve shrinks the deployment artifact so
 # the CDN sync completes within the actions timeout.
+# NOTE (D63 follow-up): the flavor UI fetches `context/generated/flavor-atlas-v1.json`
+# at runtime (owner decree 2026-10-31 made context/generated public) — so the
+# `context` TREE is excluded entry-by-entry while keeping `context/generated`.
 
 exclude:
   - tests
   - scripts
   - docs
-  - context
   - "Context information"
+  - context/2026-05-01-2026-10-26-flavor-profile-analysis
+  - context/2026-05-01-2026-10-26-flavor-profile-analysis.json
+  - context/README.md
   - .github
   - node_modules
   - config
