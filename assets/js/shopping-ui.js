@@ -73,10 +73,24 @@
       status.textContent = 'Plan actualizado desde otra pestaña.';
     });
     if (root.I18N) root.I18N.onChange(() => {
+      // Rebuilding translated controls must NOT reset the user's active range,
+      // selected recipe, date or portions (previous CI E2E root cause).
+      const remembered = {};
+      for (const id of ['engine-recipe', 'engine-date', 'engine-portions', 'engine-from', 'engine-to']) {
+        const input = section.querySelector('#' + id);
+        remembered[id] = input ? input.value : '';
+      }
       section.dataset.built = '0';
       buildStaticSkeleton(section);
       bind(c, model, section);
       section.querySelector('#engine-plan-form').dataset.recipesReady = '0';
+      render(c, model, section, { silent: true });
+      for (const [id, value] of Object.entries(remembered)) {
+        const input = section.querySelector('#' + id);
+        if (input && value && (input.tagName !== 'SELECT' || [...input.options].some((option) => option.value === value))) {
+          input.value = value;
+        }
+      }
       render(c, model, section, { silent: true });
     });
     return { mounted: true, model };
