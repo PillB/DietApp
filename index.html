@@ -603,7 +603,13 @@
           fetch('data/fixtures/flavor-lexicon-v1.json').then((r) => r.ok ? r.json() : null)
             .then((lex) => { window.FLAVOR_LEXICON = lex; })
             .catch(() => { window.FLAVOR_LEXICON = null; });
-        } catch (e) { console.error('engine init failed:', e); showBootStatus('failed'); }
+        } catch (e) {
+          console.error('engine init failed:', e);
+          showBootStatus('failed');
+          // Expose a diagnostic code; keep the stored data untouched.
+          const message = document.getElementById('engine-boot-message');
+          if (message && e && e.code) message.textContent += ' [' + e.code + '; datos conservados]';
+        }
       }
       fetch('data/fixtures/lima-stores-v1.json')
         .then((r) => r.json())
