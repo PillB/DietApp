@@ -52,7 +52,7 @@ async function records(page) {
 async function clickRoute(page, route) {
   if (route === '#day/1/0') {
     await page.locator('nav a[href="#week/1"]').first().click();
-    await page.locator('a[href="#day/1/0"]').first().click();
+    await page.locator('section[x-show="view === \'week\'"] a[href="#day/1/0"]').first().click();
   } else {
     await page.locator('nav a[href="' + route + '"]').first().click();
   }
