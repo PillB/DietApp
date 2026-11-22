@@ -89,6 +89,19 @@
     return null;
   }
 
+  function migrateLegacy(doc, raw, storage) {
+    try { storage.setItem(BACKUP_KEY, raw); }
+    catch (err) {
+      return { ok: false, error: { code: 'migration_backup_failed', detail: String(err && err.name) }, preservedRaw: doc, rawString: raw };
+    }
+    // Never invent canonical entries from unstructured legacy prose.
+    const state = initialState();
+    state.updatedAt = new Date().toISOString();
+    const persisted = save(state, storage);
+    if (!persisted.ok) return { ok: false, error: persisted.error, preservedRaw: doc, rawString: raw };
+    return { ok: true, state, preservedRaw: doc, migrationNeeded: 'legacy-v0-into-planEntries-pending-normalization' };
+  }
+
   function load(storage) {
     let raw;
     try { raw = storage.getItem(KEY); }
@@ -106,15 +119,7 @@
     }
     // classification BEFORE checksum: we cannot even trust *why* unsigned docs fail
     if (doc.schema === 'meal-plan/legacy-v0' || doc.schema === 'meal-plan/legacy') {
-      try { storage.setItem(BACKUP_KEY, raw); }
-      catch (err) { return { ok: false, error: { code: 'migration_backup_failed', detail: String(err && err.name) }, preservedRaw: doc, rawString: raw }; } // never migrate without backup
-      // Do NOT fabricate a mapping for legacy content here (P1.2 honesty rule:
-      // legacy prose plans quarantine until human normalization). Preserve.
-      const state = initialState();
-      state.updatedAt = new Date().toISOString();
-      const persisted = save(state, storage);
-      if (!persisted.ok) return { ok: false, error: persisted.error, preservedRaw: doc, rawString: raw };
-      return { ok: true, state, preservedRaw: doc, migrationNeeded: 'legacy-v0-into-planEntries-pending-normalization' };
+      return migrateLegacy(doc, raw, storage);
     }
     if (doc.schema !== 'state/v1') {
       return { ok: false, error: { code: 'unsupported_schema_version', schema: doc.schema } };
