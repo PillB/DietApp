@@ -1,3 +1,5 @@
+
+**MANDATORY — read ./agent.md (repository root, path /agent.md) before any task or tool call.** Also read ./AGENT.md and ./AGENTS.md. The canonical supplemental contract includes per-task/per-round falsifiable tests, four red-team reviews, explicit expert standards and trade-offs, npm run chore(lint) with complexity budget, no tautological tests, no merging when CI is red, and source-drift safeguards. Review docs/STATE_MACHINES_2026-11-22.md and docs/STACK_TOPOLOGY_2026-11-22.md before editing planner state or deployments.
 # CLAUDE.md
 
 **Do NOT act here without reading the governing contract first:**
