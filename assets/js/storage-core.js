@@ -74,8 +74,25 @@
     }
   }
 
+  function stateShapeError(doc) {
+    for (const field of ['planEntries', 'repeatRules', 'pantry']) {
+      if (!Array.isArray(doc[field])) return 'bad_collection_' + field;
+    }
+    if (!doc.settings || typeof doc.settings !== 'object' || Array.isArray(doc.settings)) return 'bad_settings';
+    if (typeof doc.updatedAt !== 'string' || !Number.isFinite(Date.parse(doc.updatedAt))) return 'bad_updatedAt';
+    const ids = new Set();
+    for (const entry of doc.planEntries) {
+      if (!S.validatePlanEntry(entry).ok) return 'bad_plan_entry';
+      if (ids.has(entry.id)) return 'duplicate_plan_entry';
+      ids.add(entry.id);
+    }
+    return null;
+  }
+
   function load(storage) {
-    const raw = storage.getItem(KEY);
+    let raw;
+    try { raw = storage.getItem(KEY); }
+    catch (err) { return { ok: false, error: { code: 'storage_read_failed', detail: String(err && err.name) }, preservedRaw: null }; }
     if (!raw) return { ok: true, state: initialState(), preservedRaw: null };
     let doc;
     try {
@@ -83,14 +100,20 @@
     } catch (err) {
       return { ok: false, error: { code: 'unparseable_state', detail: String(err.name) }, preservedRaw: raw };
     }
+    // A JSON value can be null, a scalar or an array; all are invalid docs.
+    if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+      return { ok: false, error: { code: 'invalid_state_shape', detail: 'not_object' }, preservedRaw: doc, rawString: raw };
+    }
     // classification BEFORE checksum: we cannot even trust *why* unsigned docs fail
     if (doc.schema === 'meal-plan/legacy-v0' || doc.schema === 'meal-plan/legacy') {
-      storage.setItem(BACKUP_KEY, raw); // reversibility BEFORE forward migration
+      try { storage.setItem(BACKUP_KEY, raw); }
+      catch (err) { return { ok: false, error: { code: 'migration_backup_failed', detail: String(err && err.name) }, preservedRaw: doc, rawString: raw }; } // never migrate without backup
       // Do NOT fabricate a mapping for legacy content here (P1.2 honesty rule:
       // legacy prose plans quarantine until human normalization). Preserve.
       const state = initialState();
       state.updatedAt = new Date().toISOString();
-      save(state, storage);
+      const persisted = save(state, storage);
+      if (!persisted.ok) return { ok: false, error: persisted.error, preservedRaw: doc, rawString: raw };
       return { ok: true, state, preservedRaw: doc, migrationNeeded: 'legacy-v0-into-planEntries-pending-normalization' };
     }
     if (doc.schema !== 'state/v1') {
@@ -100,6 +123,8 @@
     if (fnv1a(canonicalJson(rest)) !== checksum) {
       return { ok: false, error: { code: 'checksum_mismatch' }, preservedRaw: doc, rawString: raw };
     }
+    const problem = stateShapeError(doc);
+    if (problem) return { ok: false, error: { code: 'invalid_state_shape', detail: problem }, preservedRaw: doc, rawString: raw };
     return { ok: true, state: doc };
   }
 
