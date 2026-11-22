@@ -154,3 +154,59 @@ test('legacy migration refuses when reversible backup could not be written', () 
   assert.equal(result.error.code, 'migration_backup_failed');
   assert.equal(state.get(ST.KEY), old);
 });
+
+
+test('transaction commits atomically and keeps the shared model identity', () => {
+  const storage = fakeStorage();
+  const state = ST.initialState();
+  const identity = state;
+  const result = ST.transact(state, storage, (draft) =>
+    ST.addPlanEntry(draft, validEntry('p1', '2026-11-02')));
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.equal(state, identity, 'other panels must retain the same model object');
+  assert.equal(state.planEntries.length, 1);
+  assert.equal(ST.load(storage).state.planEntries.length, 1);
+  assert.equal(state.checksum, ST.load(storage).state.checksum);
+});
+
+test('transaction negative control: storage quota rejection rolls back a mutation', () => {
+  const state = ST.initialState();
+  const blocked = {
+    getItem: () => null,
+    setItem: () => { throw new DOMException('quota', 'QuotaExceededError'); },
+  };
+  const result = ST.transact(state, blocked, (draft) =>
+    ST.addPlanEntry(draft, validEntry('p1', '2026-11-02')));
+  assert.equal(result.ok, false);
+  assert.equal(result.errors[0].code, 'storage_write_failed');
+  assert.deepEqual(state.planEntries, [], 'no phantom user-facing planned meal');
+  assert.equal(state.checksum, null);
+});
+
+test('transaction negative control: half-valid generated week never partly commits', () => {
+  const storage = fakeStorage();
+  const state = ST.initialState();
+  const result = ST.transact(state, storage, (draft) => {
+    const first = ST.addPlanEntry(draft, validEntry('p1', '2026-11-02'));
+    assert.equal(first.ok, true);
+    return ST.addPlanEntry(draft, { ...validEntry('p2', '2026-11-03'), portions: -10 });
+  });
+  assert.equal(result.ok, false);
+  assert.equal(state.planEntries.length, 0);
+  assert.equal(storage.getItem(ST.KEY), null);
+});
+
+test('transaction stale-tab guard prevents known lost updates', () => {
+  const storage = fakeStorage();
+  const tabA = ST.load(storage).state;
+  const tabB = ST.load(storage).state;
+  const first = ST.transact(tabA, storage, (draft) =>
+    ST.addPlanEntry(draft, validEntry('p1', '2026-11-02')));
+  assert.equal(first.ok, true);
+  const second = ST.transact(tabB, storage, (draft) =>
+    ST.addPlanEntry(draft, validEntry('p2', '2026-11-03')));
+  assert.equal(second.ok, false);
+  assert.equal(second.errors[0].code, 'stale_state');
+  assert.deepEqual(ST.load(storage).state.planEntries.map((x) => x.id), ['p1']);
+  assert.deepEqual(tabB.planEntries, [], 'stale tab must not claim a successful edit');
+});
