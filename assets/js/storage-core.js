@@ -68,7 +68,7 @@
     doc.checksum = fnv1a(canonicalJson(doc));
     try {
       storage.setItem(KEY, JSON.stringify(doc));
-      return { ok: true };
+      return { ok: true, checksum: doc.checksum };
     } catch (err) {
       return { ok: false, error: { code: 'storage_write_failed', detail: String(err && err.name) } };
     }
@@ -128,6 +128,34 @@
     return { ok: true, state: doc };
   }
 
+  /**
+   * Commit-or-rollback for synchronous browser plan edits.
+   * The original model remains untouched until a validated draft is persisted.
+   * A stored checksum guards against a *known* stale-tab update; browser storage
+   * lacks atomic compare-and-swap, so simultaneous writes remain a documented
+   * limit and require a transactional backend for a hard guarantee.
+   */
+  function transact(state, storage, operation) {
+    const current = load(storage);
+    if (!current.ok) return { ok: false, errors: [current.error] };
+    if ((state.checksum || null) !== (current.state.checksum || null)) {
+      return { ok: false, errors: [{ code: 'stale_state', message: 'Reload latest plan before editing' }] };
+    }
+    const draft = structuredClone(state);
+    let outcome;
+    try { outcome = operation(draft); }
+    catch (err) { return { ok: false, errors: [{ code: 'mutation_failed', detail: String(err && err.message) }] }; }
+    if (!outcome || !outcome.ok) return outcome || { ok: false, errors: [{ code: 'mutation_refused' }] };
+    const problem = stateShapeError(draft);
+    if (problem) return { ok: false, errors: [{ code: 'invalid_state_shape', detail: problem }] };
+    const saved = save(draft, storage);
+    if (!saved.ok) return { ok: false, errors: [saved.error] };
+    draft.checksum = saved.checksum;
+    for (const key of Object.keys(state)) if (!(key in draft)) delete state[key];
+    Object.assign(state, draft);
+    return outcome;
+  }
+
   /** Tab-conflict merge: union by entry id per collection; newer write wins headers. */
   function mergeStates(a, b) {
     const base = a.updatedAt >= b.updatedAt ? a : b;
@@ -164,5 +192,5 @@
     } catch { return false; }
   }
 
-  return { KEY, BACKUP_KEY, initialState, addPlanEntry, save, load, mergeStates, resolveWeek, verify, canonicalJson, fnv1a };
+  return { KEY, BACKUP_KEY, initialState, addPlanEntry, save, load, transact, mergeStates, resolveWeek, verify, canonicalJson, fnv1a };
 });
