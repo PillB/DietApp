@@ -53,6 +53,25 @@
     bind(c, model, section);
     render(c, model, section, { silent: false });
     root.__pgkRefreshShopping = () => render(c, model, section, { silent: true });
+    // A storage event fires in OTHER same-origin tabs, not in the writer tab.
+    // Refresh the shared model object so Planner, Shopping, Cook and Weigh-in
+    // remain coherent. Do not auto-merge invalid/unknown future schemas.
+    if (root.addEventListener) root.addEventListener('storage', (event) => {
+      if (event.key !== c.ST.KEY) return;
+      const updated = c.ST.load(localStore());
+      const status = section.querySelector('#engine-status');
+      if (!updated.ok) {
+        status.textContent = 'Plan externo no cargado: ' + updated.error.code + '. Datos locales conservados.';
+        return;
+      }
+      for (const key of Object.keys(model.state)) {
+        if (!(key in updated.state)) delete model.state[key];
+      }
+      Object.assign(model.state, updated.state);
+      render(c, model, section, { silent: true });
+      if (root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
+      status.textContent = 'Plan actualizado desde otra pestaña.';
+    });
     if (root.I18N) root.I18N.onChange(() => {
       section.dataset.built = '0';
       buildStaticSkeleton(section);
