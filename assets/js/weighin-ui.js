@@ -89,11 +89,18 @@
     });
     const yieldG = parseFloat(section.querySelector('#weighin-yield').value);
     const result = W.evaluateWeighIn(recipe, { weighIns, yieldG: Number.isFinite(yieldG) ? yieldG : null });
-    if (!model.state.kitchenWeighIns) model.state.kitchenWeighIns = {};
-    model.state.kitchenWeighIns[id] = { at: new Date().toISOString(), result };
-    root.StorageCore.save(model.state, {
+    const saved = root.StorageCore.transact(model.state, {
       getItem: (k) => root.localStorage.getItem(k), setItem: (k, v) => root.localStorage.setItem(k, v), removeItem: (k) => root.localStorage.removeItem(k),
+    }, (draft) => {
+      if (!draft.kitchenWeighIns) draft.kitchenWeighIns = {};
+      draft.kitchenWeighIns[id] = { at: new Date().toISOString(), result };
+      draft.updatedAt = new Date().toISOString();
+      return { ok: true };
     });
+    if (!saved.ok) {
+      status.textContent = 'No se guardó el pesaje: ' + saved.errors.map((e) => e.code).join(', ');
+      return;
+    }
     status.textContent = result.status === 'weighed-pending-review'
       ? `✓ ${id}: varianza ${result.variancePct}% — weighed-pending-review (dual review pendiente)`
       : `✗ ${result.status}: faltan ${result.missing.join(', ')}`;

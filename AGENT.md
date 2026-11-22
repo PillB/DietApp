@@ -1,3 +1,5 @@
+
+**Current canonical agent policy:** [agent.md](agent.md) at ./agent.md is mandatory alongside this legacy nutrition-specific contract and AGENTS.md; preserve four adversarial rounds and true negative controls, npm run chore(lint), privacy safeguards, and evidence-backed trade-offs. State topology: docs/STATE_MACHINES_2026-11-22.md.
 # AGENT.md — Nutritionally Audited Gourmet Planner
 
 ## Mission

@@ -68,14 +68,44 @@
     doc.checksum = fnv1a(canonicalJson(doc));
     try {
       storage.setItem(KEY, JSON.stringify(doc));
-      return { ok: true };
+      return { ok: true, checksum: doc.checksum };
     } catch (err) {
       return { ok: false, error: { code: 'storage_write_failed', detail: String(err && err.name) } };
     }
   }
 
+  function stateShapeError(doc) {
+    for (const field of ['planEntries', 'repeatRules', 'pantry']) {
+      if (!Array.isArray(doc[field])) return 'bad_collection_' + field;
+    }
+    if (!doc.settings || typeof doc.settings !== 'object' || Array.isArray(doc.settings)) return 'bad_settings';
+    if (typeof doc.updatedAt !== 'string' || !Number.isFinite(Date.parse(doc.updatedAt))) return 'bad_updatedAt';
+    const ids = new Set();
+    for (const entry of doc.planEntries) {
+      if (!S.validatePlanEntry(entry).ok) return 'bad_plan_entry';
+      if (ids.has(entry.id)) return 'duplicate_plan_entry';
+      ids.add(entry.id);
+    }
+    return null;
+  }
+
+  function migrateLegacy(doc, raw, storage) {
+    try { storage.setItem(BACKUP_KEY, raw); }
+    catch (err) {
+      return { ok: false, error: { code: 'migration_backup_failed', detail: String(err && err.name) }, preservedRaw: doc, rawString: raw };
+    }
+    // Never invent canonical entries from unstructured legacy prose.
+    const state = initialState();
+    state.updatedAt = new Date().toISOString();
+    const persisted = save(state, storage);
+    if (!persisted.ok) return { ok: false, error: persisted.error, preservedRaw: doc, rawString: raw };
+    return { ok: true, state, preservedRaw: doc, migrationNeeded: 'legacy-v0-into-planEntries-pending-normalization' };
+  }
+
   function load(storage) {
-    const raw = storage.getItem(KEY);
+    let raw;
+    try { raw = storage.getItem(KEY); }
+    catch (err) { return { ok: false, error: { code: 'storage_read_failed', detail: String(err && err.name) }, preservedRaw: null }; }
     if (!raw) return { ok: true, state: initialState(), preservedRaw: null };
     let doc;
     try {
@@ -83,15 +113,13 @@
     } catch (err) {
       return { ok: false, error: { code: 'unparseable_state', detail: String(err.name) }, preservedRaw: raw };
     }
+    // A JSON value can be null, a scalar or an array; all are invalid docs.
+    if (!doc || typeof doc !== 'object' || Array.isArray(doc)) {
+      return { ok: false, error: { code: 'invalid_state_shape', detail: 'not_object' }, preservedRaw: doc, rawString: raw };
+    }
     // classification BEFORE checksum: we cannot even trust *why* unsigned docs fail
     if (doc.schema === 'meal-plan/legacy-v0' || doc.schema === 'meal-plan/legacy') {
-      storage.setItem(BACKUP_KEY, raw); // reversibility BEFORE forward migration
-      // Do NOT fabricate a mapping for legacy content here (P1.2 honesty rule:
-      // legacy prose plans quarantine until human normalization). Preserve.
-      const state = initialState();
-      state.updatedAt = new Date().toISOString();
-      save(state, storage);
-      return { ok: true, state, preservedRaw: doc, migrationNeeded: 'legacy-v0-into-planEntries-pending-normalization' };
+      return migrateLegacy(doc, raw, storage);
     }
     if (doc.schema !== 'state/v1') {
       return { ok: false, error: { code: 'unsupported_schema_version', schema: doc.schema } };
@@ -100,7 +128,37 @@
     if (fnv1a(canonicalJson(rest)) !== checksum) {
       return { ok: false, error: { code: 'checksum_mismatch' }, preservedRaw: doc, rawString: raw };
     }
+    const problem = stateShapeError(doc);
+    if (problem) return { ok: false, error: { code: 'invalid_state_shape', detail: problem }, preservedRaw: doc, rawString: raw };
     return { ok: true, state: doc };
+  }
+
+  /**
+   * Commit-or-rollback for synchronous browser plan edits.
+   * The original model remains untouched until a validated draft is persisted.
+   * A stored checksum guards against a *known* stale-tab update; browser storage
+   * lacks atomic compare-and-swap, so simultaneous writes remain a documented
+   * limit and require a transactional backend for a hard guarantee.
+   */
+  function transact(state, storage, operation) {
+    const current = load(storage);
+    if (!current.ok) return { ok: false, errors: [current.error] };
+    if ((state.checksum || null) !== (current.state.checksum || null)) {
+      return { ok: false, errors: [{ code: 'stale_state', message: 'Reload latest plan before editing' }] };
+    }
+    const draft = structuredClone(state);
+    let outcome;
+    try { outcome = operation(draft); }
+    catch (err) { return { ok: false, errors: [{ code: 'mutation_failed', detail: String(err && err.message) }] }; }
+    if (!outcome || !outcome.ok) return outcome || { ok: false, errors: [{ code: 'mutation_refused' }] };
+    const problem = stateShapeError(draft);
+    if (problem) return { ok: false, errors: [{ code: 'invalid_state_shape', detail: problem }] };
+    const saved = save(draft, storage);
+    if (!saved.ok) return { ok: false, errors: [saved.error] };
+    draft.checksum = saved.checksum;
+    for (const key of Object.keys(state)) if (!(key in draft)) delete state[key];
+    Object.assign(state, draft);
+    return outcome;
   }
 
   /** Tab-conflict merge: union by entry id per collection; newer write wins headers. */
@@ -139,5 +197,5 @@
     } catch { return false; }
   }
 
-  return { KEY, BACKUP_KEY, initialState, addPlanEntry, save, load, mergeStates, resolveWeek, verify, canonicalJson, fnv1a };
+  return { KEY, BACKUP_KEY, initialState, addPlanEntry, save, load, transact, mergeStates, resolveWeek, verify, canonicalJson, fnv1a };
 });

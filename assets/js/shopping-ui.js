@@ -53,11 +53,44 @@
     bind(c, model, section);
     render(c, model, section, { silent: false });
     root.__pgkRefreshShopping = () => render(c, model, section, { silent: true });
+    // A storage event fires in OTHER same-origin tabs, not in the writer tab.
+    // Refresh the shared model object so Planner, Shopping, Cook and Weigh-in
+    // remain coherent. Do not auto-merge invalid/unknown future schemas.
+    if (root.addEventListener) root.addEventListener('storage', (event) => {
+      if (event.key !== c.ST.KEY) return;
+      const updated = c.ST.load(localStore());
+      const status = section.querySelector('#engine-status');
+      if (!updated.ok) {
+        status.textContent = 'Plan externo no cargado: ' + updated.error.code + '. Datos locales conservados.';
+        return;
+      }
+      for (const key of Object.keys(model.state)) {
+        if (!(key in updated.state)) delete model.state[key];
+      }
+      Object.assign(model.state, updated.state);
+      render(c, model, section, { silent: true });
+      if (root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
+      status.textContent = 'Plan actualizado desde otra pestaña.';
+    });
     if (root.I18N) root.I18N.onChange(() => {
+      // Rebuilding translated controls must NOT reset the user's active range,
+      // selected recipe, date or portions (previous CI E2E root cause).
+      const remembered = {};
+      for (const id of ['engine-recipe', 'engine-date', 'engine-portions', 'engine-from', 'engine-to']) {
+        const input = section.querySelector('#' + id);
+        remembered[id] = input ? input.value : '';
+      }
       section.dataset.built = '0';
       buildStaticSkeleton(section);
       bind(c, model, section);
       section.querySelector('#engine-plan-form').dataset.recipesReady = '0';
+      render(c, model, section, { silent: true });
+      for (const [id, value] of Object.entries(remembered)) {
+        const input = section.querySelector('#' + id);
+        if (input && value && (input.tagName !== 'SELECT' || [...input.options].some((option) => option.value === value))) {
+          input.value = value;
+        }
+      }
       render(c, model, section, { silent: true });
     });
     return { mounted: true, model };
@@ -73,6 +106,12 @@
 
   function hydrate(c, fed) {
     const load = c.ST.load(localStore());
+    if (!load.ok) {
+      // Never overwrite corrupt or unreadable user plans with a fresh empty plan.
+      const err = new Error('Saved planner state blocked: ' + load.error.code);
+      err.code = load.error.code;
+      throw err;
+    }
     const imported = c.IM.importWeighed(fed.curatedRecipes);
     return {
       state: load.state,
@@ -209,16 +248,16 @@
         portions: Number(form.querySelector('#engine-portions').value),
         repeatRuleId: null, pantryOverride: null,
       };
-      const res = c.ST.addPlanEntry(model.state, entry);
+      const res = c.ST.transact(model.state, localStore(), (draft) => c.ST.addPlanEntry(draft, entry));
       const status = section.querySelector('#engine-status');
       if (!res.ok) {
         status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${res.errors.map((e) => e.code).join(', ')}`;
-        section.querySelector('#engine-groups').innerHTML = '';
+        // The persisted plan and computed shopping list did NOT change.
+        // Never erase an accurate projection merely because an add was refused.
         return;
       }
       ensureDisplayRangeIncludes(section, entry.localDate);
       status.textContent = t('shopping.added', { r: entry.recipeId, p: entry.portions, d: entry.localDate });
-      c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });
       if (root.PlannerUI && root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
     });

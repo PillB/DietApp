@@ -14,7 +14,7 @@
     engine, so they must be stashed on first response to make offline mode work
     after a first visit.
 */
-const CACHE_NAME = 'dietapp-v5-20261106';
+const CACHE_NAME = 'dietapp-v6-20261122-state-machines';
 const APP_SHELL = [
   './',
   './index.html',
