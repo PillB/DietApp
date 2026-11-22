@@ -252,7 +252,8 @@
       const status = section.querySelector('#engine-status');
       if (!res.ok) {
         status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${res.errors.map((e) => e.code).join(', ')}`;
-        section.querySelector('#engine-groups').innerHTML = '';
+        // The persisted plan and computed shopping list did NOT change.
+        // Never erase an accurate projection merely because an add was refused.
         return;
       }
       ensureDisplayRangeIncludes(section, entry.localDate);
