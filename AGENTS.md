@@ -1,3 +1,5 @@
+
+**Canonical supplemental execution contract:** Read [agent.md](agent.md) (repo-root path ./agent.md) before all changes. Its four falsifiable red-team rounds, source/state coherence gates, and explicit npm run chore(lint) requirement apply in addition to this file. See docs/STATE_MACHINES_2026-11-22.md and docs/STACK_TOPOLOGY_2026-11-22.md. If instructions conflict, honor the stricter safety/privacy/release gate and document the decision.
 # AGENTS.md — OpenCode implementation contract (2026-10-30)
 
 ## Mission and order of operations
