@@ -113,8 +113,10 @@ test('self-consistent checksum is NOT evidence of a valid planner schema', () =>
   const state = ST.initialState();
   state.planEntries.push(validEntry('p1', '2026-11-02'));
   state.planEntries.push({ ...validEntry('p1', '2026-11-03'), portions: 0 });
-  const checksum = ST.fnv1a(ST.canonicalJson(state));
-  storage.setItem(ST.KEY, JSON.stringify({ ...state, checksum }));
+  const payload = structuredClone(state);
+  delete payload.checksum;
+  const checksum = ST.fnv1a(ST.canonicalJson(payload));
+  storage.setItem(ST.KEY, JSON.stringify({ ...payload, checksum }));
   const result = ST.load(storage);
   assert.equal(result.ok, false);
   assert.equal(result.error.code, 'invalid_state_shape');
@@ -126,7 +128,9 @@ test('even a checksummed duplicate entry ID is rejected before hydration', () =>
   const storage = fakeStorage();
   const state = ST.initialState();
   state.planEntries = [validEntry('p1', '2026-11-02'), validEntry('p1', '2026-11-03')];
-  storage.setItem(ST.KEY, JSON.stringify({ ...state, checksum: ST.fnv1a(ST.canonicalJson(state)) }));
+  const payload = structuredClone(state);
+  delete payload.checksum;
+  storage.setItem(ST.KEY, JSON.stringify({ ...payload, checksum: ST.fnv1a(ST.canonicalJson(payload)) }));
   const result = ST.load(storage);
   assert.equal(result.ok, false);
   assert.equal(result.error.detail, 'duplicate_plan_entry');
