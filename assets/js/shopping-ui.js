@@ -215,7 +215,7 @@
         portions: Number(form.querySelector('#engine-portions').value),
         repeatRuleId: null, pantryOverride: null,
       };
-      const res = c.ST.addPlanEntry(model.state, entry);
+      const res = c.ST.transact(model.state, localStore(), (draft) => c.ST.addPlanEntry(draft, entry));
       const status = section.querySelector('#engine-status');
       if (!res.ok) {
         status.textContent = `${root.I18N ? root.I18N.t('planner.refused') : 'Refused:'} ${res.errors.map((e) => e.code).join(', ')}`;
@@ -224,7 +224,6 @@
       }
       ensureDisplayRangeIncludes(section, entry.localDate);
       status.textContent = t('shopping.added', { r: entry.recipeId, p: entry.portions, d: entry.localDate });
-      c.ST.save(model.state, localStore());
       render(c, model, section, { silent: true });
       if (root.PlannerUI && root.__pgkRefreshPlanner) root.__pgkRefreshPlanner();
     });
