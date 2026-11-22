@@ -28,7 +28,8 @@ test('move: changes only the date, keeps id/portions (no id churn → no merge a
   assert.strictEqual(moved.ok, true);
   const e = st.planEntries.find((x) => x.id === 'p1');
   assert.strictEqual(e.localDate, '2026-11-09');
-  assert.strictEqual(Date.parse, Date.parse); // identity trivially true (just keeping focus on fields below)
+  assert.notEqual(e.localDate, '2026-11-02', 'date must actually change');
+  assert.equal(e.recipeId, 'r1', 'moving cannot silently change the assigned recipe');
   assert.strictEqual(e.portions, 2);
 });
 
