@@ -94,15 +94,22 @@
   }
 
   function applyWeekEntries(section, model, status, out) {
-    const added = [];
-    for (const e of out.entries) {
-      const res = root.StorageCore.addPlanEntry(model.state, e);
-      if (res.ok) added.push(e.id); else status.textContent = `${root.I18N.t('planner.refused')} ${res.errors.map((x) => x.code).join(', ')}`;
+    const saved = root.StorageCore.transact(model.state, localStoreAdapter(), (draft) => {
+      const addedIds = [];
+      for (const entry of out.entries) {
+        const result = root.StorageCore.addPlanEntry(draft, entry);
+        if (!result.ok) return result; // atomic: no partial week is visible
+        addedIds.push(entry.id);
+      }
+      return { ok: true, addedIds };
+    });
+    if (!saved.ok) {
+      status.textContent = `${T('planner.refused')} ${saved.errors.map((e) => e.code).join(', ')}`;
+      return;
     }
-    root.StorageCore.save(model.state, localStoreAdapter());
     renderEntries(section, model);
     if (root.ShoppingUI && root.__pgkRefreshShopping) root.__pgkRefreshShopping();
-    renderDeficitExplanations(section, out, added, status);
+    renderDeficitExplanations(section, out, saved.addedIds, status);
   }
 
   function localStoreAdapter() {
@@ -211,41 +218,41 @@
     if (!target) return;
     const id = target.dataset.entry;
     const op = target.dataset.op;
-    const P = deps().P;
-    let res;
+    if (!['move', 'copy', 'del', 'repeat'].includes(op)) return;
     if (op === 'move') {
-      const entry = model.state.planEntries.find((x) => x.id === id);
-      if (!entry || entry.localDate === target.value) return;
-      res = P.moveEntry(model.state, id, target.value);
-    } else if (op === 'copy') {
-      const pendingDate = target.closest('li').querySelector('[data-op="copydate"]').value;
-      res = P.copyEntry(model.state, id, pendingDate);
-    } else if (op === 'del') {
-      res = P.deleteEntry(model.state, id);
-    } else if (op === 'repeat') {
-      const weeks = Number(target.closest('li').querySelector('[data-op="weeks"]').value || 0);
-      const entry = model.state.planEntries.find((x) => x.id === id);
-      res = weeks >= 1 ? P.applyRepeat(model.state, {
-        sourceEntryId: id,
-        rule: { startDate: entry.localDate, weekdays: [weekdayIndexOf(entry.localDate)], acrossWeeks: weeks, exceptions: [] },
-        skipFirst: true,
-      }) : { ok: false, errors: [{ code: 'bad_weeks' }] };
-    } else {
+      const current = model.state.planEntries.find((x) => x.id === id);
+      if (!current || current.localDate === target.value) return;
+    }
+    const res = root.StorageCore.transact(model.state, localStoreAdapter(),
+      (draft) => applyEntryOperation(draft, deps().P, id, op, target));
+    const status = section.querySelector('#planner-status');
+    if (!res.ok) {
+      status.textContent = `${T('planner.refused')} ${res.errors.map((e) => e.code).join(', ')}`;
       return;
     }
-    const status = section.querySelector('#planner-status');
-    if (res.ok) {
-      root.StorageCore.save(model.state, {
-        getItem: (k) => root.localStorage.getItem(k),
-        setItem: (k, v) => root.localStorage.setItem(k, v),
-        removeItem: (k) => root.localStorage.removeItem(k),
-      });
-      renderEntries(section, model);
-      if (root.ShoppingUI && root.__pgkRefreshShopping) root.__pgkRefreshShopping();
-      status.textContent = T('planner.opOk', { op });
-    } else {
-      status.textContent = `${T('planner.refused')} ${res.errors.map((e) => e.code).join(', ')}`;
+    renderEntries(section, model);
+    if (root.ShoppingUI && root.__pgkRefreshShopping) root.__pgkRefreshShopping();
+    status.textContent = T('planner.opOk', { op });
+  }
+
+  function applyEntryOperation(draft, P, id, op, target) {
+    if (op === 'move') return P.moveEntry(draft, id, target.value);
+    if (op === 'copy') {
+      const date = target.closest('li').querySelector('[data-op="copydate"]').value;
+      return P.copyEntry(draft, id, date);
     }
+    if (op === 'del') return P.deleteEntry(draft, id);
+    const weeks = Number(target.closest('li').querySelector('[data-op="weeks"]').value || 0);
+    const entry = draft.planEntries.find((x) => x.id === id);
+    if (!entry) return { ok: false, errors: [{ code: 'entry_not_found' }] };
+    if (!Number.isInteger(weeks) || weeks < 1 || weeks > 52) {
+      return { ok: false, errors: [{ code: 'bad_weeks' }] };
+    }
+    return P.applyRepeat(draft, {
+      sourceEntryId: id,
+      rule: { startDate: entry.localDate, weekdays: [weekdayIndexOf(entry.localDate)], acrossWeeks: weeks, exceptions: [] },
+      skipFirst: true,
+    });
   }
 
   function weekdayIndexOf(localDate) {
