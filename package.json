@@ -21,7 +21,8 @@
     "candidate:routes": "node tests/candidate_route_audit.cjs",
     "boot:regression": "node tests/boot_status_regression.cjs",
     "live:walkthrough": "node tests/live_pages_walkthrough.cjs",
-    "chore(lint)": "eslint ."
+    "chore(lint)": "eslint .",
+    "state:flows": "node tests/state_cross_page_e2e.cjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
