@@ -73,6 +73,12 @@
 
   function hydrate(c, fed) {
     const load = c.ST.load(localStore());
+    if (!load.ok) {
+      // Never overwrite corrupt or unreadable user plans with a fresh empty plan.
+      const err = new Error('Saved planner state blocked: ' + load.error.code);
+      err.code = load.error.code;
+      throw err;
+    }
     const imported = c.IM.importWeighed(fed.curatedRecipes);
     return {
       state: load.state,
