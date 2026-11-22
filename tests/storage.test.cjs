@@ -95,3 +95,58 @@ test('calendar core and storage agree on week windows (no double math drift)', (
   const w = ST.resolveWeek('2026-06-15', 'week-containing-today').mondayToSunday;
   assert.deepStrictEqual(w, C.weekOf('2026-06-15'), 'uses CalendarCore.weekOf verbatim');
 });
+
+
+test('invalid JSON values never throw or replace the raw state', () => {
+  for (const input of ['null', '[]', '"bad"', '123']) {
+    const storage = fakeStorage();
+    storage.setItem(ST.KEY, input);
+    const result = ST.load(storage);
+    assert.equal(result.ok, false, input);
+    assert.equal(result.error.code, 'invalid_state_shape', input);
+    assert.equal(storage.getItem(ST.KEY), input, 'the original bytes must survive');
+  }
+});
+
+test('self-consistent checksum is NOT evidence of a valid planner schema', () => {
+  const storage = fakeStorage();
+  const state = ST.initialState();
+  state.planEntries.push(validEntry('p1', '2026-11-02'));
+  state.planEntries.push({ ...validEntry('p1', '2026-11-03'), portions: 0 });
+  const checksum = ST.fnv1a(ST.canonicalJson(state));
+  storage.setItem(ST.KEY, JSON.stringify({ ...state, checksum }));
+  const result = ST.load(storage);
+  assert.equal(result.ok, false);
+  assert.equal(result.error.code, 'invalid_state_shape');
+  assert.equal(result.error.detail, 'bad_plan_entry');
+  assert.equal(result.preservedRaw.planEntries.length, 2);
+});
+
+test('even a checksummed duplicate entry ID is rejected before hydration', () => {
+  const storage = fakeStorage();
+  const state = ST.initialState();
+  state.planEntries = [validEntry('p1', '2026-11-02'), validEntry('p1', '2026-11-03')];
+  storage.setItem(ST.KEY, JSON.stringify({ ...state, checksum: ST.fnv1a(ST.canonicalJson(state)) }));
+  const result = ST.load(storage);
+  assert.equal(result.ok, false);
+  assert.equal(result.error.detail, 'duplicate_plan_entry');
+});
+
+test('read access denied produces a diagnostic failure instead of crashing startup', () => {
+  const result = ST.load({ getItem() { throw new DOMException('blocked', 'SecurityError'); } });
+  assert.equal(result.ok, false);
+  assert.equal(result.error.code, 'storage_read_failed');
+});
+
+test('legacy migration refuses when reversible backup could not be written', () => {
+  const old = JSON.stringify({ schema: 'meal-plan/legacy-v0', dailyPlans: ['keep'] });
+  const state = new Map([[ST.KEY, old]]);
+  const storage = {
+    getItem: (k) => state.get(k) || null,
+    setItem: () => { throw new Error('quota'); },
+  };
+  const result = ST.load(storage);
+  assert.equal(result.ok, false);
+  assert.equal(result.error.code, 'migration_backup_failed');
+  assert.equal(state.get(ST.KEY), old);
+});
