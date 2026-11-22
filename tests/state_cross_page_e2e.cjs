@@ -153,7 +153,7 @@ async function main() {
     report.cases.push('repeat: two extra dates, no loss in old date range');
 
     await setNav(a, '#planner');
-    await a.locator('#planner-entries li[data-entry]').first().locator('[data-op="del"]').click();
+    await a.locator('#planner-entries li[data-entry]').last().locator('[data-op="del"]').click();
     assert.equal((await records(a)).length, 3);
     await sweep(a, 3, true, report.routeVisits);
     report.cases.push('delete: canonical and computed list agree');
