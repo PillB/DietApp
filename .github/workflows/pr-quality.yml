@@ -34,6 +34,8 @@ jobs:
         run: npm run boot:regression
       - name: Real local served app integration
         run: npm run e2e
+      - name: State-machine cross-page and cross-tab browser walkthrough
+        run: npm run state:flows
       - name: Responsive and a11y staging
         run: npm run staging
       - name: Save screenshots, text controls and test reports
@@ -48,6 +50,7 @@ jobs:
             tests/e2e_*.png
             tests/e2e_served_report.json
             tests/staging_qa_report.json
+            tests/state_cross_page_report.json
   live-current-main:
     runs-on: ubuntu-latest
     timeout-minutes: 16
